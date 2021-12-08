@@ -3,15 +3,16 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="test.Patients">
+      <class name="superAdmin.Clients">
         <methods>
-          <include name="editPatientInfo"/>
+          <include name="addNewClientGroup"/>
           <include name="openBrowser"/>
-          <include name="beforeSuit"/>
-          <include name="setup"/>
           <include name="tearDown"/>
+          <include name="beforeSuit"/>
+          <include name="afterSuit"/>
+          <include name="setup"/>
         </methods>
-      </class> <!-- test.Patients -->
+      </class> <!-- superAdmin.Clients -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

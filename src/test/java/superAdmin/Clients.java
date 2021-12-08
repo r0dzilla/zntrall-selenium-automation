@@ -1,0 +1,362 @@
+package superAdmin;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class Clients {
+
+	public static String env = "Test for Super Admin";
+	public static String testSuiteName = "Test Suit 2 -- Clients";
+
+	public static RemoteWebDriver driver = null;
+	@Parameters("myBrowser")
+
+	@BeforeTest
+	public static void setup() throws MalformedURLException {
+
+		DesiredCapabilities caps = new DesiredCapabilities();
+		caps.setBrowserName("chrome");
+		caps.setPlatform(Platform.WINDOWS);
+		ChromeOptions options = new ChromeOptions();
+		options.merge(caps);
+		String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+		driver = new RemoteWebDriver(new URL(nodeUrl),options);
+
+		//		if(myBrowser.equalsIgnoreCase("chrome")){
+		//			DesiredCapabilities caps = new DesiredCapabilities();
+		//			caps.setBrowserName("chrome");
+		//			caps.setPlatform(Platform.WINDOWS);
+		//			ChromeOptions options = new ChromeOptions();
+		//			options.merge(caps);
+		//			String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+		//			driver = new RemoteWebDriver(new URL(nodeUrl),options);
+		//
+		//		}
+		//
+		//		if(myBrowser.equalsIgnoreCase("firefox")) {
+		//			//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
+		//			DesiredCapabilities caps = new DesiredCapabilities();
+		//			//driver = new FirefoxDriver();
+		//			caps.setPlatform(Platform.WINDOWS);
+		//			FirefoxOptions options = new FirefoxOptions();
+		//			options.merge(caps);
+		//			String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+		//			driver = new RemoteWebDriver(new URL(nodeUrl),options);
+		//
+		//		}
+
+	}
+
+	@BeforeSuite
+	public static void beforeSuit() {
+
+		if (env.equalsIgnoreCase("Test for Super Admin")) {
+
+			System.out.println("Test executes in correct environment where environment= " + env);
+			System.out.println("Test Suite name = " + testSuiteName);
+
+		}else {
+			System.out.println("Test executes in wrong environment where environment= " + env);
+
+		}
+	}
+
+	//Opening browser with the given URL and navigate to Registration Page
+
+	@BeforeMethod
+	public void openBrowser() throws InterruptedException {
+
+		//driver.manage().deleteAllCookies();
+		driver.manage().window().maximize();
+		driver.get("https://d1.zntral.net/session/login");
+		
+		//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+		Thread.sleep(3000);
+	}
+
+	//Verifying elements on Login page
+	@Test
+	public void verifyElemntsOnPageTest() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+		WebElement signInTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class='mb-3']")));
+		signInTitle.isDisplayed();
+
+	}
+
+	//login with valid username & Password
+
+	@Test
+	public void login() throws InterruptedException {
+
+		WebElement username = driver.findElement(By.xpath("//input[@type='text']"));
+		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
+		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
+
+		username.sendKeys("superadmin@mercury.com");
+		Thread.sleep(2000);
+
+		password.sendKeys("qwerty");
+
+		login.click();
+		Thread.sleep(5000);
+
+		String expectedUrl = "https://d1.zntral.net/dashboard";
+		String actualUrl = driver.getCurrentUrl();
+		Assert.assertEquals(actualUrl, expectedUrl);
+	}
+
+	
+	//Check client list
+	
+	@Test
+	public void checkClientList() throws InterruptedException {
+		
+		login();
+		Thread.sleep(2000);
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		WebElement clients = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Clients']")));
+		clients.click();
+		Thread.sleep(3000);
+		
+		String expectedUrl = "https://d1.zntral.net/clients";
+		String actualUrl = driver.getCurrentUrl();
+		Assert.assertEquals(actualUrl, expectedUrl);
+		
+	}
+
+
+	//Check client profile
+	
+	@Test
+	public void checkClientProfile() throws InterruptedException {
+
+		login();
+		Thread.sleep(2000);
+		
+		WebElement clients = driver.findElement(By.xpath("//span[normalize-space()='Clients']"));
+		clients.click();
+		Thread.sleep(15000);
+		
+		WebElement clientName = driver.findElement(By.xpath("//table[1]/tbody[1]/tr[1]/td[1]"));
+		String client = clientName.getText();
+		clientName.click();
+		Thread.sleep(5000);
+		
+		WebElement clientNameVerify = driver.findElement(By.xpath("//h2[contains(@class,'text-capitalize mb-0 header-title d-custom-flex')]"));
+
+		if(clientNameVerify.getText().contains(client)) {
+			Assert.assertTrue(true);
+			System.out.println("Profile matched !!");
+		}else {
+			System.out.println("Profile don't match !!");
+		}
+		
+	}
+	
+	
+	//Check client profile status change (Active to inactive)
+	
+	@Test
+	public void changeStatusToInactive() throws InterruptedException {
+		checkClientProfile();
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+		WebElement status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='v-btn v-btn--flat v-btn--text theme--light v-size--default primary--text']")));
+
+		status.click();
+		Thread.sleep(2000);
+
+		WebElement statusInactive = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Inactive')]")));
+
+		Thread.sleep(2000);
+
+
+		statusInactive.click();
+		Thread.sleep(2000);
+		Assert.assertTrue(true);
+		System.out.println("Status changed to Inactive");
+
+	}
+	
+	
+	//Check client profile status change (InActive to active)
+
+	@Test
+	public void changeStatusToActive() throws InterruptedException {
+		checkClientProfile();
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+		WebElement status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='v-btn v-btn--flat v-btn--text theme--light v-size--default primary--text']")));
+
+		status.click();
+		Thread.sleep(2000);
+
+		WebElement statusActive = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Active')]")));
+
+		Thread.sleep(2000);
+
+
+		statusActive.click();
+		Thread.sleep(2000);
+		Assert.assertTrue(true);
+		System.out.println("Status changed to Active");
+
+	}
+	
+	//Check location status on client profile
+	
+	@Test
+	public void checkLocationStatus() throws InterruptedException{
+		checkClientProfile();
+		Thread.sleep(2000);
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+		WebElement locationTab = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'Locations')]")));
+		locationTab.click();
+		Thread.sleep(2000);
+
+		try {
+			WebElement locationInfo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/table[1]/tbody[1]/tr[1]/td[1]")));
+			if(locationInfo.getText() != null ) {
+				Assert.assertTrue(true);
+				System.out.println("Location Found !!");
+			}
+		}
+		catch(Exception e) {
+			System.out.println("Location not Found !!");
+		}
+	}
+	
+	
+	//Check patient status on client profile
+
+	@Test
+	public void checkPatientStatus() throws InterruptedException{
+		checkClientProfile();
+		Thread.sleep(2000);
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+		WebElement patientTab = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'Patients')]")));
+		patientTab.click();
+		Thread.sleep(2000);
+
+		try {
+			WebElement patientInfo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/table[1]/tbody[1]/tr[1]/td[1]")));
+			if(patientInfo.getText() != null ) {
+				Assert.assertTrue(true);
+				System.out.println("Patient Found !!");
+			}
+		}
+		catch(Exception e) {
+			System.out.println("Patient not Found !!");
+		}
+	}
+	
+	
+	//Search option
+
+	@Test
+	public void search() throws InterruptedException {
+		checkClientList();
+		Thread.sleep(2000);
+
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div/div/main[@data-booted='true']/div/div/div/div/div/div/div/div/div/div/div/div/div/input[1]")));
+		search.sendKeys("John");
+		Thread.sleep(3000);
+
+		WebElement firstRow = driver.findElement(By.xpath("//table[1]/tbody[1]/tr[1]/td[1]"));	
+		String actualText = firstRow.getText();
+		Assert.assertTrue(actualText.contains(search.getText()));
+		Thread.sleep(3000);
+	}
+
+	
+	//Check client type list
+	
+	@Test
+	public void checkClientTypeList() throws InterruptedException {
+		login();
+		Thread.sleep(2000);
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		WebElement clients = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Clients']")));
+		clients.click();
+		Thread.sleep(3000);
+		String expectedText = "Types";
+		WebElement text = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h5[normalize-space()='Types']")));
+		String actualText = text.getText();
+		Assert.assertEquals(actualText, expectedText);
+		Thread.sleep(3000);
+	}
+
+	//Add new client group with valid info
+	
+	@Test
+	public void addNewClientGroup() throws InterruptedException {
+		checkClientList();
+		Thread.sleep(2000);
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//i[normalize-space()='add']")));
+		add.click();
+		
+		WebElement clientGroup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//strong[normalize-space()='Client Group']")));
+		clientGroup.click();
+		Thread.sleep(2000);
+		
+		WebElement name = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div[1]//div[1]//div[1]//div[1]//div[1]//input[1]")));
+		name.sendKeys("New Test Group 2");
+		WebElement acronym = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
+		acronym.sendKeys("NTG2");
+		Thread.sleep(2000);
+		
+		WebElement signUp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='v-chip__content'][normalize-space()='Sign Up']")));
+		WebElement status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='v-chip__content'][normalize-space()='Status']")));
+		
+		signUp.click();
+		status.click();
+		Thread.sleep(2000);
+		
+		WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Add']")));
+		submit.click();
+		Thread.sleep(5000);
+	    
+	}
+	
+	@AfterTest
+	public void tearDown() throws Exception {
+		if (driver != null) {
+			System.out.println("Test Done!!!");
+			driver.quit();
+		}
+	}
+
+	@AfterSuite
+	public static void afterSuit() {
+
+		System.out.println( testSuiteName + " execution Complete");
+	}
+
+}

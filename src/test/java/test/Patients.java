@@ -148,8 +148,8 @@ public class Patients {
 
 		WebElement firstRow = driver.findElement(By.xpath("//tbody/tr[1]/td[2]"));	
 		String actualText = firstRow.getText();
-		String expectedText = "Sabbir";
-		Assert.assertEquals(actualText, expectedText);
+		//String expectedText = "Sabbir";
+		Assert.assertTrue(actualText.contains("Sabbir"));
 		Thread.sleep(3000);
 	}
 
