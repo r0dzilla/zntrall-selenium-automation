@@ -4,15 +4,17 @@
   <test thread-count="1" parallel="tests" name="Chrome(failed)">
     <parameter name="myBrowser" value="chrome"/>
     <classes>
-      <class name="test.Users">
+      <class name="superAdmin.Clients">
         <methods>
+          <include name="editClientGroup"/>
+          <include name="checkClientList"/>
           <include name="openBrowser"/>
-          <include name="login"/>
+          <include name="tearDown"/>
+          <include name="beforeSuit"/>
           <include name="afterSuit"/>
           <include name="setup"/>
-          <include name="beforeSuit"/>
         </methods>
-      </class> <!-- test.Users -->
+      </class> <!-- superAdmin.Clients -->
     </classes>
   </test> <!-- Chrome(failed) -->
 </suite> <!-- Failed suite [Parallel test suite] -->

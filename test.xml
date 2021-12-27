@@ -6,7 +6,11 @@
 	<test name="Chrome">
 		<parameter name="myBrowser" value="chrome" />
 		<classes>
-			<class name="test.Users" />
+			<class name="superAdmin.Login" />
+			<class name="superAdmin.Clients" />
+			<class name="superAdmin.Locations" />
+			<class name="superAdmin.Patients" />
+			<class name="superAdmin.Users" />
 		</classes>
 	</test>
 

@@ -103,8 +103,6 @@ public class Calendar {
 		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
 
 		username.sendKeys("shaque.sabbir@gmail.com");
-		Thread.sleep(2000);
-
 		password.sendKeys("Sabbir33");
 
 		login.click();
@@ -124,12 +122,9 @@ public class Calendar {
 	public void calendar() throws InterruptedException {
 
 		loginUser();
-		Thread.sleep(2000);
-
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Calendar']")));
 		driver.findElement(By.xpath("//span[normalize-space()='Calendar']")).click();
-		Thread.sleep(3000);
 		String expectedUrl = "https://zntral.net/patient_schedule";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
@@ -141,37 +136,22 @@ public class Calendar {
 	@Test
 	public void addSingleEvent() throws InterruptedException {
 		calendar();
-		Thread.sleep(2000);
-
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement selectDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-calendar-monthly v-calendar-weekly v-calendar theme--light v-calendar-events']//span[@class='v-btn__content'][normalize-space()='28']")));
 		selectDate.click();
-		Thread.sleep(2000);
-
 		WebElement patientSelectDropDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='combobox']//div//div//div//i[@aria-hidden='true']")));
 		patientSelectDropDown.click();
-		Thread.sleep(1000);
-
 		WebElement patientSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-list-item__title'][normalize-space()='Testing data']")));
 		patientSelect.click();
-		Thread.sleep(1000);
-
 		WebElement dateFieldSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
 		dateFieldSelect.click();
-		Thread.sleep(1000);
 		WebElement dateSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-btn__content'][normalize-space()='30']")));
 		dateSelect.click();
-		Thread.sleep(3000);
-
 		WebElement allDay = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'All day')]")));
 		allDay.click();
-		Thread.sleep(1000);
-
 		WebElement description = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-text-field v-text-field--is-booted']//input[@type='text']")));
 		description.sendKeys("Test Schedule");
-		Thread.sleep(2000);
-
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
 		save.click();
 		Thread.sleep(3000);
@@ -195,18 +175,12 @@ public class Calendar {
 	@Test
 	public void cancelSchedule() throws InterruptedException {
 		calendar();
-		Thread.sleep(2000);
-
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement selectSchedule = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[5]/div[7]/div[2]/div[1]")));
 		selectSchedule.click();
-		Thread.sleep(2000);
-
 		WebElement selectCancel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-menu__content theme--light menuable__content__active']//span[@class='v-btn__content'][normalize-space()='Cancel']")));
 		selectCancel.click();
-		Thread.sleep(2000);
-
 	}
 
 	//delete a schedule
@@ -214,26 +188,16 @@ public class Calendar {
 	@Test
 	public void deleteSchedule() throws InterruptedException {
 		calendar();
-		Thread.sleep(2000);
-
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement selectSchedule = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[5]/div[3]/div[2]/div[1]")));
 		selectSchedule.click();
-		Thread.sleep(2000);
-
 		WebElement selectDelete = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Delete']")));
 		selectDelete.click();
-		Thread.sleep(2000);
-
 		WebElement selectRecurringOption = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[normalize-space()='All events']")));
 		selectRecurringOption.click();
-		Thread.sleep(2000);
-
 		WebElement delete = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='ml-2 v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light v-size--default danger--text']//span[@class='v-btn__content'][normalize-space()='Delete']")));
 		delete.click();
-		Thread.sleep(2000);
-
 	}
 
 	//Edit a schedule
@@ -241,33 +205,20 @@ public class Calendar {
 	@Test
 	public void editSchedule() throws InterruptedException {
 		calendar();
-		Thread.sleep(2000);
-
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement selectSchedule = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='pl-1'][normalize-space()='Testing data']")));
 		selectSchedule.click();
-		Thread.sleep(2000);
-
 		WebElement selectEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Edit']")));
 		selectEdit.click();
-		Thread.sleep(2000);
-
 		WebElement selectPatientDrpDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='combobox']//div//div//div//i[@aria-hidden='true']")));
 		selectPatientDrpDown.click();
-		Thread.sleep(2000);
-
 		WebElement selectPatient = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Sabbir-Test Info')]")));
 		selectPatient.click();
-		Thread.sleep(2000);
-
 		WebElement description = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-text-field v-text-field--is-booted']//input[@type='text']")));
 		description.sendKeys("Test Schedule");
-		Thread.sleep(2000);
-
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
 		save.click();
-		Thread.sleep(2000);
 
 	}
 
@@ -276,18 +227,12 @@ public class Calendar {
 	@Test
 	public void dayViewOnCalendar() throws InterruptedException {
 		calendar();
-		Thread.sleep(2000);
-
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement selectType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@role='button']//i[@aria-hidden='true']")));
 		selectType.click();
-		Thread.sleep(2000);
-
 		WebElement selectDay = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Day')]")));
 		selectDay.click();
-		Thread.sleep(2000);
-
 	}
 
 	// Week view
@@ -295,18 +240,12 @@ public class Calendar {
 	@Test
 	public void weekViewOnCalendar() throws InterruptedException {
 		calendar();
-		Thread.sleep(2000);
-
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement selectType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@role='button']//i[@aria-hidden='true']")));
 		selectType.click();
-		Thread.sleep(2000);
-
 		WebElement selectWeek = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Week')]")));
 		selectWeek.click();
-		Thread.sleep(2000);
-
 	}
 
 	// Month view
@@ -314,18 +253,12 @@ public class Calendar {
 	@Test
 	public void monthViewOnCalendar() throws InterruptedException {
 		calendar();
-		Thread.sleep(2000);
-
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement selectType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@role='button']//i[@aria-hidden='true']")));
 		selectType.click();
-		Thread.sleep(2000);
-
 		WebElement selectMonth = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Month')]")));
 		selectMonth.click();
-		Thread.sleep(2000);
-
 	}
 
 	// Agenda view
@@ -333,18 +266,12 @@ public class Calendar {
 	@Test
 	public void agendaViewOnCalendar() throws InterruptedException {
 		calendar();
-		Thread.sleep(2000);
-
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement selectType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@role='button']//i[@aria-hidden='true']")));
 		selectType.click();
-		Thread.sleep(2000);
-
 		WebElement selectAgenda = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Agenda')]")));
 		selectAgenda.click();
-		Thread.sleep(2000);
-
 	}
 
 

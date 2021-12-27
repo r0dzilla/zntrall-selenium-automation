@@ -103,8 +103,6 @@ public class Locations {
 		WebElement login = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[4]/button[1]/span[1]"));
 
 		username.sendKeys("shaque.sabbir@gmail.com");
-		Thread.sleep(2000);
-
 		password.sendKeys("Sabbir33");
 
 		login.click();
@@ -124,12 +122,9 @@ public class Locations {
 	public void locationList() throws InterruptedException {
 
 		loginUser();
-		Thread.sleep(2000);
-
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Locations']")));
 		driver.findElement(By.xpath("//span[normalize-space()='Locations']")).click();
-		Thread.sleep(3000);
 		String expectedUrl = "https://zntral.net/locations";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
@@ -140,11 +135,9 @@ public class Locations {
 	@Test
 	public void search() throws InterruptedException {
 		locationList();
-		Thread.sleep(2000);
-
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]")));
-		driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]")).sendKeys("Demo");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-text-field__slot']//input[@type='text']")));
+		driver.findElement(By.xpath("//div[@class='v-text-field__slot']//input[@type='text']")).sendKeys("Demo");
 
 		WebElement firstRow = driver.findElement(By.xpath("//tbody/tr[1]/td[1]"));
 		String expectedText = "Demo";
@@ -158,8 +151,6 @@ public class Locations {
 	@Test
 	public void addLocation() throws InterruptedException{
 		loginUser();
-		Thread.sleep(2000);
-
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Locations']")));
 		driver.findElement(By.xpath("//span[normalize-space()='Locations']")).click();
@@ -169,16 +160,10 @@ public class Locations {
 
 		WebElement selectResidentType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@id='inspire']/div[@role='document']/div/div/div/div/div/div/div/div/div/div/div[@role='radiogroup']/div[3]/div[1]")));
 		selectResidentType.click();
-		Thread.sleep(2000);
-
 		WebElement selectContinue = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Continue']")));
 		selectContinue.click();
-		Thread.sleep(2000);
 
 		Assert.assertTrue(selectResidentType.isEnabled());
-
-
-		Thread.sleep(2000);
 
 	}
 
@@ -187,8 +172,6 @@ public class Locations {
 	@Test
 	public void validLocationData() throws InterruptedException {
 		addLocation();
-		Thread.sleep(2000);
-
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		WebElement locationName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")));
 		WebElement licenceNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div/div[2]/div[1]/div[2]/div[1]/div[1]/input[1]")));
@@ -206,33 +189,19 @@ public class Locations {
 
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
 
-		Thread.sleep(2000);
 		locationName.sendKeys("Rangpur");
-		Thread.sleep(1000);
 		licenceNumber.sendKeys("166578");
-		Thread.sleep(1000);
 		capacity.sendKeys("15");
-		Thread.sleep(1000);
 		address.sendKeys("Rangpur");
-		Thread.sleep(1000);
 		suiteUnit.sendKeys("65/89");
-		Thread.sleep(1000);
 		city.sendKeys("Rangpur");
-		Thread.sleep(1000);
 		state.sendKeys("Rangpur");
-		Thread.sleep(1000);
 		zip.sendKeys("8752");
-		Thread.sleep(1000);
 		phoneNumber.sendKeys("1294567894");
-		Thread.sleep(1000);
 		type.click();
-		Thread.sleep(1000);
 		//selectType.click();
-		Thread.sleep(1000);
 		email.sendKeys("Rangpur@email.com");
-		Thread.sleep(1000);
 		note.sendKeys("This is automation for valid text");
-		Thread.sleep(2000);
 		save.click();
 		Thread.sleep(5000);
 

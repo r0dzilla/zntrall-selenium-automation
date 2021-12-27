@@ -1,4 +1,4 @@
-package test;
+package superAdmin;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -49,5 +49,6 @@ public class OpenBrowser {
 
 	}
 
+	
 	}
 
