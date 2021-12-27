@@ -13,11 +13,13 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -34,38 +36,38 @@ public class Contacts {
 	@Parameters("myBrowser")
 
 	@BeforeTest
-	public static void setup() throws MalformedURLException {
+	public static void setup(String myBrowser) throws MalformedURLException {
 
-		DesiredCapabilities caps = new DesiredCapabilities();
-		caps.setBrowserName("chrome");
-		caps.setPlatform(Platform.WINDOWS);
-		ChromeOptions options = new ChromeOptions();
-		options.merge(caps);
-		String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		driver = new RemoteWebDriver(new URL(nodeUrl),options);
+//		DesiredCapabilities caps = new DesiredCapabilities();
+//		caps.setBrowserName("chrome");
+//		caps.setPlatform(Platform.WINDOWS);
+//		ChromeOptions options = new ChromeOptions();
+//		options.merge(caps);
+//		String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+//		driver = new RemoteWebDriver(new URL(nodeUrl),options);
 
-		//		if(myBrowser.equalsIgnoreCase("chrome")){
-		//			DesiredCapabilities caps = new DesiredCapabilities();
-		//			caps.setBrowserName("chrome");
-		//			caps.setPlatform(Platform.WINDOWS);
-		//			ChromeOptions options = new ChromeOptions();
-		//			options.merge(caps);
-		//			String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		//			driver = new RemoteWebDriver(new URL(nodeUrl),options);
-		//			
-		//		}
-		//
-		//		if(myBrowser.equalsIgnoreCase("firefox")) {
-		//			//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
-		//			DesiredCapabilities caps = new DesiredCapabilities();
-		//			//driver = new FirefoxDriver();
-		//			caps.setPlatform(Platform.WINDOWS);
-		//			FirefoxOptions options = new FirefoxOptions();
-		//			options.merge(caps);
-		//			String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		//			driver = new RemoteWebDriver(new URL(nodeUrl),options);
-		//		
-		//		}
+				if(myBrowser.equalsIgnoreCase("chrome")){
+					DesiredCapabilities caps = new DesiredCapabilities();
+					caps.setBrowserName("chrome");
+					caps.setPlatform(Platform.WINDOWS);
+					ChromeOptions options = new ChromeOptions();
+					options.merge(caps);
+					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+					driver = new RemoteWebDriver(new URL(nodeUrl),options);
+					
+				}
+		
+				if(myBrowser.equalsIgnoreCase("firefox")) {
+					//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
+					DesiredCapabilities caps = new DesiredCapabilities();
+					//driver = new FirefoxDriver();
+					caps.setPlatform(Platform.WINDOWS);
+					FirefoxOptions options = new FirefoxOptions();
+					options.merge(caps);
+					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+					driver = new RemoteWebDriver(new URL(nodeUrl),options);
+				
+				}
 
 	}
 
@@ -96,7 +98,7 @@ public class Contacts {
 
 	//login
 
-	@Test
+	@Test(priority = 1)
 	public void loginUser() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -120,7 +122,7 @@ public class Contacts {
 
 	//View the contacts list
 
-	@Test
+	@Test(priority = 2)
 	public void contactList() throws InterruptedException {
 
 		loginUser();
@@ -135,7 +137,7 @@ public class Contacts {
 
 	//Search option
 
-	@Test
+	@Test(priority = 3)
 	public void search() throws InterruptedException {
 		contactList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -151,7 +153,7 @@ public class Contacts {
 
 	//Add new Contact -- Click "+" button
 
-	@Test
+	@Test(priority = 4)
 	public void addContact() throws InterruptedException{
 		contactList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -164,7 +166,7 @@ public class Contacts {
 
 	//Add contact with valid info
 
-	@Test
+	@Test(priority = 5)
 	public void validContactData() throws InterruptedException {
 		addContact();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -213,7 +215,7 @@ public class Contacts {
 
 	//Add contact with empty/invalid field
 
-	@Test
+	@Test(priority = 6)
 	public void emptyContactData() throws InterruptedException {
 		addContact();
 		
@@ -341,7 +343,7 @@ public class Contacts {
 
 	//Edit contact from the list
 
-	@Test
+	@Test(priority = 7)
 	public void editContact() throws InterruptedException {
 		contactList();
 		
@@ -389,7 +391,7 @@ public class Contacts {
 
 	//Remove any contact from the list
 
-	@Test
+	@Test(priority = 8)
 	public void removeContact() throws InterruptedException {
 		contactList();
 		
@@ -412,7 +414,7 @@ public class Contacts {
 
 	//cancel button from Add new contact form
 
-	@Test
+	@Test(priority = 9)
 	public void cancelAddNewForm() throws InterruptedException {
 		addContact();
 		
@@ -424,7 +426,7 @@ public class Contacts {
 	}
 
 	//close button from Add new contact form
-	@Test
+	@Test(priority = 10)
 	public void closeAddNewForm() throws InterruptedException {
 		addContact();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -436,7 +438,7 @@ public class Contacts {
 
 	//close Edit contact form
 
-	@Test
+	@Test(priority = 11)
 	public void closeEditForm() throws InterruptedException {
 		contactList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -459,5 +461,11 @@ public class Contacts {
 			System.out.println("Test Done!!!");
 			driver.quit();
 		}
+	}
+	
+	@AfterSuite
+	public static void afterSuit() {
+
+		System.out.println( testSuiteName + " execution Complete");
 	}
 }

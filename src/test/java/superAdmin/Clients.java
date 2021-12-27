@@ -32,38 +32,38 @@ public class Clients {
 	@Parameters("myBrowser")
 
 	@BeforeTest
-	public static void setup(String myBrowser) throws MalformedURLException {
+	public static void setup() throws MalformedURLException {
 
-//		DesiredCapabilities caps = new DesiredCapabilities();
-//		caps.setBrowserName("chrome");
-//		caps.setPlatform(Platform.WINDOWS);
-//		ChromeOptions options = new ChromeOptions();
-//		options.merge(caps);
-//		String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-//		driver = new RemoteWebDriver(new URL(nodeUrl),options);
+		DesiredCapabilities caps = new DesiredCapabilities();
+		caps.setBrowserName("chrome");
+		caps.setPlatform(Platform.WINDOWS);
+		ChromeOptions options = new ChromeOptions();
+		options.merge(caps);
+		String nodeUrl = "http://192.168.0.110:4444/wd/hub";
+		driver = new RemoteWebDriver(new URL(nodeUrl),options);
 
-				if(myBrowser.equalsIgnoreCase("chrome")){
-					DesiredCapabilities caps = new DesiredCapabilities();
-					caps.setBrowserName("chrome");
-					caps.setPlatform(Platform.WINDOWS);
-					ChromeOptions options = new ChromeOptions();
-					options.merge(caps);
-					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-					driver = new RemoteWebDriver(new URL(nodeUrl),options);
-		
-				}
-		
-				if(myBrowser.equalsIgnoreCase("firefox")) {
-					//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
-					DesiredCapabilities caps = new DesiredCapabilities();
-					//driver = new FirefoxDriver();
-					caps.setPlatform(Platform.WINDOWS);
-					FirefoxOptions options = new FirefoxOptions();
-					options.merge(caps);
-					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-					driver = new RemoteWebDriver(new URL(nodeUrl),options);
-		
-				}
+//				if(myBrowser.equalsIgnoreCase("chrome")){
+//					DesiredCapabilities caps = new DesiredCapabilities();
+//					caps.setBrowserName("chrome");
+//					caps.setPlatform(Platform.WINDOWS);
+//					ChromeOptions options = new ChromeOptions();
+//					options.merge(caps);
+//					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+//					driver = new RemoteWebDriver(new URL(nodeUrl),options);
+//		
+//				}
+//		
+//				if(myBrowser.equalsIgnoreCase("firefox")) {
+//					//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
+//					DesiredCapabilities caps = new DesiredCapabilities();
+//					//driver = new FirefoxDriver();
+//					caps.setPlatform(Platform.WINDOWS);
+//					FirefoxOptions options = new FirefoxOptions();
+//					options.merge(caps);
+//					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+//					driver = new RemoteWebDriver(new URL(nodeUrl),options);
+//		
+//				}
 
 	}
 
@@ -96,7 +96,7 @@ public class Clients {
 	}
 
 	//Verifying elements on Login page
-	@Test
+	@Test(priority = 1)
 	public void verifyElemntsOnPageTest() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -108,7 +108,7 @@ public class Clients {
 
 	//login with valid username & Password
 
-	@Test
+	@Test(priority = 2)
 	public void login() throws InterruptedException {
 
 		WebElement username = driver.findElement(By.xpath("//input[@type='text']"));
@@ -129,7 +129,7 @@ public class Clients {
 
 	//Check client list
 
-	@Test
+	@Test(priority = 3)
 	public void checkClientList() throws InterruptedException {
 
 		login();
@@ -147,7 +147,7 @@ public class Clients {
 
 	//Check client profile
 
-	@Test
+	@Test(priority = 4)
 	public void checkClientProfile() throws InterruptedException {
 
 		login();
@@ -174,7 +174,7 @@ public class Clients {
 
 	//Check client profile status change (Active to inactive)
 
-	@Test
+	@Test(priority = 5)
 	public void changeStatusToInactive() throws InterruptedException {
 		checkClientProfile();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -190,7 +190,7 @@ public class Clients {
 
 	//Check client profile status change (InActive to active)
 
-	@Test
+	@Test(priority = 6)
 	public void changeStatusToActive() throws InterruptedException {
 		checkClientProfile();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -205,7 +205,7 @@ public class Clients {
 
 	//Check location status on client profile
 
-	@Test
+	@Test(priority = 7)
 	public void checkLocationStatus() throws InterruptedException{
 		checkClientProfile();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -228,7 +228,7 @@ public class Clients {
 
 	//Check patient status on client profile
 
-	@Test
+	@Test(priority = 8)
 	public void checkPatientStatus() throws InterruptedException{
 		checkClientProfile();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -250,7 +250,7 @@ public class Clients {
 
 	//Search option
 
-	@Test
+	@Test(priority = 9)
 	public void search() throws InterruptedException {
 		checkClientList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -266,7 +266,7 @@ public class Clients {
 
 	//Check client type list
 
-	@Test
+	@Test(priority = 10)
 	public void checkClientTypeList() throws InterruptedException {
 		login();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -284,7 +284,7 @@ public class Clients {
 
 	//Add new client group with valid info
 
-	@Test
+	@Test(priority = 11)
 	public void addNewClientGroup() throws InterruptedException {
 		checkClientList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -312,7 +312,7 @@ public class Clients {
 
 	//Edit client group with valid info
 
-	@Test
+	@Test(priority = 12)
 	public void editClientGroup() throws InterruptedException {
 		checkClientList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -329,7 +329,7 @@ public class Clients {
 
 	//Name wise sort
 
-	@Test
+	@Test(priority = 13)
 	public void nameSort() throws InterruptedException {
 		checkClientList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -342,7 +342,7 @@ public class Clients {
 
 	//Type wise sort
 
-	@Test
+	@Test(priority = 14)
 	public void typeSort() throws InterruptedException {
 		checkClientList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));

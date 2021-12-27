@@ -35,38 +35,38 @@ public class Users {
 	@Parameters("myBrowser")
 
 	@BeforeTest
-	public static void setup() throws MalformedURLException {
+	public static void setup(String myBrowser) throws MalformedURLException {
 
-		DesiredCapabilities caps = new DesiredCapabilities();
-		caps.setBrowserName("chrome");
-		caps.setPlatform(Platform.WINDOWS);
-		ChromeOptions options = new ChromeOptions();
-		options.merge(caps);
-		String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		driver = new RemoteWebDriver(new URL(nodeUrl),options);
+//		DesiredCapabilities caps = new DesiredCapabilities();
+//		caps.setBrowserName("chrome");
+//		caps.setPlatform(Platform.WINDOWS);
+//		ChromeOptions options = new ChromeOptions();
+//		options.merge(caps);
+//		String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+//		driver = new RemoteWebDriver(new URL(nodeUrl),options);
 
-		//		if(myBrowser.equalsIgnoreCase("chrome")){
-		//			DesiredCapabilities caps = new DesiredCapabilities();
-		//			caps.setBrowserName("chrome");
-		//			caps.setPlatform(Platform.WINDOWS);
-		//			ChromeOptions options = new ChromeOptions();
-		//			options.merge(caps);
-		//			String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		//			driver = new RemoteWebDriver(new URL(nodeUrl),options);
-		//			
-		//		}
-		//
-		//		if(myBrowser.equalsIgnoreCase("firefox")) {
-		//			//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
-		//			DesiredCapabilities caps = new DesiredCapabilities();
-		//			//driver = new FirefoxDriver();
-		//			caps.setPlatform(Platform.WINDOWS);
-		//			FirefoxOptions options = new FirefoxOptions();
-		//			options.merge(caps);
-		//			String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		//			driver = new RemoteWebDriver(new URL(nodeUrl),options);
-		//		
-		//		}
+				if(myBrowser.equalsIgnoreCase("chrome")){
+					DesiredCapabilities caps = new DesiredCapabilities();
+					caps.setBrowserName("chrome");
+					caps.setPlatform(Platform.WINDOWS);
+					ChromeOptions options = new ChromeOptions();
+					options.merge(caps);
+					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+					driver = new RemoteWebDriver(new URL(nodeUrl),options);
+					
+				}
+		
+				if(myBrowser.equalsIgnoreCase("firefox")) {
+					//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
+					DesiredCapabilities caps = new DesiredCapabilities();
+					//driver = new FirefoxDriver();
+					caps.setPlatform(Platform.WINDOWS);
+					FirefoxOptions options = new FirefoxOptions();
+					options.merge(caps);
+					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+					driver = new RemoteWebDriver(new URL(nodeUrl),options);
+				
+				}
 
 	}
 
@@ -97,7 +97,7 @@ public class Users {
 
 	//login
 
-	@Test
+	@Test(priority = 1)
 	public void loginUser() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -107,8 +107,6 @@ public class Users {
 		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
 
 		username.sendKeys("shaque.sabbir@gmail.com");
-		Thread.sleep(2000);
-
 		password.sendKeys("Sabbir33");
 
 		login.click();
@@ -123,7 +121,7 @@ public class Users {
 
 	//View the user list
 
-	@Test
+	@Test(priority = 2)
 	public void userList() throws InterruptedException {
 
 		loginUser();
@@ -141,7 +139,7 @@ public class Users {
 
 	//Add new user form
 
-	@Test
+	@Test(priority = 3)
 	public void addUser() throws InterruptedException{
 		userList();
 		Thread.sleep(2000);
@@ -162,7 +160,7 @@ public class Users {
 
 	//Adding user with valid info
 
-	@Test
+	@Test(priority = 4)
 	public void validUserData() throws InterruptedException {
 		addUser();
 		Thread.sleep(2000);
@@ -175,17 +173,11 @@ public class Users {
 		//WebElement groupSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='save']")));
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='save']")));
 
-		Thread.sleep(2000);
 		FirstName.sendKeys("TestData");
-		Thread.sleep(1000);
 		LastName.sendKeys("test");
-		Thread.sleep(1000);
 		emailId.sendKeys("testdata101@email.com");
-		Thread.sleep(1000);
 		groupDrpDown.click();
-		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Hospice Registered Nurse')]"))).click();
-		Thread.sleep(1000);
 
 
 		try {
@@ -205,7 +197,7 @@ public class Users {
 
 	//Already existed user
 
-	@Test
+	@Test(priority = 5)
 	public void existedUser() throws InterruptedException {
 		addUser();
 		Thread.sleep(2000);
@@ -218,27 +210,23 @@ public class Users {
 		//WebElement groupSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='save']")));
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='save']")));
 
-		Thread.sleep(2000);
 		FirstName.sendKeys("Test");
-		Thread.sleep(1000);
 		LastName.sendKeys("data");
 		emailId.sendKeys("testdata22@email.com");
-		Thread.sleep(2000);
 		save.click();
 		Thread.sleep(2000);
 
 		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]")));
-			driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]")).isDisplayed();
+			WebElement status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='status']")));
+			status.isDisplayed();
 
-			Thread.sleep(3000);
 		} catch (Exception e){
 			System.out.println("New User");
 		}
 
 	}
 	//Add new user form -- validation
-	@Test
+	@Test(priority = 6)
 	public void validateNewUser() throws InterruptedException {
 		addUser();
 		Thread.sleep(2000);
@@ -251,18 +239,11 @@ public class Users {
 		//WebElement groupSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='save']")));
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='save']")));
 
-		Thread.sleep(2000);
 		FirstName.sendKeys("");
-		Thread.sleep(1000);
 		LastName.sendKeys("");
-		Thread.sleep(1000);
 		emailId.sendKeys("");
-		Thread.sleep(1000);
 		groupDrpDown.click();
-		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Hospice Registered Nurse')]"))).click();
-		Thread.sleep(1000);
-
 
 		try {
 			save.click();
@@ -276,7 +257,6 @@ public class Users {
 				System.out.println(invalidMsg.getText());
 
 				Assert.assertTrue(true);
-				Thread.sleep(1000);
 
 			}
 			else if(LastName.getAttribute("value").isEmpty()) {
@@ -285,7 +265,6 @@ public class Users {
 				System.out.println(invalidMsg.getText());
 
 				Assert.assertTrue(true);
-				Thread.sleep(1000);
 
 			}
 			else if(emailId.getAttribute("value").isEmpty()) {
@@ -294,7 +273,6 @@ public class Users {
 				System.out.println(invalidMsg.getText());
 
 				Assert.assertTrue(true);
-				Thread.sleep(1000);
 			}
 			else if(emailId.getAttribute("value").startsWith("@")) {
 				save.isDisplayed();
@@ -302,20 +280,18 @@ public class Users {
 				System.out.println(invalidMsg.getText());
 
 				Assert.assertTrue(true);
-				Thread.sleep(1000);
 			}
 			else {
 				save.isDisplayed();
 				System.out.println("Mandatory field has no value");
 				Assert.assertTrue(true);
-				Thread.sleep(1000);
 			}
 		}
 	}
 
 	// Check Reset button on add new user form
 
-	@Test
+	@Test(priority = 7)
 	public void resetButton() throws InterruptedException {
 
 		addUser();
@@ -329,39 +305,32 @@ public class Users {
 		//WebElement groupSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='save']")));
 		WebElement reset = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Reset']")));
 
-		Thread.sleep(2000);
 		FirstName.sendKeys("TestData");
-		Thread.sleep(1000);
 		LastName.sendKeys("test");
-		Thread.sleep(1000);
 		emailId.sendKeys("testdata101@email.com");
-		Thread.sleep(1000);
 		groupDrpDown.click();
-		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Hospice Registered Nurse')]"))).click();
-		Thread.sleep(1000);
-		reset.click();
-		Thread.sleep(1000);
-		WebElement resetConfirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Yes']")));
+
+		//WebElement resetConfirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Yes']")));
 		
 
 		try {
 
-			resetConfirm.click();
+			reset.click();
 			Thread.sleep(2000);
 			
 			String expectedText1 = "Name is required";
-			String actualText1 = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]")).getText();
+			String actualText1 = driver.findElement(By.xpath("//div[@class='col-sm-12 col-md-6 col']//div[@class='v-messages__message']")).getText();
 			Assert.assertEquals(actualText1, expectedText1);
 
 			String expectedText2 = "Name is required";
-			String actualText2 = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]")).getText();
+			String actualText2 = driver.findElement(By.xpath("//div[@class='col-md-6 col']//div[@class='v-messages__message']")).getText();
 			Assert.assertEquals(actualText2, expectedText2);
 
 			String expectedText3 = "E-mail must be valid";
-			String actualText3 = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]")).getText();
+			String actualText3 = driver.findElement(By.xpath("//div[contains(text(),'E-mail must be valid')]")).getText();
 			Assert.assertEquals(actualText3, expectedText3);
-			Thread.sleep(3000);
+			
 		} catch(Exception e) {
 			System.out.println("Failed !!");
 		}
@@ -371,50 +340,40 @@ public class Users {
 
 	// Check Cancel button on add new user form
 
-	@Test
+	@Test(priority = 8)
 	public void cancelButton() throws InterruptedException {
 		addUser();
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[3]/button[3]")));
-		driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[3]/button[3]")).click();
+		WebElement cancel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Cancel']")));
+		cancel.click();
 
-		Thread.sleep(2000);
-
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[5]/div[1]/div[1]/div[3]/button[1]")));
-		driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[5]/div[1]/div[1]/div[3]/button[1]")).click();
-		Thread.sleep(3000);
 	}
 
 	//Check close button on add new user form
 
-	@Test
+	@Test(priority = 9)
 	public void closeButton() throws InterruptedException {
 		addUser();
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[1]/span[1]/button[1]")));
-		driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[1]/span[1]/button[1]")).click();
+		WebElement close = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='close']")));
+		close.click();
 
-		Thread.sleep(2000);
-
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[5]/div[1]/div[1]/div[3]/button[1]")));
-		driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[5]/div[1]/div[1]/div[3]/button[1]")).click();
-		Thread.sleep(3000);
 	}
 
 	//Search option
 
-	@Test
+	@Test(priority = 10)
 	public void search() throws InterruptedException {
 		userList();
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]")));
-		driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]")).sendKeys("testdata@email.com");
+		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='text']")));
+		search.sendKeys("testdata@email.com");
 
 		WebElement firstRow = driver.findElement(By.xpath("//tbody/tr[1]/td[3]"));
 		String expectedText = "testdata@email.com";
@@ -425,20 +384,20 @@ public class Users {
 
 	//User profile 
 
-	@Test
+	@Test(priority = 11)
 	public void profileOfUser() throws InterruptedException {
 		userList();
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/table[1]/tbody[1]/tr[1]/td[1]")));
-		driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/table[1]/tbody[1]/tr[1]/td[1]")).click();
+		WebElement firstRowInfo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody[1]/tr[1]/td[1]")));
+		firstRowInfo.click();
 
 		String actualText = "Users";
 
-		WebElement user =driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/header[1]/div[1]/div[1]/h2[1]/a[1]"));
+		WebElement user =driver.findElement(By.xpath("//a[@class='router-link-active']"));
 		String ExpectedText =user.getText();	
-		Assert.assertEquals(actualText, ExpectedText);
+		Assert.assertTrue(ExpectedText.contains(actualText));
 		Thread.sleep(3000);
 	}
 

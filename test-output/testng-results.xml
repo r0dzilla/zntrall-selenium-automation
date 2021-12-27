@@ -2,31 +2,35 @@
 <testng-results ignored="14" total="15" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-12-26T16:13:32 BDT" name="Default suite" finished-at="2021-12-26T16:14:00 BDT" duration-ms="28527">
+  <suite started-at="2021-12-27T16:10:57 BDT" name="Default suite" finished-at="2021-12-27T16:11:37 BDT" duration-ms="39947">
     <groups>
     </groups>
-    <test started-at="2021-12-26T16:13:32 BDT" name="Default test" finished-at="2021-12-26T16:14:00 BDT" duration-ms="28527">
+    <test started-at="2021-12-27T16:10:57 BDT" name="Default test" finished-at="2021-12-27T16:11:37 BDT" duration-ms="39947">
       <class name="test.Locations">
-        <test-method is-config="true" signature="beforeSuit()[pri:0, instance:test.Locations@44ebcd03]" started-at="2021-12-26T16:13:32 BDT" name="beforeSuit" finished-at="2021-12-26T16:13:32 BDT" duration-ms="7" status="PASS">
+        <test-method is-config="true" signature="beforeSuit()[pri:0, instance:test.Locations@2e005c4b]" started-at="2021-12-27T16:10:57 BDT" name="beforeSuit" finished-at="2021-12-27T16:10:57 BDT" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeSuit -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:test.Locations@44ebcd03]" started-at="2021-12-26T16:13:32 BDT" name="setup" finished-at="2021-12-26T16:13:33 BDT" duration-ms="1844" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:test.Locations@2e005c4b]" started-at="2021-12-27T16:10:57 BDT" name="setup" finished-at="2021-12-27T16:10:59 BDT" duration-ms="2145" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:test.Locations@44ebcd03]" started-at="2021-12-26T16:13:33 BDT" name="openBrowser" finished-at="2021-12-26T16:13:43 BDT" duration-ms="9592" status="PASS">
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:test.Locations@2e005c4b]" started-at="2021-12-27T16:10:59 BDT" name="openBrowser" finished-at="2021-12-27T16:11:07 BDT" duration-ms="8551" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method signature="validLocationData()[pri:0, instance:test.Locations@44ebcd03]" started-at="2021-12-26T16:13:43 BDT" name="validLocationData" finished-at="2021-12-26T16:14:00 BDT" duration-ms="16937" status="PASS">
+        <test-method signature="emptyPatientInfofromLocation()[pri:11, instance:test.Locations@2e005c4b]" started-at="2021-12-27T16:11:07 BDT" name="emptyPatientInfofromLocation" finished-at="2021-12-27T16:11:37 BDT" duration-ms="29098" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- validLocationData -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:test.Locations@44ebcd03]" started-at="2021-12-26T16:14:00 BDT" name="tearDown" finished-at="2021-12-26T16:14:00 BDT" duration-ms="113" status="PASS">
+        </test-method> <!-- emptyPatientInfofromLocation -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:test.Locations@2e005c4b]" started-at="2021-12-27T16:11:37 BDT" name="tearDown" finished-at="2021-12-27T16:11:37 BDT" duration-ms="114" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="afterSuit()[pri:0, instance:test.Locations@2e005c4b]" started-at="2021-12-27T16:11:37 BDT" name="afterSuit" finished-at="2021-12-27T16:11:37 BDT" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterSuit -->
       </class> <!-- test.Locations -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->

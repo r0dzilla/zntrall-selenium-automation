@@ -101,7 +101,7 @@ public class Users {
 
 
 	//Verifying elements on Login page
-	@Test
+	@Test(priority = 1)
 	public void verifyElemntsOnPageTest() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -113,7 +113,7 @@ public class Users {
 
 	//login with valid username & Password
 
-	@Test
+	@Test(priority = 2)
 	public void login() throws InterruptedException {
 
 		WebElement username = driver.findElement(By.xpath("//input[@type='text']"));
@@ -133,7 +133,7 @@ public class Users {
 
 	//Check user list
 
-	@Test
+	@Test(priority = 3)
 	public void checkUserList() throws InterruptedException {
 
 		login();
@@ -151,7 +151,7 @@ public class Users {
 
 	//Check user profile
 
-	@Test
+	@Test(priority = 4)
 	public void checkUserProfile() throws InterruptedException {
 
 		login();
@@ -178,7 +178,7 @@ public class Users {
 
 	//Check client profile from user profile
 
-	@Test
+	@Test(priority = 5)
 	public void checkClientProfileFromUser() throws InterruptedException {
 		checkUserProfile();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -191,7 +191,7 @@ public class Users {
 
 	//Check client profile status change (Active to inactive)
 
-	@Test
+	@Test(priority = 6)
 	public void changeStatusToInactive() throws InterruptedException {
 		checkClientProfileFromUser();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -207,7 +207,7 @@ public class Users {
 
 	//Check client profile status change (InActive to active)
 
-	@Test
+	@Test(priority = 7)
 	public void changeStatusToActive() throws InterruptedException {
 		checkClientProfileFromUser();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -222,7 +222,7 @@ public class Users {
 
 	//Search option
 
-	@Test
+	@Test(priority = 8)
 	public void search() throws InterruptedException {
 		checkUserList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -235,7 +235,7 @@ public class Users {
 
 	//First Name wise sort
 
-	@Test
+	@Test(priority = 9)
 	public void firstNameSort() throws InterruptedException {
 		checkUserList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -247,7 +247,7 @@ public class Users {
 
 	//Last name wise sort
 
-	@Test
+	@Test(priority = 10)
 	public void lastNameSort() throws InterruptedException {
 		checkUserList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -259,7 +259,7 @@ public class Users {
 
 	//email wise sort
 
-	@Test
+	@Test(priority = 11)
 	public void emailSort() throws InterruptedException {
 		checkUserList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -271,7 +271,7 @@ public class Users {
 
 	//Check user type list
 
-	@Test
+	@Test(priority = 12)
 	public void checkUserTypeList() throws InterruptedException {
 		login();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -555,7 +555,7 @@ public class Users {
 
 	//add user group
 
-	@Test
+	@Test(priority = 13)
 	public void userGroup() throws InterruptedException {
 		checkUserList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -629,7 +629,7 @@ public class Users {
 
 	//Update user group
 
-	@Test
+	@Test(priority = 14)
 	public void updateUserGroup() throws InterruptedException {
 		checkUserList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));

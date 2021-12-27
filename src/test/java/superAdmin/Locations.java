@@ -102,7 +102,7 @@ public class Locations {
 
 
 	//Verifying elements on Login page
-	@Test
+	@Test(priority = 1)
 	public void verifyElemntsOnPageTest() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -114,7 +114,7 @@ public class Locations {
 
 	//login with valid username & Password
 
-	@Test
+	@Test(priority = 2)
 	public void login() throws InterruptedException {
 
 		WebElement username = driver.findElement(By.xpath("//input[@type='text']"));
@@ -134,7 +134,7 @@ public class Locations {
 
 	//Check Location list
 
-	@Test
+	@Test(priority = 3)
 	public void checkLocationList() throws InterruptedException {
 
 		login();
@@ -153,7 +153,7 @@ public class Locations {
 
 	//Search option
 
-	@Test
+	@Test(priority = 4)
 	public void search() throws InterruptedException {
 		checkLocationList();
 
@@ -190,7 +190,7 @@ public class Locations {
 
 	//Find patient list & patient info from location
 
-	@Test
+	@Test(priority = 5)
 	public void patientFromLocation() throws InterruptedException {
 		checkLocationList();
 
@@ -213,7 +213,7 @@ public class Locations {
 
 	//Find contact list & contact info from location
 
-	@Test
+	@Test(priority = 6)
 	public void contactFromLocation() throws InterruptedException {
 		checkLocationList();
 
@@ -235,7 +235,7 @@ public class Locations {
 	}
 
 	// types list
-	@Test
+	@Test(priority = 7)
 	public void locationTypes() throws InterruptedException {
 		checkLocationList();
 		WebElement types = driver.findElement(By.xpath("//*[text()='Types']"));
@@ -246,7 +246,7 @@ public class Locations {
 
 	//update types
 
-	@Test
+	@Test(priority = 8)
 	public void updateTypes() throws InterruptedException {
 		locationTypes();
 		WebElement typeInfo = driver.findElement(By.xpath("//body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[1]"));
@@ -279,7 +279,7 @@ public class Locations {
 	}
 
 	//Add new Location Type
-	@Test
+	@Test(priority = 9)
 	public void addNewLocationType() throws InterruptedException {
 		locationTypes();
 		WebElement addNewType = driver.findElement(By.xpath("//i[normalize-space()='add']"));
@@ -310,7 +310,7 @@ public class Locations {
 	
 	//check reset button on add new form
 	
-	@Test
+	@Test(priority = 9)
 	public void resetButton() throws InterruptedException {
 		locationTypes();
 		WebElement addNewType = driver.findElement(By.xpath("//i[normalize-space()='add']"));
@@ -337,7 +337,7 @@ public class Locations {
 	
 	//check cancel button on add new form
 	
-	@Test
+	@Test(priority = 10)
 	public void cancelButton() throws InterruptedException {
 		locationTypes();
 		WebElement addNewType = driver.findElement(By.xpath("//i[normalize-space()='add']"));
@@ -356,7 +356,7 @@ public class Locations {
 
 	//Address wise sort
 
-	@Test
+	@Test(priority = 11)
 	public void addressWiseSort() throws InterruptedException {
 		checkLocationList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -369,7 +369,7 @@ public class Locations {
 
 	//Status wise sort
 
-	@Test
+	@Test(priority = 12)
 	public void statusWiseSort() throws InterruptedException {
 		checkLocationList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -383,7 +383,7 @@ public class Locations {
 
 	//Name wise types sort
 
-	@Test
+	@Test(priority = 13)
 	public void nameWiseTypeSort() throws InterruptedException {
 		locationTypes();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -397,7 +397,7 @@ public class Locations {
 
 	//Acronym wise types sort
 
-	@Test
+	@Test(priority = 14)
 	public void acronymWiseTypeSort() throws InterruptedException {
 		locationTypes();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));

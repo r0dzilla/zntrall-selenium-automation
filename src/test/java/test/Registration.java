@@ -45,37 +45,37 @@ public class Registration {
 
 	@BeforeTest
 	//public static void setup(String myBrowser) throws MalformedURLException {
-	public static void setup() throws MalformedURLException {	
-		DesiredCapabilities caps = new DesiredCapabilities();
-		caps.setBrowserName("chrome");
-		caps.setPlatform(Platform.WINDOWS);
-		ChromeOptions options = new ChromeOptions();
-		options.merge(caps);
-		String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		driver = new RemoteWebDriver(new URL(nodeUrl),options);
+	public static void setup(String myBrowser) throws MalformedURLException {	
+//		DesiredCapabilities caps = new DesiredCapabilities();
+//		caps.setBrowserName("chrome");
+//		caps.setPlatform(Platform.WINDOWS);
+//		ChromeOptions options = new ChromeOptions();
+//		options.merge(caps);
+//		String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+//		driver = new RemoteWebDriver(new URL(nodeUrl),options);
 
-		//		if(myBrowser.equalsIgnoreCase("chrome")){
-		//			DesiredCapabilities caps = new DesiredCapabilities();
-		//			caps.setBrowserName("chrome");
-		//			caps.setPlatform(Platform.WINDOWS);
-		//			ChromeOptions options = new ChromeOptions();
-		//			options.merge(caps);
-		//			String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		//			driver = new RemoteWebDriver(new URL(nodeUrl),options);
-		//
-		//		}
-		//
-		//		if(myBrowser.equalsIgnoreCase("firefox")) {
-		//			//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
-		//			DesiredCapabilities caps = new DesiredCapabilities();
-		//			//driver = new FirefoxDriver();
-		//			caps.setPlatform(Platform.WINDOWS);
-		//			FirefoxOptions options = new FirefoxOptions();
-		//			options.merge(caps);
-		//			String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		//			driver = new RemoteWebDriver(new URL(nodeUrl),options);
-		//
-		//		}
+				if(myBrowser.equalsIgnoreCase("chrome")){
+					DesiredCapabilities caps = new DesiredCapabilities();
+					caps.setBrowserName("chrome");
+					caps.setPlatform(Platform.WINDOWS);
+					ChromeOptions options = new ChromeOptions();
+					options.merge(caps);
+					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+					driver = new RemoteWebDriver(new URL(nodeUrl),options);
+		
+				}
+		
+				if(myBrowser.equalsIgnoreCase("firefox")) {
+					//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
+					DesiredCapabilities caps = new DesiredCapabilities();
+					//driver = new FirefoxDriver();
+					caps.setPlatform(Platform.WINDOWS);
+					FirefoxOptions options = new FirefoxOptions();
+					options.merge(caps);
+					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+					driver = new RemoteWebDriver(new URL(nodeUrl),options);
+		
+				}
 
 	}
 
@@ -109,7 +109,7 @@ public class Registration {
 
 	//Verifying elements on Registration page
 
-	@Test
+	@Test(priority = 1)
 	public void verifyElemntsOnPageTest() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -121,26 +121,22 @@ public class Registration {
 
 	// Registration with all valid data
 
-	@Test
+	@Test(priority = 2)
 	public void validRegistrationTest() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div/div/div/div/div/form[@novalidate='novalidate']/div[1]/div[1]/div[1]/div[1]/input[1]")));
 		firstName.sendKeys("Test");
-		Thread.sleep(1000);
 
 		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div//div//div//div[2]//div[1]//div[1]//div[1]//input[1]")));
 		LastName.sendKeys("Site");
-		Thread.sleep(1000);
 
 		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[3]//div[1]//div[1]//div[1]//input[1]")));
 		email.sendKeys("test2221@gmail.com");
-		Thread.sleep(1000);
 
 		WebElement verifiedemail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[4]//div[1]//div[1]//div[1]//input[1]")));
 		verifiedemail.sendKeys("test2221@gmail.com");
-		Thread.sleep(1000);
 
 		WebElement checkmark = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-input--selection-controls v-input--radio-group v-input--radio-group--column']//div[2]//div[1]//div[1]")));
 		checkmark.click();
@@ -163,26 +159,22 @@ public class Registration {
 
 	// Registration - First Name field validation
 
-	@Test
+	@Test(priority = 3)
 	public void firstNameValidationTest() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div/div/div/div/div/form[@novalidate='novalidate']/div[1]/div[1]/div[1]/div[1]/input[1]")));
 		firstName.sendKeys("fgggfggfgfgfgfgfgfgfgfgfg");
-		Thread.sleep(1000);
 
 		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div//div//div//div[2]//div[1]//div[1]//div[1]//input[1]")));
 		LastName.sendKeys("Site");
-		Thread.sleep(1000);
 
 		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[3]//div[1]//div[1]//div[1]//input[1]")));
 		email.sendKeys("test2221@gmail.com");
-		Thread.sleep(1000);
 
 		WebElement verifiedemail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[4]//div[1]//div[1]//div[1]//input[1]")));
 		verifiedemail.sendKeys("test2221@gmail.com");
-		Thread.sleep(1000);
 
 		WebElement checkmark = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-input--selection-controls v-input--radio-group v-input--radio-group--column']//div[2]//div[1]//div[1]")));
 		checkmark.click();
@@ -235,26 +227,22 @@ public class Registration {
 
 	// Registration-- Last Name field validation
 
-	@Test
+	@Test(priority = 4)
 	public void lastNameValidationTest() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div/div/div/div/div/form[@novalidate='novalidate']/div[1]/div[1]/div[1]/div[1]/input[1]")));
 		firstName.sendKeys("TEst");
-		Thread.sleep(1000);
 
 		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div//div//div//div[2]//div[1]//div[1]//div[1]//input[1]")));
 		LastName.sendKeys("fhfghdfghgdhfhfghfhfhggh");
-		Thread.sleep(1000);
 
 		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[3]//div[1]//div[1]//div[1]//input[1]")));
 		email.sendKeys("test2221@gmail.com");
-		Thread.sleep(1000);
 
 		WebElement verifiedemail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[4]//div[1]//div[1]//div[1]//input[1]")));
 		verifiedemail.sendKeys("test2221@gmail.com");
-		Thread.sleep(1000);
 
 		WebElement checkmark = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-input--selection-controls v-input--radio-group v-input--radio-group--column']//div[2]//div[1]//div[1]")));
 		checkmark.click();
@@ -309,26 +297,22 @@ public class Registration {
 
 	// Registration -- user email field validation
 
-	@Test
+	@Test(priority = 5)
 	public void emailValidationTest() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div/div/div/div/div/form[@novalidate='novalidate']/div[1]/div[1]/div[1]/div[1]/input[1]")));
 		firstName.sendKeys("TEst");
-		Thread.sleep(1000);
 
 		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div//div//div//div[2]//div[1]//div[1]//div[1]//input[1]")));
 		LastName.sendKeys("testttt");
-		Thread.sleep(1000);
 
 		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[3]//div[1]//div[1]//div[1]//input[1]")));
 		email.sendKeys("test24221@gmail.com");
-		Thread.sleep(1000);
 
 		WebElement verifiedemail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[4]//div[1]//div[1]//div[1]//input[1]")));
 		verifiedemail.sendKeys("test2221@gmail.com");
-		Thread.sleep(1000);
 
 		WebElement checkmark = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-input--selection-controls v-input--radio-group v-input--radio-group--column']//div[2]//div[1]//div[1]")));
 		checkmark.click();

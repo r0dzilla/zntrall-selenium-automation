@@ -10,12 +10,14 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -43,28 +45,28 @@ public class Locations {
 		String nodeUrl = "http://192.168.31.17:4444/wd/hub";
 		driver = new RemoteWebDriver(new URL(nodeUrl),options);
 
-		//		if(myBrowser.equalsIgnoreCase("chrome")){
-		//			DesiredCapabilities caps = new DesiredCapabilities();
-		//			caps.setBrowserName("chrome");
-		//			caps.setPlatform(Platform.WINDOWS);
-		//			ChromeOptions options = new ChromeOptions();
-		//			options.merge(caps);
-		//			String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		//			driver = new RemoteWebDriver(new URL(nodeUrl),options);
-		//			
-		//		}
-		//
-		//		if(myBrowser.equalsIgnoreCase("firefox")) {
-		//			//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
-		//			DesiredCapabilities caps = new DesiredCapabilities();
-		//			//driver = new FirefoxDriver();
-		//			caps.setPlatform(Platform.WINDOWS);
-		//			FirefoxOptions options = new FirefoxOptions();
-		//			options.merge(caps);
-		//			String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		//			driver = new RemoteWebDriver(new URL(nodeUrl),options);
-		//		
-		//		}
+//				if(myBrowser.equalsIgnoreCase("chrome")){
+//					DesiredCapabilities caps = new DesiredCapabilities();
+//					caps.setBrowserName("chrome");
+//					caps.setPlatform(Platform.WINDOWS);
+//					ChromeOptions options = new ChromeOptions();
+//					options.merge(caps);
+//					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+//					driver = new RemoteWebDriver(new URL(nodeUrl),options);
+//					
+//				}
+//		
+//				if(myBrowser.equalsIgnoreCase("firefox")) {
+//					//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
+//					DesiredCapabilities caps = new DesiredCapabilities();
+//					//driver = new FirefoxDriver();
+//					caps.setPlatform(Platform.WINDOWS);
+//					FirefoxOptions options = new FirefoxOptions();
+//					options.merge(caps);
+//					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+//					driver = new RemoteWebDriver(new URL(nodeUrl),options);
+//				
+//				}
 
 	}
 
@@ -95,13 +97,13 @@ public class Locations {
 
 	//login
 
-	@Test
+	@Test(priority = 1)
 	public void loginUser() throws InterruptedException {
 
-		WebElement username = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[1]/div[1]/div[1]/div[1]/input[1]"));
-		WebElement password = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[2]/div[1]/div[1]/div[1]/input[1]"));
-		WebElement login = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[4]/button[1]/span[1]"));
-
+		WebElement username = driver.findElement(By.xpath("//input[@type='text']"));
+		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
+		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
+		
 		username.sendKeys("shaque.sabbir@gmail.com");
 		password.sendKeys("Sabbir33");
 
@@ -118,7 +120,7 @@ public class Locations {
 
 	//View the location list
 
-	@Test
+	@Test(priority = 2)
 	public void locationList() throws InterruptedException {
 
 		loginUser();
@@ -132,7 +134,7 @@ public class Locations {
 
 	//Search option
 
-	@Test
+	@Test(priority = 3)
 	public void search() throws InterruptedException {
 		locationList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -148,7 +150,7 @@ public class Locations {
 
 	//Add new Location -- Click "+" button
 
-	@Test
+	@Test(priority = 4)
 	public void addLocation() throws InterruptedException{
 		loginUser();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -160,6 +162,7 @@ public class Locations {
 
 		WebElement selectResidentType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@id='inspire']/div[@role='document']/div/div/div/div/div/div/div/div/div/div/div[@role='radiogroup']/div[3]/div[1]")));
 		selectResidentType.click();
+		Thread.sleep(2000);
 		WebElement selectContinue = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Continue']")));
 		selectContinue.click();
 
@@ -169,9 +172,10 @@ public class Locations {
 
 	//Adding location with valid info
 
-	@Test
+	@Test(priority = 5)
 	public void validLocationData() throws InterruptedException {
 		addLocation();
+		Thread.sleep(2000);
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		WebElement locationName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")));
 		WebElement licenceNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div/div[2]/div[1]/div[2]/div[1]/div[1]/input[1]")));
@@ -208,17 +212,15 @@ public class Locations {
 
 		String URL = driver.getCurrentUrl();
 		Assert.assertTrue(URL.contains("https://zntral.net/locations/"));
-		Thread.sleep(3000);
 
 	}
 
 	//Adding location without any info
 
-	@Test
+	@Test(priority = 6)
 	public void invalidLocationData() throws InterruptedException {
 		addLocation();
 		Thread.sleep(2000);
-
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		WebElement locationName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")));
 		WebElement licenceNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div/div[2]/div[1]/div[2]/div[1]/div[1]/input[1]")));
@@ -236,33 +238,19 @@ public class Locations {
 
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
 
-		Thread.sleep(2000);
 		locationName.sendKeys("");
-		Thread.sleep(1000);
 		licenceNumber.sendKeys("");
-		Thread.sleep(1000);
 		capacity.sendKeys("");
-		Thread.sleep(1000);
 		address.sendKeys("");
-		Thread.sleep(1000);
 		suiteUnit.sendKeys("");
-		Thread.sleep(1000);
 		city.sendKeys("");
-		Thread.sleep(1000);
 		state.sendKeys("");
-		Thread.sleep(1000);
 		zip.sendKeys("");
-		Thread.sleep(1000);
 		phoneNumber.sendKeys("");
-		Thread.sleep(1000);
 		type.click();
-		Thread.sleep(1000);
 		//selectType.click();
-		Thread.sleep(1000);
 		email.sendKeys("");
-		Thread.sleep(1000);
 		note.sendKeys("");
-		Thread.sleep(2000);
 		save.isEnabled();
 		Thread.sleep(5000);
 
@@ -292,13 +280,11 @@ public class Locations {
 		String actualText5 = emailMsg.getText();
 		Assert.assertEquals(actualText5, expectedText5);
 
-		Thread.sleep(3000);
-
 	}
 
 	//Adding location form --- Phone number, Email validation check
 
-	@Test
+	@Test(priority = 7)
 	public void validatePhoneEmailData() throws InterruptedException {
 		addLocation();
 		Thread.sleep(2000);
@@ -320,33 +306,21 @@ public class Locations {
 
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
 
-		Thread.sleep(2000);
 		locationName.sendKeys("Sylhet");
-		Thread.sleep(1000);
 		licenceNumber.sendKeys("789456");
-		Thread.sleep(1000);
 		capacity.sendKeys("25");
-		Thread.sleep(1000);
 		address.sendKeys("Sylhet");
-		Thread.sleep(1000);
 		suiteUnit.sendKeys("15/78 rd");
-		Thread.sleep(1000);
 		city.sendKeys("Sylhet");
-		Thread.sleep(1000);
 		state.sendKeys("Sylhet");
-		Thread.sleep(1000);
 		zip.sendKeys("4562");
-		Thread.sleep(1000);
 		phoneNumber.sendKeys("87956");
-		Thread.sleep(1000);
 		//type.click();
 		//Thread.sleep(1000);
 		//selectType.click();
 		//Thread.sleep(1000);
 		email.sendKeys("@test.com");
-		Thread.sleep(1000);
 		note.sendKeys("test");
-		Thread.sleep(2000);
 		save.isEnabled();
 		Thread.sleep(5000);
 
@@ -362,128 +336,100 @@ public class Locations {
 		String actualText5 = emailMsg.getText();
 		Assert.assertEquals(actualText5, expectedText5);
 
-		Thread.sleep(3000);
-
 	}
 
 	//Adding location form --- back button check
 
-	@Test
+	@Test(priority = 8)
 	public void validateBackButton() throws InterruptedException {
 		addLocation();
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		WebElement back = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Back']")));
-		Thread.sleep(2000);
-
 		back.click();
 
 		Assert.assertTrue(true);
-
-		Thread.sleep(3000);
-
 	}
 
 
 	//Adding location form --- cancel button check
 
-	@Test
+	@Test(priority = 9)
 	public void validateCancelButton() throws InterruptedException {
 		addLocation();
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		WebElement cancel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Cancel']")));
-		Thread.sleep(2000);
 		cancel.click();
 
-		WebElement cancelPopUp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Yes']")));
 		Thread.sleep(2000);
-		cancelPopUp.click();
-
 		Assert.assertTrue(true);
-
-		Thread.sleep(3000);
-
 	}
 
 	//Add patient info after adding new location info
 
-	@Test
+	@Test(priority = 10)
 	public void addPatientfromLocation() throws InterruptedException {
 
 		validLocationData();
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement addButton1 = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/button[1]/span[1]/i[1]"));
-		Thread.sleep(2000);
+		WebElement addButton1 = driver.findElement(By.xpath("//i[normalize-space()='add']"));
 		addButton1.click();
-		WebElement addPatientButton = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/button[1]/span[1]/strong[1]"));
 		Thread.sleep(1000);
+		WebElement addPatientButton = driver.findElement(By.xpath("//strong[normalize-space()='Patient']"));
 		addPatientButton.click();
 		Thread.sleep(1000);
-		WebElement FirstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/input[1]")));
-		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/input[1]")));
-		WebElement ssn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")));
-		WebElement phoneNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")));
-		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[3]/div[3]/div[1]/div[2]/div[1]/div[1]/input[1]")));
-		WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[3]/button[2]/span[1]")));
+		WebElement FirstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[1]//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='row no-gutters']//div[4]//div[1]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement ssn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
+		WebElement phoneNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
+		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
+		WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Submit']")));
 
 		FirstName.sendKeys("Testing");
-		Thread.sleep(2000);
 		LastName.sendKeys("data");
-		Thread.sleep(2000);
 		ssn.sendKeys("1234568");
-		Thread.sleep(2000);
 		phoneNumber.sendKeys("1234567895");
-		Thread.sleep(2000);
 		email.sendKeys("test@email.com");
-		Thread.sleep(2000);
-
 		submit.click();
 		Thread.sleep(5000);
 
 		String URL = driver.getCurrentUrl();
 		Assert.assertTrue(URL.contains("https://zntral.net/patients/"));
-		Thread.sleep(3000);
 
 	}
 
 	//Add patient info after adding new location info -- Empty fields
 
-	@Test
+	@Test(priority = 11)
 	public void emptyPatientInfofromLocation() throws InterruptedException {
 
 		validLocationData();
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement addButton1 = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/button[1]/span[1]/i[1]"));
-		Thread.sleep(2000);
+		WebElement addButton1 = driver.findElement(By.xpath("//i[normalize-space()='add']"));
 		addButton1.click();
-		WebElement addPatientButton = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/button[1]/span[1]/strong[1]"));
 		Thread.sleep(1000);
+		WebElement addPatientButton = driver.findElement(By.xpath("//strong[normalize-space()='Patient']"));
 		addPatientButton.click();
 		Thread.sleep(1000);
-		WebElement FirstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/input[1]")));
-		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[1]/div[4]/div[1]/div[1]/div[1]/div[1]/input[1]")));
-		WebElement ssn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")));
-		WebElement phoneNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")));
-		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[3]/div[3]/div[1]/div[2]/div[1]/div[1]/input[1]")));
-		WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[3]/button[2]/span[1]")));
+		WebElement FirstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[1]//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='row no-gutters']//div[4]//div[1]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement ssn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
+		WebElement phoneNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
+		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
+		WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Submit']")));
 
 		FirstName.sendKeys("");
-		Thread.sleep(2000);
 		LastName.sendKeys("");
-		Thread.sleep(2000);
 		ssn.sendKeys("");
-		Thread.sleep(2000);
 		phoneNumber.sendKeys("");
-		Thread.sleep(2000);
 		email.sendKeys("");
-		Thread.sleep(2000);
 
 		submit.isEnabled();
 		Thread.sleep(5000);
@@ -505,7 +451,7 @@ public class Locations {
 
 	//Add contact info after adding new location info
 
-	@Test
+	@Test(priority = 12)
 	public void addContactfromLocation() throws InterruptedException {
 
 		validLocationData();
@@ -557,7 +503,7 @@ public class Locations {
 
 	//Add contact info after adding new location info with empty fields
 
-	@Test
+	@Test(priority = 13)
 	public void addContactEmptyLocation() throws InterruptedException {
 
 		validLocationData();
@@ -594,7 +540,7 @@ public class Locations {
 
 	//Edit location info
 
-	@Test
+	@Test(priority = 14)
 	public void editLocationInfo() throws InterruptedException {
 		locationList();
 		Thread.sleep(2000);
@@ -644,7 +590,7 @@ public class Locations {
 
 	//Delete location info
 
-	@Test
+	@Test(priority = 15)
 	public void deleteLocationInfo() throws InterruptedException {
 		locationList();
 		Thread.sleep(2000);
@@ -677,6 +623,12 @@ public class Locations {
 			System.out.println("Test Done!!!");
 			driver.quit();
 		}
+	}
+	
+	@AfterSuite
+	public static void afterSuit() {
+
+		System.out.println( testSuiteName + " execution Complete");
 	}
 
 }

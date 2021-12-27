@@ -32,38 +32,38 @@ public class LoginTest {
 	@Parameters("myBrowser")
 
 	@BeforeTest
-	public static void setup() throws MalformedURLException {
+	public static void setup(String myBrowser) throws MalformedURLException {
 
-		DesiredCapabilities caps = new DesiredCapabilities();
-		caps.setBrowserName("chrome");
-		caps.setPlatform(Platform.WINDOWS);
-		ChromeOptions options = new ChromeOptions();
-		options.merge(caps);
-		String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		driver = new RemoteWebDriver(new URL(nodeUrl),options);
+//		DesiredCapabilities caps = new DesiredCapabilities();
+//		caps.setBrowserName("chrome");
+//		caps.setPlatform(Platform.WINDOWS);
+//		ChromeOptions options = new ChromeOptions();
+//		options.merge(caps);
+//		String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+//		driver = new RemoteWebDriver(new URL(nodeUrl),options);
 
-		//		if(myBrowser.equalsIgnoreCase("chrome")){
-		//			DesiredCapabilities caps = new DesiredCapabilities();
-		//			caps.setBrowserName("chrome");
-		//			caps.setPlatform(Platform.WINDOWS);
-		//			ChromeOptions options = new ChromeOptions();
-		//			options.merge(caps);
-		//			String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		//			driver = new RemoteWebDriver(new URL(nodeUrl),options);
-		//
-		//		}
-		//
-		//		if(myBrowser.equalsIgnoreCase("firefox")) {
-		//			//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
-		//			DesiredCapabilities caps = new DesiredCapabilities();
-		//			//driver = new FirefoxDriver();
-		//			caps.setPlatform(Platform.WINDOWS);
-		//			FirefoxOptions options = new FirefoxOptions();
-		//			options.merge(caps);
-		//			String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		//			driver = new RemoteWebDriver(new URL(nodeUrl),options);
-		//
-		//		}
+				if(myBrowser.equalsIgnoreCase("chrome")){
+					DesiredCapabilities caps = new DesiredCapabilities();
+					caps.setBrowserName("chrome");
+					caps.setPlatform(Platform.WINDOWS);
+					ChromeOptions options = new ChromeOptions();
+					options.merge(caps);
+					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+					driver = new RemoteWebDriver(new URL(nodeUrl),options);
+		
+				}
+		
+				if(myBrowser.equalsIgnoreCase("firefox")) {
+					//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
+					DesiredCapabilities caps = new DesiredCapabilities();
+					//driver = new FirefoxDriver();
+					caps.setPlatform(Platform.WINDOWS);
+					FirefoxOptions options = new FirefoxOptions();
+					options.merge(caps);
+					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+					driver = new RemoteWebDriver(new URL(nodeUrl),options);
+		
+				}
 
 	}
 
@@ -96,19 +96,25 @@ public class LoginTest {
 	}
 
 	//Verifying elements on Login page
-	@Test
+	@Test(priority = 1)
 	public void verifyElemntsOnPageTest() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement signInTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class='mb-3']")));
+		WebElement emailTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='text']")));
+		WebElement passTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
+		WebElement loginButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@disabled='disabled']")));
 		signInTitle.isDisplayed();
+		emailTitle.isDisplayed();
+		passTitle.isDisplayed();
+		loginButton.isDisplayed();
 
 	}
 
 	//login with valid username & Password
 
-	@Test
+	@Test(priority = 2)
 	public void verifyLogin() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -118,8 +124,6 @@ public class LoginTest {
 		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
 
 		username.sendKeys("shaque.sabbir@gmail.com");
-		Thread.sleep(2000);
-
 		password.sendKeys("Sabbir33");
 
 		login.click();
@@ -132,7 +136,7 @@ public class LoginTest {
 
 	//login without username
 
-	@Test
+	@Test(priority = 3)
 	public void loginWithoutUsername() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -142,7 +146,6 @@ public class LoginTest {
 		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
 
 		username.sendKeys("");
-		Thread.sleep(2000);
 		password.sendKeys("Sabbir33");
 
 		try {
@@ -166,7 +169,7 @@ public class LoginTest {
 
 	//login without Password
 
-	@Test
+	@Test(priority = 4)
 	public void loginWithoutPassword() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -178,7 +181,6 @@ public class LoginTest {
 		WebElement checkbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input--selection-controls__ripple']")));
 
 		username.sendKeys("test@gmil.com");
-		Thread.sleep(2000);
 		password.sendKeys("");
 
 		checkbox.click();
@@ -201,6 +203,25 @@ public class LoginTest {
 			}
 		}
 
+	}
+	
+	//login with empty field
+	@Test(priority = 5)
+	public void loginWithEmptyField() {
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='text']")));
+		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
+		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
+
+		username.sendKeys("");
+		password.sendKeys("");
+
+		login.isEnabled();
+
+		String expectedUrl = "https://zntral.net/session/login";
+		String actualUrl = driver.getCurrentUrl();
+		Assert.assertEquals(actualUrl, expectedUrl);
 	}
 
 	@AfterTest

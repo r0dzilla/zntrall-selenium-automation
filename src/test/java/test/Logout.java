@@ -9,11 +9,13 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -31,38 +33,38 @@ public class Logout {
 	@Parameters("myBrowser")
 
 	@BeforeTest
-	public static void setup() throws MalformedURLException {
+	public static void setup(String myBrowser) throws MalformedURLException {
 
-		DesiredCapabilities caps = new DesiredCapabilities();
-		caps.setBrowserName("chrome");
-		caps.setPlatform(Platform.WINDOWS);
-		ChromeOptions options = new ChromeOptions();
-		options.merge(caps);
-		String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		driver = new RemoteWebDriver(new URL(nodeUrl),options);
+//		DesiredCapabilities caps = new DesiredCapabilities();
+//		caps.setBrowserName("chrome");
+//		caps.setPlatform(Platform.WINDOWS);
+//		ChromeOptions options = new ChromeOptions();
+//		options.merge(caps);
+//		String nodeUrl = "http://192.168.0.110:4444/wd/hub";
+//		driver = new RemoteWebDriver(new URL(nodeUrl),options);
 
-		//		if(myBrowser.equalsIgnoreCase("chrome")){
-		//			DesiredCapabilities caps = new DesiredCapabilities();
-		//			caps.setBrowserName("chrome");
-		//			caps.setPlatform(Platform.WINDOWS);
-		//			ChromeOptions options = new ChromeOptions();
-		//			options.merge(caps);
-		//			String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		//			driver = new RemoteWebDriver(new URL(nodeUrl),options);
-		//			
-		//		}
-		//
-		//		if(myBrowser.equalsIgnoreCase("firefox")) {
-		//			//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
-		//			DesiredCapabilities caps = new DesiredCapabilities();
-		//			//driver = new FirefoxDriver();
-		//			caps.setPlatform(Platform.WINDOWS);
-		//			FirefoxOptions options = new FirefoxOptions();
-		//			options.merge(caps);
-		//			String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		//			driver = new RemoteWebDriver(new URL(nodeUrl),options);
-		//		
-		//		}
+				if(myBrowser.equalsIgnoreCase("chrome")){
+					DesiredCapabilities caps = new DesiredCapabilities();
+					caps.setBrowserName("chrome");
+					caps.setPlatform(Platform.WINDOWS);
+					ChromeOptions options = new ChromeOptions();
+					options.merge(caps);
+					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+					driver = new RemoteWebDriver(new URL(nodeUrl),options);
+					
+				}
+		
+				if(myBrowser.equalsIgnoreCase("firefox")) {
+					//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
+					DesiredCapabilities caps = new DesiredCapabilities();
+					//driver = new FirefoxDriver();
+					caps.setPlatform(Platform.WINDOWS);
+					FirefoxOptions options = new FirefoxOptions();
+					options.merge(caps);
+					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+					driver = new RemoteWebDriver(new URL(nodeUrl),options);
+				
+				}
 
 	}
 
@@ -93,16 +95,14 @@ public class Logout {
 
 	//login
 
-	@Test
+	@Test(priority = 1)
 	public void loginUser() throws InterruptedException {
 
-		WebElement username = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[1]/div[1]/div[1]/div[1]/input[1]"));
-		WebElement password = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[2]/div[1]/div[1]/div[1]/input[1]"));
-		WebElement login = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[4]/button[1]/span[1]"));
-
+		WebElement username = driver.findElement(By.xpath("//input[@type='text']"));
+		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
+		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
+		
 		username.sendKeys("shaque.sabbir@gmail.com");
-		Thread.sleep(2000);
-
 		password.sendKeys("Sabbir33");
 
 		login.click();
@@ -116,7 +116,7 @@ public class Logout {
 	
 	//logout
 	
-	@Test
+	@Test(priority = 2)
 	public void logout() throws InterruptedException {
 		loginUser();
 		Thread.sleep(2000);
@@ -142,5 +142,11 @@ public class Logout {
 			System.out.println("Test Done!!!");
 			driver.quit();
 		}
+	}
+	
+	@AfterSuite
+	public static void afterSuit() {
+
+		System.out.println( testSuiteName + " execution Complete");
 	}
 }

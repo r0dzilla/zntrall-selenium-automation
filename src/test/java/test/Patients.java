@@ -10,11 +10,13 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -32,38 +34,38 @@ public class Patients {
 	@Parameters("myBrowser")
 
 	@BeforeTest
-	public static void setup() throws MalformedURLException {
+	public static void setup(String myBrowser) throws MalformedURLException {
 
-		DesiredCapabilities caps = new DesiredCapabilities();
-		caps.setBrowserName("chrome");
-		caps.setPlatform(Platform.WINDOWS);
-		ChromeOptions options = new ChromeOptions();
-		options.merge(caps);
-		String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		driver = new RemoteWebDriver(new URL(nodeUrl),options);
+//		DesiredCapabilities caps = new DesiredCapabilities();
+//		caps.setBrowserName("chrome");
+//		caps.setPlatform(Platform.WINDOWS);
+//		ChromeOptions options = new ChromeOptions();
+//		options.merge(caps);
+//		String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+//		driver = new RemoteWebDriver(new URL(nodeUrl),options);
 
-		//		if(myBrowser.equalsIgnoreCase("chrome")){
-		//			DesiredCapabilities caps = new DesiredCapabilities();
-		//			caps.setBrowserName("chrome");
-		//			caps.setPlatform(Platform.WINDOWS);
-		//			ChromeOptions options = new ChromeOptions();
-		//			options.merge(caps);
-		//			String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		//			driver = new RemoteWebDriver(new URL(nodeUrl),options);
-		//			
-		//		}
-		//
-		//		if(myBrowser.equalsIgnoreCase("firefox")) {
-		//			//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
-		//			DesiredCapabilities caps = new DesiredCapabilities();
-		//			//driver = new FirefoxDriver();
-		//			caps.setPlatform(Platform.WINDOWS);
-		//			FirefoxOptions options = new FirefoxOptions();
-		//			options.merge(caps);
-		//			String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		//			driver = new RemoteWebDriver(new URL(nodeUrl),options);
-		//		
-		//		}
+				if(myBrowser.equalsIgnoreCase("chrome")){
+					DesiredCapabilities caps = new DesiredCapabilities();
+					caps.setBrowserName("chrome");
+					caps.setPlatform(Platform.WINDOWS);
+					ChromeOptions options = new ChromeOptions();
+					options.merge(caps);
+					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+					driver = new RemoteWebDriver(new URL(nodeUrl),options);
+					
+				}
+		
+				if(myBrowser.equalsIgnoreCase("firefox")) {
+					//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
+					DesiredCapabilities caps = new DesiredCapabilities();
+					//driver = new FirefoxDriver();
+					caps.setPlatform(Platform.WINDOWS);
+					FirefoxOptions options = new FirefoxOptions();
+					options.merge(caps);
+					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+					driver = new RemoteWebDriver(new URL(nodeUrl),options);
+				
+				}
 
 	}
 
@@ -94,15 +96,14 @@ public class Patients {
 
 	//login
 
-	@Test
+	@Test(priority = 1)
 	public void loginUser() throws InterruptedException {
 
-		WebElement username = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[1]/div[1]/div[1]/div[1]/input[1]"));
-		WebElement password = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[2]/div[1]/div[1]/div[1]/input[1]"));
-		WebElement login = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[4]/button[1]/span[1]"));
-
+		WebElement username = driver.findElement(By.xpath("//input[@type='text']"));
+		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
+		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
+		
 		username.sendKeys("shaque.sabbir@gmail.com");
-		Thread.sleep(2000);
 
 		password.sendKeys("Sabbir33");
 
@@ -118,7 +119,7 @@ public class Patients {
 
 
 	//View the patients list
-	@Test
+	@Test(priority = 2)
 	public void patientsList() throws InterruptedException {
 
 		loginUser();
@@ -127,7 +128,7 @@ public class Patients {
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Patients']")));
 		driver.findElement(By.xpath("//span[normalize-space()='Patients']")).click();
-		Thread.sleep(3000);
+		
 		String expectedUrl = "https://zntral.net/patients";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
@@ -136,7 +137,7 @@ public class Patients {
 
 	//Search option
 
-	@Test
+	@Test(priority = 3)
 	public void search() throws InterruptedException {
 		patientsList();
 		Thread.sleep(2000);
@@ -144,7 +145,7 @@ public class Patients {
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]")));
 		driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]")).sendKeys("Sabbir");
-		Thread.sleep(3000);
+
 
 		WebElement firstRow = driver.findElement(By.xpath("//tbody/tr[1]/td[2]"));	
 		String actualText = firstRow.getText();
@@ -156,7 +157,7 @@ public class Patients {
 
 	//Add new Patient -- Click "+" button
 
-	@Test
+	@Test(priority = 4)
 	public void addPatient() throws InterruptedException{
 		patientsList();
 		Thread.sleep(2000);
@@ -177,7 +178,7 @@ public class Patients {
 
 	//Add patient with valid info
 
-	@Test
+	@Test(priority = 5)
 	public void validPatientData() throws InterruptedException {
 		addPatient();
 		Thread.sleep(2000);
@@ -198,31 +199,21 @@ public class Patients {
 
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Submit']")));
 
-		Thread.sleep(2000);
-
 		prefix.sendKeys("Mr.");
-		Thread.sleep(1000);
 		firstName.sendKeys("Test");
 		lastName.sendKeys("Info");
-		Thread.sleep(1000);
 		ssn.sendKeys("1234564");
-		Thread.sleep(1000);
 		dob.sendKeys("1993-10-25");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='OK']"))).click();
-		Thread.sleep(1000);
 		gender.click();
-		Thread.sleep(1000);
 		WebElement genderMale = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Male')]")));
 		genderMale.click();
 		phone.sendKeys("7894561235");
 		type.click();
-		Thread.sleep(1000);
 		WebElement typeMobile = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-list-item__title'][normalize-space()='Mobile']")));
 		typeMobile.click();
 		email.sendKeys("sabbir@email.com");
-		Thread.sleep(1000);
 		location.click();
-		Thread.sleep(1000);
 		WebElement selectLocation = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space()='Test Location 2']")));
 		selectLocation.click();
 		note.sendKeys("This is demo data");
@@ -237,7 +228,7 @@ public class Patients {
 
 	//Adding patient without any info
 
-	@Test
+	@Test(priority = 6)
 	public void invalidPatientData() throws InterruptedException {
 		addPatient();
 		Thread.sleep(2000);
@@ -258,27 +249,17 @@ public class Patients {
 
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Submit']")));
 
-		Thread.sleep(2000);
-
 		prefix.sendKeys("");
-		Thread.sleep(1000);
 		firstName.sendKeys("");
 		lastName.sendKeys("");
-		Thread.sleep(1000);
 		ssn.sendKeys("");
-		Thread.sleep(1000);
 		dob.sendKeys("");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='OK']"))).click();
-		Thread.sleep(1000);
 		gender.click();
-		Thread.sleep(1000);
 		phone.sendKeys("");
 		type.click();
-		Thread.sleep(1000);
 		email.sendKeys("");
-		Thread.sleep(1000);
 		location.click();
-		Thread.sleep(1000);
 		note.sendKeys("");
 		save.isEnabled();
 		Thread.sleep(5000);
@@ -300,7 +281,7 @@ public class Patients {
 
 	//Edit Patient info
 
-	@Test
+	@Test(priority = 7)
 	public void editPatientInfo() throws InterruptedException {
 		patientsList();
 		Thread.sleep(2000);
@@ -328,7 +309,6 @@ public class Patients {
 		}
 		Thread.sleep(1000);
 		editSSN.sendKeys("7895213");
-		Thread.sleep(1000);
 
 		WebElement update = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Update']")));
 		update.click();
@@ -339,7 +319,7 @@ public class Patients {
 
 	//Delete Patient info
 
-	@Test
+	@Test(priority = 8)
 	public void deletePatientInfo() throws InterruptedException {
 		patientsList();
 		Thread.sleep(2000);
@@ -367,7 +347,7 @@ public class Patients {
 	}
 
 	//Add contact info after adding new patient info
-	@Test
+	@Test(priority = 9)
 	public void addContactfromPatient() throws InterruptedException {
 		validPatientData();
 		Thread.sleep(3000);
@@ -431,7 +411,7 @@ public class Patients {
 
 	//Add contact with empty fields after adding new patient 
 
-	@Test
+	@Test(priority = 10)
 	public void addContactWithEmptyData() throws InterruptedException {
 		validPatientData();
 		Thread.sleep(3000);
@@ -488,7 +468,7 @@ public class Patients {
 
 	//Add contact to any patient from patients list 
 
-	@Test
+	@Test(priority = 11)
 	public void addContactFromPatientList() throws InterruptedException {
 		patientsList();
 		Thread.sleep(2000);
@@ -556,7 +536,7 @@ public class Patients {
 	}
 
 	//Add Schedule info after adding new patient info
-	@Test
+	@Test(priority = 12)
 	public void addSchdeulefromPatient() throws InterruptedException {
 		validPatientData();
 		Thread.sleep(3000);
@@ -595,7 +575,7 @@ public class Patients {
 
 	//Add schedule to any patient from patients list 
 
-	@Test
+	@Test(priority = 13)
 	public void addSheduleFromPatientList() throws InterruptedException {
 		patientsList();
 		Thread.sleep(2000);
@@ -638,7 +618,7 @@ public class Patients {
 
 	//Add schedule with empty fields after adding new patient 
 
-	@Test
+	@Test(priority = 14)
 	public void addSchdeuleWithEmpty() throws InterruptedException {
 		validPatientData();
 		Thread.sleep(3000);
@@ -671,7 +651,7 @@ public class Patients {
 
 	//Add schedule with empty fields from the patient list
 
-	@Test
+	@Test(priority = 15)
 	public void addEmptySheduleFromPatientList() throws InterruptedException {
 		patientsList();
 		Thread.sleep(2000);
@@ -708,7 +688,7 @@ public class Patients {
 
 	//Contact form cancel button check
 
-	@Test
+	@Test(priority = 16)
 	public void contactFormCancelButton() throws InterruptedException {
 		patientsList();
 		Thread.sleep(2000);
@@ -737,7 +717,7 @@ public class Patients {
 
 	//Schedule form cancel button check
 
-	@Test
+	@Test(priority = 17)
 	public void sheduleFormCancelButton() throws InterruptedException {
 		patientsList();
 		Thread.sleep(2000);
@@ -770,6 +750,12 @@ public class Patients {
 			System.out.println("Test Done!!!");
 			driver.quit();
 		}
+	}
+	
+	@AfterSuite
+	public static void afterSuit() {
+
+		System.out.println( testSuiteName + " execution Complete");
 	}
 
 }

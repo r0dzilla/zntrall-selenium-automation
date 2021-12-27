@@ -47,7 +47,7 @@ public class Login{
 					caps.setPlatform(Platform.WINDOWS);
 					ChromeOptions options = new ChromeOptions();
 					options.merge(caps);
-					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+					String nodeUrl = "http://192.168.0.110:4444/wd/hub";
 					driver = new RemoteWebDriver(new URL(nodeUrl),options);
 		
 				}
@@ -59,7 +59,7 @@ public class Login{
 					caps.setPlatform(Platform.WINDOWS);
 					FirefoxOptions options = new FirefoxOptions();
 					options.merge(caps);
-					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+					String nodeUrl = "http://192.168.0.110:4444/wd/hub";
 					driver = new RemoteWebDriver(new URL(nodeUrl),options);
 		
 				}
@@ -94,7 +94,7 @@ public class Login{
 	}
 
 	//Verifying elements on Login page
-	@Test
+	@Test(priority = 1)
 	public void verifyElemntsOnPageTest() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -106,7 +106,7 @@ public class Login{
 
 	//login with valid username & Password
 
-	@Test
+	@Test(priority = 2)
 	public void verifyLogin() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -128,7 +128,7 @@ public class Login{
 
 	//login without username
 
-	@Test
+	@Test(priority = 3)
 	public void loginWithoutUsername() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -161,7 +161,7 @@ public class Login{
 
 	//login without Password
 
-	@Test
+	@Test(priority = 4)
 	public void loginWithoutPassword() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -200,7 +200,7 @@ public class Login{
 
 	//login with invalid info
 
-	@Test
+	@Test(priority = 5)
 	public void invalidLoginInfo() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
