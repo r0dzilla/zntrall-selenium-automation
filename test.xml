@@ -2,15 +2,15 @@
 
 <suite name="Parallel test suite" parallel="tests" thread-count="1">
 
-
-	<test name="Chrome">
-		<parameter name="myBrowser" value="chrome" />
+	
+	<test name="Super Admin">
+		<parameter name="myBrowser" value="firefox" />
+		<parameter name="myOS" value="windows" />
+		<parameter name="hubLink" value="http://192.168.31.17:4444/wd/hub" />
 		<classes>
-			<class name="test.LoginTest" />
-			<class name="test.Logout" />
-			<class name="test.Contacts" />
-			<class name="test.Users" />
-			<class name="test.User_Profile" />
+			<class name="superAdmin.Clients"></class>
+			<class name="superAdmin.Login"></class>
+			<class name="test.Logout"></class>
 		</classes>
 	</test>
 

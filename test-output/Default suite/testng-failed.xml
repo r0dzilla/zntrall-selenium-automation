@@ -3,16 +3,25 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="test.Locations">
+      <class name="superAdmin.Patients">
         <methods>
           <include name="openBrowser"/>
-          <include name="beforeSuit"/>
-          <include name="afterSuit"/>
           <include name="setup"/>
+          <include name="verify_user_delete_data_Patient_page"/>
+          <include name="verify_user_edit_data_Patient_page"/>
+          <include name="verify_User_Group_details_in_types_table"/>
+          <include name="beforeSuit"/>
+          <include name="verify_changes_after_refresh_logout"/>
+          <include name="verify_edit_logs_Patient_page"/>
           <include name="tearDown"/>
-          <include name="addPatientfromLocation"/>
+          <include name="afterSuit"/>
+          <include name="verify_super_User_set_access"/>
+          <include name="verify_edit_access_after_revoked"/>
+          <include name="verify_edit_delete_enable_normal_user"/>
+          <include name="verify_edit_changes_after_refresh_logout"/>
+          <include name="verify_delete_logs_Patient_page"/>
         </methods>
-      </class> <!-- test.Locations -->
+      </class> <!-- superAdmin.Patients -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

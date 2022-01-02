@@ -29,46 +29,55 @@ public class Patients {
 
 	public static String env = "Test for Super Admin";
 	public static String testSuiteName = "Test Suit 5 -- Patients";
+	public String name_text="";
 
 	public static RemoteWebDriver driver = null;
-	@Parameters("myBrowser")
+	@Parameters({"myBrowser", "myOS", "hubLink"})
+
 
 	@BeforeTest
-	public static void setup(String myBrowser) throws MalformedURLException {
+	public static void setup(String myBrowser, String myOS, String hubLink) throws MalformedURLException {
 
-//		DesiredCapabilities caps = new DesiredCapabilities();
-//		caps.setBrowserName("chrome");
-//		caps.setPlatform(Platform.WINDOWS);
-//		ChromeOptions options = new ChromeOptions();
-//		options.merge(caps);
-//		String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-//		driver = new RemoteWebDriver(new URL(nodeUrl),options);
+		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("windows"))){
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setBrowserName(myBrowser);
+			caps.setPlatform(Platform.WINDOWS);
+			ChromeOptions options = new ChromeOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
 
-				if(myBrowser.equalsIgnoreCase("chrome")){
-					DesiredCapabilities caps = new DesiredCapabilities();
-					caps.setBrowserName("chrome");
-					caps.setPlatform(Platform.WINDOWS);
-					ChromeOptions options = new ChromeOptions();
-					options.merge(caps);
-					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-					driver = new RemoteWebDriver(new URL(nodeUrl),options);
+		}
 		
-				}
+		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setBrowserName(myBrowser);
+			caps.setPlatform(Platform.LINUX);
+			ChromeOptions options = new ChromeOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
+
+		}
+
+		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("windows"))) {
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setBrowserName(myBrowser);
+			caps.setPlatform(Platform.WINDOWS);
+			FirefoxOptions options = new FirefoxOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
+
+		}
 		
-				if(myBrowser.equalsIgnoreCase("firefox")) {
-					//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
-					DesiredCapabilities caps = new DesiredCapabilities();
-					//driver = new FirefoxDriver();
-					caps.setPlatform(Platform.WINDOWS);
-					FirefoxOptions options = new FirefoxOptions();
-					options.merge(caps);
-					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-					driver = new RemoteWebDriver(new URL(nodeUrl),options);
-		
-				}
+		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setPlatform(Platform.LINUX);
+			FirefoxOptions options = new FirefoxOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
+
+		}
 
 	}
-
 	@BeforeSuite
 	public static void beforeSuit() {
 
@@ -85,48 +94,14 @@ public class Patients {
 
 	//Opening browser with the given URL and navigate to Registration Page
 
-	@BeforeMethod
-	public void openBrowser() throws InterruptedException {
-
-		//driver.manage().deleteAllCookies();
-		driver.manage().window().maximize();
-		driver.get("https://dev.zntral.net/session/login");
-
-		//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-		Thread.sleep(3000);
-	}
-
-	//Verifying elements on Login page
-	@Test
-	public void verifyElemntsOnPageTest() throws InterruptedException {
-
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-
-		WebElement signInTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class='mb-3']")));
-		signInTitle.isDisplayed();
-
-	}
-
-	//login with valid username & Password
-
-	@Test
-	public void login() throws InterruptedException {
-
-		WebElement username = driver.findElement(By.xpath("//input[@type='text']"));
-		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
-		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
-
-		username.sendKeys("superadmin@mercury.com");
-		password.sendKeys("qwerty");
-
-		login.click();
-		Thread.sleep(5000);
-
-		String expectedUrl = "https://dev.zntral.net/dashboard";
-		String actualUrl = driver.getCurrentUrl();
-		Assert.assertEquals(actualUrl, expectedUrl);
-	}
+//	@BeforeMethod
+//	public void openBrowser() throws InterruptedException {
+//
+//		driver.manage().deleteAllCookies();
+//		driver.manage().window().maximize();
+//		driver.get("https://dev.zntral.net/session/login");
+//		Thread.sleep(3000);
+//	}
 
 
 	//TC_136
@@ -137,13 +112,15 @@ public class Patients {
 		//Login to d1.zntral application
 		WebElement email= driver.findElement(By.xpath("//input[@type='text']"));
 		email.click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		email.sendKeys("superadmin@mercury.com");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement password=driver.findElement(By.xpath("//input[@type='password']"));
 		password.sendKeys("qwerty");
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement Login_button=driver.findElement(By.xpath("//*[text()='Login Now ']"));
 		Login_button.click();
-		Thread.sleep(10000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 
 
 		List<WebElement> menu_list= driver.findElements(By.xpath("//a[@href]"));
@@ -151,25 +128,23 @@ public class Patients {
 			String href_text=menu_list.get(i).getAttribute("href");
 			if(href_text.contains("users")){
 				menu_list.get(i).click();
-				Thread.sleep(18000);
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15)); 
 				WebElement element = driver.findElement(By.xpath("//*[text()='Types']"));
 				((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
-				Thread.sleep(5000); 
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));  
 				List<WebElement> type_row= driver.findElements(By.xpath("//div[@class='app-card-content']//tbody/tr/td[1]"));
 				for(int j=0;j<type_row.size();j++){
 					if(type_row.get(j).getText().contains("3name")){
 						type_row.get(j).click();
 						//	WebElement type_row= driver.findElement(By.xpath("//*[@class='app-card-content']/h5//following::tbody/tr[1]"));
 						//	type_row.click();	
-						Thread.sleep(5000); 
+						driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));  
 						WebElement patient_element = driver.findElement(By.xpath("//*[text()=' Patient ']"));
 						((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", patient_element);
 						WebElement patient_edit_button = driver.findElement(By.xpath("//*[text()=' Patient ']//following::div[@class='v-slide-group__content'][1]/span[3]"));
 						String edit_button_colour_before_click= driver.findElement(By.xpath("//*[text()=' Patient ']//following::div[@class='v-slide-group__content'][1]/span[3]")).getCssValue("color");
-						System.out.println("edit_button_colour_before_click is" +edit_button_colour_before_click); 
 						patient_edit_button.click();
 						String edit_button_colour_after_click= driver.findElement(By.xpath("//*[text()=' Patient ']//following::div[@class='v-slide-group__content'][1]/span[3]")).getCssValue("color");
-						System.out.println("edit_button_colour_after_click is" +edit_button_colour_after_click);
 						if(!edit_button_colour_before_click.equals(edit_button_colour_after_click)){
 							System.out.println("Edit button selected successfully");
 						}
@@ -199,11 +174,11 @@ public class Patients {
 
 		// Check changes after refresh
 
-		driver.navigate().refresh();	
-		Thread.sleep(10000);
+//		driver.navigate().refresh();	
+//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15)); 
 		WebElement element = driver.findElement(By.xpath("//*[text()='Types']"));
 		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
-		Thread.sleep(5000); 
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));  
 		List<WebElement> type_row= driver.findElements(By.xpath("//div[@class='app-card-content']//tbody/tr/td[1]"));
 		for(int j=0;j<type_row.size();j++){
 			if(type_row.get(j).getText().contains("3name")){
@@ -232,17 +207,20 @@ public class Patients {
 
 		WebElement three_vertical_dot_button = driver.findElement(By.xpath("//*[text()='more_vert']"));   // logout the application
 		three_vertical_dot_button.click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement logout_button = driver.findElement(By.xpath("//*[text()='Log Out']"));
 		logout_button.click();
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 
 		WebElement email1= driver.findElement(By.xpath("//input[@type='text']"));
 		email1.sendKeys("superadmin@mercury.com");        //Log In 
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement password1=driver.findElement(By.xpath("//input[@type='password']"));
 		password1.sendKeys("qwerty");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement Login_button1=driver.findElement(By.xpath("//*[text()='Login Now ']"));
 		Login_button1.click();
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		List<WebElement> left_menu_list= driver.findElements(By.xpath("//a[@href]"));
 		for(int i=0;i<left_menu_list.size();i++){
 			String href_text=left_menu_list.get(i).getAttribute("href");
@@ -251,14 +229,14 @@ public class Patients {
 				Thread.sleep(8000);
 				WebElement element1 = driver.findElement(By.xpath("//*[text()='Types']"));
 				((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element1);
-				Thread.sleep(5000); 
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));  
 				List<WebElement> type_row1= driver.findElements(By.xpath("//div[@class='app-card-content']//tbody/tr/td[1]"));
 				for(int j=0;j<type_row1.size();j++){
 					if(type_row1.get(j).getText().contains("3name")){
 						type_row1.get(j).click();
 						//		WebElement type_row1= driver.findElement(By.xpath("//*[@class='app-card-content']/h5//following::tbody/tr[1]"));
 						//		type_row1.click();	
-						Thread.sleep(5000); 
+						driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));  
 						WebElement patient_element1 = driver.findElement(By.xpath("//*[text()=' Patient ']"));
 						((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", patient_element1);
 						WebElement patient_edit_button1 = driver.findElement(By.xpath("//*[text()=' Patient ']//following::div[@class='v-slide-group__content'][1]/span[3]"));
@@ -284,6 +262,7 @@ public class Patients {
 
 		WebElement pop_up_close_button1 = driver.findElement(By.xpath("//*[text()='close']"));
 		pop_up_close_button1.click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		List<WebElement> type_row1= driver.findElements(By.xpath("//div[@class='app-card-content']//tbody/tr/td[1]"));
 		for(int j=0;j<type_row1.size();j++){
 			if(type_row1.get(j).getText().contains("3name")){
@@ -309,9 +288,10 @@ public class Patients {
 
 		WebElement three_vertical_dot_button = driver.findElement(By.xpath("//*[text()='more_vert']"));   // logout the application
 		three_vertical_dot_button.click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement logout_button = driver.findElement(By.xpath("//*[text()='Log Out']"));
 		logout_button.click();
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 
 		//log in application as Normal User
 
@@ -320,10 +300,10 @@ public class Patients {
 		email.sendKeys("usert9846@gmail.com");
 		WebElement password=driver.findElement(By.xpath("//input[@type='password']"));
 		password.sendKeys("ab234cd346");
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement Login_button=driver.findElement(By.xpath("//*[text()='Login Now ']"));
 		Login_button.click();
-		Thread.sleep(10000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 
 		//Navigate to Patient Menu
 
@@ -332,13 +312,17 @@ public class Patients {
 			String href_text=menu_list.get(i).getAttribute("href");
 			if(href_text.contains("patients")){
 				menu_list.get(i).click();
-				Thread.sleep(5000);
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15)); 
 				WebElement Patient_data= driver.findElement(By.xpath("//*[@class='app-card-content']//following::tbody/tr[1]"));
 				Patient_data.click();	
-				Thread.sleep(5000);		
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15)); 	
+				WebDriverWait three_vertical_dot_wait= new WebDriverWait(driver,30);
+				three_vertical_dot_wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='navbar-right']//span//*[text()='more_vert']")));
 				WebElement three_vertical_dot=driver.findElement(By.xpath("//div[@class='navbar-right']//span//*[text()='more_vert']"));
 				three_vertical_dot.click();
-				Thread.sleep(5000);
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
+				WebDriverWait menu_wait= new WebDriverWait(driver,30);
+				menu_wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='menu']")));
 				WebElement menu=driver.findElement(By.xpath("//div[@role='menu']"));
 				Boolean menu_status=menu.isDisplayed();
 				if(menu_status){
@@ -359,15 +343,16 @@ public class Patients {
 	public void verify_user_edit_data_Patient_page() throws InterruptedException{
 		WebElement edit_option=driver.findElement(By.xpath("//div[@role='menu']//*[text()='Edit']"));
 		edit_option.click();
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement name_field=driver.findElement(By.xpath("//*[text()=' First ']//following-sibling::input[@type='text']"));
 		name_field.click();
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		name_field.sendKeys(Keys.SPACE, Keys.BACK_SPACE);
 		name_field.sendKeys("Tom");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement update=driver.findElement(By.xpath("//span[text()='Update ']"));
 		update.click();
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement name= driver.findElement(By.xpath("//div[@class='info-card'][1]"));
 		String name_text=name.getText();
 		if(name_text.contains("Tom")){
@@ -379,7 +364,7 @@ public class Patients {
 
 	@Test(priority=6,dependsOnMethods={"verify_user_edit_data_Patient_page"})
 	public void verify_edit_logs_Patient_page() throws InterruptedException{
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		List<WebElement> time_stamp_row=driver.findElements(By.xpath("//div[@class='text-right timeAgo']"));
 		for(int i=0;i<time_stamp_row.size();i++){
 			if(time_stamp_row.get(i).getText().equalsIgnoreCase("a few seconds ago")){
@@ -397,29 +382,31 @@ public class Patients {
 		//Verify changes after Refresh
 
 		driver.navigate().refresh();	
-		Thread.sleep(10000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15)); 
 		WebElement name_field=driver.findElement(By.xpath("//div[@class='info-card'][1]"));
 		String text_in_name_field= name_field.getText();
 		if(text_in_name_field.contains("Tom")){
-			System.out.println("TC_143_Passed_changes_persist_after_refresh");
+			System.out.println("changes_persist_after_refresh");
 		}
 
 		//Verify changes after logout
 
 		WebElement three_vertical_dot_button = driver.findElement(By.xpath("//*[text()='more_vert']"));   // logout the application
 		three_vertical_dot_button.click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement logout_button = driver.findElement(By.xpath("//*[text()='Log Out']"));
 		logout_button.click();
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 
 		WebElement email1= driver.findElement(By.xpath("//input[@type='text']"));
 		email1.sendKeys("usert9846@gmail.com");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement password=driver.findElement(By.xpath("//input[@type='password']"));
 		password.sendKeys("ab234cd346");
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement Login_button1=driver.findElement(By.xpath("//*[text()='Login Now ']"));
 		Login_button1.click();
-		Thread.sleep(10000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 
 		//Navigate to Patient Menu
 
@@ -428,10 +415,10 @@ public class Patients {
 			String href_text=menu_list.get(i).getAttribute("href");
 			if(href_text.contains("patients")){
 				menu_list.get(i).click();
-				Thread.sleep(5000);
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 				WebElement Patient_data= driver.findElement(By.xpath("//*[@class='app-card-content']//following::tbody/tr[1]"));
 				Patient_data.click();	
-				Thread.sleep(5000);		
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 		
 				WebElement name= driver.findElement(By.xpath("//div[@class='info-card'][1]"));
 				String name_text=name.getText();
 				if(name_text.contains("Tom")){
@@ -449,38 +436,41 @@ public class Patients {
 	public void verify_edit_access_after_revoked() throws InterruptedException{
 
 		//logout of normal user
-
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement three_vertical_dot_button = driver.findElement(By.xpath("//*[text()='more_vert']"));   // logout the application
 		three_vertical_dot_button.click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement logout_button = driver.findElement(By.xpath("//*[text()='Log Out']"));
 		logout_button.click();
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 
 		//log in as Super admin
 		WebElement email= driver.findElement(By.xpath("//input[@type='text']"));
 		email.click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		email.sendKeys("superadmin@mercury.com");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement password=driver.findElement(By.xpath("//input[@type='password']"));
 		password.sendKeys("qwerty");
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement Login_button=driver.findElement(By.xpath("//*[text()='Login Now ']"));
 		Login_button.click();
-		Thread.sleep(10000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 
 		List<WebElement> menu_list= driver.findElements(By.xpath("//a[@href]"));
 		for(int i=0;i<menu_list.size();i++){
 			String href_text=menu_list.get(i).getAttribute("href");
 			if(href_text.contains("users")){
 				menu_list.get(i).click();
-				Thread.sleep(10000);
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 				WebElement element = driver.findElement(By.xpath("//*[text()='Types']"));
 				((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
-				Thread.sleep(5000); 
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));  
 				List<WebElement> type_row1= driver.findElements(By.xpath("//div[@class='app-card-content']//tbody/tr/td[1]"));
 				for(int j=0;j<type_row1.size();j++){
 					if(type_row1.get(j).getText().contains("3name")){
 						type_row1.get(j).click();
-						Thread.sleep(5000); 
+						driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));  
 						WebElement patient_element = driver.findElement(By.xpath("//*[text()=' Patient ']"));
 						((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", patient_element);
 						WebElement patient_edit_button = driver.findElement(By.xpath("//*[text()=' Patient ']//following::div[@class='v-slide-group__content'][1]/span[3]"));
@@ -501,31 +491,34 @@ public class Patients {
 
 		WebElement vertical_dot_button = driver.findElement(By.xpath("//*[text()='more_vert']"));   // logout the application
 		vertical_dot_button.click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement logout = driver.findElement(By.xpath("//*[text()='Log Out']"));
 		logout.click();
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 
 		//log in as Normal user
 
 		WebElement email_field= driver.findElement(By.xpath("//input[@type='text']"));
 		email_field.click();
-		email.sendKeys("usert9846@gmail.com");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
+		email_field.sendKeys("usert9846@gmail.com");
 		WebElement password_field=driver.findElement(By.xpath("//input[@type='password']"));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		password_field.sendKeys("ab234cd346");
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement Login=driver.findElement(By.xpath("//*[text()='Login Now ']"));
 		Login.click();
-		Thread.sleep(10000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 
 		List<WebElement> left_menu_list= driver.findElements(By.xpath("//a[@href]"));
 		for(int i=0;i<left_menu_list.size();i++){
 			String href_text=left_menu_list.get(i).getAttribute("href");
 			if(href_text.contains("patients")){
 				left_menu_list.get(i).click();
-				Thread.sleep(5000);
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 				WebElement Patient_data= driver.findElement(By.xpath("//*[@class='app-card-content']//following::tbody/tr[1]"));
 				Patient_data.click();	
-				Thread.sleep(5000);		
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 		
 				List<WebElement> three_vertical_dot=driver.findElements(By.xpath("//div[@class='navbar-right']//span//*[text()='more_vert']"));
 				if(three_vertical_dot.size()!=0){
 					System.out.println("Edit and Delete option is displaying,TC_144 Failed");
@@ -547,35 +540,39 @@ public class Patients {
 		//log out as normal user
 		WebElement vertical_dot_button = driver.findElement(By.xpath("//*[text()='more_vert']"));   // logout the application
 		vertical_dot_button.click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement logout = driver.findElement(By.xpath("//*[text()='Log Out']"));
 		logout.click();
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		//log in as Super admin
 		WebElement email= driver.findElement(By.xpath("//input[@type='text']"));
 		email.click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		email.sendKeys("superadmin@mercury.com");
 		WebElement password=driver.findElement(By.xpath("//input[@type='password']"));
 		password.sendKeys("qwerty");
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement Login_button=driver.findElement(By.xpath("//*[text()='Login Now ']"));
 		Login_button.click();
-		Thread.sleep(10000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 
 		List<WebElement> menu_list= driver.findElements(By.xpath("//a[@href]"));
 		for(int i=0;i<menu_list.size();i++){
 			String href_text=menu_list.get(i).getAttribute("href");
 			if(href_text.contains("users")){
 				menu_list.get(i).click();
-				Thread.sleep(10000);
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 				WebElement element = driver.findElement(By.xpath("//*[text()='Types']"));
 				((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
-				Thread.sleep(5000); 
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));  
 				List<WebElement> type_row= driver.findElements(By.xpath("//div[@class='app-card-content']//tbody/tr/td[1]"));
 				for(int j=0;j<type_row.size();j++){
 					if(type_row.get(i).getText().contains("3name")){
 						type_row.get(i).click();
+						driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 						WebElement patient_delete_button = driver.findElement(By.xpath("//div[@class='v-card__text']//following::div[40]//span[5]"));
 						patient_delete_button.click();
+						driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 						WebElement update_button = driver.findElement(By.xpath("//*[text()='Update ']"));
 						((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", update_button);
 						update_button.click();
@@ -590,41 +587,44 @@ public class Patients {
 
 		WebElement three_vertical_dot_button = driver.findElement(By.xpath("//*[text()='more_vert']"));   // logout the application
 		three_vertical_dot_button.click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement logout_button = driver.findElement(By.xpath("//*[text()='Log Out']"));
 		logout_button.click();
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 
 		//log in application as Normal User
 
 		email= driver.findElement(By.xpath("//input[@type='text']"));
 		email.click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		email.sendKeys("usert9846@gmail.com");
 		password=driver.findElement(By.xpath("//input[@type='password']"));
 		password.sendKeys("ab234cd346");
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		Login_button=driver.findElement(By.xpath("//*[text()='Login Now ']"));
 		Login_button.click();
-		Thread.sleep(10000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 
 		List<WebElement> left_menu_list= driver.findElements(By.xpath("//a[@href]"));
+
 		for(int i=0;i<left_menu_list.size();i++){
 			String href_text=left_menu_list.get(i).getAttribute("href");
 			if(href_text.contains("patients")){
 				left_menu_list.get(i).click();
-				Thread.sleep(5000);
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 				WebElement Patient_data= driver.findElement(By.xpath("//*[@class='app-card-content']//following::tbody/tr[1]"));
 				Patient_data.click();	
-				Thread.sleep(5000);
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 				WebElement Patient_name_to_be_deleted= driver.findElement(By.xpath("//div[@class='info-card'][1]"));
-				String name_text=Patient_name_to_be_deleted.getText();
+				name_text=Patient_name_to_be_deleted.getText();
 				WebElement three_vertical_dot=driver.findElement(By.xpath("//div[@class='navbar-right']//span//*[text()='more_vert']"));
 				three_vertical_dot.click();
-				Thread.sleep(5000);
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 				WebElement delete_option=driver.findElement(By.xpath("//div[@role='menu']//*[text()='Delete']"));
 				delete_option.click();
-				Thread.sleep(2000);
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 				driver.switchTo().alert().accept();
-				Thread.sleep(6000);
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 				List<WebElement> list_of_patient_name= driver.findElements(By.xpath("//div[@class='app-card-content']//tbody//td[2]/span"));
 				for(int j=0;j<list_of_patient_name.size();i++){
 					if(list_of_patient_name.get(i).getText().equalsIgnoreCase(name_text)){
@@ -657,17 +657,14 @@ public class Patients {
 	public void verify_delete_changes_after_refresh_logout() throws InterruptedException{
 		//Verify changes after Refresh
 
-		
 		driver.navigate().refresh();	
-		Thread.sleep(10000);
-		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		List<WebElement> left_menu_list= driver.findElements(By.xpath("//a[@href]"));
-		String name_text = null;
 		for(int i=0;i<left_menu_list.size();i++){
 			String href_text=left_menu_list.get(i).getAttribute("href");
 			if(href_text.contains("patients")){
 				left_menu_list.get(i).click();
-				Thread.sleep(5000);
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 				List<WebElement> list_of_patient_name= driver.findElements(By.xpath("//div[@class='app-card-content']//tbody//td[2]/span"));
 				for(int j=0;j<list_of_patient_name.size();i++){
 					if(list_of_patient_name.get(j).getText().equalsIgnoreCase(name_text)){
@@ -685,19 +682,20 @@ public class Patients {
 
 		WebElement three_vertical_dot_button = driver.findElement(By.xpath("//*[text()='more_vert']"));   // logout the application
 		three_vertical_dot_button.click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement logout_button = driver.findElement(By.xpath("//*[text()='Log Out']"));
 		logout_button.click();
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 
 		//log in as Normal User 	
 		WebElement email1= driver.findElement(By.xpath("//input[@type='text']"));
 		email1.sendKeys("usert9846@gmail.com");
 		WebElement password=driver.findElement(By.xpath("//input[@type='password']"));
 		password.sendKeys("ab234cd346");
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement Login_button1=driver.findElement(By.xpath("//*[text()='Login Now ']"));
 		Login_button1.click();
-		Thread.sleep(10000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 
 		//Navigate to Patient Menu
 
@@ -706,7 +704,7 @@ public class Patients {
 			String href_text=menu_list.get(i).getAttribute("href");
 			if(href_text.contains("patients")){
 				menu_list.get(i).click();
-				Thread.sleep(5000);		
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 	
 				List<WebElement> list_of_patient_name= driver.findElements(By.xpath("//div[@class='app-card-content']//tbody//td[2]/span"));
 				for(int j=0;j<list_of_patient_name.size();i++){
 					if(list_of_patient_name.get(j).getText().equalsIgnoreCase(name_text)){
@@ -729,35 +727,37 @@ public class Patients {
 
 		WebElement three_vertical_dot_button = driver.findElement(By.xpath("//*[text()='more_vert']"));   // logout the application
 		three_vertical_dot_button.click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement logout_button = driver.findElement(By.xpath("//*[text()='Log Out']"));
 		logout_button.click();
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 
 		//log in as Super admin
 		WebElement email= driver.findElement(By.xpath("//input[@type='text']"));
 		email.click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		email.sendKeys("superadmin@mercury.com");
 		WebElement password=driver.findElement(By.xpath("//input[@type='password']"));
 		password.sendKeys("qwerty");
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement Login_button=driver.findElement(By.xpath("//*[text()='Login Now ']"));
 		Login_button.click();
-		Thread.sleep(10000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 
 		List<WebElement> menu_list= driver.findElements(By.xpath("//a[@href]"));
 		for(int i=0;i<menu_list.size();i++){
 			String href_text=menu_list.get(i).getAttribute("href");
 			if(href_text.contains("users")){
 				menu_list.get(i).click();
-				Thread.sleep(10000);
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 				WebElement element = driver.findElement(By.xpath("//*[text()='Types']"));
 				((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
-				Thread.sleep(5000); 
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));  
 				List<WebElement> type_row1= driver.findElements(By.xpath("//div[@class='app-card-content']//tbody/tr/td[1]"));
 				for(int j=0;j<type_row1.size();j++){
 					if(type_row1.get(j).getText().contains("3name")){
 						type_row1.get(j).click();
-						Thread.sleep(5000); 
+						driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));  
 						WebElement patient_element = driver.findElement(By.xpath("//*[text()=' Patient ']"));
 						((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", patient_element);
 						WebElement patient_delete_button = driver.findElement(By.xpath("//div[@class='v-card__text']//following::div[40]//span[5]"));
@@ -773,26 +773,27 @@ public class Patients {
 		}
 
 		// log in as Nomal User
-
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement email_field= driver.findElement(By.xpath("//input[@type='text']"));
 		email_field.click();
-		email.sendKeys("usert9846@gmail.com");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
+		email_field.sendKeys("usert9846@gmail.com");
 		WebElement password_field=driver.findElement(By.xpath("//input[@type='password']"));
 		password_field.sendKeys("ab234cd346");
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 		WebElement Login=driver.findElement(By.xpath("//*[text()='Login Now ']"));
 		Login.click();
-		Thread.sleep(10000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 
 		List<WebElement> left_menu_list= driver.findElements(By.xpath("//a[@href]"));
 		for(int i=0;i<left_menu_list.size();i++){
 			String href_text=left_menu_list.get(i).getAttribute("href");
 			if(href_text.contains("patients")){
 				left_menu_list.get(i).click();
-				Thread.sleep(5000);
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 				WebElement Patient_data= driver.findElement(By.xpath("//*[@class='app-card-content']//following::tbody/tr[1]"));
 				Patient_data.click();	
-				Thread.sleep(5000);		
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 		
 				List<WebElement> three_vertical_dot=driver.findElements(By.xpath("//div[@class='navbar-right']//span//*[text()='more_vert']"));
 				if(three_vertical_dot.size()!=0){
 					System.out.println("Delete option is displaying,TC_148 Failed");

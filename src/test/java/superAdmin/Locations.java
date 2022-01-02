@@ -31,43 +31,51 @@ public class Locations {
 
 	public static String env = "Test for Super Admin";
 	public static String testSuiteName = "Test Suit 4 -- Locations";
-	//User_Functions functions = new User_Functions();
 	public static RemoteWebDriver driver = null;
-	@Parameters("myBrowser")
+	@Parameters({"myBrowser", "myOS", "hubLink"})
+
 
 	@BeforeTest
-	public static void setup(String myBrowser) throws MalformedURLException {
+	public static void setup(String myBrowser, String myOS, String hubLink) throws MalformedURLException {
 
-//		DesiredCapabilities caps = new DesiredCapabilities();
-//		caps.setBrowserName("chrome");
-//		caps.setPlatform(Platform.WINDOWS);
-//		ChromeOptions options = new ChromeOptions();
-//		options.merge(caps);
-//		String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-//		driver = new RemoteWebDriver(new URL(nodeUrl),options);
+		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("windows"))){
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setBrowserName(myBrowser);
+			caps.setPlatform(Platform.WINDOWS);
+			ChromeOptions options = new ChromeOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
 
-				if(myBrowser.equalsIgnoreCase("chrome")){
-					DesiredCapabilities caps = new DesiredCapabilities();
-					caps.setBrowserName("chrome");
-					caps.setPlatform(Platform.WINDOWS);
-					ChromeOptions options = new ChromeOptions();
-					options.merge(caps);
-					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-					driver = new RemoteWebDriver(new URL(nodeUrl),options);
+		}
 		
-				}
+		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setBrowserName(myBrowser);
+			caps.setPlatform(Platform.LINUX);
+			ChromeOptions options = new ChromeOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
+
+		}
+
+		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("windows"))) {
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setBrowserName(myBrowser);
+			caps.setPlatform(Platform.WINDOWS);
+			FirefoxOptions options = new FirefoxOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
+
+		}
 		
-				if(myBrowser.equalsIgnoreCase("firefox")) {
-					//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
-					DesiredCapabilities caps = new DesiredCapabilities();
-					//driver = new FirefoxDriver();
-					caps.setPlatform(Platform.WINDOWS);
-					FirefoxOptions options = new FirefoxOptions();
-					options.merge(caps);
-					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-					driver = new RemoteWebDriver(new URL(nodeUrl),options);
-		
-				}
+		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setPlatform(Platform.LINUX);
+			FirefoxOptions options = new FirefoxOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
+
+		}
 
 	}
 
@@ -95,8 +103,6 @@ public class Locations {
 		driver.get("https://dev.zntral.net/session/login");
 
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-		//Thread.sleep(3000);
 	}
 
 
@@ -182,10 +188,6 @@ public class Locations {
 			}
 		}
 
-		//		WebElement firstRow = driver.findElement(By.xpath("//table[1]/tbody[1]/tr[1]/td[1]"));	
-		//		String actualText = firstRow.getText();
-		//		Assert.assertTrue(actualText.contains(search.getText()));
-		//		Thread.sleep(3000);
 	}
 
 	//Find patient list & patient info from location
@@ -306,10 +308,10 @@ public class Locations {
 		Assert.assertEquals(actual, expectedAdminName);
 
 	}
-	
-	
+
+
 	//check reset button on add new form
-	
+
 	@Test(priority = 9)
 	public void resetButton() throws InterruptedException {
 		locationTypes();
@@ -321,11 +323,11 @@ public class Locations {
 
 		name.sendKeys("SQA TEST RR");
 		acronym.sendKeys("SQAT");
-		
+
 		WebElement save = driver.findElement(By.xpath("//*[text()='Save']"));
 		WebElement reset = driver.findElement(By.xpath("//*[text()='Reset']"));
 		reset.click();
-		
+
 		WebElement nameErrorMsg = driver.findElement(By.xpath("//div[contains(text(),'Name is required')]"));
 		WebElement acronymErrorMsg = driver.findElement(By.xpath("//div[contains(text(),'Acronym is required')]"));
 		Thread.sleep(2000);
@@ -334,9 +336,9 @@ public class Locations {
 		Assert.assertTrue(acronymErrorMsg.isDisplayed());
 	}
 
-	
+
 	//check cancel button on add new form
-	
+
 	@Test(priority = 10)
 	public void cancelButton() throws InterruptedException {
 		locationTypes();
@@ -348,10 +350,10 @@ public class Locations {
 
 		name.sendKeys("SQA TEST RR");
 		acronym.sendKeys("SQAT");
-		
+
 		WebElement cancel = driver.findElement(By.xpath("//*[text()='Cancel']"));
 		cancel.click();
-		
+
 	}
 
 	//Address wise sort

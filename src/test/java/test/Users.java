@@ -32,41 +32,50 @@ public class Users {
 
 	public static RemoteWebDriver driver = null;
 	WebDriver driver2;
-	@Parameters("myBrowser")
+	@Parameters({"myBrowser", "myOS", "hubLink"})
+
 
 	@BeforeTest
-	public static void setup(String myBrowser) throws MalformedURLException {
+	public static void setup(String myBrowser, String myOS, String hubLink) throws MalformedURLException {
 
-//		DesiredCapabilities caps = new DesiredCapabilities();
-//		caps.setBrowserName("chrome");
-//		caps.setPlatform(Platform.WINDOWS);
-//		ChromeOptions options = new ChromeOptions();
-//		options.merge(caps);
-//		String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-//		driver = new RemoteWebDriver(new URL(nodeUrl),options);
+		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("windows"))){
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setBrowserName(myBrowser);
+			caps.setPlatform(Platform.WINDOWS);
+			ChromeOptions options = new ChromeOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
 
-				if(myBrowser.equalsIgnoreCase("chrome")){
-					DesiredCapabilities caps = new DesiredCapabilities();
-					caps.setBrowserName("chrome");
-					caps.setPlatform(Platform.WINDOWS);
-					ChromeOptions options = new ChromeOptions();
-					options.merge(caps);
-					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-					driver = new RemoteWebDriver(new URL(nodeUrl),options);
-					
-				}
+		}
 		
-				if(myBrowser.equalsIgnoreCase("firefox")) {
-					//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
-					DesiredCapabilities caps = new DesiredCapabilities();
-					//driver = new FirefoxDriver();
-					caps.setPlatform(Platform.WINDOWS);
-					FirefoxOptions options = new FirefoxOptions();
-					options.merge(caps);
-					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-					driver = new RemoteWebDriver(new URL(nodeUrl),options);
-				
-				}
+		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setBrowserName(myBrowser);
+			caps.setPlatform(Platform.LINUX);
+			ChromeOptions options = new ChromeOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
+
+		}
+
+		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("windows"))) {
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setBrowserName(myBrowser);
+			caps.setPlatform(Platform.WINDOWS);
+			FirefoxOptions options = new FirefoxOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
+
+		}
+		
+		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setPlatform(Platform.LINUX);
+			FirefoxOptions options = new FirefoxOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
+
+		}
 
 	}
 
@@ -312,13 +321,13 @@ public class Users {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Hospice Registered Nurse')]"))).click();
 
 		//WebElement resetConfirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Yes']")));
-		
+
 
 		try {
 
 			reset.click();
 			Thread.sleep(2000);
-			
+
 			String expectedText1 = "Name is required";
 			String actualText1 = driver.findElement(By.xpath("//div[@class='col-sm-12 col-md-6 col']//div[@class='v-messages__message']")).getText();
 			Assert.assertEquals(actualText1, expectedText1);
@@ -330,12 +339,12 @@ public class Users {
 			String expectedText3 = "E-mail must be valid";
 			String actualText3 = driver.findElement(By.xpath("//div[contains(text(),'E-mail must be valid')]")).getText();
 			Assert.assertEquals(actualText3, expectedText3);
-			
+
 		} catch(Exception e) {
 			System.out.println("Failed !!");
 		}
 
-		
+
 	}
 
 	// Check Cancel button on add new user form

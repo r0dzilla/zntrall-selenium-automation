@@ -9,6 +9,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -29,41 +30,50 @@ public class Clients {
 	public static String testSuiteName = "Test Suit 2 -- Clients";
 
 	public static RemoteWebDriver driver = null;
-	@Parameters("myBrowser")
+	@Parameters({"myBrowser", "myOS", "hubLink"})
+
 
 	@BeforeTest
-	public static void setup() throws MalformedURLException {
+	public static void setup(String myBrowser, String myOS, String hubLink) throws MalformedURLException {
 
-		DesiredCapabilities caps = new DesiredCapabilities();
-		caps.setBrowserName("chrome");
-		caps.setPlatform(Platform.WINDOWS);
-		ChromeOptions options = new ChromeOptions();
-		options.merge(caps);
-		String nodeUrl = "http://192.168.0.110:4444/wd/hub";
-		driver = new RemoteWebDriver(new URL(nodeUrl),options);
+		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("windows"))){
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setBrowserName(myBrowser);
+			caps.setPlatform(Platform.WINDOWS);
+			ChromeOptions options = new ChromeOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
 
-//				if(myBrowser.equalsIgnoreCase("chrome")){
-//					DesiredCapabilities caps = new DesiredCapabilities();
-//					caps.setBrowserName("chrome");
-//					caps.setPlatform(Platform.WINDOWS);
-//					ChromeOptions options = new ChromeOptions();
-//					options.merge(caps);
-//					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-//					driver = new RemoteWebDriver(new URL(nodeUrl),options);
-//		
-//				}
-//		
-//				if(myBrowser.equalsIgnoreCase("firefox")) {
-//					//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
-//					DesiredCapabilities caps = new DesiredCapabilities();
-//					//driver = new FirefoxDriver();
-//					caps.setPlatform(Platform.WINDOWS);
-//					FirefoxOptions options = new FirefoxOptions();
-//					options.merge(caps);
-//					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-//					driver = new RemoteWebDriver(new URL(nodeUrl),options);
-//		
-//				}
+		}
+		
+		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setBrowserName(myBrowser);
+			caps.setPlatform(Platform.LINUX);
+			ChromeOptions options = new ChromeOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
+
+		}
+
+		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("windows"))) {
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setBrowserName(myBrowser);
+			caps.setPlatform(Platform.WINDOWS);
+			FirefoxOptions options = new FirefoxOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
+
+		}
+		
+		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setPlatform(Platform.LINUX);
+			FirefoxOptions options = new FirefoxOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
+
+		}
 
 	}
 
@@ -86,12 +96,9 @@ public class Clients {
 	@BeforeMethod
 	public void openBrowser() throws InterruptedException {
 
-		//driver.manage().deleteAllCookies();
+		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
 		driver.get("https://dev.zntral.net/session/login");
-
-		//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
 		Thread.sleep(3000);
 	}
 

@@ -32,41 +32,50 @@ public class Locations {
 
 	public static RemoteWebDriver driver = null;
 	WebDriver driver2;
-	@Parameters("myBrowser")
+	@Parameters({"myBrowser", "myOS", "hubLink"})
+
 
 	@BeforeTest
-	public static void setup() throws MalformedURLException {
+	public static void setup(String myBrowser, String myOS, String hubLink) throws MalformedURLException {
 
-		DesiredCapabilities caps = new DesiredCapabilities();
-		caps.setBrowserName("chrome");
-		caps.setPlatform(Platform.WINDOWS);
-		ChromeOptions options = new ChromeOptions();
-		options.merge(caps);
-		String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		driver = new RemoteWebDriver(new URL(nodeUrl),options);
+		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("windows"))){
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setBrowserName(myBrowser);
+			caps.setPlatform(Platform.WINDOWS);
+			ChromeOptions options = new ChromeOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
 
-//				if(myBrowser.equalsIgnoreCase("chrome")){
-//					DesiredCapabilities caps = new DesiredCapabilities();
-//					caps.setBrowserName("chrome");
-//					caps.setPlatform(Platform.WINDOWS);
-//					ChromeOptions options = new ChromeOptions();
-//					options.merge(caps);
-//					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-//					driver = new RemoteWebDriver(new URL(nodeUrl),options);
-//					
-//				}
-//		
-//				if(myBrowser.equalsIgnoreCase("firefox")) {
-//					//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
-//					DesiredCapabilities caps = new DesiredCapabilities();
-//					//driver = new FirefoxDriver();
-//					caps.setPlatform(Platform.WINDOWS);
-//					FirefoxOptions options = new FirefoxOptions();
-//					options.merge(caps);
-//					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-//					driver = new RemoteWebDriver(new URL(nodeUrl),options);
-//				
-//				}
+		}
+		
+		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setBrowserName(myBrowser);
+			caps.setPlatform(Platform.LINUX);
+			ChromeOptions options = new ChromeOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
+
+		}
+
+		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("windows"))) {
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setBrowserName(myBrowser);
+			caps.setPlatform(Platform.WINDOWS);
+			FirefoxOptions options = new FirefoxOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
+
+		}
+		
+		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setPlatform(Platform.LINUX);
+			FirefoxOptions options = new FirefoxOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
+
+		}
 
 	}
 
@@ -103,7 +112,7 @@ public class Locations {
 		WebElement username = driver.findElement(By.xpath("//input[@type='text']"));
 		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
 		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
-		
+
 		username.sendKeys("shaque.sabbir@gmail.com");
 		password.sendKeys("Sabbir33");
 
@@ -458,23 +467,20 @@ public class Locations {
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement addButton1 = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/button[1]/span[1]/i[1]"));
-		Thread.sleep(2000);
+		WebElement addButton1 = driver.findElement(By.xpath("//i[normalize-space()='add']"));
 		addButton1.click();
-		WebElement addPatientButton = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/button[1]/span[1]/strong[1]"));
 		Thread.sleep(1000);
-		addPatientButton.click();
+		WebElement addContactButton = driver.findElement(By.xpath("//strong[normalize-space()='Contact']"));
+		addContactButton.click();
 		Thread.sleep(1000);
-		WebElement FirstName = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/form[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]"));
+
+		WebElement FirstName = driver.findElement(By.xpath("//input[@required='required']"));
 		FirstName.sendKeys("Test2");
-		Thread.sleep(1000);
-		WebElement phoneNumber = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/form[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]"));
+		WebElement phoneNumber = driver.findElement(By.xpath("//div[@role='document']//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]"));
 		phoneNumber.sendKeys("1234567895");
-		Thread.sleep(1000);
-		WebElement email = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/form[1]/div[4]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]"));
+		WebElement email = driver.findElement(By.xpath("//input[@type='email']"));
 		email.sendKeys("test@email.com");
-		Thread.sleep(1000);
-		WebElement save = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[3]/button[1]/span[1]"));
+		WebElement save = driver.findElement(By.xpath("//span[normalize-space()='Save']"));
 
 		save.click();
 		Thread.sleep(5000);
@@ -486,11 +492,9 @@ public class Locations {
 		String expectedText = "Test2";
 		String actualText = firstRow.getText();
 		Assert.assertEquals(actualText, expectedText);
-		Thread.sleep(2000);
 
 		String expectedText1 = firstRow.getText();
 		firstRow.click();
-		Thread.sleep(1000);
 		WebElement firstRowInfo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-card__title headline font-weight-bold']")));
 		String actualText1 = firstRowInfo.getText();
 		Assert.assertEquals(actualText1, expectedText1);
@@ -510,23 +514,20 @@ public class Locations {
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement addButton1 = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/button[1]/span[1]/i[1]"));
-		Thread.sleep(2000);
+		WebElement addButton1 = driver.findElement(By.xpath("//i[normalize-space()='add']"));
 		addButton1.click();
-		WebElement addPatientButton = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/button[1]/span[1]/strong[1]"));
 		Thread.sleep(1000);
-		addPatientButton.click();
+		WebElement addContactButton = driver.findElement(By.xpath("//strong[normalize-space()='Contact']"));
+		addContactButton.click();
 		Thread.sleep(1000);
-		WebElement FirstName = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/form[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]"));
+
+		WebElement FirstName = driver.findElement(By.xpath("//input[@required='required']"));
 		FirstName.sendKeys("");
-		Thread.sleep(1000);
-		WebElement phoneNumber = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/form[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]"));
+		WebElement phoneNumber = driver.findElement(By.xpath("//div[@role='document']//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]"));
 		phoneNumber.sendKeys("");
-		Thread.sleep(1000);
-		WebElement email = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/form[1]/div[4]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]"));
+		WebElement email = driver.findElement(By.xpath("//input[@type='email']"));
 		email.sendKeys("");
-		Thread.sleep(1000);
-		WebElement save = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[3]/button[1]/span[1]"));
+		WebElement save = driver.findElement(By.xpath("//span[normalize-space()='Save']"));
 
 		save.isEnabled();
 		Thread.sleep(5000);
@@ -544,6 +545,7 @@ public class Locations {
 	public void editLocationInfo() throws InterruptedException {
 		locationList();
 		Thread.sleep(2000);
+
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement locationSelect = driver.findElement(By.xpath("//tbody/tr[1]/td[1]"));
@@ -552,33 +554,28 @@ public class Locations {
 
 		WebElement editButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//i[@class='v-icon notranslate material-icons theme--light'][normalize-space()='more_vert']")));
 		editButton.click();
-		Thread.sleep(1000);
 
 		WebElement editOptionSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Edit')]")));
 		editOptionSelect.click();
-		Thread.sleep(1000);
 
-		WebElement editLicenceNumber = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[4]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[5]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]"));
+		WebElement editLicenceNumber = driver.findElement(By.xpath("//div[5]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]"));
 		editLicenceNumber.clear();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 
 		while (!editLicenceNumber.getAttribute("value").equals("")) {
 			editLicenceNumber.sendKeys(Keys.BACK_SPACE);
 		}
-		Thread.sleep(1000);
+
 		editLicenceNumber.sendKeys("7895213");
 
-		WebElement editCapacity = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[4]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[8]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")));
+		WebElement editCapacity = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[8]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
 		editCapacity.clear();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 
 		while (!editCapacity.getAttribute("value").equals("")) {
 			editCapacity.sendKeys(Keys.BACK_SPACE);
 		}
-		Thread.sleep(1000);
 		editCapacity.sendKeys("5213");
-
-		Thread.sleep(1000);
 
 		WebElement update = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='update']")));
 		update.click();
@@ -602,7 +599,6 @@ public class Locations {
 
 		WebElement editButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//i[@class='v-icon notranslate material-icons theme--light'][normalize-space()='more_vert']")));
 		editButton.click();
-		Thread.sleep(1000);
 
 		WebElement deleteButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Delete')]")));
 		deleteButton.click();
@@ -617,6 +613,7 @@ public class Locations {
 		Thread.sleep(3000);
 	}
 
+
 	@AfterTest
 	public void tearDown() throws Exception {
 		if (driver != null) {
@@ -624,7 +621,7 @@ public class Locations {
 			driver.quit();
 		}
 	}
-	
+
 	@AfterSuite
 	public static void afterSuit() {
 

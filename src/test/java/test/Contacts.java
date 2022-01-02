@@ -33,41 +33,50 @@ public class Contacts {
 
 	public static RemoteWebDriver driver = null;
 	WebDriver driver2;
-	@Parameters("myBrowser")
+	@Parameters({"myBrowser", "myOS", "hubLink"})
+
 
 	@BeforeTest
-	public static void setup(String myBrowser) throws MalformedURLException {
+	public static void setup(String myBrowser, String myOS, String hubLink) throws MalformedURLException {
 
-//		DesiredCapabilities caps = new DesiredCapabilities();
-//		caps.setBrowserName("chrome");
-//		caps.setPlatform(Platform.WINDOWS);
-//		ChromeOptions options = new ChromeOptions();
-//		options.merge(caps);
-//		String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-//		driver = new RemoteWebDriver(new URL(nodeUrl),options);
+		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("windows"))){
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setBrowserName(myBrowser);
+			caps.setPlatform(Platform.WINDOWS);
+			ChromeOptions options = new ChromeOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
 
-				if(myBrowser.equalsIgnoreCase("chrome")){
-					DesiredCapabilities caps = new DesiredCapabilities();
-					caps.setBrowserName("chrome");
-					caps.setPlatform(Platform.WINDOWS);
-					ChromeOptions options = new ChromeOptions();
-					options.merge(caps);
-					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-					driver = new RemoteWebDriver(new URL(nodeUrl),options);
-					
-				}
+		}
 		
-				if(myBrowser.equalsIgnoreCase("firefox")) {
-					//System.setProperty("webdriver.gecko.driver","C:\\Users\\tahni\\eclipse-workspace\\geckodriver.exe");
-					DesiredCapabilities caps = new DesiredCapabilities();
-					//driver = new FirefoxDriver();
-					caps.setPlatform(Platform.WINDOWS);
-					FirefoxOptions options = new FirefoxOptions();
-					options.merge(caps);
-					String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-					driver = new RemoteWebDriver(new URL(nodeUrl),options);
-				
-				}
+		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setBrowserName(myBrowser);
+			caps.setPlatform(Platform.LINUX);
+			ChromeOptions options = new ChromeOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
+
+		}
+
+		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("windows"))) {
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setBrowserName(myBrowser);
+			caps.setPlatform(Platform.WINDOWS);
+			FirefoxOptions options = new FirefoxOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
+
+		}
+		
+		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setPlatform(Platform.LINUX);
+			FirefoxOptions options = new FirefoxOptions();
+			options.merge(caps);
+			driver = new RemoteWebDriver(new URL(hubLink),options);
+
+		}
 
 	}
 
@@ -176,7 +185,7 @@ public class Contacts {
 
 		WebElement lastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div//div//div//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
 		lastName.sendKeys("Haque");
-		
+
 		WebElement genderDropDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//div//div//div//div//div//div//div[@role='button']//div//div//div//i[@aria-hidden='true']")));
 		genderDropDown.click();
 
@@ -188,16 +197,16 @@ public class Contacts {
 
 		WebElement typeDropDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@id='inspire']/div[@role='document']/div/div/div/div/div/div/div/form[@novalidate='novalidate']/div/div/div/div/div[@role='button']/div/div/div/i[1]")));
 		typeDropDown.click();
-		
+
 		WebElement type = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Work')]")));
 		type.click();
 
 		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
 		email.sendKeys("sabbirha@email.com");
-		
+
 		WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[5]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
 		title.sendKeys("TEST 2");
-		
+
 		WebElement note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[6]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
 		note.sendKeys("This is demo data 2");
 
@@ -218,27 +227,27 @@ public class Contacts {
 	@Test(priority = 6)
 	public void emptyContactData() throws InterruptedException {
 		addContact();
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@required='required']")));
 		firstName.sendKeys("");
-		
+
 		WebElement lastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div//div//div//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
 		lastName.sendKeys("");
-		
+
 		WebElement phone = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
 		phone.sendKeys("");
-		
+
 		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
 		email.sendKeys("");
-		
+
 		WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[5]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
 		title.sendKeys("");
-		
+
 		WebElement note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[6]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
 		note.sendKeys("");	
-		
+
 		//First name field check
 		if(firstName.getText().isEmpty()) {
 			WebElement firstNameMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-messages__message']")));
@@ -256,31 +265,31 @@ public class Contacts {
 		//Last name field check
 		if(lastName.getText().isEmpty()) {
 			System.out.println("Last Name field is empty!");
-			
+
 		}
 		else {
 			System.out.println("Last Name submitted successfully!");
-			
+
 		}
 
 		//Phone number field check		
 		if(phone.getText().isEmpty()) {
 			System.out.println("Phone number field is empty!");
-			
+
 		}
 		else {
 			System.out.println("Phone number submitted successfully!");
-			
+
 		}
 
 		//Email field check		
 		if(email.getText().isEmpty()) {
 			System.out.println("Email field is empty!");
-			
+
 		}
 		else {
 			System.out.println("Data submitted successfully!");
-			
+
 		}
 
 		Thread.sleep(3000);
@@ -290,9 +299,9 @@ public class Contacts {
 		}
 
 		email.sendKeys("@abc.skfh");
-		
+
 		note.sendKeys("");	
-		
+
 		//Title field check
 		if(title.getText().isEmpty()) {
 			System.out.println("Title field is empty!");
@@ -300,18 +309,18 @@ public class Contacts {
 		}
 		else {
 			System.out.println("Data submitted successfully!");
-			
+
 		}
 
 
 		//Note field check
 		if(note.getText().isEmpty()) {
 			System.out.println("Note field is empty!");
-			
+
 		}
 		else {
 			System.out.println("Data submitted successfully!");
-			
+
 		}
 
 		if(email.getAttribute("value").startsWith("@")){
@@ -321,7 +330,7 @@ public class Contacts {
 			Thread.sleep(1000);
 		}else {
 			System.out.println("Email submitted successfully!");
-			
+
 		}
 
 		//Save button check
@@ -329,7 +338,7 @@ public class Contacts {
 
 		try {
 			save.click();
-			
+
 		} 
 		catch (Exception e){
 			System.out.println("Mandatory fields has no data !");
@@ -346,15 +355,15 @@ public class Contacts {
 	@Test(priority = 7)
 	public void editContact() throws InterruptedException {
 		contactList();
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement dataForEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody/tr[1]/td[1]")));
 		dataForEdit.click();
-		
+
 		WebElement selectEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Edit']")));
 		selectEdit.click();
-		
+
 		WebElement editPhone = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
 
 		while (!editPhone.getAttribute("value").equals("")) {
@@ -374,7 +383,7 @@ public class Contacts {
 
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
 		save.click();
-		
+
 		WebElement phoneNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody/tr[1]/td[2]")));
 		String actual = phoneNumber.getText();
 		Thread.sleep(3000);
@@ -394,15 +403,15 @@ public class Contacts {
 	@Test(priority = 8)
 	public void removeContact() throws InterruptedException {
 		contactList();
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement dataForEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody/tr[1]/td[1]")));
 		dataForEdit.click();
-		
+
 		WebElement selectEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Edit']")));
 		selectEdit.click();
-		
+
 		WebElement remove = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Remove']")));
 		remove.click();
 		Thread.sleep(2000);
@@ -417,7 +426,7 @@ public class Contacts {
 	@Test(priority = 9)
 	public void cancelAddNewForm() throws InterruptedException {
 		addContact();
-		
+
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement cancel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='float-right text-capitalize align-cancel v-btn v-btn--flat v-btn--text theme--light v-size--default']//span[@class='v-btn__content'][normalize-space()='Cancel']")));
@@ -462,7 +471,7 @@ public class Contacts {
 			driver.quit();
 		}
 	}
-	
+
 	@AfterSuite
 	public static void afterSuit() {
 
