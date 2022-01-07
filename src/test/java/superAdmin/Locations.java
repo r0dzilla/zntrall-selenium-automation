@@ -27,7 +27,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class Locations {
+import superAdminInputData.LocationInfoData;
+
+public class Locations extends LocationInfoData{
 
 	public static String env = "Test for Super Admin";
 	public static String testSuiteName = "Test Suit 4 -- Locations";
@@ -47,7 +49,7 @@ public class Locations {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-		
+
 		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
 			DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setBrowserName(myBrowser);
@@ -67,7 +69,7 @@ public class Locations {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-		
+
 		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
 			DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setPlatform(Platform.LINUX);
@@ -127,8 +129,11 @@ public class Locations {
 		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
 		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
 
-		username.sendKeys("superadmin@mercury.com");
-		password.sendKeys("qwerty");
+		String user = super.getUser();
+		String pass = super.getPass();
+
+		username.sendKeys(user);
+		password.sendKeys(pass);
 
 		login.click();
 		Thread.sleep(5000);
@@ -165,8 +170,10 @@ public class Locations {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
+		String searchLocation = super.getsearchLocation();
+
 		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-text-field__slot']//input[@type='text']")));
-		search.sendKeys("Rang");
+		search.sendKeys(searchLocation);
 		Thread.sleep(3000);
 
 
@@ -196,8 +203,10 @@ public class Locations {
 	public void patientFromLocation() throws InterruptedException {
 		checkLocationList();
 
+		String searchLocation = super.getsearchLocation();
+
 		WebElement search = driver.findElement(By.xpath("//div[@class='v-text-field__slot']//input[@type='text']"));
-		search.sendKeys("Rang");
+		search.sendKeys(searchLocation);
 		WebElement firstRow = driver.findElement(By.xpath("//table[1]/tbody[1]/tr[1]/td[2]/span[1]"));
 
 		firstRow.click();
@@ -219,8 +228,9 @@ public class Locations {
 	public void contactFromLocation() throws InterruptedException {
 		checkLocationList();
 
+		String searchLocation = super.getsearchLocation();
 		WebElement search = driver.findElement(By.xpath("//div[@class='v-text-field__slot']//input[@type='text']"));
-		search.sendKeys("Rang");
+		search.sendKeys(searchLocation);
 		WebElement firstRow = driver.findElement(By.xpath("//table[1]/tbody[1]/tr[1]/td[2]/span[1]"));
 
 		firstRow.click();
@@ -250,6 +260,9 @@ public class Locations {
 
 	@Test(priority = 8)
 	public void updateTypes() throws InterruptedException {
+		String editName = super.geteditName();
+		String editAcronym = super.geteditAcronym();
+
 		locationTypes();
 		WebElement typeInfo = driver.findElement(By.xpath("//body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[1]"));
 		typeInfo.click();
@@ -259,12 +272,12 @@ public class Locations {
 		while (!name.getAttribute("value").equals("")) {
 			name.sendKeys(Keys.BACK_SPACE);
 		}
-		name.sendKeys("Room and Board");
+		name.sendKeys(editName);
 		WebElement acronym = driver.findElement(By.xpath("//div[@class='v-card__text']//div[2]//div[1]//div[1]//div[1]//input[1]"));
 		while (!acronym.getAttribute("value").equals("")) {
 			acronym.sendKeys(Keys.BACK_SPACE);
 		}
-		acronym.sendKeys("RB");
+		acronym.sendKeys(editAcronym);
 		WebElement update = driver.findElement(By.xpath("//*[text()='Update']"));
 
 		try {
@@ -283,6 +296,9 @@ public class Locations {
 	//Add new Location Type
 	@Test(priority = 9)
 	public void addNewLocationType() throws InterruptedException {
+		String addName = super.getName();
+		String addAcronym = super.getAcronym();
+
 		locationTypes();
 		WebElement addNewType = driver.findElement(By.xpath("//i[normalize-space()='add']"));
 		addNewType.click();
@@ -290,8 +306,8 @@ public class Locations {
 		WebElement name = driver.findElement(By.xpath("//div[@class='v-card v-sheet theme--light']//div[1]//div[1]//div[1]//div[1]//input[1]"));
 		WebElement acronym = driver.findElement(By.xpath("//div[@class='v-card__text']//div[2]//div[1]//div[1]//div[1]//input[1]"));
 
-		name.sendKeys("SQA TEST RR");
-		acronym.sendKeys("SQAT");
+		name.sendKeys(addName);
+		acronym.sendKeys(addAcronym);
 
 		String actual = name.getAttribute("value");
 
@@ -314,6 +330,10 @@ public class Locations {
 
 	@Test(priority = 9)
 	public void resetButton() throws InterruptedException {
+
+		String addName = super.getName();
+		String addAcronym = super.getAcronym();
+
 		locationTypes();
 		WebElement addNewType = driver.findElement(By.xpath("//i[normalize-space()='add']"));
 		addNewType.click();
@@ -321,8 +341,8 @@ public class Locations {
 		WebElement name = driver.findElement(By.xpath("//div[@class='v-card v-sheet theme--light']//div[1]//div[1]//div[1]//div[1]//input[1]"));
 		WebElement acronym = driver.findElement(By.xpath("//div[@class='v-card__text']//div[2]//div[1]//div[1]//div[1]//input[1]"));
 
-		name.sendKeys("SQA TEST RR");
-		acronym.sendKeys("SQAT");
+		name.sendKeys(addName);
+		acronym.sendKeys(addAcronym);
 
 		WebElement save = driver.findElement(By.xpath("//*[text()='Save']"));
 		WebElement reset = driver.findElement(By.xpath("//*[text()='Reset']"));
@@ -341,6 +361,10 @@ public class Locations {
 
 	@Test(priority = 10)
 	public void cancelButton() throws InterruptedException {
+
+		String addName = super.getName();
+		String addAcronym = super.getAcronym();
+
 		locationTypes();
 		WebElement addNewType = driver.findElement(By.xpath("//i[normalize-space()='add']"));
 		addNewType.click();
@@ -348,8 +372,8 @@ public class Locations {
 		WebElement name = driver.findElement(By.xpath("//div[@class='v-card v-sheet theme--light']//div[1]//div[1]//div[1]//div[1]//input[1]"));
 		WebElement acronym = driver.findElement(By.xpath("//div[@class='v-card__text']//div[2]//div[1]//div[1]//div[1]//input[1]"));
 
-		name.sendKeys("SQA TEST RR");
-		acronym.sendKeys("SQAT");
+		name.sendKeys(addName);
+		acronym.sendKeys(addAcronym);
 
 		WebElement cancel = driver.findElement(By.xpath("//*[text()='Cancel']"));
 		cancel.click();

@@ -1,4 +1,4 @@
-package test;
+package normalUser;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -23,7 +23,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class Calendar {
+import normalUserInputData.CalendarInfoData;
+
+public class Calendar extends CalendarInfoData {
 
 	public static String env = "Test";
 	public static String testSuiteName = "Test Suit 6 -- Calendar";
@@ -45,7 +47,7 @@ public class Calendar {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-		
+
 		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
 			DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setBrowserName(myBrowser);
@@ -65,7 +67,7 @@ public class Calendar {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-		
+
 		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
 			DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setPlatform(Platform.LINUX);
@@ -74,6 +76,9 @@ public class Calendar {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
+
+
+
 
 	}
 
@@ -95,7 +100,7 @@ public class Calendar {
 	public void openBrowser() throws InterruptedException {
 
 		driver.manage().deleteAllCookies();
-		driver.get("https://zntral.net/session/login");
+		driver.get("https://dev.zntral.net/session/login");
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
@@ -113,13 +118,19 @@ public class Calendar {
 		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
 		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
 
-		username.sendKeys("shaque.sabbir@gmail.com");
-		password.sendKeys("Sabbir33");
+		String user = super.getUser();
+		String pass = super.getPass();
+
+		username.sendKeys(user);
+		password.sendKeys(pass);
 
 		login.click();
+
+		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
+		loginAs.click();
 		Thread.sleep(5000);
 
-		String expectedUrl = "https://zntral.net/dashboard";
+		String expectedUrl = "https://dev.zntral.net/dashboard";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
 
@@ -136,7 +147,7 @@ public class Calendar {
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Calendar']")));
 		driver.findElement(By.xpath("//span[normalize-space()='Calendar']")).click();
-		String expectedUrl = "https://zntral.net/patient_schedule";
+		String expectedUrl = "https://dev.zntral.net/patient_schedule";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
 	}
@@ -162,7 +173,8 @@ public class Calendar {
 		WebElement allDay = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'All day')]")));
 		allDay.click();
 		WebElement description = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-text-field v-text-field--is-booted']//input[@type='text']")));
-		description.sendKeys("Test Schedule");
+		String desc = super.getdesc();
+		description.sendKeys(desc);
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
 		save.click();
 		Thread.sleep(3000);
@@ -227,7 +239,8 @@ public class Calendar {
 		WebElement selectPatient = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Sabbir-Test Info')]")));
 		selectPatient.click();
 		WebElement description = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-text-field v-text-field--is-booted']//input[@type='text']")));
-		description.sendKeys("Test Schedule");
+		String desc = super.getdesc();
+		description.sendKeys(desc);
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
 		save.click();
 

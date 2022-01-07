@@ -1,4 +1,4 @@
-package test;
+package normalUser;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -23,7 +23,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class Logout {
+import normalUserInputData.LogoutInfoData;
+
+public class Logout extends LogoutInfoData{
 
 	public static String env = "Test";
 	public static String testSuiteName = "Test Suit 10 -- Logout";
@@ -74,7 +76,7 @@ public class Logout {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-
+		
 	}
 	@BeforeSuite
 	public static void beforeSuit() {
@@ -94,7 +96,7 @@ public class Logout {
 	public void openBrowser() throws InterruptedException {
 
 		driver.manage().deleteAllCookies();
-		driver.get("https://zntral.net/session/login");
+		driver.get("https://dev.zntral.net/session/login");
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
@@ -105,18 +107,23 @@ public class Logout {
 
 	@Test(priority = 1)
 	public void loginUser() throws InterruptedException {
-
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		WebElement username = driver.findElement(By.xpath("//input[@type='text']"));
 		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
 		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
 
-		username.sendKeys("shaque.sabbir@gmail.com");
-		password.sendKeys("Sabbir33");
+		String user = super.getUser();
+		String pass = super.getPass();
+
+		username.sendKeys(user);
+		password.sendKeys(pass);
 
 		login.click();
+		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
+		loginAs.click();
 		Thread.sleep(5000);
 
-		String expectedUrl = "https://zntral.net/dashboard";
+		String expectedUrl = "https://dev.zntral.net/dashboard";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
 	}
@@ -139,7 +146,7 @@ public class Logout {
 		clickLogout.click();
 		Thread.sleep(3000);
 
-		String expectedUrl = "https://zntral.net/session/login";
+		String expectedUrl = "https://dev.zntral.net/session/login";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
 	}

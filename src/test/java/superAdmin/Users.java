@@ -25,8 +25,10 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import superAdminInputData.UsersInfoData;
 
-public class Users {
+
+public class Users extends UsersInfoData {
 
 	public static String env = "Test for Super Admin";
 	public static String testSuiteName = "Test Suit 3 -- Users";
@@ -46,7 +48,7 @@ public class Users {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-		
+
 		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
 			DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setBrowserName(myBrowser);
@@ -66,7 +68,7 @@ public class Users {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-		
+
 		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
 			DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setPlatform(Platform.LINUX);
@@ -76,9 +78,10 @@ public class Users {
 
 		}
 
+
 	}
-	
-	
+
+
 	@BeforeSuite
 	public static void beforeSuit() {
 
@@ -126,8 +129,11 @@ public class Users {
 		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
 		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
 
-		username.sendKeys("superadmin@mercury.com");
-		password.sendKeys("qwerty");
+		String user = super.getUser();
+		String pass = super.getPass();
+
+		username.sendKeys(user);
+		password.sendKeys(pass);
 
 		login.click();
 		Thread.sleep(5000);
@@ -233,7 +239,9 @@ public class Users {
 		checkUserList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div/div/main[@data-booted='true']/div/div/div/div/div/div/div/div/div/div/div/div/div/input[1]")));
-		search.sendKeys("John");
+
+		String searchUser = super.getsearchUser();
+		search.sendKeys(searchUser);
 		WebElement firstRow = driver.findElement(By.xpath("//table[1]/tbody[1]/tr[1]/td[1]"));	
 		String actualText = firstRow.getText();
 		Assert.assertTrue(actualText.contains(search.getText()));
@@ -564,6 +572,13 @@ public class Users {
 	@Test(priority = 13)
 	public void userGroup() throws InterruptedException {
 		checkUserList();
+
+		String name = super.getadmin();
+		String acronym = super.getacronym();
+		String viewTitle = super.getviewTitle();
+		String viewAcronym = super.getviewAcronym();
+		String desc = super.getdescription();
+
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//i[normalize-space()='add']")));
 		add.click();
@@ -572,10 +587,10 @@ public class Users {
 		addUserGroup.click();
 
 		WebElement adminName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div[1]//div[1]//div[1]//div[1]//div[1]//div[1]//input[1]")));
-		adminName.sendKeys("AdminSQA20");
+		adminName.sendKeys(name);
 
 		WebElement adminAcronym = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div[1]//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
-		adminAcronym.sendKeys("ASQA20");
+		adminAcronym.sendKeys(acronym);
 
 		WebElement statusCheck = driver.findElement(By.xpath("//input[@role='checkbox']"));
 
@@ -587,13 +602,13 @@ public class Users {
 		}
 
 		WebElement userViewTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[1]//div[1]//div[1]//input[1]")));
-		userViewTitle.sendKeys("Test");
+		userViewTitle.sendKeys(viewTitle);
 
 		WebElement userViewAcronym = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div//div//div//div[2]//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
-		userViewAcronym.sendKeys("TT");
+		userViewAcronym.sendKeys(viewAcronym);
 
 		WebElement description = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[3]//div[1]//div[1]//div[1]//div[1]//div[1]//input[1]")));
-		description.sendKeys("This is a test group");
+		description.sendKeys(desc);
 
 		//user permission select
 		permissionUsers();
@@ -613,18 +628,18 @@ public class Users {
 		//Forms permission select
 		permissionForms();
 
-		String actualAdminName = adminName.getAttribute("value");
+
 
 
 		WebElement addGroup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='v-btn__content'][normalize-space()='Add']")));
 		addGroup.click();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
+		Thread.sleep(5000);
+		String actualAdminName = name;
 		WebElement lastRow = driver.findElement(By.xpath("(//table[1]//tbody[1]//tr)[last()]//td[1]")); 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
 		js.executeScript("arguments[0].scrollIntoView(true);",lastRow);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		Thread.sleep(5000);
 		String expectedAdminName = lastRow.getText();
 
 		//Admin name verification

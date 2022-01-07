@@ -1,4 +1,4 @@
-package test;
+package normalUser;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -24,7 +24,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class Patients {
+import normalUserInputData.PatientsInfoData;
+
+public class Patients extends PatientsInfoData{
 
 	public static String env = "Test";
 	public static String testSuiteName = "Test Suit 5 -- Patients";
@@ -46,7 +48,7 @@ public class Patients {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-		
+
 		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
 			DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setBrowserName(myBrowser);
@@ -66,7 +68,7 @@ public class Patients {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-		
+
 		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
 			DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setPlatform(Platform.LINUX);
@@ -77,8 +79,8 @@ public class Patients {
 		}
 
 	}
-	
-	
+
+
 	@BeforeSuite
 	public static void beforeSuit() {
 
@@ -97,7 +99,7 @@ public class Patients {
 	public void openBrowser() throws InterruptedException {
 
 		driver.manage().deleteAllCookies();
-		driver.get("https://zntral.net/session/login");
+		driver.get("https://dev.zntral.net/session/login");
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
@@ -108,19 +110,21 @@ public class Patients {
 
 	@Test(priority = 1)
 	public void loginUser() throws InterruptedException {
-
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		WebElement username = driver.findElement(By.xpath("//input[@type='text']"));
 		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
 		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
 
-		username.sendKeys("shaque.sabbir@gmail.com");
+		username.sendKeys(super.getUser());
 
-		password.sendKeys("Sabbir33");
+		password.sendKeys(super.getPass());
 
 		login.click();
+		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
+		loginAs.click();
 		Thread.sleep(5000);
 
-		String expectedUrl = "https://zntral.net/dashboard";
+		String expectedUrl = "https://dev.zntral.net/dashboard";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
 
@@ -139,7 +143,7 @@ public class Patients {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Patients']")));
 		driver.findElement(By.xpath("//span[normalize-space()='Patients']")).click();
 
-		String expectedUrl = "https://zntral.net/patients";
+		String expectedUrl = "https://dev.zntral.net/patients";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
 	}
@@ -154,13 +158,12 @@ public class Patients {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-text-field__slot']//input[@type='text']")));
-		search.sendKeys("Sabbir");
+		search.sendKeys(super.getsearch());
 
 
 		WebElement firstRow = driver.findElement(By.xpath("//tbody/tr[1]/td[2]"));	
 		String actualText = firstRow.getText();
-		//String expectedText = "Sabbir";
-		Assert.assertTrue(actualText.contains("Sabbir"));
+		Assert.assertTrue(actualText.contains(super.getsearch()));
 		Thread.sleep(3000);
 	}
 
@@ -209,29 +212,29 @@ public class Patients {
 
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Submit']")));
 
-		prefix.sendKeys("Mr.");
-		firstName.sendKeys("Test");
-		lastName.sendKeys("Info");
-		ssn.sendKeys("1234564");
-		dob.sendKeys("1993-10-25");
+		prefix.sendKeys(super.getprefix());
+		firstName.sendKeys(super.getpatientfirstName());
+		lastName.sendKeys(super.getpatientlastName());
+		ssn.sendKeys(super.getssn());
+		dob.sendKeys(super.getdob());
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='OK']"))).click();
 		gender.click();
 		WebElement genderMale = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Male')]")));
 		genderMale.click();
-		phone.sendKeys("7894561235");
+		phone.sendKeys(super.getphone());
 		type.click();
 		WebElement typeMobile = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-list-item__title'][normalize-space()='Mobile']")));
 		typeMobile.click();
-		email.sendKeys("sabbir@email.com");
+		email.sendKeys(super.getpatientemail());
 		location.click();
 		WebElement selectLocation = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space()='Test Location 2']")));
 		selectLocation.click();
-		note.sendKeys("This is demo data");
+		note.sendKeys(super.getpatientnote());
 		save.click();
 		Thread.sleep(5000);
 
 		String URL = driver.getCurrentUrl();
-		Assert.assertTrue(URL.contains("https://zntral.net/patients/"));
+		Assert.assertTrue(URL.contains("https://dev.zntral.net/patients/"));
 		Thread.sleep(3000);
 
 	}
@@ -259,18 +262,18 @@ public class Patients {
 
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Submit']")));
 
-		prefix.sendKeys("");
-		firstName.sendKeys("");
-		lastName.sendKeys("");
-		ssn.sendKeys("");
-		dob.sendKeys("");
+		prefix.sendKeys(super.getprefix2());
+		firstName.sendKeys(super.getpatientfirstName2());
+		lastName.sendKeys(super.getpatientlastName2());
+		ssn.sendKeys(super.getssn2());
+		dob.sendKeys(super.getdob2());
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='OK']"))).click();
 		gender.click();
-		phone.sendKeys("");
+		phone.sendKeys(super.getphone2());
 		type.click();
-		email.sendKeys("");
+		email.sendKeys(super.getpatientemail2());
 		location.click();
-		note.sendKeys("");
+		note.sendKeys(super.getpatientnote2());
 		save.isEnabled();
 		Thread.sleep(5000);
 
@@ -315,7 +318,7 @@ public class Patients {
 		while (!editSSN.getAttribute("value").equals("")) {
 			editSSN.sendKeys(Keys.BACK_SPACE);
 		}
-		editSSN.sendKeys("7895213");
+		editSSN.sendKeys(super.getvalidssn());
 
 		WebElement update = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Update']")));
 		update.click();
@@ -347,11 +350,12 @@ public class Patients {
 		deletePopUpYes.click();
 
 		String URL = driver.getCurrentUrl();
-		Assert.assertTrue(URL.contains("https://zntral.net/patients"));
+		Assert.assertTrue(URL.contains("https://dev.zntral.net/patients"));
 		Thread.sleep(3000);
 	}
 
 	//Add contact info after adding new patient info
+
 	@Test(priority = 9)
 	public void addContactfromPatient() throws InterruptedException {
 		validPatientData();
@@ -367,10 +371,10 @@ public class Patients {
 		Thread.sleep(1000);
 
 		WebElement FirstName =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div//div//div[1]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		FirstName.sendKeys("TestContact");
+		FirstName.sendKeys(super.getfirstName());
 
 		WebElement LastName =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div//div//div[1]//div[3]//div[1]//div[1]//div[1]//div[1]//input[1]")));
-		LastName.sendKeys("data");
+		LastName.sendKeys(super.getlastName());
 
 		WebElement gender =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//div//div//div//div//div//div//div[@role='button']//div//div//div//i[@aria-hidden='true']")));
 		gender.click();
@@ -385,7 +389,7 @@ public class Patients {
 		relationshipFather.click();
 
 		WebElement phone =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[4]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		phone.sendKeys("753951");
+		phone.sendKeys(super.getphonenumber());
 
 		WebElement phoneDropdown =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@id='inspire']/div[@role='document']/div/div/div/div/div/div/div/form[@novalidate='novalidate']/div/div/div/div/div[@role='button']/div/div/div/i[1]")));
 		phoneDropdown.click();
@@ -420,19 +424,19 @@ public class Patients {
 		Thread.sleep(1000);
 
 		WebElement FirstName =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div//div//div[1]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		FirstName.sendKeys("");
+		FirstName.sendKeys(super.getfirstName2());
 
 		WebElement LastName =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div//div//div[1]//div[3]//div[1]//div[1]//div[1]//div[1]//input[1]")));
-		LastName.sendKeys("");
+		LastName.sendKeys(super.getlastName2());
 
 		WebElement relationship =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@id='inspire']/div[@role='document']/div/div/div/div/div/div/div/form[@novalidate='novalidate']/div/div/div/div/div/div[@role='button']/div/div/div/i[1]")));
 		relationship.click();
 
 		WebElement phone =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[4]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		phone.sendKeys("");
+		phone.sendKeys(super.getphone2());
 
 		WebElement note =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[7]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		note.sendKeys("");
+		note.sendKeys(super.getnote());
 
 		WebElement phoneType =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@id='inspire']/div[@role='document']/div/div/div/div/div/div/div/form[@novalidate='novalidate']/div/div/div/div/div[@role='button']/div/div/div/i[1]")));
 		phoneType.click();
@@ -473,10 +477,10 @@ public class Patients {
 		Thread.sleep(1000);
 
 		WebElement FirstName =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div//div//div[1]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		FirstName.sendKeys("TestContact2");
+		FirstName.sendKeys(super.getfirstName());
 
 		WebElement LastName =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div//div//div[1]//div[3]//div[1]//div[1]//div[1]//div[1]//input[1]")));
-		LastName.sendKeys("data");
+		LastName.sendKeys(super.getlastName());
 
 		WebElement gender =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//div//div//div//div//div//div//div[@role='button']//div//div//div//i[@aria-hidden='true']")));
 		gender.click();
@@ -491,7 +495,7 @@ public class Patients {
 		relationshipFather.click();
 
 		WebElement phone =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[4]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		phone.sendKeys("753951");
+		phone.sendKeys(super.getphonenumber());
 
 		WebElement phoneDropdown =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@id='inspire']/div[@role='document']/div/div/div/div/div/div/div/form[@novalidate='novalidate']/div/div/div/div/div[@role='button']/div/div/div/i[1]")));
 		phoneDropdown.click();

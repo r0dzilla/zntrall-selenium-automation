@@ -1,4 +1,4 @@
-package test;
+package normalUser;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -24,7 +24,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class User_Profile {
+import normalUserInputData.User_ProfileInfoData;
+
+public class User_Profile extends User_ProfileInfoData {
 	public static String env = "Test";
 	public static String testSuiteName = "Test Suit 9 -- User Profile";
 
@@ -45,7 +47,7 @@ public class User_Profile {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-		
+
 		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
 			DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setBrowserName(myBrowser);
@@ -65,7 +67,7 @@ public class User_Profile {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-		
+
 		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
 			DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setPlatform(Platform.LINUX);
@@ -74,6 +76,7 @@ public class User_Profile {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
+
 
 	}
 
@@ -95,7 +98,7 @@ public class User_Profile {
 	public void openBrowser() throws InterruptedException {
 
 		driver.manage().deleteAllCookies();
-		driver.get("https://zntral.net/session/login");
+		driver.get("https://dev.zntral.net/session/login");
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
@@ -113,13 +116,15 @@ public class User_Profile {
 		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
 		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
 
-		username.sendKeys("shaque.sabbir@gmail.com");
-		password.sendKeys("Sabbir33");
+		username.sendKeys(super.getUser());
+		password.sendKeys(super.getPass());
 
 		login.click();
+		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
+		loginAs.click();
 		Thread.sleep(5000);
 
-		String expectedUrl = "https://zntral.net/dashboard";
+		String expectedUrl = "https://dev.zntral.net/dashboard";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
 	}
@@ -137,7 +142,7 @@ public class User_Profile {
 		username.click();
 		Thread.sleep(3000);
 
-		String expectedUrl = "https://zntral.net/profile";
+		String expectedUrl = "https://dev.zntral.net/profile";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
 	}
@@ -158,7 +163,7 @@ public class User_Profile {
 		while (!selectPhoneNumber.getAttribute("value").equals("")) {
 			selectPhoneNumber.sendKeys(Keys.BACK_SPACE);
 		}
-		selectPhoneNumber.sendKeys("hfdhfhfh");
+		selectPhoneNumber.sendKeys(super.getPhone());
 		Thread.sleep(1000);
 
 		WebElement phoneNumberType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div[1]//div[2]//div[1]//div[1]//div[1]//div[1]//div[2]//div[1]//i[1]")));
@@ -252,11 +257,11 @@ public class User_Profile {
 		Thread.sleep(2000);
 
 		WebElement newEmail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[1]//input[1]")));
-		newEmail.sendKeys("a@email.co");
+		newEmail.sendKeys(super.getfirstMail());
 		Thread.sleep(1000);
 
 		WebElement confirmEmail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[3]//div[1]//div[1]//div[1]//input[1]")));
-		confirmEmail.sendKeys("b@email.co");
+		confirmEmail.sendKeys(super.getsecondMail());
 		Thread.sleep(1000);
 
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='v-btn__content'][normalize-space()='Submit']")));
@@ -320,27 +325,27 @@ public class User_Profile {
 		while (!streetAddress.getAttribute("value").equals("")) {
 			streetAddress.sendKeys(Keys.BACK_SPACE);
 		}
-		streetAddress.sendKeys("");
+		streetAddress.sendKeys(super.getstreetAddress());
 		Thread.sleep(1000);
 
 		WebElement unit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/form[1]/div[2]/div[1]/div[1]/div[1]/input[1]")));
-		unit.sendKeys("ipsum");
+		unit.sendKeys(super.getunit());
 		Thread.sleep(1000);
 
 		WebElement zip = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/form[1]/div[3]/div[1]/div[1]/div[1]/input[1]")));
-		zip.sendKeys("1229");
+		zip.sendKeys(super.getzip());
 		Thread.sleep(1000);
 
 		WebElement city = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/form[1]/div[4]/div[1]/div[1]/div[1]/input[1]")));
-		city.sendKeys("dhaka");
+		city.sendKeys(super.getcity());
 		Thread.sleep(1000);
 
 		WebElement state = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/form[1]/div[5]/div[1]/div[1]/div[1]/input[1]")));
-		state.sendKeys("Khilkhet");
+		state.sendKeys(super.getstate());
 		Thread.sleep(1000);
 
 		WebElement poBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/form[1]/div[6]/div[1]/div[1]/div[1]/input[1]")));
-		poBox.sendKeys("Nikunaja");
+		poBox.sendKeys(super.getpoBox());
 		Thread.sleep(1000);
 
 		WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='v-btn__content'][normalize-space()='Submit']")));
@@ -390,11 +395,11 @@ public class User_Profile {
 		Thread.sleep(1000);
 
 		WebElement currentPass = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[1]//input[1]")));
-		currentPass.sendKeys("Sabbir33");
+		currentPass.sendKeys(super.getcurrentPass());
 		Thread.sleep(1000);
 
 		WebElement newPass = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[3]//div[1]//div[1]//div[1]//input[1]")));
-		newPass.sendKeys("dhaka");
+		newPass.sendKeys(super.getnewPass());
 		Thread.sleep(1000);
 
 		WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Submit']")));

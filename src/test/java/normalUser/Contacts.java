@@ -1,4 +1,4 @@
-package test;
+package normalUser;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -27,7 +27,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class Contacts {
+import normalUserInputData.ContactsInfoData;
+
+public class Contacts extends ContactsInfoData {
 	public static String env = "Test";
 	public static String testSuiteName = "Test Suit 7 -- Contacts";
 
@@ -48,7 +50,7 @@ public class Contacts {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-		
+
 		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
 			DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setBrowserName(myBrowser);
@@ -68,7 +70,7 @@ public class Contacts {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-		
+
 		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
 			DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setPlatform(Platform.LINUX);
@@ -98,7 +100,7 @@ public class Contacts {
 	public void openBrowser() throws InterruptedException {
 
 		driver.manage().deleteAllCookies();
-		driver.get("https://zntral.net/session/login");
+		driver.get("https://dev.zntral.net/session/login");
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
@@ -116,13 +118,18 @@ public class Contacts {
 		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
 		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
 
-		username.sendKeys("shaque.sabbir@gmail.com");
-		password.sendKeys("Sabbir33");
+		String user = super.getUser();
+		String pass = super.getPass();
+
+		username.sendKeys(user);
+		password.sendKeys(pass);
 
 		login.click();
+		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
+		loginAs.click();
 		Thread.sleep(5000);
 
-		String expectedUrl = "https://zntral.net/dashboard";
+		String expectedUrl = "https://dev.zntral.net/dashboard";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
 
@@ -139,7 +146,7 @@ public class Contacts {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Contacts']")));
 		driver.findElement(By.xpath("//span[normalize-space()='Contacts']")).click();
 		Thread.sleep(3000);
-		String expectedUrl = "https://zntral.net/contacts";
+		String expectedUrl = "https://dev.zntral.net/contacts";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
 	}
@@ -152,10 +159,11 @@ public class Contacts {
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-text-field__slot']//input[@type='text']")));
-		search.sendKeys("Sabinul Haque");
+		String searchUser = super.getsearch();
+		search.sendKeys(searchUser);
 		WebElement firstRow = driver.findElement(By.xpath("//tbody/tr[1]/td[1]"));	
 		String actualText = firstRow.getText();
-		String expectedText = "Sabinul Haque";
+		String expectedText = searchUser;
 		Assert.assertEquals(actualText, expectedText);
 		Thread.sleep(3000);
 	}
@@ -178,13 +186,21 @@ public class Contacts {
 	@Test(priority = 5)
 	public void validContactData() throws InterruptedException {
 		addContact();
+
+		String first = super.getfirstName();
+		String last = super.getlastName();
+		String phn = super.getphone();
+		String mail = super.getemail();
+		String title2 = super.gettitle();
+		String note2 = super.getnote();
+
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@required='required']")));
-		firstName.sendKeys("Sabbir");
+		firstName.sendKeys(first);
 
 		WebElement lastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div//div//div//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
-		lastName.sendKeys("Haque");
+		lastName.sendKeys(last);
 
 		WebElement genderDropDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//div//div//div//div//div//div//div[@role='button']//div//div//div//i[@aria-hidden='true']")));
 		genderDropDown.click();
@@ -193,7 +209,7 @@ public class Contacts {
 		gender.click();
 
 		WebElement phone = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		phone.sendKeys("78945235");
+		phone.sendKeys(phn);
 
 		WebElement typeDropDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@id='inspire']/div[@role='document']/div/div/div/div/div/div/div/form[@novalidate='novalidate']/div/div/div/div/div[@role='button']/div/div/div/i[1]")));
 		typeDropDown.click();
@@ -202,13 +218,13 @@ public class Contacts {
 		type.click();
 
 		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
-		email.sendKeys("sabbirha@email.com");
+		email.sendKeys(mail);
 
 		WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[5]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		title.sendKeys("TEST 2");
+		title.sendKeys(title2);
 
 		WebElement note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[6]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		note.sendKeys("This is demo data 2");
+		note.sendKeys(note2);
 
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
 		save.click();
@@ -216,7 +232,7 @@ public class Contacts {
 
 		WebElement firstRow = driver.findElement(By.xpath("//tbody/tr[1]/td[1]"));	
 		String actualText = firstRow.getText();
-		String expectedText = "Sabbir";
+		String expectedText = first;
 		Assert.assertTrue(actualText.contains(expectedText));
 		Thread.sleep(3000);
 
@@ -228,25 +244,33 @@ public class Contacts {
 	public void emptyContactData() throws InterruptedException {
 		addContact();
 
+		String first = super.getfirstName();
+		String last = super.getlastName();
+		String phn = super.getphone();
+		String mail = super.getemail();
+		String title2 = super.gettitle();
+		String note2 = super.getnote();
+
+
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@required='required']")));
-		firstName.sendKeys("");
+		firstName.sendKeys(first);
 
 		WebElement lastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div//div//div//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
-		lastName.sendKeys("");
+		lastName.sendKeys(last);
 
 		WebElement phone = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		phone.sendKeys("");
+		phone.sendKeys(phn);
 
 		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
-		email.sendKeys("");
+		email.sendKeys(mail);
 
 		WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[5]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		title.sendKeys("");
+		title.sendKeys(title2);
 
 		WebElement note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[6]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		note.sendKeys("");	
+		note.sendKeys(note2);	
 
 		//First name field check
 		if(firstName.getText().isEmpty()) {
@@ -298,7 +322,8 @@ public class Contacts {
 			email.sendKeys(Keys.BACK_SPACE);
 		}
 
-		email.sendKeys("@abc.skfh");
+		String invalidmail = super.getinvalidemail();
+		email.sendKeys(invalidmail);
 
 		note.sendKeys("");	
 
@@ -356,6 +381,9 @@ public class Contacts {
 	public void editContact() throws InterruptedException {
 		contactList();
 
+		String editphone = super.geteditphone();
+		String edittitle = super.getedittitle();
+
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement dataForEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody/tr[1]/td[1]")));
@@ -369,17 +397,17 @@ public class Contacts {
 		while (!editPhone.getAttribute("value").equals("")) {
 			editPhone.sendKeys(Keys.BACK_SPACE);
 		}
-		editPhone.sendKeys("789456123");
+		editPhone.sendKeys(editphone);
 
 		WebElement editTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[5]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
 		while (!editTitle.getAttribute("value").equals("")) {
 			editTitle.sendKeys(Keys.BACK_SPACE);
 		}
 
-		editTitle.sendKeys("This is demo test");
+		editTitle.sendKeys(edittitle);
 		Thread.sleep(3000);
 
-		String expected = editPhone.getDomProperty("value");
+		String expected = editphone;
 
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
 		save.click();

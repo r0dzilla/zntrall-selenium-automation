@@ -24,7 +24,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class Clients {
+import superAdminInputData.ClientsInfoData;
+
+public class Clients extends ClientsInfoData {
 
 	public static String env = "Test for Super Admin";
 	public static String testSuiteName = "Test Suit 2 -- Clients";
@@ -45,7 +47,7 @@ public class Clients {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-		
+
 		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
 			DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setBrowserName(myBrowser);
@@ -65,7 +67,7 @@ public class Clients {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-		
+
 		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
 			DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setPlatform(Platform.LINUX);
@@ -122,8 +124,11 @@ public class Clients {
 		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
 		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
 
-		username.sendKeys("superadmin@mercury.com");
-		password.sendKeys("qwerty");
+		String user = super.getUser();
+		String pass = super.getPass();
+
+		username.sendKeys(user);
+		password.sendKeys(pass);
 
 		login.click();
 		Thread.sleep(5000);
@@ -293,6 +298,10 @@ public class Clients {
 
 	@Test(priority = 11)
 	public void addNewClientGroup() throws InterruptedException {
+
+		String clientGroupName = super.getName();
+		String clientGroupAcronym = super.getAcronym();
+
 		checkClientList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//i[normalize-space()='add']")));
@@ -301,9 +310,9 @@ public class Clients {
 		WebElement clientGroup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//strong[normalize-space()='Client Group']")));
 		clientGroup.click();
 		WebElement name = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div[1]//div[1]//div[1]//div[1]//div[1]//input[1]")));
-		name.sendKeys("New Test Group 2");
+		name.sendKeys(clientGroupName);
 		WebElement acronym = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
-		acronym.sendKeys("NTG2");
+		acronym.sendKeys(clientGroupAcronym);
 		WebElement signUp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='v-chip__content'][normalize-space()='Sign Up']")));
 		WebElement status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='v-chip__content'][normalize-space()='Status']")));
 
@@ -321,14 +330,19 @@ public class Clients {
 
 	@Test(priority = 12)
 	public void editClientGroup() throws InterruptedException {
+
+		String editClientGroupName = super.geteditName();
+		String editClientGroupAcronym = super.geteditAcronym();
+
 		checkClientList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement selectAnyGroup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='New Test Group']")));
+
+		WebElement selectAnyGroup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Client Group 1']")));
 		selectAnyGroup.click();
 		WebElement name = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div[1]//div[1]//div[1]//div[1]//div[1]//input[1]")));
-		name.sendKeys("New Test");
+		name.sendKeys(editClientGroupName);
 		WebElement acronym = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
-		acronym.sendKeys("NT");
+		acronym.sendKeys(editClientGroupAcronym);
 		WebElement update = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Update']")));
 		update.click();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

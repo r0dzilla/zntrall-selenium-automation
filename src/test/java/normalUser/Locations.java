@@ -1,4 +1,4 @@
-package test;
+package normalUser;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -25,7 +25,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class Locations {
+import normalUserInputData.LocationInfoData;
+
+public class Locations extends LocationInfoData {
 	public static String env = "Test";
 	public static String testSuiteName = "Test Suit 4 -- Locations";
 
@@ -47,7 +49,7 @@ public class Locations {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-		
+
 		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
 			DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setBrowserName(myBrowser);
@@ -67,7 +69,7 @@ public class Locations {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-		
+
 		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
 			DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setPlatform(Platform.LINUX);
@@ -97,7 +99,7 @@ public class Locations {
 	public void openBrowser() throws InterruptedException {
 
 		driver.manage().deleteAllCookies();
-		driver.get("https://zntral.net/session/login");
+		driver.get("https://dev.zntral.net/session/login");
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
@@ -108,18 +110,23 @@ public class Locations {
 
 	@Test(priority = 1)
 	public void loginUser() throws InterruptedException {
-
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		WebElement username = driver.findElement(By.xpath("//input[@type='text']"));
 		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
 		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
 
-		username.sendKeys("shaque.sabbir@gmail.com");
-		password.sendKeys("Sabbir33");
+		String user = super.getUser();
+		String pass = super.getPass();
+
+		username.sendKeys(user);
+		password.sendKeys(pass);
 
 		login.click();
+		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
+		loginAs.click();
 		Thread.sleep(5000);
 
-		String expectedUrl = "https://zntral.net/dashboard";
+		String expectedUrl = "https://dev.zntral.net/dashboard";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
 
@@ -136,7 +143,7 @@ public class Locations {
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Locations']")));
 		driver.findElement(By.xpath("//span[normalize-space()='Locations']")).click();
-		String expectedUrl = "https://zntral.net/locations";
+		String expectedUrl = "https://dev.zntral.net/locations";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
 	}
@@ -148,10 +155,10 @@ public class Locations {
 		locationList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-text-field__slot']//input[@type='text']")));
-		driver.findElement(By.xpath("//div[@class='v-text-field__slot']//input[@type='text']")).sendKeys("Demo");
+		driver.findElement(By.xpath("//div[@class='v-text-field__slot']//input[@type='text']")).sendKeys(super.getsearchLocation());
 
 		WebElement firstRow = driver.findElement(By.xpath("//tbody/tr[1]/td[1]"));
-		String expectedText = "Demo";
+		String expectedText = super.getsearchLocation();
 		String actualText = firstRow.getText();
 		Assert.assertEquals(actualText, expectedText);
 		Thread.sleep(3000);
@@ -202,25 +209,25 @@ public class Locations {
 
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
 
-		locationName.sendKeys("Rangpur");
-		licenceNumber.sendKeys("166578");
-		capacity.sendKeys("15");
-		address.sendKeys("Rangpur");
-		suiteUnit.sendKeys("65/89");
-		city.sendKeys("Rangpur");
-		state.sendKeys("Rangpur");
-		zip.sendKeys("8752");
-		phoneNumber.sendKeys("1294567894");
+		locationName.sendKeys(super.getlocationName());
+		licenceNumber.sendKeys(super.getlicenceNumber());
+		capacity.sendKeys(super.getcapacity());
+		address.sendKeys(super.getaddress());
+		suiteUnit.sendKeys(super.getsuiteUnit());
+		city.sendKeys(super.getcity());
+		state.sendKeys(super.getstate());
+		zip.sendKeys(super.getzip());
+		phoneNumber.sendKeys(super.getphoneNumber());
 		type.click();
 		//selectType.click();
-		email.sendKeys("Rangpur@email.com");
-		note.sendKeys("This is automation for valid text");
+		email.sendKeys(super.getemail());
+		note.sendKeys(super.getnote());
 		save.click();
 		Thread.sleep(5000);
 
 
 		String URL = driver.getCurrentUrl();
-		Assert.assertTrue(URL.contains("https://zntral.net/locations/"));
+		Assert.assertTrue(URL.contains("https://dev.zntral.net/locations/"));
 
 	}
 
@@ -247,19 +254,19 @@ public class Locations {
 
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
 
-		locationName.sendKeys("");
-		licenceNumber.sendKeys("");
-		capacity.sendKeys("");
-		address.sendKeys("");
-		suiteUnit.sendKeys("");
-		city.sendKeys("");
-		state.sendKeys("");
-		zip.sendKeys("");
-		phoneNumber.sendKeys("");
+		locationName.sendKeys(super.getlocationName2());
+		licenceNumber.sendKeys(super.getlicenceNumber2());
+		capacity.sendKeys(super.getcapacity2());
+		address.sendKeys(super.getaddress2());
+		suiteUnit.sendKeys(super.getsuiteUnit2());
+		city.sendKeys(super.getcity2());
+		state.sendKeys(super.getstate2());
+		zip.sendKeys(super.getzip2());
+		phoneNumber.sendKeys(super.getphoneNumber2());
 		type.click();
 		//selectType.click();
-		email.sendKeys("");
-		note.sendKeys("");
+		email.sendKeys(super.getemail2());
+		note.sendKeys(super.getnote2());
 		save.isEnabled();
 		Thread.sleep(5000);
 
@@ -315,21 +322,21 @@ public class Locations {
 
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
 
-		locationName.sendKeys("Sylhet");
-		licenceNumber.sendKeys("789456");
-		capacity.sendKeys("25");
-		address.sendKeys("Sylhet");
-		suiteUnit.sendKeys("15/78 rd");
-		city.sendKeys("Sylhet");
-		state.sendKeys("Sylhet");
-		zip.sendKeys("4562");
-		phoneNumber.sendKeys("87956");
+		locationName.sendKeys(super.getlocationName());
+		licenceNumber.sendKeys(super.getlicenceNumber());
+		capacity.sendKeys(super.getcapacity());
+		address.sendKeys(super.getaddress());
+		suiteUnit.sendKeys(super.getsuiteUnit());
+		city.sendKeys(super.getcity());
+		state.sendKeys(super.getstate());
+		zip.sendKeys(super.getzip());
+		phoneNumber.sendKeys(super.getphoneNumber3());
 		//type.click();
 		//Thread.sleep(1000);
 		//selectType.click();
 		//Thread.sleep(1000);
-		email.sendKeys("@test.com");
-		note.sendKeys("test");
+		email.sendKeys(super.getmail3());
+		note.sendKeys(super.getnote());
 		save.isEnabled();
 		Thread.sleep(5000);
 
@@ -399,16 +406,16 @@ public class Locations {
 		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
 		WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Submit']")));
 
-		FirstName.sendKeys("Testing");
-		LastName.sendKeys("data");
-		ssn.sendKeys("1234568");
-		phoneNumber.sendKeys("1234567895");
-		email.sendKeys("test@email.com");
+		FirstName.sendKeys(super.getpatientfirstName());
+		LastName.sendKeys(super.getpatientlastName());
+		ssn.sendKeys(super.getssn());
+		phoneNumber.sendKeys(super.getphone());
+		email.sendKeys(super.getpatientemail());
 		submit.click();
 		Thread.sleep(5000);
 
 		String URL = driver.getCurrentUrl();
-		Assert.assertTrue(URL.contains("https://zntral.net/patients/"));
+		Assert.assertTrue(URL.contains("https://dev.zntral.net/patients/"));
 
 	}
 
@@ -434,11 +441,11 @@ public class Locations {
 		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
 		WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Submit']")));
 
-		FirstName.sendKeys("");
-		LastName.sendKeys("");
-		ssn.sendKeys("");
-		phoneNumber.sendKeys("");
-		email.sendKeys("");
+		FirstName.sendKeys(super.getpatientfirstName2());
+		LastName.sendKeys(super.getpatientlastName2());
+		ssn.sendKeys(super.getssn2());
+		phoneNumber.sendKeys(super.getphone2());
+		email.sendKeys(super.getpatientemail2());
 
 		submit.isEnabled();
 		Thread.sleep(5000);
@@ -475,11 +482,11 @@ public class Locations {
 		Thread.sleep(1000);
 
 		WebElement FirstName = driver.findElement(By.xpath("//input[@required='required']"));
-		FirstName.sendKeys("Test2");
+		FirstName.sendKeys(super.getcontactfirstName());
 		WebElement phoneNumber = driver.findElement(By.xpath("//div[@role='document']//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]"));
-		phoneNumber.sendKeys("1234567895");
+		phoneNumber.sendKeys(super.getcontactPhone());
 		WebElement email = driver.findElement(By.xpath("//input[@type='email']"));
-		email.sendKeys("test@email.com");
+		email.sendKeys(super.getcontactEmail());
 		WebElement save = driver.findElement(By.xpath("//span[normalize-space()='Save']"));
 
 		save.click();
@@ -489,7 +496,7 @@ public class Locations {
 		contactButton.click();
 
 		WebElement firstRow = driver.findElement(By.xpath("//tbody/tr[1]/td[1]"));
-		String expectedText = "Test2";
+		String expectedText = super.getcontactfirstName();
 		String actualText = firstRow.getText();
 		Assert.assertEquals(actualText, expectedText);
 
@@ -522,11 +529,11 @@ public class Locations {
 		Thread.sleep(1000);
 
 		WebElement FirstName = driver.findElement(By.xpath("//input[@required='required']"));
-		FirstName.sendKeys("");
+		FirstName.sendKeys(super.getcontactfirstName2());
 		WebElement phoneNumber = driver.findElement(By.xpath("//div[@role='document']//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]"));
-		phoneNumber.sendKeys("");
+		phoneNumber.sendKeys(super.getcontactPhone2());
 		WebElement email = driver.findElement(By.xpath("//input[@type='email']"));
-		email.sendKeys("");
+		email.sendKeys(super.getcontactEmail2());
 		WebElement save = driver.findElement(By.xpath("//span[normalize-space()='Save']"));
 
 		save.isEnabled();
@@ -566,7 +573,7 @@ public class Locations {
 			editLicenceNumber.sendKeys(Keys.BACK_SPACE);
 		}
 
-		editLicenceNumber.sendKeys("7895213");
+		editLicenceNumber.sendKeys(super.geteditLicenceNumber());
 
 		WebElement editCapacity = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[8]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
 		editCapacity.clear();
@@ -575,7 +582,7 @@ public class Locations {
 		while (!editCapacity.getAttribute("value").equals("")) {
 			editCapacity.sendKeys(Keys.BACK_SPACE);
 		}
-		editCapacity.sendKeys("5213");
+		editCapacity.sendKeys(super.geteditCapacity());
 
 		WebElement update = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='update']")));
 		update.click();
@@ -609,7 +616,7 @@ public class Locations {
 		Thread.sleep(3000);
 
 		String URL = driver.getCurrentUrl();
-		Assert.assertTrue(URL.contains("https://zntral.net/locations"));
+		Assert.assertTrue(URL.contains("https://dev.zntral.net/locations"));
 		Thread.sleep(3000);
 	}
 

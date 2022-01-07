@@ -1,4 +1,4 @@
-package test;
+package normalUser;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -23,7 +23,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class LoginTest {
+import normalUserInputData.LoginTestInfoData;
+
+public class LoginTest extends LoginTestInfoData {
 
 	public static String env = "Test";
 	public static String testSuiteName = "Test Suit 2 -- Login";
@@ -44,7 +46,7 @@ public class LoginTest {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-		
+
 		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
 			DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setBrowserName(myBrowser);
@@ -64,7 +66,7 @@ public class LoginTest {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-		
+
 		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
 			DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setPlatform(Platform.LINUX);
@@ -73,7 +75,7 @@ public class LoginTest {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-
+		
 	}
 
 
@@ -97,7 +99,7 @@ public class LoginTest {
 	public void openBrowser() throws InterruptedException {
 
 		driver.manage().deleteAllCookies();
-		driver.get("https://zntral.net/session/login");
+		driver.get("https://dev.zntral.net/session/login");
 		driver.manage().window().maximize();
 		Thread.sleep(3000);
 	}
@@ -130,13 +132,18 @@ public class LoginTest {
 		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
 		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
 
-		username.sendKeys("shaque.sabbir@gmail.com");
-		password.sendKeys("Sabbir33");
+		String user = super.getUser();
+		String pass = super.getPass();
+
+		username.sendKeys(user);
+		password.sendKeys(pass);
 
 		login.click();
+		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
+		loginAs.click();
 		Thread.sleep(5000);
 
-		String expectedUrl = "https://zntral.net/dashboard";
+		String expectedUrl = "https://dev.zntral.net/dashboard";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
 	}
@@ -152,11 +159,13 @@ public class LoginTest {
 		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
 		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
 
-		username.sendKeys("");
-		password.sendKeys("Sabbir33");
+		username.sendKeys(super.getinvaliduser());
+		password.sendKeys(super.getPass());
 
 		try {
 			login.click();
+			WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
+			loginAs.click();
 			Thread.sleep(5000);
 		}
 		catch(Exception e) {
@@ -164,7 +173,7 @@ public class LoginTest {
 				WebElement userField = driver.findElement(By.xpath("//div[@class='v-messages__message']"));
 				System.out.println(userField.getText());
 				login.isDisplayed();
-				String expectedUrl = "https://zntral.net/session/login";
+				String expectedUrl = "https://dev.zntral.net/session/login";
 				String actualUrl = driver.getCurrentUrl();
 				Assert.assertEquals(actualUrl, expectedUrl);
 				Assert.assertTrue(true);
@@ -187,13 +196,15 @@ public class LoginTest {
 
 		WebElement checkbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input--selection-controls__ripple']")));
 
-		username.sendKeys("test@gmil.com");
-		password.sendKeys("");
+		username.sendKeys(super.getUser());
+		password.sendKeys(super.getinvalidpass());
 
 		checkbox.click();
 
 		try {
 			login.click();
+			WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
+			loginAs.click();
 			Thread.sleep(5000);
 		}
 		catch(Exception e) {
@@ -202,7 +213,7 @@ public class LoginTest {
 				System.out.println(userField.getText());
 				login.isDisplayed();
 
-				String expectedUrl = "https://zntral.net/session/login";
+				String expectedUrl = "https://dev.zntral.net/session/login";
 				String actualUrl = driver.getCurrentUrl();
 				Assert.assertEquals(actualUrl, expectedUrl);
 				Assert.assertTrue(true);
@@ -221,12 +232,12 @@ public class LoginTest {
 		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
 		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
 
-		username.sendKeys("");
-		password.sendKeys("");
+		username.sendKeys(super.getinvaliduser());
+		password.sendKeys(super.getinvalidpass());
 
 		login.isEnabled();
 
-		String expectedUrl = "https://zntral.net/session/login";
+		String expectedUrl = "https://dev.zntral.net/session/login";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
 	}

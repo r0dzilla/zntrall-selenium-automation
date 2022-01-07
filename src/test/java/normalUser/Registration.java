@@ -1,4 +1,4 @@
-package test;
+package normalUser;
 import static org.testng.Assert.assertFalse;
 
 import java.net.MalformedURLException;
@@ -31,8 +31,10 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import normalUserInputData.RegistrationInfoData;
 
-public class Registration {
+
+public class Registration extends RegistrationInfoData {
 
 	//Opening browser with the given URL and navigate to Registration Page
 
@@ -56,7 +58,7 @@ public class Registration {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-		
+
 		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
 			DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setBrowserName(myBrowser);
@@ -76,7 +78,7 @@ public class Registration {
 			driver = new RemoteWebDriver(new URL(hubLink),options);
 
 		}
-		
+
 		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
 			DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setPlatform(Platform.LINUX);
@@ -87,8 +89,8 @@ public class Registration {
 		}
 
 	}
-	
-	
+
+
 	@BeforeSuite
 	public static void beforeSuit() {
 
@@ -107,11 +109,8 @@ public class Registration {
 	public void openBrowser() throws InterruptedException {
 
 		driver.manage().deleteAllCookies();
-
-		driver.get("https://zntral.net/session/login");
+		driver.get("https://dev.zntral.net/session/login");
 		driver.manage().window().maximize();
-		//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
 		WebElement signUpButton = driver.findElement(By.xpath("//span[normalize-space()='Create Account']"));
 		signUpButton.click(); 
 		Thread.sleep(3000);
@@ -137,16 +136,16 @@ public class Registration {
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div/div/div/div/div/form[@novalidate='novalidate']/div[1]/div[1]/div[1]/div[1]/input[1]")));
-		firstName.sendKeys("Test");
+		firstName.sendKeys(super.getfirstName());
 
 		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div//div//div//div[2]//div[1]//div[1]//div[1]//input[1]")));
-		LastName.sendKeys("Site");
+		LastName.sendKeys(super.getlastName());
 
 		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[3]//div[1]//div[1]//div[1]//input[1]")));
-		email.sendKeys("test2221@gmail.com");
+		email.sendKeys(super.getemail());
 
 		WebElement verifiedemail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[4]//div[1]//div[1]//div[1]//input[1]")));
-		verifiedemail.sendKeys("test2221@gmail.com");
+		verifiedemail.sendKeys(super.getverifiedemail());
 
 		WebElement checkmark = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-input--selection-controls v-input--radio-group v-input--radio-group--column']//div[2]//div[1]//div[1]")));
 		checkmark.click();
@@ -160,7 +159,7 @@ public class Registration {
 		signUp.click();
 		Thread.sleep(10000);
 
-		String expectedUrl = "https://zntral.net/session/login";
+		String expectedUrl = "https://dev.zntral.net/session/login";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
 
@@ -175,16 +174,16 @@ public class Registration {
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div/div/div/div/div/form[@novalidate='novalidate']/div[1]/div[1]/div[1]/div[1]/input[1]")));
-		firstName.sendKeys("fgggfggfgfgfgfgfgfgfgfgfg");
+		firstName.sendKeys(super.getinvalidfirstName());
 
 		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div//div//div//div[2]//div[1]//div[1]//div[1]//input[1]")));
-		LastName.sendKeys("Site");
+		LastName.sendKeys(super.getlastName());
 
 		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[3]//div[1]//div[1]//div[1]//input[1]")));
-		email.sendKeys("test2221@gmail.com");
+		email.sendKeys(super.getemail());
 
 		WebElement verifiedemail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[4]//div[1]//div[1]//div[1]//input[1]")));
-		verifiedemail.sendKeys("test2221@gmail.com");
+		verifiedemail.sendKeys(super.getverifiedemail());
 
 		WebElement checkmark = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-input--selection-controls v-input--radio-group v-input--radio-group--column']//div[2]//div[1]//div[1]")));
 		checkmark.click();
@@ -199,7 +198,7 @@ public class Registration {
 		try {
 			signUp.click();
 			Thread.sleep(5000);
-			String expectedUrl = "https://zntral.net/session/login";
+			String expectedUrl = "https://dev.zntral.net/session/login";
 			String actualUrl = driver.getCurrentUrl();
 			Assert.assertEquals(actualUrl, expectedUrl);
 		}
@@ -227,7 +226,7 @@ public class Registration {
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
 				Thread.sleep(2000);
-				String expectedURL = "https://zntral.net/session/sign-up";
+				String expectedURL = "https://dev.zntral.net/session/sign-up";
 				String actualURL = driver.getCurrentUrl();
 				Assert.assertEquals(actualURL, expectedURL);
 			}
@@ -243,16 +242,16 @@ public class Registration {
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div/div/div/div/div/form[@novalidate='novalidate']/div[1]/div[1]/div[1]/div[1]/input[1]")));
-		firstName.sendKeys("TEst");
+		firstName.sendKeys(super.getfirstName());
 
 		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div//div//div//div[2]//div[1]//div[1]//div[1]//input[1]")));
-		LastName.sendKeys("fhfghdfghgdhfhfghfhfhggh");
+		LastName.sendKeys(super.getinvalidlastName());
 
 		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[3]//div[1]//div[1]//div[1]//input[1]")));
-		email.sendKeys("test2221@gmail.com");
+		email.sendKeys(super.getemail());
 
 		WebElement verifiedemail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[4]//div[1]//div[1]//div[1]//input[1]")));
-		verifiedemail.sendKeys("test2221@gmail.com");
+		verifiedemail.sendKeys(super.getverifiedemail());
 
 		WebElement checkmark = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-input--selection-controls v-input--radio-group v-input--radio-group--column']//div[2]//div[1]//div[1]")));
 		checkmark.click();
@@ -268,7 +267,7 @@ public class Registration {
 		try {
 			signUp.click();
 			Thread.sleep(5000);
-			String expectedUrl = "https://zntral.net/session/login";
+			String expectedUrl = "https://dev.zntral.net/session/login";
 			String actualUrl = driver.getCurrentUrl();
 			Assert.assertEquals(actualUrl, expectedUrl);
 		}
@@ -296,7 +295,7 @@ public class Registration {
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
 				Thread.sleep(2000);
-				String expectedURL = "https://zntral.net/session/sign-up";
+				String expectedURL = "https://dev.zntral.net/session/sign-up";
 				String actualURL = driver.getCurrentUrl();
 				Assert.assertEquals(actualURL, expectedURL);
 			}
@@ -313,16 +312,16 @@ public class Registration {
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div/div/div/div/div/form[@novalidate='novalidate']/div[1]/div[1]/div[1]/div[1]/input[1]")));
-		firstName.sendKeys("TEst");
+		firstName.sendKeys(super.getfirstName());
 
 		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div//div//div//div[2]//div[1]//div[1]//div[1]//input[1]")));
-		LastName.sendKeys("testttt");
+		LastName.sendKeys(super.getlastName());
 
 		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[3]//div[1]//div[1]//div[1]//input[1]")));
-		email.sendKeys("test24221@gmail.com");
+		email.sendKeys(super.getinvalidemail());
 
 		WebElement verifiedemail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[4]//div[1]//div[1]//div[1]//input[1]")));
-		verifiedemail.sendKeys("test2221@gmail.com");
+		verifiedemail.sendKeys(super.getverifiedemail());
 
 		WebElement checkmark = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-input--selection-controls v-input--radio-group v-input--radio-group--column']//div[2]//div[1]//div[1]")));
 		checkmark.click();
@@ -338,7 +337,7 @@ public class Registration {
 		try {
 			signUp.click();
 			Thread.sleep(5000);
-			String expectedUrl = "https://zntral.net/session/login";
+			String expectedUrl = "https://dev.zntral.net/session/login";
 			String actualUrl = driver.getCurrentUrl();
 			Assert.assertEquals(actualUrl, expectedUrl);
 		}
@@ -373,7 +372,7 @@ public class Registration {
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
 				Thread.sleep(2000);
-				String expectedURL = "https://zntral.net/session/sign-up";
+				String expectedURL = "https://dev.zntral.net/session/sign-up";
 				String actualURL = driver.getCurrentUrl();
 				Assert.assertEquals(actualURL, expectedURL);
 			}
