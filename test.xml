@@ -4,11 +4,8 @@
 
 	
 	<test name="Super Admin">
-		<parameter name="myBrowser" value="chrome" />
-		<parameter name="myOS" value="windows" />
-		<parameter name="hubLink" value="http://192.168.31.17:4444/wd/hub" />
+		<parameter name="Browser" value="chrome" />
 		<classes>
-			<class name="superAdmin.Clients"></class>
 			<class name="superAdmin.Login"></class>
 			
 		</classes>

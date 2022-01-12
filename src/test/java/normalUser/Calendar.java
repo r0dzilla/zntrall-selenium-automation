@@ -23,61 +23,27 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import browser.OpenBrowser;
 import normalUserInputData.CalendarInfoData;
 
-public class Calendar extends CalendarInfoData {
+public class Calendar extends OpenBrowser{
 
 	public static String env = "Test";
 	public static String testSuiteName = "Test Suit 6 -- Calendar";
-
-	public static RemoteWebDriver driver = null;
 	WebDriver driver2;
-	@Parameters({"myBrowser", "myOS", "hubLink"})
-
+	public static WebDriver driver = null;
+	@Parameters({"Browser"})
 
 	@BeforeTest
-	public static void setup(String myBrowser, String myOS, String hubLink) throws MalformedURLException {
+	public void setup(String Browser) throws MalformedURLException {
 
-		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("windows"))){
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.WINDOWS);
-			ChromeOptions options = new ChromeOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
+		if((Browser.equalsIgnoreCase("chrome"))) {
+			driver = start(Browser);
 		}
-
-		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.LINUX);
-			ChromeOptions options = new ChromeOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
+		
+		if((Browser.equalsIgnoreCase("firefox"))) {
+			driver = start(Browser);
 		}
-
-		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("windows"))) {
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.WINDOWS);
-			FirefoxOptions options = new FirefoxOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
-
-		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setPlatform(Platform.LINUX);
-			FirefoxOptions options = new FirefoxOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
-
-
 
 
 	}
@@ -118,8 +84,8 @@ public class Calendar extends CalendarInfoData {
 		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
 		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
 
-		String user = super.getUser();
-		String pass = super.getPass();
+		String user = CalendarInfoData.user;
+		String pass = CalendarInfoData.pass;
 
 		username.sendKeys(user);
 		password.sendKeys(pass);
@@ -173,7 +139,7 @@ public class Calendar extends CalendarInfoData {
 		WebElement allDay = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'All day')]")));
 		allDay.click();
 		WebElement description = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-text-field v-text-field--is-booted']//input[@type='text']")));
-		String desc = super.getdesc();
+		String desc = CalendarInfoData.desc;
 		description.sendKeys(desc);
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
 		save.click();
@@ -239,7 +205,7 @@ public class Calendar extends CalendarInfoData {
 		WebElement selectPatient = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Sabbir-Test Info')]")));
 		selectPatient.click();
 		WebElement description = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-text-field v-text-field--is-booted']//input[@type='text']")));
-		String desc = super.getdesc();
+		String desc = CalendarInfoData.desc;
 		description.sendKeys(desc);
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
 		save.click();

@@ -23,61 +23,32 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import browser.OpenBrowser;
 import normalUserInputData.LogoutInfoData;
 
-public class Logout extends LogoutInfoData{
+public class Logout extends OpenBrowser{
 
 	public static String env = "Test";
 	public static String testSuiteName = "Test Suit 10 -- Logout";
-
-	public static RemoteWebDriver driver = null;
 	WebDriver driver2;
-	@Parameters({"myBrowser", "myOS", "hubLink"})
-
+	public static WebDriver driver = null;
+	@Parameters({"Browser"})
 
 	@BeforeTest
-	public static void setup(String myBrowser, String myOS, String hubLink) throws MalformedURLException {
+	public void setup(String Browser) throws MalformedURLException {
 
-		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("windows"))){
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.WINDOWS);
-			ChromeOptions options = new ChromeOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
+		if((Browser.equalsIgnoreCase("chrome"))) {
+			driver = start(Browser);
 		}
 		
-		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.LINUX);
-			ChromeOptions options = new ChromeOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
+		if((Browser.equalsIgnoreCase("firefox"))) {
+			driver = start(Browser);
 		}
 
-		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("windows"))) {
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.WINDOWS);
-			FirefoxOptions options = new FirefoxOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
 
-		}
-		
-		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setPlatform(Platform.LINUX);
-			FirefoxOptions options = new FirefoxOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
-		
 	}
+	
+	
 	@BeforeSuite
 	public static void beforeSuit() {
 
@@ -112,8 +83,8 @@ public class Logout extends LogoutInfoData{
 		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
 		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
 
-		String user = super.getUser();
-		String pass = super.getPass();
+		String user = LogoutInfoData.user;
+		String pass = LogoutInfoData.pass;
 
 		username.sendKeys(user);
 		password.sendKeys(pass);

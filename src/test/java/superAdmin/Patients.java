@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -25,61 +26,33 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import browser.OpenBrowser;
 import superAdminInputData.PatientsInfoData;
 
-public class Patients extends PatientsInfoData{
+public class Patients extends OpenBrowser {
 
 	public static String env = "Test for Super Admin";
 	public static String testSuiteName = "Test Suit 5 -- Patients";
 	public String name_text="";
 
-	public static RemoteWebDriver driver = null;
-	@Parameters({"myBrowser", "myOS", "hubLink"})
-
+	public static WebDriver driver = null;
+	@Parameters({"Browser"})
 
 	@BeforeTest
-	public static void setup(String myBrowser, String myOS, String hubLink) throws MalformedURLException {
+	public void setup(String Browser) throws MalformedURLException {
 
-		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("windows"))){
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.WINDOWS);
-			ChromeOptions options = new ChromeOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
+		if((Browser.equalsIgnoreCase("chrome"))) {
+			driver = start(Browser);
+		}
+		
+		if((Browser.equalsIgnoreCase("firefox"))) {
+			driver = start(Browser);
 		}
 
-		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.LINUX);
-			ChromeOptions options = new ChromeOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
-
-		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("windows"))) {
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.WINDOWS);
-			FirefoxOptions options = new FirefoxOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
-
-		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setPlatform(Platform.LINUX);
-			FirefoxOptions options = new FirefoxOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
 
 	}
+	
+	
 	@BeforeSuite
 	public static void beforeSuit() {
 
@@ -140,8 +113,8 @@ public class Patients extends PatientsInfoData{
 		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
 		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
 
-		String user = super.getUser();
-		String pass = super.getPass();
+		String user = PatientsInfoData.user;
+		String pass = PatientsInfoData.pass;
 
 		username.sendKeys(user);
 		password.sendKeys(pass);
@@ -181,7 +154,7 @@ public class Patients extends PatientsInfoData{
 		checkPatientList();
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		String searchLocation = super.getsearchLocation();
+		String searchLocation = PatientsInfoData.searchLocation;
 		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-text-field__slot']//input[@type='text']")));
 		search.sendKeys(searchLocation);
 		Thread.sleep(3000);

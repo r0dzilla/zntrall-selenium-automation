@@ -6,6 +6,7 @@ import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -23,59 +24,28 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import browser.OpenBrowser;
 import normalUserInputData.LoginTestInfoData;
 
-public class LoginTest extends LoginTestInfoData {
+public class LoginTest extends OpenBrowser {
 
 	public static String env = "Test";
 	public static String testSuiteName = "Test Suit 2 -- Login";
-
-	public static RemoteWebDriver driver = null;
-	@Parameters({"myBrowser", "myOS", "hubLink"})
-
+	public static WebDriver driver = null;
+	@Parameters({"Browser"})
 
 	@BeforeTest
-	public static void setup(String myBrowser, String myOS, String hubLink) throws MalformedURLException {
+	public void setup(String Browser) throws MalformedURLException {
 
-		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("windows"))){
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.WINDOWS);
-			ChromeOptions options = new ChromeOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
-
-		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.LINUX);
-			ChromeOptions options = new ChromeOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
-
-		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("windows"))) {
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.WINDOWS);
-			FirefoxOptions options = new FirefoxOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
-
-		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setPlatform(Platform.LINUX);
-			FirefoxOptions options = new FirefoxOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
+		if((Browser.equalsIgnoreCase("chrome"))) {
+			driver = start(Browser);
 		}
 		
+		if((Browser.equalsIgnoreCase("firefox"))) {
+			driver = start(Browser);
+		}
+
+
 	}
 
 
@@ -132,8 +102,8 @@ public class LoginTest extends LoginTestInfoData {
 		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
 		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
 
-		String user = super.getUser();
-		String pass = super.getPass();
+		String user = LoginTestInfoData.user;
+		String pass = LoginTestInfoData.pass;
 
 		username.sendKeys(user);
 		password.sendKeys(pass);
@@ -159,8 +129,8 @@ public class LoginTest extends LoginTestInfoData {
 		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
 		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
 
-		username.sendKeys(super.getinvaliduser());
-		password.sendKeys(super.getPass());
+		username.sendKeys(LoginTestInfoData.invaliduser);
+		password.sendKeys(LoginTestInfoData.pass);
 
 		try {
 			login.click();
@@ -196,8 +166,8 @@ public class LoginTest extends LoginTestInfoData {
 
 		WebElement checkbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input--selection-controls__ripple']")));
 
-		username.sendKeys(super.getUser());
-		password.sendKeys(super.getinvalidpass());
+		username.sendKeys(LoginTestInfoData.user);
+		password.sendKeys(LoginTestInfoData.invalidpass);
 
 		checkbox.click();
 
@@ -232,8 +202,8 @@ public class LoginTest extends LoginTestInfoData {
 		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
 		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
 
-		username.sendKeys(super.getinvaliduser());
-		password.sendKeys(super.getinvalidpass());
+		username.sendKeys(LoginTestInfoData.invaliduser);
+		password.sendKeys(LoginTestInfoData.invalidpass);
 
 		login.isEnabled();
 

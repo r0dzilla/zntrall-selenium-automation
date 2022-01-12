@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -25,57 +26,26 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import browser.OpenBrowser;
 import superAdminInputData.UsersInfoData;
 
 
-public class Users extends UsersInfoData {
+public class Users extends OpenBrowser {
 
 	public static String env = "Test for Super Admin";
 	public static String testSuiteName = "Test Suit 3 -- Users";
-	public static RemoteWebDriver driver = null;
-	@Parameters({"myBrowser", "myOS", "hubLink"})
-
+	public static WebDriver driver = null;
+	@Parameters({"Browser"})
 
 	@BeforeTest
-	public static void setup(String myBrowser, String myOS, String hubLink) throws MalformedURLException {
+	public void setup(String Browser) throws MalformedURLException {
 
-		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("windows"))){
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.WINDOWS);
-			ChromeOptions options = new ChromeOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
+		if((Browser.equalsIgnoreCase("chrome"))) {
+			driver = start(Browser);
 		}
-
-		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.LINUX);
-			ChromeOptions options = new ChromeOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
-
-		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("windows"))) {
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.WINDOWS);
-			FirefoxOptions options = new FirefoxOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
-
-		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setPlatform(Platform.LINUX);
-			FirefoxOptions options = new FirefoxOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
+		
+		if((Browser.equalsIgnoreCase("firefox"))) {
+			driver = start(Browser);
 		}
 
 
@@ -129,8 +99,8 @@ public class Users extends UsersInfoData {
 		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
 		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
 
-		String user = super.getUser();
-		String pass = super.getPass();
+		String user = UsersInfoData.user;
+		String pass = UsersInfoData.pass;
 
 		username.sendKeys(user);
 		password.sendKeys(pass);
@@ -240,7 +210,7 @@ public class Users extends UsersInfoData {
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div/div/main[@data-booted='true']/div/div/div/div/div/div/div/div/div/div/div/div/div/input[1]")));
 
-		String searchUser = super.getsearchUser();
+		String searchUser = UsersInfoData.searchUser;
 		search.sendKeys(searchUser);
 		WebElement firstRow = driver.findElement(By.xpath("//table[1]/tbody[1]/tr[1]/td[1]"));	
 		String actualText = firstRow.getText();
@@ -573,11 +543,11 @@ public class Users extends UsersInfoData {
 	public void userGroup() throws InterruptedException {
 		checkUserList();
 
-		String name = super.getadmin();
-		String acronym = super.getacronym();
-		String viewTitle = super.getviewTitle();
-		String viewAcronym = super.getviewAcronym();
-		String desc = super.getdescription();
+		String name = UsersInfoData.admin;
+		String acronym = UsersInfoData.acronym;
+		String viewTitle = UsersInfoData.viewTitle;
+		String viewAcronym = UsersInfoData.viewAcronym;
+		String desc = UsersInfoData.description;
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//i[normalize-space()='add']")));

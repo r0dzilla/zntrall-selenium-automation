@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -27,60 +28,29 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import browser.OpenBrowser;
 import superAdminInputData.LocationInfoData;
 
-public class Locations extends LocationInfoData{
+public class Locations extends OpenBrowser{
 
 	public static String env = "Test for Super Admin";
 	public static String testSuiteName = "Test Suit 4 -- Locations";
-	public static RemoteWebDriver driver = null;
-	@Parameters({"myBrowser", "myOS", "hubLink"})
-
+	public static WebDriver driver = null;
+	@Parameters({"Browser"})
 
 	@BeforeTest
-	public static void setup(String myBrowser, String myOS, String hubLink) throws MalformedURLException {
+	public void setup(String Browser) throws MalformedURLException {
 
-		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("windows"))){
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.WINDOWS);
-			ChromeOptions options = new ChromeOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
+		if((Browser.equalsIgnoreCase("chrome"))) {
+			driver = start(Browser);
+		}
+		
+		if((Browser.equalsIgnoreCase("firefox"))) {
+			driver = start(Browser);
 		}
 
-		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.LINUX);
-			ChromeOptions options = new ChromeOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
-
-		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("windows"))) {
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.WINDOWS);
-			FirefoxOptions options = new FirefoxOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
-
-		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setPlatform(Platform.LINUX);
-			FirefoxOptions options = new FirefoxOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
 
 	}
-
 	@BeforeSuite
 	public static void beforeSuit() {
 
@@ -129,8 +99,8 @@ public class Locations extends LocationInfoData{
 		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
 		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
 
-		String user = super.getUser();
-		String pass = super.getPass();
+		String user = LocationInfoData.user;
+		String pass = LocationInfoData.pass;
 
 		username.sendKeys(user);
 		password.sendKeys(pass);
@@ -170,7 +140,7 @@ public class Locations extends LocationInfoData{
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		String searchLocation = super.getsearchLocation();
+		String searchLocation = LocationInfoData.searchLocation;
 
 		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-text-field__slot']//input[@type='text']")));
 		search.sendKeys(searchLocation);
@@ -203,7 +173,7 @@ public class Locations extends LocationInfoData{
 	public void patientFromLocation() throws InterruptedException {
 		checkLocationList();
 
-		String searchLocation = super.getsearchLocation();
+		String searchLocation = LocationInfoData.searchLocation;
 
 		WebElement search = driver.findElement(By.xpath("//div[@class='v-text-field__slot']//input[@type='text']"));
 		search.sendKeys(searchLocation);
@@ -228,7 +198,7 @@ public class Locations extends LocationInfoData{
 	public void contactFromLocation() throws InterruptedException {
 		checkLocationList();
 
-		String searchLocation = super.getsearchLocation();
+		String searchLocation = LocationInfoData.searchLocation;
 		WebElement search = driver.findElement(By.xpath("//div[@class='v-text-field__slot']//input[@type='text']"));
 		search.sendKeys(searchLocation);
 		WebElement firstRow = driver.findElement(By.xpath("//table[1]/tbody[1]/tr[1]/td[2]/span[1]"));
@@ -260,8 +230,8 @@ public class Locations extends LocationInfoData{
 
 	@Test(priority = 8)
 	public void updateTypes() throws InterruptedException {
-		String editName = super.geteditName();
-		String editAcronym = super.geteditAcronym();
+		String editName = LocationInfoData.editName;
+		String editAcronym = LocationInfoData.editAcronym;
 
 		locationTypes();
 		WebElement typeInfo = driver.findElement(By.xpath("//body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[1]"));
@@ -296,8 +266,8 @@ public class Locations extends LocationInfoData{
 	//Add new Location Type
 	@Test(priority = 9)
 	public void addNewLocationType() throws InterruptedException {
-		String addName = super.getName();
-		String addAcronym = super.getAcronym();
+		String addName = LocationInfoData.name;
+		String addAcronym = LocationInfoData.acronym;
 
 		locationTypes();
 		WebElement addNewType = driver.findElement(By.xpath("//i[normalize-space()='add']"));
@@ -331,8 +301,8 @@ public class Locations extends LocationInfoData{
 	@Test(priority = 9)
 	public void resetButton() throws InterruptedException {
 
-		String addName = super.getName();
-		String addAcronym = super.getAcronym();
+		String addName = LocationInfoData.name;
+		String addAcronym = LocationInfoData.acronym;
 
 		locationTypes();
 		WebElement addNewType = driver.findElement(By.xpath("//i[normalize-space()='add']"));
@@ -362,8 +332,8 @@ public class Locations extends LocationInfoData{
 	@Test(priority = 10)
 	public void cancelButton() throws InterruptedException {
 
-		String addName = super.getName();
-		String addAcronym = super.getAcronym();
+		String addName = LocationInfoData.name;
+		String addAcronym = LocationInfoData.acronym;
 
 		locationTypes();
 		WebElement addNewType = driver.findElement(By.xpath("//i[normalize-space()='add']"));

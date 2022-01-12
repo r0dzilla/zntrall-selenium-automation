@@ -7,6 +7,7 @@ import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -24,58 +25,28 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import browser.OpenBrowser;
 import superAdminInputData.ClientsInfoData;
 
-public class Clients extends ClientsInfoData {
+public class Clients extends OpenBrowser{
 
 	public static String env = "Test for Super Admin";
 	public static String testSuiteName = "Test Suit 2 -- Clients";
 
-	public static RemoteWebDriver driver = null;
-	@Parameters({"myBrowser", "myOS", "hubLink"})
-
+	public static WebDriver driver = null;
+	@Parameters({"Browser"})
 
 	@BeforeTest
-	public static void setup(String myBrowser, String myOS, String hubLink) throws MalformedURLException {
+	public void setup(String Browser) throws MalformedURLException {
 
-		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("windows"))){
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.WINDOWS);
-			ChromeOptions options = new ChromeOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
+		if((Browser.equalsIgnoreCase("chrome"))) {
+			driver = start(Browser);
+		}
+		
+		if((Browser.equalsIgnoreCase("firefox"))) {
+			driver = start(Browser);
 		}
 
-		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.LINUX);
-			ChromeOptions options = new ChromeOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
-
-		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("windows"))) {
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.WINDOWS);
-			FirefoxOptions options = new FirefoxOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
-
-		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setPlatform(Platform.LINUX);
-			FirefoxOptions options = new FirefoxOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
 
 	}
 
@@ -124,8 +95,8 @@ public class Clients extends ClientsInfoData {
 		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
 		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
 
-		String user = super.getUser();
-		String pass = super.getPass();
+		String user = ClientsInfoData.user;
+		String pass = ClientsInfoData.pass;
 
 		username.sendKeys(user);
 		password.sendKeys(pass);
@@ -299,8 +270,8 @@ public class Clients extends ClientsInfoData {
 	@Test(priority = 11)
 	public void addNewClientGroup() throws InterruptedException {
 
-		String clientGroupName = super.getName();
-		String clientGroupAcronym = super.getAcronym();
+		String clientGroupName = ClientsInfoData.name;
+		String clientGroupAcronym = ClientsInfoData.acronym;
 
 		checkClientList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -331,8 +302,8 @@ public class Clients extends ClientsInfoData {
 	@Test(priority = 12)
 	public void editClientGroup() throws InterruptedException {
 
-		String editClientGroupName = super.geteditName();
-		String editClientGroupAcronym = super.geteditAcronym();
+		String editClientGroupName = ClientsInfoData.editName;
+		String editClientGroupAcronym = ClientsInfoData.editAcronym;
 
 		checkClientList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));

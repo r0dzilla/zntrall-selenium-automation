@@ -27,58 +27,27 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import browser.OpenBrowser;
 import normalUserInputData.ContactsInfoData;
 
-public class Contacts extends ContactsInfoData {
+public class Contacts extends OpenBrowser {
 	public static String env = "Test";
 	public static String testSuiteName = "Test Suit 7 -- Contacts";
-
-	public static RemoteWebDriver driver = null;
 	WebDriver driver2;
-	@Parameters({"myBrowser", "myOS", "hubLink"})
-
+	public static WebDriver driver = null;
+	@Parameters({"Browser"})
 
 	@BeforeTest
-	public static void setup(String myBrowser, String myOS, String hubLink) throws MalformedURLException {
+	public void setup(String Browser) throws MalformedURLException {
 
-		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("windows"))){
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.WINDOWS);
-			ChromeOptions options = new ChromeOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
+		if((Browser.equalsIgnoreCase("chrome"))) {
+			driver = start(Browser);
+		}
+		
+		if((Browser.equalsIgnoreCase("firefox"))) {
+			driver = start(Browser);
 		}
 
-		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.LINUX);
-			ChromeOptions options = new ChromeOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
-
-		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("windows"))) {
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.WINDOWS);
-			FirefoxOptions options = new FirefoxOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
-
-		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setPlatform(Platform.LINUX);
-			FirefoxOptions options = new FirefoxOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
 
 	}
 
@@ -118,8 +87,8 @@ public class Contacts extends ContactsInfoData {
 		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
 		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
 
-		String user = super.getUser();
-		String pass = super.getPass();
+		String user = ContactsInfoData.user;
+		String pass = ContactsInfoData.pass;
 
 		username.sendKeys(user);
 		password.sendKeys(pass);
@@ -159,7 +128,7 @@ public class Contacts extends ContactsInfoData {
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-text-field__slot']//input[@type='text']")));
-		String searchUser = super.getsearch();
+		String searchUser = ContactsInfoData.search;
 		search.sendKeys(searchUser);
 		WebElement firstRow = driver.findElement(By.xpath("//tbody/tr[1]/td[1]"));	
 		String actualText = firstRow.getText();
@@ -187,12 +156,12 @@ public class Contacts extends ContactsInfoData {
 	public void validContactData() throws InterruptedException {
 		addContact();
 
-		String first = super.getfirstName();
-		String last = super.getlastName();
-		String phn = super.getphone();
-		String mail = super.getemail();
-		String title2 = super.gettitle();
-		String note2 = super.getnote();
+		String first = ContactsInfoData.firstName;
+		String last = ContactsInfoData.lastName;
+		String phn = ContactsInfoData.phone;
+		String mail = ContactsInfoData.email;
+		String title2 = ContactsInfoData.title;
+		String note2 = ContactsInfoData.note;
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
@@ -244,12 +213,12 @@ public class Contacts extends ContactsInfoData {
 	public void emptyContactData() throws InterruptedException {
 		addContact();
 
-		String first = super.getfirstName();
-		String last = super.getlastName();
-		String phn = super.getphone();
-		String mail = super.getemail();
-		String title2 = super.gettitle();
-		String note2 = super.getnote();
+		String first = ContactsInfoData.emptyfirstName;
+		String last = ContactsInfoData.emptylastName;
+		String phn = ContactsInfoData.emptyphone;
+		String mail = ContactsInfoData.emptyemail;
+		String title2 = ContactsInfoData.emptytitle;
+		String note2 = ContactsInfoData.emptynote;
 
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -322,7 +291,7 @@ public class Contacts extends ContactsInfoData {
 			email.sendKeys(Keys.BACK_SPACE);
 		}
 
-		String invalidmail = super.getinvalidemail();
+		String invalidmail = ContactsInfoData.invalidemail;
 		email.sendKeys(invalidmail);
 
 		note.sendKeys("");	
@@ -381,8 +350,8 @@ public class Contacts extends ContactsInfoData {
 	public void editContact() throws InterruptedException {
 		contactList();
 
-		String editphone = super.geteditphone();
-		String edittitle = super.getedittitle();
+		String editphone = ContactsInfoData.editphone;
+		String edittitle = ContactsInfoData.edittitle;
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 

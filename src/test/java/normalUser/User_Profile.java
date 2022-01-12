@@ -24,57 +24,25 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import browser.OpenBrowser;
 import normalUserInputData.User_ProfileInfoData;
 
-public class User_Profile extends User_ProfileInfoData {
+public class User_Profile extends OpenBrowser {
 	public static String env = "Test";
 	public static String testSuiteName = "Test Suit 9 -- User Profile";
-
-	public static RemoteWebDriver driver = null;
 	WebDriver driver2;
-	@Parameters({"myBrowser", "myOS", "hubLink"})
-
+	public static WebDriver driver = null;
+	@Parameters({"Browser"})
 
 	@BeforeTest
-	public static void setup(String myBrowser, String myOS, String hubLink) throws MalformedURLException {
+	public void setup(String Browser) throws MalformedURLException {
 
-		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("windows"))){
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.WINDOWS);
-			ChromeOptions options = new ChromeOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
+		if((Browser.equalsIgnoreCase("chrome"))) {
+			driver = start(Browser);
 		}
-
-		if((myBrowser.equalsIgnoreCase("chrome")) && (myOS.equalsIgnoreCase("linux"))){
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.LINUX);
-			ChromeOptions options = new ChromeOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
-
-		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("windows"))) {
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setBrowserName(myBrowser);
-			caps.setPlatform(Platform.WINDOWS);
-			FirefoxOptions options = new FirefoxOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
-		}
-
-		if((myBrowser.equalsIgnoreCase("firefox")) && (myOS.equalsIgnoreCase("linux"))) {
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setPlatform(Platform.LINUX);
-			FirefoxOptions options = new FirefoxOptions();
-			options.merge(caps);
-			driver = new RemoteWebDriver(new URL(hubLink),options);
-
+		
+		if((Browser.equalsIgnoreCase("firefox"))) {
+			driver = start(Browser);
 		}
 
 
@@ -105,7 +73,7 @@ public class User_Profile extends User_ProfileInfoData {
 		Thread.sleep(3000);
 	}
 
-	//login
+		//login
 
 	@Test(priority = 1)
 	public void loginUser() throws InterruptedException {
@@ -116,8 +84,8 @@ public class User_Profile extends User_ProfileInfoData {
 		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
 		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
 
-		username.sendKeys(super.getUser());
-		password.sendKeys(super.getPass());
+		username.sendKeys(User_ProfileInfoData.user);
+		password.sendKeys(User_ProfileInfoData.pass);
 
 		login.click();
 		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
@@ -163,7 +131,7 @@ public class User_Profile extends User_ProfileInfoData {
 		while (!selectPhoneNumber.getAttribute("value").equals("")) {
 			selectPhoneNumber.sendKeys(Keys.BACK_SPACE);
 		}
-		selectPhoneNumber.sendKeys(super.getPhone());
+		selectPhoneNumber.sendKeys(User_ProfileInfoData.addPhone);
 		Thread.sleep(1000);
 
 		WebElement phoneNumberType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div[1]//div[2]//div[1]//div[1]//div[1]//div[1]//div[2]//div[1]//i[1]")));
@@ -257,11 +225,11 @@ public class User_Profile extends User_ProfileInfoData {
 		Thread.sleep(2000);
 
 		WebElement newEmail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[1]//input[1]")));
-		newEmail.sendKeys(super.getfirstMail());
+		newEmail.sendKeys(User_ProfileInfoData.firstMail);
 		Thread.sleep(1000);
 
 		WebElement confirmEmail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[3]//div[1]//div[1]//div[1]//input[1]")));
-		confirmEmail.sendKeys(super.getsecondMail());
+		confirmEmail.sendKeys(User_ProfileInfoData.secondMail);
 		Thread.sleep(1000);
 
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='v-btn__content'][normalize-space()='Submit']")));
@@ -325,27 +293,27 @@ public class User_Profile extends User_ProfileInfoData {
 		while (!streetAddress.getAttribute("value").equals("")) {
 			streetAddress.sendKeys(Keys.BACK_SPACE);
 		}
-		streetAddress.sendKeys(super.getstreetAddress());
+		streetAddress.sendKeys(User_ProfileInfoData.streetAddress);
 		Thread.sleep(1000);
 
 		WebElement unit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/form[1]/div[2]/div[1]/div[1]/div[1]/input[1]")));
-		unit.sendKeys(super.getunit());
+		unit.sendKeys(User_ProfileInfoData.unit);
 		Thread.sleep(1000);
 
 		WebElement zip = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/form[1]/div[3]/div[1]/div[1]/div[1]/input[1]")));
-		zip.sendKeys(super.getzip());
+		zip.sendKeys(User_ProfileInfoData.zip);
 		Thread.sleep(1000);
 
 		WebElement city = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/form[1]/div[4]/div[1]/div[1]/div[1]/input[1]")));
-		city.sendKeys(super.getcity());
+		city.sendKeys(User_ProfileInfoData.city);
 		Thread.sleep(1000);
 
 		WebElement state = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/form[1]/div[5]/div[1]/div[1]/div[1]/input[1]")));
-		state.sendKeys(super.getstate());
+		state.sendKeys(User_ProfileInfoData.state);
 		Thread.sleep(1000);
 
 		WebElement poBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/form[1]/div[6]/div[1]/div[1]/div[1]/input[1]")));
-		poBox.sendKeys(super.getpoBox());
+		poBox.sendKeys(User_ProfileInfoData.poBox);
 		Thread.sleep(1000);
 
 		WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='v-btn__content'][normalize-space()='Submit']")));
@@ -395,11 +363,11 @@ public class User_Profile extends User_ProfileInfoData {
 		Thread.sleep(1000);
 
 		WebElement currentPass = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[1]//input[1]")));
-		currentPass.sendKeys(super.getcurrentPass());
+		currentPass.sendKeys(User_ProfileInfoData.currentPass);
 		Thread.sleep(1000);
 
 		WebElement newPass = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[3]//div[1]//div[1]//div[1]//input[1]")));
-		newPass.sendKeys(super.getnewPass());
+		newPass.sendKeys(User_ProfileInfoData.newPass);
 		Thread.sleep(1000);
 
 		WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Submit']")));

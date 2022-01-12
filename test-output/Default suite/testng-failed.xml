@@ -3,16 +3,20 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="normalUser.Locations">
+      <class name="superAdmin.Login">
         <methods>
-          <include name="search"/>
           <include name="openBrowser"/>
+          <include name="loginWithoutPassword"/>
+          <include name="invalidLoginInfo"/>
+          <include name="tearDown"/>
           <include name="beforeSuit"/>
           <include name="afterSuit"/>
           <include name="setup"/>
-          <include name="tearDown"/>
+          <include name="verifyLogin"/>
+          <include name="verifyElemntsOnPageTest"/>
+          <include name="loginWithoutUsername"/>
         </methods>
-      </class> <!-- normalUser.Locations -->
+      </class> <!-- superAdmin.Login -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
