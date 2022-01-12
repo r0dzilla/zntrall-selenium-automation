@@ -1,9 +1,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Parallel test suite" parallel="tests" thread-count="1">
+<suite name="Parallel test suite" parallel="classes" thread-count="1">
 
 	
-	<test name="Super Admin">
+	<test name="Firefox - Login">
+		<parameter name="Browser" value="firefox" />
+		<classes>
+			<class name="superAdmin.Login"></class>
+			
+		</classes>
+	</test>
+	
+	<test name="Chrome - Login">
 		<parameter name="Browser" value="chrome" />
 		<classes>
 			<class name="superAdmin.Login"></class>
