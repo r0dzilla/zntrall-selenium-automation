@@ -23,6 +23,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import NormalUserXpath.LogoutXpath;
 import browser.OpenBrowser;
 import normalUserInputData.LogoutInfoData;
 
@@ -79,9 +80,9 @@ public class Logout extends OpenBrowser{
 	@Test(priority = 1)
 	public void loginUser() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement username = driver.findElement(By.xpath("//input[@type='text']"));
-		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
-		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
+		WebElement username = driver.findElement(By.xpath(LogoutXpath.username));
+		WebElement password = driver.findElement(By.xpath(LogoutXpath.password));
+		WebElement login = driver.findElement(By.xpath(LogoutXpath.login));
 
 		String user = LogoutInfoData.user;
 		String pass = LogoutInfoData.pass;
@@ -90,8 +91,8 @@ public class Logout extends OpenBrowser{
 		password.sendKeys(pass);
 
 		login.click();
-		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
-		loginAs.click();
+//		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
+//		loginAs.click();
 		Thread.sleep(5000);
 
 		String expectedUrl = "https://dev.zntral.net/dashboard";
@@ -109,11 +110,11 @@ public class Logout extends OpenBrowser{
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement threeDotMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//i[@class='v-icon notranslate material-icons theme--dark']")));
+		WebElement threeDotMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LogoutXpath.threeDotMenu)));
 		threeDotMenu.click();
 		Thread.sleep(2000);
 
-		WebElement clickLogout = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Log Out']")));
+		WebElement clickLogout = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LogoutXpath.clickLogout)));
 		clickLogout.click();
 		Thread.sleep(3000);
 

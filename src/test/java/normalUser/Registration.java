@@ -31,6 +31,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import NormalUserXpath.RegistrationXpath;
 import browser.OpenBrowser;
 import normalUserInputData.RegistrationInfoData;
 
@@ -52,11 +53,10 @@ public class Registration extends OpenBrowser {
 		if((Browser.equalsIgnoreCase("chrome"))) {
 			driver = start(Browser);
 		}
-		
+
 		if((Browser.equalsIgnoreCase("firefox"))) {
 			driver = start(Browser);
 		}
-
 
 	}
 
@@ -81,7 +81,7 @@ public class Registration extends OpenBrowser {
 		driver.manage().deleteAllCookies();
 		driver.get("https://dev.zntral.net/session/login");
 		driver.manage().window().maximize();
-		WebElement signUpButton = driver.findElement(By.xpath("//span[normalize-space()='Create Account']"));
+		WebElement signUpButton = driver.findElement(By.xpath(RegistrationXpath.signUpButton));
 		signUpButton.click(); 
 		Thread.sleep(3000);
 	}
@@ -93,7 +93,7 @@ public class Registration extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement signUpTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class='mb-3']")));
+		WebElement signUpTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.signUpTitle)));
 		signUpTitle.isDisplayed();
 
 	}
@@ -105,27 +105,27 @@ public class Registration extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div/div/div/div/div/form[@novalidate='novalidate']/div[1]/div[1]/div[1]/div[1]/input[1]")));
+		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.firstName)));
 		firstName.sendKeys(RegistrationInfoData.firstName);
 
-		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div//div//div//div[2]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.LastName)));
 		LastName.sendKeys(RegistrationInfoData.lastName);
 
-		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[3]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.email)));
 		email.sendKeys(RegistrationInfoData.email);
 
-		WebElement verifiedemail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[4]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement verifiedemail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.verifiedemail)));
 		verifiedemail.sendKeys(RegistrationInfoData.verifiedemail);
 
-		WebElement checkmark = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-input--selection-controls v-input--radio-group v-input--radio-group--column']//div[2]//div[1]//div[1]")));
+		WebElement checkmark = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.checkmark)));
 		checkmark.click();
 		Thread.sleep(20000);
 
-		WebElement termsOfServices = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[7]//div[1]//div[1]//div[1]//div[1]")));
+		WebElement termsOfServices = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.termsOfServices)));
 		termsOfServices.click();
 		Thread.sleep(1000);
 
-		WebElement signUp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default primary']")));
+		WebElement signUp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.signUp)));
 		signUp.click();
 		Thread.sleep(10000);
 
@@ -143,27 +143,27 @@ public class Registration extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div/div/div/div/div/form[@novalidate='novalidate']/div[1]/div[1]/div[1]/div[1]/input[1]")));
+		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.firstName)));
 		firstName.sendKeys(RegistrationInfoData.invalidfirstName);
 
-		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div//div//div//div[2]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.LastName)));
 		LastName.sendKeys(RegistrationInfoData.lastName);
 
-		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[3]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.email)));
 		email.sendKeys(RegistrationInfoData.email);
 
-		WebElement verifiedemail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[4]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement verifiedemail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.verifiedemail)));
 		verifiedemail.sendKeys(RegistrationInfoData.verifiedemail);
 
-		WebElement checkmark = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-input--selection-controls v-input--radio-group v-input--radio-group--column']//div[2]//div[1]//div[1]")));
+		WebElement checkmark = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.checkmark2)));
 		checkmark.click();
 		Thread.sleep(20000);
 
-		WebElement termsOfServices = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[7]//div[1]//div[1]//div[1]//div[1]")));
+		WebElement termsOfServices = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.termsOfServices)));
 		termsOfServices.click();
 		Thread.sleep(1000);
 
-		WebElement signUp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Continue']")));
+		WebElement signUp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.signUp2)));
 
 		try {
 			signUp.click();
@@ -175,7 +175,7 @@ public class Registration extends OpenBrowser {
 		catch(Exception e) {
 
 			if(firstName.getAttribute("value").isEmpty()) {
-				WebElement userField = driver.findElement(By.xpath("//div[@class='v-messages__message']"));
+				WebElement userField = driver.findElement(By.xpath(RegistrationXpath.userField));
 				System.out.println(userField.getText());
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
@@ -183,7 +183,7 @@ public class Registration extends OpenBrowser {
 
 			}
 			else if(firstName.getAttribute("value").length() > 20) {
-				WebElement userField = driver.findElement(By.xpath("//div[@role='alert']"));
+				WebElement userField = driver.findElement(By.xpath(RegistrationXpath.alert));
 				System.out.println(userField.getText());
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
@@ -191,7 +191,7 @@ public class Registration extends OpenBrowser {
 			}
 			else {
 
-				WebElement userField = driver.findElement(By.xpath("//div[@role='alert']"));
+				WebElement userField = driver.findElement(By.xpath(RegistrationXpath.alert));
 				System.out.println(userField.getText());
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
@@ -211,27 +211,27 @@ public class Registration extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div/div/div/div/div/form[@novalidate='novalidate']/div[1]/div[1]/div[1]/div[1]/input[1]")));
+		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.firstName)));
 		firstName.sendKeys(RegistrationInfoData.firstName);
 
-		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div//div//div//div[2]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.LastName)));
 		LastName.sendKeys(RegistrationInfoData.invalidlastName);
 
-		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[3]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.email)));
 		email.sendKeys(RegistrationInfoData.email);
 
-		WebElement verifiedemail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[4]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement verifiedemail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.verifiedemail)));
 		verifiedemail.sendKeys(RegistrationInfoData.verifiedemail);
 
-		WebElement checkmark = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-input--selection-controls v-input--radio-group v-input--radio-group--column']//div[2]//div[1]//div[1]")));
+		WebElement checkmark = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.checkmark2)));
 		checkmark.click();
 		Thread.sleep(20000);
 
-		WebElement termsOfServices = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[7]//div[1]//div[1]//div[1]//div[1]")));
+		WebElement termsOfServices = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.termsOfServices)));
 		termsOfServices.click();
 		Thread.sleep(1000);
 
-		WebElement signUp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Continue']")));
+		WebElement signUp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.signUp2)));
 		Thread.sleep(2000);
 
 		try {
@@ -244,7 +244,7 @@ public class Registration extends OpenBrowser {
 		catch(Exception e) {
 
 			if(LastName.getAttribute("value").isEmpty()) {
-				WebElement userField = driver.findElement(By.xpath("//div[@class='v-messages__message']"));
+				WebElement userField = driver.findElement(By.xpath(RegistrationXpath.userField));
 				System.out.println(userField.getText());
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
@@ -252,7 +252,7 @@ public class Registration extends OpenBrowser {
 
 			}
 			else if(LastName.getAttribute("value").length() > 20) {
-				WebElement userField = driver.findElement(By.xpath("//div[@role='alert']"));
+				WebElement userField = driver.findElement(By.xpath(RegistrationXpath.alert));
 				System.out.println(userField.getText());
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
@@ -260,7 +260,7 @@ public class Registration extends OpenBrowser {
 			}
 			else {
 
-				WebElement userField = driver.findElement(By.xpath("//div[@role='alert']"));
+				WebElement userField = driver.findElement(By.xpath(RegistrationXpath.alert));
 				System.out.println(userField.getText());
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
@@ -281,27 +281,27 @@ public class Registration extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div/div/div/div/div/form[@novalidate='novalidate']/div[1]/div[1]/div[1]/div[1]/input[1]")));
+		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.firstName)));
 		firstName.sendKeys(RegistrationInfoData.firstName);
 
-		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div//div//div//div[2]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.LastName)));
 		LastName.sendKeys(RegistrationInfoData.lastName);
 
-		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[3]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.email)));
 		email.sendKeys(RegistrationInfoData.invalidemail);
 
-		WebElement verifiedemail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[4]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement verifiedemail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.verifiedemail)));
 		verifiedemail.sendKeys(RegistrationInfoData.verifiedemail);
 
-		WebElement checkmark = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-input--selection-controls v-input--radio-group v-input--radio-group--column']//div[2]//div[1]//div[1]")));
+		WebElement checkmark = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.checkmark2)));
 		checkmark.click();
 		Thread.sleep(20000);
 
-		WebElement termsOfServices = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[7]//div[1]//div[1]//div[1]//div[1]")));
+		WebElement termsOfServices = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.termsOfServices)));
 		termsOfServices.click();
 		Thread.sleep(1000);
 
-		WebElement signUp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Continue']")));
+		WebElement signUp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.signUp2)));
 		Thread.sleep(2000);
 
 		try {
@@ -314,7 +314,7 @@ public class Registration extends OpenBrowser {
 		catch(Exception e) {
 
 			if(email.getAttribute("value").isEmpty()) {
-				WebElement userField = driver.findElement(By.xpath("//div[@class='v-messages__message']"));
+				WebElement userField = driver.findElement(By.xpath(RegistrationXpath.userField));
 				System.out.println(userField.getText());
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
@@ -322,14 +322,14 @@ public class Registration extends OpenBrowser {
 
 			}
 			else if(email.getAttribute("value").startsWith("@")) {
-				WebElement userField = driver.findElement(By.xpath("//div[@role='alert']"));
+				WebElement userField = driver.findElement(By.xpath(RegistrationXpath.alert));
 				System.out.println(userField.getText());
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
 				Thread.sleep(2000);
 			}
 			else if(email.getAttribute("value") != verifiedemail.getAttribute("value")) {
-				WebElement userField = driver.findElement(By.xpath("//div[@role='alert']"));
+				WebElement userField = driver.findElement(By.xpath(RegistrationXpath.alert));
 				System.out.println(userField.getText());
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
@@ -337,7 +337,7 @@ public class Registration extends OpenBrowser {
 			}
 			else {
 
-				WebElement userField = driver.findElement(By.xpath("//div[@role='alert']"));
+				WebElement userField = driver.findElement(By.xpath(RegistrationXpath.alert));
 				System.out.println(userField.getText());
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
@@ -348,6 +348,78 @@ public class Registration extends OpenBrowser {
 			}
 		}
 	}
+
+
+	//Registration as Default user
+
+	@Test(priority = 6)
+	public void defaultUser() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.firstName)));
+		firstName.sendKeys(RegistrationInfoData.firstName);
+
+		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.LastName)));
+		LastName.sendKeys(RegistrationInfoData.lastName);
+
+		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.email)));
+		email.sendKeys(RegistrationInfoData.email);
+
+		WebElement verifiedemail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.verifiedemail)));
+		verifiedemail.sendKeys(RegistrationInfoData.verifiedemail);
+
+		WebElement termsOfServices = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.termsOfServices)));
+		termsOfServices.click();
+		Thread.sleep(15000);
+
+		WebElement signUp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.signUp2)));
+
+		signUp.click();
+		Thread.sleep(2000);
+
+		WebElement userField = driver.findElement(By.xpath(RegistrationXpath.alert));
+		System.out.println(userField.getText());
+		signUp.isDisplayed();
+		Assert.assertTrue(true);
+		Thread.sleep(2000);
+	}
+
+
+	//Registration as random input serial
+
+	@Test(priority = 7)
+	public void randomInputSerial() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.LastName)));
+		LastName.sendKeys(RegistrationInfoData.lastName);
+
+		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.firstName)));
+		firstName.sendKeys(RegistrationInfoData.firstName);
+
+		WebElement verifiedemail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.verifiedemail)));
+		verifiedemail.sendKeys(RegistrationInfoData.verifiedemail);
+
+		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.email)));
+		email.sendKeys(RegistrationInfoData.email);
+
+		WebElement checkmark = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.checkmark2)));
+		checkmark.click();
+		Thread.sleep(20000);
+
+		WebElement termsOfServices = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.termsOfServices)));
+		termsOfServices.click();
+		Thread.sleep(1000);
+
+		WebElement signUp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.signUp3)));
+		signUp.isDisplayed();
+
+		Assert.assertTrue(false);
+
+	}
+
+
 
 	@AfterTest
 	public void tearDown() throws Exception {

@@ -24,6 +24,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import NormalUserXpath.LoginTestXpath;
 import browser.OpenBrowser;
 import normalUserInputData.LoginTestInfoData;
 
@@ -40,11 +41,10 @@ public class LoginTest extends OpenBrowser {
 		if((Browser.equalsIgnoreCase("chrome"))) {
 			driver = start(Browser);
 		}
-		
+
 		if((Browser.equalsIgnoreCase("firefox"))) {
 			driver = start(Browser);
 		}
-
 
 	}
 
@@ -80,10 +80,10 @@ public class LoginTest extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement signInTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class='mb-3']")));
-		WebElement emailTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='text']")));
-		WebElement passTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
-		WebElement loginButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@disabled='disabled']")));
+		WebElement signInTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.signInTitle)));
+		WebElement emailTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.emailTitle)));
+		WebElement passTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.passTitle)));
+		WebElement loginButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.loginButton)));
 		signInTitle.isDisplayed();
 		emailTitle.isDisplayed();
 		passTitle.isDisplayed();
@@ -98,9 +98,9 @@ public class LoginTest extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='text']")));
-		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
-		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
+		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.username)));
+		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.password)));
+		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.login)));
 
 		String user = LoginTestInfoData.user;
 		String pass = LoginTestInfoData.pass;
@@ -109,8 +109,8 @@ public class LoginTest extends OpenBrowser {
 		password.sendKeys(pass);
 
 		login.click();
-		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
-		loginAs.click();
+		//		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
+		//		loginAs.click();
 		Thread.sleep(5000);
 
 		String expectedUrl = "https://dev.zntral.net/dashboard";
@@ -125,22 +125,22 @@ public class LoginTest extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='text']")));
-		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
-		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
+		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.username)));
+		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.password)));
+		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.login)));
 
 		username.sendKeys(LoginTestInfoData.invaliduser);
 		password.sendKeys(LoginTestInfoData.pass);
 
 		try {
 			login.click();
-			WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
+			WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.loginAs)));
 			loginAs.click();
 			Thread.sleep(5000);
 		}
 		catch(Exception e) {
 			if(username.getAttribute("value").isEmpty()) {
-				WebElement userField = driver.findElement(By.xpath("//div[@class='v-messages__message']"));
+				WebElement userField = driver.findElement(By.xpath(LoginTestXpath.userField));
 				System.out.println(userField.getText());
 				login.isDisplayed();
 				String expectedUrl = "https://dev.zntral.net/session/login";
@@ -160,11 +160,11 @@ public class LoginTest extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='text']")));
-		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
-		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
+		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.username)));
+		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.password)));
+		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.login)));
 
-		WebElement checkbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input--selection-controls__ripple']")));
+		WebElement checkbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.checkbox)));
 
 		username.sendKeys(LoginTestInfoData.user);
 		password.sendKeys(LoginTestInfoData.invalidpass);
@@ -173,13 +173,13 @@ public class LoginTest extends OpenBrowser {
 
 		try {
 			login.click();
-			WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
+			WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.loginAs)));
 			loginAs.click();
 			Thread.sleep(5000);
 		}
 		catch(Exception e) {
 			if(password.getAttribute("value").isEmpty()) {
-				WebElement userField = driver.findElement(By.xpath("//div[@class='v-messages__message']"));
+				WebElement userField = driver.findElement(By.xpath(LoginTestXpath.userField));
 				System.out.println(userField.getText());
 				login.isDisplayed();
 
@@ -198,9 +198,9 @@ public class LoginTest extends OpenBrowser {
 	public void loginWithEmptyField() {
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='text']")));
-		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
-		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
+		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.username)));
+		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.password)));
+		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.login)));
 
 		username.sendKeys(LoginTestInfoData.invaliduser);
 		password.sendKeys(LoginTestInfoData.invalidpass);
@@ -208,6 +208,51 @@ public class LoginTest extends OpenBrowser {
 		login.isEnabled();
 
 		String expectedUrl = "https://dev.zntral.net/session/login";
+		String actualUrl = driver.getCurrentUrl();
+		Assert.assertEquals(actualUrl, expectedUrl);
+	}
+
+
+	//Forgot password
+
+	@Test(priority = 6)
+	public void forgotPassword() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		WebElement forgotPass = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.forgotPass)));
+		forgotPass.click();
+		WebElement emailId = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.emailId)));
+		emailId.sendKeys("abc@email.com");
+		WebElement sendEmail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.sendEmail)));
+		sendEmail.click();
+		Thread.sleep(3000);
+		try {
+			driver.switchTo().alert().getText();
+		}
+		catch(Exception e) {
+			System.out.println("No Confirmation Alert!");
+			Assert.assertTrue(false);
+		}
+	}
+
+
+	//random order for userid and password
+
+	@Test
+	public void randomInput() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.username)));
+		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.password)));
+		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.login)));
+
+		password.sendKeys(LoginTestInfoData.pass);
+		username.sendKeys(LoginTestInfoData.user);
+
+		login.click();
+		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginTestXpath.loginAs)));
+		loginAs.click();
+		Thread.sleep(5000);
+
+		String expectedUrl = "https://dev.zntral.net/dashboard";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
 	}

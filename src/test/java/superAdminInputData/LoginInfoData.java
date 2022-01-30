@@ -4,7 +4,7 @@ public class LoginInfoData {
 
 	//Login with valid info
 	public static String user = "superadmin@mercury.com";
-	public static String pass = "qwerty";
+	public static String pass = "qwerty5";
 
 	//login without user name
 	public static String invalidUser = "";

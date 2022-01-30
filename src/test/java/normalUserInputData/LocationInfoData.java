@@ -3,8 +3,8 @@ package normalUserInputData;
 public class LocationInfoData {
 
 	//Login with valid info
-	public static String user = "shaque.sabbir@gmail.com";
-	public static String pass = "Sabbir33";
+	public static String user = "sabinulhaque033@gmail.com";
+	public static String pass = "123456";
 
 
 	//search item for location
@@ -46,7 +46,7 @@ public class LocationInfoData {
 
 	// Add Patient info
 
-	public static String patientfirstName = "Sabbir-Test";
+	public static String patientfirstName = "Sabbir-Test2";
 	public static String patientlastName = "Info";
 	public static String ssn = "896541";
 	public static String phone = "78961235";

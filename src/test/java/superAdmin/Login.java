@@ -15,6 +15,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
@@ -23,16 +25,28 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.aventstack.extentreports.reporter.ExtentReporter;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
+
 import browser.OpenBrowser;
 import superAdminInputData.LoginInfoData;
+import superAdminXpath.LoginXpath;
 
-public class Login extends OpenBrowser{
+public class Login extends OpenBrowser  {
 
 	public static String env = "Test for Super Admin";
 	public static String testSuiteName = "Test Suit 1 -- Login";
 
 	public static WebDriver driver = null;
 	@Parameters({"Browser"})
+	
+	
 
 	@BeforeTest
 	public void setup(String Browser) throws MalformedURLException {
@@ -40,12 +54,11 @@ public class Login extends OpenBrowser{
 		if((Browser.equalsIgnoreCase("chrome"))) {
 			driver = start(Browser);
 		}
-		
+
 		if((Browser.equalsIgnoreCase("firefox"))) {
 			driver = start(Browser);
 		}
-
-
+		
 	}
 
 	@BeforeSuite
@@ -79,9 +92,8 @@ public class Login extends OpenBrowser{
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement signInTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class='mb-3']")));
+		WebElement signInTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginXpath.signInTitle)));
 		signInTitle.isDisplayed();
-
 	}
 
 	//login with valid username & Password
@@ -89,11 +101,12 @@ public class Login extends OpenBrowser{
 	@Test(priority = 2)
 	public void verifyLogin() throws InterruptedException {
 
+		
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='text']")));
-		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
-		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
+		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginXpath.username)));
+		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginXpath.pass)));
+		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginXpath.login)));
 
 		String user = LoginInfoData.user;
 		String pass = LoginInfoData.pass;
@@ -114,11 +127,12 @@ public class Login extends OpenBrowser{
 	@Test(priority = 3)
 	public void loginWithoutUsername() throws InterruptedException {
 
+		
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='text']")));
-		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
-		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
+		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginXpath.username)));
+		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginXpath.pass)));
+		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginXpath.login)));
 
 		String user = LoginInfoData.invalidUser;
 		String pass = LoginInfoData.validPass;
@@ -132,7 +146,7 @@ public class Login extends OpenBrowser{
 		}
 		catch(Exception e) {
 			if(username.getAttribute("value").isEmpty()) {
-				WebElement userField = driver.findElement(By.xpath("//div[@class='v-messages__message']"));
+				WebElement userField = driver.findElement(By.xpath(LoginXpath.userFieldMsg));
 				System.out.println(userField.getText());
 				login.isDisplayed();
 				String expectedUrl = "https://dev.zntral.net/session/login";
@@ -149,14 +163,14 @@ public class Login extends OpenBrowser{
 
 	@Test(priority = 4)
 	public void loginWithoutPassword() throws InterruptedException {
-
+		
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='text']")));
-		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
-		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
+		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginXpath.username)));
+		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginXpath.pass)));
+		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginXpath.login)));
 
-		WebElement checkbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input--selection-controls__ripple']")));
+		WebElement checkbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginXpath.checkbox)));
 
 		String user = LoginInfoData.validUser;
 		String pass = LoginInfoData.invalidPass;
@@ -172,7 +186,7 @@ public class Login extends OpenBrowser{
 		}
 		catch(Exception e) {
 			if(password.getAttribute("value").isEmpty()) {
-				WebElement userField = driver.findElement(By.xpath("//div[@class='v-messages__message']"));
+				WebElement userField = driver.findElement(By.xpath(LoginXpath.userFieldMsg));
 				System.out.println(userField.getText());
 				login.isDisplayed();
 
@@ -191,12 +205,12 @@ public class Login extends OpenBrowser{
 
 	@Test(priority = 5)
 	public void invalidLoginInfo() throws InterruptedException {
-
+		
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='text']")));
-		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
-		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
+		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginXpath.username)));
+		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginXpath.pass)));
+		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginXpath.login)));
 
 		String user = LoginInfoData.invalidUserId;
 		String pass = LoginInfoData.invalidPassId;
@@ -206,7 +220,7 @@ public class Login extends OpenBrowser{
 
 		login.click();
 		Thread.sleep(5000);
-		WebElement error = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='status']")));
+		WebElement error = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LoginXpath.error)));
 		System.out.println(error.getText());
 
 		String expectedUrl = "https://dev.zntral.net/session/login";

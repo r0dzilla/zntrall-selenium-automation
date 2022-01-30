@@ -27,10 +27,11 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import NormalUserXpath.ContactsXpath;
 import browser.OpenBrowser;
 import normalUserInputData.ContactsInfoData;
 
-public class Contacts extends OpenBrowser {
+public class Contacts extends OpenBrowser{
 	public static String env = "Test";
 	public static String testSuiteName = "Test Suit 7 -- Contacts";
 	WebDriver driver2;
@@ -43,12 +44,10 @@ public class Contacts extends OpenBrowser {
 		if((Browser.equalsIgnoreCase("chrome"))) {
 			driver = start(Browser);
 		}
-		
+
 		if((Browser.equalsIgnoreCase("firefox"))) {
 			driver = start(Browser);
 		}
-
-
 	}
 
 	@BeforeSuite
@@ -83,9 +82,9 @@ public class Contacts extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='text']")));
-		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
-		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
+		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.username)));
+		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.pass)));
+		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.login)));
 
 		String user = ContactsInfoData.user;
 		String pass = ContactsInfoData.pass;
@@ -94,8 +93,8 @@ public class Contacts extends OpenBrowser {
 		password.sendKeys(pass);
 
 		login.click();
-		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
-		loginAs.click();
+		//		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
+		//		loginAs.click();
 		Thread.sleep(5000);
 
 		String expectedUrl = "https://dev.zntral.net/dashboard";
@@ -112,8 +111,8 @@ public class Contacts extends OpenBrowser {
 
 		loginUser();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Contacts']")));
-		driver.findElement(By.xpath("//span[normalize-space()='Contacts']")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.contacts)));
+		driver.findElement(By.xpath(ContactsXpath.contacts)).click();
 		Thread.sleep(3000);
 		String expectedUrl = "https://dev.zntral.net/contacts";
 		String actualUrl = driver.getCurrentUrl();
@@ -127,10 +126,10 @@ public class Contacts extends OpenBrowser {
 		contactList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-text-field__slot']//input[@type='text']")));
+		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.search)));
 		String searchUser = ContactsInfoData.search;
 		search.sendKeys(searchUser);
-		WebElement firstRow = driver.findElement(By.xpath("//tbody/tr[1]/td[1]"));	
+		WebElement firstRow = driver.findElement(By.xpath(ContactsXpath.firstRow));	
 		String actualText = firstRow.getText();
 		String expectedText = searchUser;
 		Assert.assertEquals(actualText, expectedText);
@@ -144,7 +143,7 @@ public class Contacts extends OpenBrowser {
 		contactList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//i[normalize-space()='add']")));
+		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.add)));
 		add.click();
 		Thread.sleep(2000);
 		Assert.assertTrue(true);
@@ -165,41 +164,41 @@ public class Contacts extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@required='required']")));
+		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.firstName)));
 		firstName.sendKeys(first);
 
-		WebElement lastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div//div//div//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement lastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.lastName)));
 		lastName.sendKeys(last);
 
-		WebElement genderDropDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//div//div//div//div//div//div//div[@role='button']//div//div//div//i[@aria-hidden='true']")));
+		WebElement genderDropDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.genderDropDown)));
 		genderDropDown.click();
 
-		WebElement gender= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Male')]")));
+		WebElement gender= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.gender)));
 		gender.click();
 
-		WebElement phone = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
+		WebElement phone = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.phone)));
 		phone.sendKeys(phn);
 
-		WebElement typeDropDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@id='inspire']/div[@role='document']/div/div/div/div/div/div/div/form[@novalidate='novalidate']/div/div/div/div/div[@role='button']/div/div/div/i[1]")));
+		WebElement typeDropDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.typeDropDown)));
 		typeDropDown.click();
 
-		WebElement type = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Work')]")));
+		WebElement type = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.type)));
 		type.click();
 
-		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
+		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.email)));
 		email.sendKeys(mail);
 
-		WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[5]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
+		WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.title)));
 		title.sendKeys(title2);
 
-		WebElement note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[6]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
+		WebElement note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.note)));
 		note.sendKeys(note2);
 
-		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.save)));
 		save.click();
 		Thread.sleep(5000);
 
-		WebElement firstRow = driver.findElement(By.xpath("//tbody/tr[1]/td[1]"));	
+		WebElement firstRow = driver.findElement(By.xpath(ContactsXpath.firstRow));	
 		String actualText = firstRow.getText();
 		String expectedText = first;
 		Assert.assertTrue(actualText.contains(expectedText));
@@ -223,27 +222,27 @@ public class Contacts extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@required='required']")));
+		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.firstName)));
 		firstName.sendKeys(first);
 
-		WebElement lastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div//div//div//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement lastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.lastName)));
 		lastName.sendKeys(last);
 
-		WebElement phone = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
+		WebElement phone = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.phone)));
 		phone.sendKeys(phn);
 
-		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
+		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.email)));
 		email.sendKeys(mail);
 
-		WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[5]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
+		WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.title)));
 		title.sendKeys(title2);
 
-		WebElement note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[6]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
+		WebElement note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.note)));
 		note.sendKeys(note2);	
 
 		//First name field check
 		if(firstName.getText().isEmpty()) {
-			WebElement firstNameMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-messages__message']")));
+			WebElement firstNameMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.firstNameMsg)));
 			String expectedText4 = "First name is required";
 			String actualText4 = firstNameMsg.getText();
 			Assert.assertEquals(actualText4, expectedText4);
@@ -318,7 +317,7 @@ public class Contacts extends OpenBrowser {
 		}
 
 		if(email.getAttribute("value").startsWith("@")){
-			WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/form[1]/div[4]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]")));
+			WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.invalidMsg)));
 			System.out.println(invalidMsg.getText());
 			Assert.assertTrue(true);
 			Thread.sleep(1000);
@@ -328,7 +327,7 @@ public class Contacts extends OpenBrowser {
 		}
 
 		//Save button check
-		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.save)));
 
 		try {
 			save.click();
@@ -355,20 +354,20 @@ public class Contacts extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement dataForEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody/tr[1]/td[1]")));
+		WebElement dataForEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.dataForEdit)));
 		dataForEdit.click();
 
-		WebElement selectEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Edit']")));
+		WebElement selectEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.selectEdit)));
 		selectEdit.click();
 
-		WebElement editPhone = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
+		WebElement editPhone = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.editPhone)));
 
 		while (!editPhone.getAttribute("value").equals("")) {
 			editPhone.sendKeys(Keys.BACK_SPACE);
 		}
 		editPhone.sendKeys(editphone);
 
-		WebElement editTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[5]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
+		WebElement editTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.editTitle)));
 		while (!editTitle.getAttribute("value").equals("")) {
 			editTitle.sendKeys(Keys.BACK_SPACE);
 		}
@@ -378,10 +377,10 @@ public class Contacts extends OpenBrowser {
 
 		String expected = editphone;
 
-		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.save)));
 		save.click();
 
-		WebElement phoneNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody/tr[1]/td[2]")));
+		WebElement phoneNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.phoneNumber)));
 		String actual = phoneNumber.getText();
 		Thread.sleep(3000);
 		System.out.println("actual: "+actual);
@@ -403,13 +402,13 @@ public class Contacts extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement dataForEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody/tr[1]/td[1]")));
+		WebElement dataForEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.dataForEdit)));
 		dataForEdit.click();
 
-		WebElement selectEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Edit']")));
+		WebElement selectEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.selectEdit)));
 		selectEdit.click();
 
-		WebElement remove = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Remove']")));
+		WebElement remove = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.remove)));
 		remove.click();
 		Thread.sleep(2000);
 
@@ -426,7 +425,7 @@ public class Contacts extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement cancel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='float-right text-capitalize align-cancel v-btn v-btn--flat v-btn--text theme--light v-size--default']//span[@class='v-btn__content'][normalize-space()='Cancel']")));
+		WebElement cancel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.cancel)));
 		cancel.click();
 		Assert.assertTrue(true);
 	}
@@ -437,8 +436,8 @@ public class Contacts extends OpenBrowser {
 		addContact();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement cancel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-dialog v-dialog--active v-dialog--scrollable']//button[@type='button'][normalize-space()='close']")));
-		cancel.click();
+		WebElement close = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.close)));
+		close.click();
 		Assert.assertTrue(true);
 	}
 
@@ -449,13 +448,13 @@ public class Contacts extends OpenBrowser {
 		contactList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement dataForEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody/tr[1]/td[1]")));
+		WebElement dataForEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.dataForEdit)));
 		dataForEdit.click();
-		WebElement selectEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Edit']")));
+		WebElement selectEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.selectEdit)));
 		selectEdit.click();
-		WebElement cancel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='float-right text-capitalize v-btn v-btn--flat v-btn--text theme--light v-size--default']//span[@class='v-btn__content'][normalize-space()='Cancel']")));
+		WebElement cancel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.cancel)));
 		cancel.click();
-		WebElement close = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='text-capitalize v-btn v-btn--flat v-btn--text theme--light v-size--default primary--text']//span[@class='v-btn__content'][normalize-space()='Close']")));
+		WebElement close = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.close)));
 		close.click();
 		Assert.assertTrue(true);
 	}

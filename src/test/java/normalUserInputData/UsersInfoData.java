@@ -2,9 +2,9 @@ package normalUserInputData;
 
 public class UsersInfoData {
 
-	//Login with valid info
-	public static String user = "shaque.sabbir@gmail.com";
-	public static String pass = "Sabbir33";
+	//Login with valid info for user
+	public static String user = "sabinulhaque033@gmail.com";
+	public static String pass = "123456";
 
 
 	//Adding user with valid info

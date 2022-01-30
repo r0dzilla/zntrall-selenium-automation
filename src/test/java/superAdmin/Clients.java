@@ -27,6 +27,7 @@ import org.testng.annotations.Test;
 
 import browser.OpenBrowser;
 import superAdminInputData.ClientsInfoData;
+import superAdminXpath.ClientsXpath;
 
 public class Clients extends OpenBrowser{
 
@@ -42,11 +43,10 @@ public class Clients extends OpenBrowser{
 		if((Browser.equalsIgnoreCase("chrome"))) {
 			driver = start(Browser);
 		}
-		
+
 		if((Browser.equalsIgnoreCase("firefox"))) {
 			driver = start(Browser);
 		}
-
 
 	}
 
@@ -81,7 +81,7 @@ public class Clients extends OpenBrowser{
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement signInTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class='mb-3']")));
+		WebElement signInTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.signInTitle)));
 		signInTitle.isDisplayed();
 
 	}
@@ -91,9 +91,9 @@ public class Clients extends OpenBrowser{
 	@Test(priority = 2)
 	public void login() throws InterruptedException {
 
-		WebElement username = driver.findElement(By.xpath("//input[@type='text']"));
-		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
-		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
+		WebElement username = driver.findElement(By.xpath(ClientsXpath.username));
+		WebElement password = driver.findElement(By.xpath(ClientsXpath.pass));
+		WebElement login = driver.findElement(By.xpath(ClientsXpath.login));
 
 		String user = ClientsInfoData.user;
 		String pass = ClientsInfoData.pass;
@@ -117,7 +117,7 @@ public class Clients extends OpenBrowser{
 
 		login();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement clients = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Clients']")));
+		WebElement clients = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.clients)));
 		clients.click();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
@@ -134,16 +134,16 @@ public class Clients extends OpenBrowser{
 	public void checkClientProfile() throws InterruptedException {
 
 		login();
-		WebElement clients = driver.findElement(By.xpath("//span[normalize-space()='Clients']"));
+		WebElement clients = driver.findElement(By.xpath(ClientsXpath.clients));
 		clients.click();
 		Thread.sleep(5000);
 
-		WebElement clientName = driver.findElement(By.xpath("//table[1]/tbody[1]/tr[1]/td[1]"));
+		WebElement clientName = driver.findElement(By.xpath(ClientsXpath.clientName));
 		String client = clientName.getText();
 		clientName.click();
 		Thread.sleep(5000);
 
-		WebElement clientNameVerify = driver.findElement(By.xpath("//h2[contains(@class,'text-capitalize mb-0 header-title d-custom-flex')]"));
+		WebElement clientNameVerify = driver.findElement(By.xpath(ClientsXpath.clientNameVerify));
 
 		if(clientNameVerify.getText().contains(client)) {
 			Assert.assertTrue(true);
@@ -161,9 +161,9 @@ public class Clients extends OpenBrowser{
 	public void changeStatusToInactive() throws InterruptedException {
 		checkClientProfile();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='v-btn v-btn--flat v-btn--text theme--light v-size--default primary--text']")));
+		WebElement status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.status)));
 		status.click();
-		WebElement statusInactive = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Inactive')]")));
+		WebElement statusInactive = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.statusInactive)));
 		statusInactive.click();
 		Assert.assertTrue(true);
 		System.out.println("Status changed to Inactive");
@@ -177,9 +177,9 @@ public class Clients extends OpenBrowser{
 	public void changeStatusToActive() throws InterruptedException {
 		checkClientProfile();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='v-btn v-btn--flat v-btn--text theme--light v-size--default primary--text']")));
+		WebElement status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.status)));
 		status.click();
-		WebElement statusActive = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Active')]")));
+		WebElement statusActive = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.statusActive)));
 		statusActive.click();
 		Assert.assertTrue(true);
 		System.out.println("Status changed to Active");
@@ -193,11 +193,11 @@ public class Clients extends OpenBrowser{
 		checkClientProfile();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement locationTab = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'Locations')]")));
+		WebElement locationTab = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.locationTab)));
 		locationTab.click();
 
 		try {
-			WebElement locationInfo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/table[1]/tbody[1]/tr[1]/td[1]")));
+			WebElement locationInfo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.locationInfo)));
 			if(locationInfo.getText() != null ) {
 				Assert.assertTrue(true);
 				System.out.println("Location Found !!");
@@ -216,10 +216,10 @@ public class Clients extends OpenBrowser{
 		checkClientProfile();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement patientTab = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'Patients')]")));
+		WebElement patientTab = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.patientTab)));
 		patientTab.click();
 		try {
-			WebElement patientInfo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/table[1]/tbody[1]/tr[1]/td[1]")));
+			WebElement patientInfo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.patientInfo)));
 			if(patientInfo.getText() != null ) {
 				Assert.assertTrue(true);
 				System.out.println("Patient Found !!");
@@ -238,9 +238,9 @@ public class Clients extends OpenBrowser{
 		checkClientList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div/div/main[@data-booted='true']/div/div/div/div/div/div/div/div/div/div/div/div/div/input[1]")));
+		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.search)));
 		search.sendKeys("John");
-		WebElement firstRow = driver.findElement(By.xpath("//table[1]/tbody[1]/tr[1]/td[1]"));	
+		WebElement firstRow = driver.findElement(By.xpath(ClientsXpath.firstRow));	
 		String actualText = firstRow.getText();
 		Assert.assertTrue(actualText.contains(search.getText()));
 		Thread.sleep(3000);
@@ -253,9 +253,9 @@ public class Clients extends OpenBrowser{
 	public void checkClientTypeList() throws InterruptedException {
 		login();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement clients = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Clients']")));
+		WebElement clients = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.clients)));
 		clients.click();
-		WebElement element = driver.findElement(By.xpath("//*[text()='Types']"));
+		WebElement element = driver.findElement(By.xpath(ClientsXpath.element));
 		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
 
@@ -275,24 +275,25 @@ public class Clients extends OpenBrowser{
 
 		checkClientList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//i[normalize-space()='add']")));
+		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.add)));
 		add.click();
 
-		WebElement clientGroup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//strong[normalize-space()='Client Group']")));
+		WebElement clientGroup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.clientGroup)));
 		clientGroup.click();
-		WebElement name = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div[1]//div[1]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement name = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.name)));
 		name.sendKeys(clientGroupName);
-		WebElement acronym = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement acronym = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.acronym)));
 		acronym.sendKeys(clientGroupAcronym);
-		WebElement signUp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='v-chip__content'][normalize-space()='Sign Up']")));
-		WebElement status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='v-chip__content'][normalize-space()='Status']")));
+		WebElement signUp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.signUp)));
+		WebElement status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.signUpStatus)));
 
 		signUp.click();
 		status.click();
 		Thread.sleep(2000);
 
-		WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Add']")));
+		WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.submit)));
 		submit.click();
+		Assert.assertTrue(true);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
 	}
@@ -308,14 +309,15 @@ public class Clients extends OpenBrowser{
 		checkClientList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement selectAnyGroup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Client Group 1']")));
+		WebElement selectAnyGroup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.selectAnyGroup)));
 		selectAnyGroup.click();
-		WebElement name = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div[1]//div[1]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement name = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.name)));
 		name.sendKeys(editClientGroupName);
-		WebElement acronym = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement acronym = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.acronym)));
 		acronym.sendKeys(editClientGroupAcronym);
-		WebElement update = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Update']")));
+		WebElement update = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.update)));
 		update.click();
+		Assert.assertTrue(true);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	}
 
@@ -325,11 +327,12 @@ public class Clients extends OpenBrowser{
 	public void nameSort() throws InterruptedException {
 		checkClientList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement selectName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Name')]")));
+		WebElement selectName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.selectName)));
 
 		selectName.click();
 		selectName.click();
 		selectName.click();
+		Assert.assertTrue(true);
 	}
 
 	//Type wise sort
@@ -338,11 +341,34 @@ public class Clients extends OpenBrowser{
 	public void typeSort() throws InterruptedException {
 		checkClientList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement selectName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Type')]")));
+		WebElement selectType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.selectType)));
 
-		selectName.click();
-		selectName.click();
-		selectName.click();
+		selectType.click();
+		selectType.click();
+		selectType.click();
+		Assert.assertTrue(true);
+	}
+
+	//Check user status on client profile
+
+	@Test(priority = 8)
+	public void checkUserStatus() throws InterruptedException{
+		checkClientProfile();
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+		WebElement userTab = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.userTab)));
+		userTab.click();
+
+		try {
+			WebElement userInfo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.userInfo)));
+			if(userInfo.getText() != null ) {
+				Assert.assertTrue(true);
+				System.out.println("User Found !!");
+			}
+		}
+		catch(Exception e) {
+			System.out.println("User not Found !!");
+		}
 	}
 
 

@@ -25,10 +25,11 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import NormalUserXpath.UsersXpath;
 import browser.OpenBrowser;
 import normalUserInputData.UsersInfoData;
 
-public class Users extends OpenBrowser{
+public class Users  extends OpenBrowser{
 
 	public static String env = "Test";
 	public static String testSuiteName = "Test Suit 3 -- Users";
@@ -42,11 +43,10 @@ public class Users extends OpenBrowser{
 		if((Browser.equalsIgnoreCase("chrome"))) {
 			driver = start(Browser);
 		}
-		
+
 		if((Browser.equalsIgnoreCase("firefox"))) {
 			driver = start(Browser);
 		}
-
 
 	}
 
@@ -82,16 +82,14 @@ public class Users extends OpenBrowser{
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='text']")));
-		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
-		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
+		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.username)));
+		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.password)));
+		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.login)));
 
 		username.sendKeys(UsersInfoData.user);
 		password.sendKeys(UsersInfoData.pass);
 
 		login.click();
-		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
-		loginAs.click();
 		Thread.sleep(5000);
 
 		String expectedUrl = "https://dev.zntral.net/dashboard";
@@ -110,7 +108,7 @@ public class Users extends OpenBrowser{
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement userlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Users']")));
+		WebElement userlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.userList)));
 		userlist.click();
 		Thread.sleep(3000);
 
@@ -127,11 +125,11 @@ public class Users extends OpenBrowser{
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//i[normalize-space()='add']")));
+		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.add)));
 		add.click();
 		Thread.sleep(2000);
 
-		WebElement addUser = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//strong[normalize-space()='Add new user']")));
+		WebElement addUser = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.addUser)));
 		Thread.sleep(2000);
 		addUser.click();
 
@@ -148,24 +146,23 @@ public class Users extends OpenBrowser{
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement FirstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[1]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/form[@novalidate='novalidate']/div/div/div/div[1]/div[1]/div[1]/input[1]")));
-		WebElement emailId = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
-		WebElement groupDrpDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//div//div//div//div//div[@role='button']//div//div//div//i[@aria-hidden='true']")));
-		//WebElement groupSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='save']")));
-		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='save']")));
+		WebElement FirstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.FirstName)));
+		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.LastName)));
+		WebElement emailId = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.emailId)));
+		WebElement groupDrpDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.groupDrpDown)));
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.save)));
 
 		FirstName.sendKeys(UsersInfoData.FirstName);
 		LastName.sendKeys(UsersInfoData.LastName);
 		emailId.sendKeys(UsersInfoData.emailId);
 		groupDrpDown.click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Hospice Registered Nurse')]"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.groupDrpDownSelect))).click();
 
 
 		try {
 			save.click();
 			Thread.sleep(5000);
-			WebElement firstRow = driver.findElement(By.xpath("//tbody/tr[1]/td[3]"));
+			WebElement firstRow = driver.findElement(By.xpath(UsersXpath.firstRow));
 			if(firstRow.getAttribute("value") == emailId.getText()) {
 				System.out.println("Successfully added");
 				Assert.assertTrue(true);
@@ -185,12 +182,10 @@ public class Users extends OpenBrowser{
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement FirstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[1]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/form[@novalidate='novalidate']/div/div/div/div[1]/div[1]/div[1]/input[1]")));
-		WebElement emailId = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
-		//WebElement groupDrpDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//div//div//div//div//div[@role='button']//div//div//div//i[@aria-hidden='true']")));
-		//WebElement groupSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='save']")));
-		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='save']")));
+		WebElement FirstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.FirstName)));
+		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.LastName)));
+		WebElement emailId = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.emailId)));
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.save)));
 
 		FirstName.sendKeys(UsersInfoData.FirstName);
 		LastName.sendKeys(UsersInfoData.LastName);
@@ -199,7 +194,7 @@ public class Users extends OpenBrowser{
 		Thread.sleep(2000);
 
 		try {
-			WebElement status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='status']")));
+			WebElement status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.status)));
 			status.isDisplayed();
 
 		} catch (Exception e){
@@ -214,18 +209,17 @@ public class Users extends OpenBrowser{
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement FirstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[1]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/form[@novalidate='novalidate']/div/div/div/div[1]/div[1]/div[1]/input[1]")));
-		WebElement emailId = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
-		WebElement groupDrpDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//div//div//div//div//div[@role='button']//div//div//div//i[@aria-hidden='true']")));
-		//WebElement groupSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='save']")));
-		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='save']")));
+		WebElement FirstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.FirstName)));
+		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.LastName)));
+		WebElement emailId = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.emailId)));
+		WebElement groupDrpDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.groupDrpDown)));
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.save)));
 
 		FirstName.sendKeys(UsersInfoData.invalidFirstName);
 		LastName.sendKeys(UsersInfoData.invalidLastName);
 		emailId.sendKeys(UsersInfoData.invalidemailId);
 		groupDrpDown.click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Hospice Registered Nurse')]"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.groupDrpDownSelect))).click();
 
 		try {
 			save.click();
@@ -235,7 +229,7 @@ public class Users extends OpenBrowser{
 		catch (Exception e){
 			if(FirstName.getAttribute("value").isEmpty()) {
 				save.isDisplayed();
-				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-messages__message']")));
+				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.invalidMsg)));
 				System.out.println(invalidMsg.getText());
 
 				Assert.assertTrue(true);
@@ -243,7 +237,7 @@ public class Users extends OpenBrowser{
 			}
 			else if(LastName.getAttribute("value").isEmpty()) {
 				save.isDisplayed();
-				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-messages__message']")));
+				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.invalidMsg)));
 				System.out.println(invalidMsg.getText());
 
 				Assert.assertTrue(true);
@@ -251,14 +245,14 @@ public class Users extends OpenBrowser{
 			}
 			else if(emailId.getAttribute("value").isEmpty()) {
 				save.isDisplayed();
-				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-messages__message']")));
+				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.invalidMsg)));
 				System.out.println(invalidMsg.getText());
 
 				Assert.assertTrue(true);
 			}
 			else if(emailId.getAttribute("value").startsWith("@")) {
 				save.isDisplayed();
-				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-messages__message']")));
+				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.invalidMsg)));
 				System.out.println(invalidMsg.getText());
 
 				Assert.assertTrue(true);
@@ -280,20 +274,17 @@ public class Users extends OpenBrowser{
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement FirstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[1]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/form[@novalidate='novalidate']/div/div/div/div[1]/div[1]/div[1]/input[1]")));
-		WebElement emailId = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
-		WebElement groupDrpDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//div//div//div//div//div[@role='button']//div//div//div//i[@aria-hidden='true']")));
-		//WebElement groupSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='save']")));
-		WebElement reset = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Reset']")));
+		WebElement FirstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.FirstName)));
+		WebElement LastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.LastName)));
+		WebElement emailId = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.emailId)));
+		WebElement groupDrpDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.groupDrpDown)));
+		WebElement reset = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.reset)));
 
 		FirstName.sendKeys(UsersInfoData.FirstName);
 		LastName.sendKeys(UsersInfoData.LastName);
 		emailId.sendKeys(UsersInfoData.emailId);
 		groupDrpDown.click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Hospice Registered Nurse')]"))).click();
-
-		//WebElement resetConfirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Yes']")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.groupDrpDownSelect))).click();
 
 
 		try {
@@ -302,15 +293,15 @@ public class Users extends OpenBrowser{
 			Thread.sleep(2000);
 
 			String expectedText1 = "Name is required";
-			String actualText1 = driver.findElement(By.xpath("//div[@class='col-sm-12 col-md-6 col']//div[@class='v-messages__message']")).getText();
+			String actualText1 = driver.findElement(By.xpath(UsersXpath.actualText1)).getText();
 			Assert.assertEquals(actualText1, expectedText1);
 
 			String expectedText2 = "Name is required";
-			String actualText2 = driver.findElement(By.xpath("//div[@class='col-md-6 col']//div[@class='v-messages__message']")).getText();
+			String actualText2 = driver.findElement(By.xpath(UsersXpath.actualText2)).getText();
 			Assert.assertEquals(actualText2, expectedText2);
 
 			String expectedText3 = "E-mail must be valid";
-			String actualText3 = driver.findElement(By.xpath("//div[contains(text(),'E-mail must be valid')]")).getText();
+			String actualText3 = driver.findElement(By.xpath(UsersXpath.actualText3)).getText();
 			Assert.assertEquals(actualText3, expectedText3);
 
 		} catch(Exception e) {
@@ -328,7 +319,7 @@ public class Users extends OpenBrowser{
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement cancel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Cancel']")));
+		WebElement cancel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.cancel)));
 		cancel.click();
 
 	}
@@ -341,7 +332,7 @@ public class Users extends OpenBrowser{
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement close = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='close']")));
+		WebElement close = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.close)));
 		close.click();
 
 	}
@@ -354,10 +345,10 @@ public class Users extends OpenBrowser{
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='text']")));
+		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.search)));
 		search.sendKeys(UsersInfoData.search);
 
-		WebElement firstRow = driver.findElement(By.xpath("//tbody/tr[1]/td[3]"));
+		WebElement firstRow = driver.findElement(By.xpath(UsersXpath.firstRow));
 		String expectedText = UsersInfoData.search;
 		String actualText = firstRow.getText();
 		Assert.assertEquals(actualText, expectedText);
@@ -372,16 +363,17 @@ public class Users extends OpenBrowser{
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement firstRowInfo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody[1]/tr[1]/td[1]")));
+		WebElement firstRowInfo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.firstRowInfo)));
 		firstRowInfo.click();
 
 		String actualText = "Users";
 
-		WebElement user =driver.findElement(By.xpath("//a[@class='router-link-active']"));
+		WebElement user =driver.findElement(By.xpath(UsersXpath.user));
 		String ExpectedText =user.getText();	
 		Assert.assertTrue(ExpectedText.contains(actualText));
 		Thread.sleep(3000);
 	}
+
 
 
 	@AfterTest

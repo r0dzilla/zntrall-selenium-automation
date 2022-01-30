@@ -27,10 +27,12 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import browser.OpenBrowser;
+import superAdminFunctions.UsersFunctions;
 import superAdminInputData.UsersInfoData;
+import superAdminXpath.UsersXpath;
 
 
-public class Users extends OpenBrowser {
+public class Users extends OpenBrowser{
 
 	public static String env = "Test for Super Admin";
 	public static String testSuiteName = "Test Suit 3 -- Users";
@@ -43,11 +45,10 @@ public class Users extends OpenBrowser {
 		if((Browser.equalsIgnoreCase("chrome"))) {
 			driver = start(Browser);
 		}
-		
+
 		if((Browser.equalsIgnoreCase("firefox"))) {
 			driver = start(Browser);
 		}
-
 
 	}
 
@@ -85,7 +86,7 @@ public class Users extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement signInTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class='mb-3']")));
+		WebElement signInTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.signInTitle)));
 		signInTitle.isDisplayed();
 
 	}
@@ -95,9 +96,9 @@ public class Users extends OpenBrowser {
 	@Test(priority = 2)
 	public void login() throws InterruptedException {
 
-		WebElement username = driver.findElement(By.xpath("//input[@type='text']"));
-		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
-		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
+		WebElement username = driver.findElement(By.xpath(UsersXpath.username));
+		WebElement password = driver.findElement(By.xpath(UsersXpath.pass));
+		WebElement login = driver.findElement(By.xpath(UsersXpath.login));
 
 		String user = UsersInfoData.user;
 		String pass = UsersInfoData.pass;
@@ -121,7 +122,7 @@ public class Users extends OpenBrowser {
 		login();
 		Thread.sleep(2000);
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement users = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Users']")));
+		WebElement users = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.users)));
 		users.click();
 		Thread.sleep(3000);
 
@@ -138,16 +139,16 @@ public class Users extends OpenBrowser {
 
 		login();
 
-		WebElement users = driver.findElement(By.xpath("//span[normalize-space()='Users']"));
+		WebElement users = driver.findElement(By.xpath(UsersXpath.users));
 		users.click();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-		WebElement usersName = driver.findElement(By.xpath("//table[1]/tbody[1]/tr[2]/td[1]"));
+		WebElement usersName = driver.findElement(By.xpath(UsersXpath.username));
 		String user = usersName.getText();
 		usersName.click();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-		WebElement userNameVerify = driver.findElement(By.xpath("//div[@class='media-body']"));
+		WebElement userNameVerify = driver.findElement(By.xpath(UsersXpath.userNameVerify));
 
 		if(userNameVerify.getText().contains(user)) {
 			Assert.assertTrue(true);
@@ -164,7 +165,7 @@ public class Users extends OpenBrowser {
 	public void checkClientProfileFromUser() throws InterruptedException {
 		checkUserProfile();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement clickUser = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[1]")));
+		WebElement clickUser = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.clickUser)));
 		clickUser.click();
 		Assert.assertTrue(true);
 		System.out.println("Client Profile found");
@@ -177,9 +178,9 @@ public class Users extends OpenBrowser {
 	public void changeStatusToInactive() throws InterruptedException {
 		checkClientProfileFromUser();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='v-btn v-btn--flat v-btn--text theme--light v-size--default primary--text']")));
+		WebElement status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.status)));
 		status.click();
-		WebElement statusInactive = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Inactive')]")));
+		WebElement statusInactive = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.statusInactive)));
 		statusInactive.click();
 		Assert.assertTrue(true);
 		System.out.println("Status changed to Inactive");
@@ -193,9 +194,9 @@ public class Users extends OpenBrowser {
 	public void changeStatusToActive() throws InterruptedException {
 		checkClientProfileFromUser();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='v-btn v-btn--flat v-btn--text theme--light v-size--default primary--text']")));
+		WebElement status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.status)));
 		status.click();
-		WebElement statusActive = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Active')]")));
+		WebElement statusActive = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.statusActive)));
 		statusActive.click();
 		Assert.assertTrue(true);
 		System.out.println("Status changed to Active");
@@ -208,11 +209,11 @@ public class Users extends OpenBrowser {
 	public void search() throws InterruptedException {
 		checkUserList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div/div/main[@data-booted='true']/div/div/div/div/div/div/div/div/div/div/div/div/div/input[1]")));
+		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.search)));
 
 		String searchUser = UsersInfoData.searchUser;
 		search.sendKeys(searchUser);
-		WebElement firstRow = driver.findElement(By.xpath("//table[1]/tbody[1]/tr[1]/td[1]"));	
+		WebElement firstRow = driver.findElement(By.xpath(UsersXpath.firstRow));	
 		String actualText = firstRow.getText();
 		Assert.assertTrue(actualText.contains(search.getText()));
 	}
@@ -223,10 +224,11 @@ public class Users extends OpenBrowser {
 	public void firstNameSort() throws InterruptedException {
 		checkUserList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement selectName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'First Name')]")));
+		WebElement selectName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.selectName)));
 		selectName.click();
 		selectName.click();
 		selectName.click();
+		Assert.assertTrue(true);
 	}
 
 	//Last name wise sort
@@ -235,10 +237,11 @@ public class Users extends OpenBrowser {
 	public void lastNameSort() throws InterruptedException {
 		checkUserList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement selectName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Last Name')]")));
+		WebElement selectName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.selectLastName)));
 		selectName.click();
 		selectName.click();;
 		selectName.click();
+		Assert.assertTrue(true);
 	}
 
 	//email wise sort
@@ -247,10 +250,11 @@ public class Users extends OpenBrowser {
 	public void emailSort() throws InterruptedException {
 		checkUserList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement selectName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Email')]")));
-		selectName.click();
-		selectName.click();
-		selectName.click();
+		WebElement selectEmail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.selectEmail)));
+		selectEmail.click();
+		selectEmail.click();
+		selectEmail.click();
+		Assert.assertTrue(true);
 	}
 
 	//Check user type list
@@ -259,9 +263,9 @@ public class Users extends OpenBrowser {
 	public void checkUserTypeList() throws InterruptedException {
 		login();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement users = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Users']")));
+		WebElement users = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.users)));
 		users.click();
-		WebElement element = driver.findElement(By.xpath("//*[text()='Types']"));
+		WebElement element = driver.findElement(By.xpath(UsersXpath.element));
 		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
@@ -270,270 +274,6 @@ public class Users extends OpenBrowser {
 		Assert.assertEquals(actualText, expectedText);
 		Thread.sleep(3000);
 	}
-
-
-	//Permission selection functions section starts //
-	//permission for users
-
-	public void permissionUsers() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement userRead = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@id='inspire']/div[@role='document']/div/div/div/form[@novalidate='novalidate']/div[4]/div[1]/div[2]/div[1]/div[2]/div[1]/span[1]")));
-		WebElement userAdd = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[4]//div[1]//div[2]//div[1]//div[2]//div[1]//span[2]")));
-		WebElement userStatus = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[4]//div[1]//div[2]//div[1]//div[2]//div[1]//span[3]")));
-		WebElement userClient = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[4]//div[1]//div[2]//div[1]//div[2]//div[1]//span[4]")));
-		WebElement userChat = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[4]//div[1]//div[2]//div[1]//div[2]//div[1]//span[5]")));
-
-		//		if(userRead.isSelected()) {
-		//			userRead.click();
-		//			Assert.assertTrue(true);
-		//
-		//
-		//		}else {
-		//			userRead.click();
-		//		}
-
-
-		if(userAdd.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			userAdd.click();
-		}
-
-		if(userStatus.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			userStatus.click();
-		}
-
-
-		if(userClient.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			userClient.click();
-		}
-
-
-		//		if(userChat.isSelected()) {
-		//			System.out.println("Already Selected !!");
-		//			Assert.assertTrue(true);
-		//		}else {
-		//			userChat.click();
-		//		}
-	}
-
-	//permission for location
-
-	public void permissionLocation() {
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement locationRead = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@id='inspire']/div[@role='document']/div/div/div/form[@novalidate='novalidate']/div[5]/div[1]/div[2]/div[1]/div[2]/div[1]/span[1]")));
-		WebElement locationAdd = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[5]//div[1]//div[2]//div[1]//div[2]//div[1]//span[2]")));
-		WebElement locationEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[5]//div[1]//div[2]//div[1]//div[2]//div[1]//span[3]")));
-		WebElement locationDelete = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[5]//div[1]//div[2]//div[1]//div[2]//div[1]//span[4]")));
-
-		if(locationRead.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			locationRead.click();
-		}
-
-		if(locationAdd.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			locationAdd.click();
-		}
-
-		if(locationEdit.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			locationEdit.click();
-		}
-
-		if(locationDelete.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			locationDelete.click();
-		}
-
-	}
-
-	//permission for Patient
-
-	public void permissionPatient() {
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement patientRead = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@id='inspire']/div[@role='document']/div/div/div/form[@novalidate='novalidate']/div[6]/div[1]/div[2]/div[1]/div[2]/div[1]/span[1]")));
-		WebElement patientAdd = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[6]//div[1]//div[2]//div[1]//div[2]//div[1]//span[2]")));
-		WebElement patientEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[6]//div[1]//div[2]//div[1]//div[2]//div[1]//span[3]")));
-		WebElement patientField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[6]//div[1]//div[2]//div[1]//div[2]//div[1]//span[4]")));
-		WebElement patientDelete = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[6]//div[1]//div[2]//div[1]//div[2]//div[1]//span[5]")));
-
-		if(patientRead.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			patientRead.click();
-		}
-
-		if(patientAdd.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			patientAdd.click();
-		}
-
-		if(patientEdit.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			patientEdit.click();
-		}
-
-		if(patientField.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			patientField.click();
-		}
-
-		if(patientDelete.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			patientDelete.click();
-		}
-	}
-
-
-	//permission for calendar
-
-	public void permissionCalendar() {
-
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement calendarRead = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@id='inspire']/div[@role='document']/div/div/div/form[@novalidate='novalidate']/div[7]/div[1]/div[2]/div[1]/div[2]/div[1]/span[1]")));
-		WebElement calendarEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[7]//div[1]//div[2]//div[1]//div[2]//div[1]//span[2]")));
-
-		if(calendarRead.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			calendarRead.click();
-		}
-
-		if(calendarEdit.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			calendarEdit.click();
-		}
-	}
-
-	//permission for contact
-
-	public void permissionContact() {
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement contactRead = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@id='inspire']/div[@role='document']/div/div/div/form[@novalidate='novalidate']/div[8]/div[1]/div[2]/div[1]/div[2]/div[1]/span[1]")));
-		WebElement contactAdd = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[8]//div[1]//div[2]//div[1]//div[2]//div[1]//span[2]")));
-		WebElement contactEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[8]//div[1]//div[2]//div[1]//div[2]//div[1]//span[3]")));
-		WebElement contactAddProvider = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[8]//div[1]//div[2]//div[1]//div[2]//div[1]//span[4]")));
-		WebElement contactDelete = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[8]//div[1]//div[2]//div[1]//div[2]//div[1]//span[5]")));
-
-
-		if(contactRead.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			contactRead.click();
-		}
-
-		if(contactAdd.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			contactAdd.click();
-		}
-
-		if(contactEdit.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			contactEdit.click();
-		}
-
-		if(contactAddProvider.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			contactAddProvider.click();
-		}
-
-		if(contactDelete.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			contactDelete.click();
-		}
-	}
-
-	//permission for Forms
-
-	public void permissionForms() {
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement endOfCareForms = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@id='inspire']/div[@role='document']/div/div/div/form[@novalidate='novalidate']/div[9]/div[1]/div[2]/div[1]/div[2]/div[1]/span[1]")));
-		WebElement startOfCareForms = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[9]//div[1]//div[2]//div[1]//div[2]//div[1]//span[2]")));
-		WebElement form4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[9]//div[1]//div[2]//div[1]//div[2]//div[1]//span[3]")));
-		WebElement testForm3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[9]//div[1]//div[2]//div[1]//div[2]//div[1]//span[4]")));
-		WebElement testForm2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[9]//div[1]//div[2]//div[1]//div[2]//div[1]//span[5]")));
-		WebElement testForm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[9]//div[1]//div[2]//div[1]//div[2]//div[1]//span[6]")));
-
-		if(endOfCareForms.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			endOfCareForms.click();
-		}
-
-		if(startOfCareForms.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			startOfCareForms.click();
-		}
-
-		if(form4.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			form4.click();
-		}
-
-		if(testForm3.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			testForm3.click();
-		}
-
-		if(testForm2.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			testForm2.click();
-		}
-
-		if(testForm.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			testForm.click();
-		}
-	}
-	//Permission selection functions section ends//
 
 
 
@@ -550,19 +290,19 @@ public class Users extends OpenBrowser {
 		String desc = UsersInfoData.description;
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//i[normalize-space()='add']")));
+		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.add)));
 		add.click();
 
-		WebElement addUserGroup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='pl-2 pr-2 v-btn v-btn--contained theme--dark v-size--default primary']//span[@class='v-btn__content']")));
+		WebElement addUserGroup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.addUserGroup)));
 		addUserGroup.click();
 
-		WebElement adminName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div[1]//div[1]//div[1]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement adminName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.adminName)));
 		adminName.sendKeys(name);
 
-		WebElement adminAcronym = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div[1]//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement adminAcronym = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.adminAcronym)));
 		adminAcronym.sendKeys(acronym);
 
-		WebElement statusCheck = driver.findElement(By.xpath("//input[@role='checkbox']"));
+		WebElement statusCheck = driver.findElement(By.xpath(UsersXpath.statusCheck));
 
 		if(statusCheck.isSelected()) {
 			System.out.println("Already Selected !!");
@@ -571,41 +311,39 @@ public class Users extends OpenBrowser {
 			statusCheck.click();
 		}
 
-		WebElement userViewTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement userViewTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.userViewTitle)));
 		userViewTitle.sendKeys(viewTitle);
 
-		WebElement userViewAcronym = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div//div//div//div[2]//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement userViewAcronym = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.userViewAcronym)));
 		userViewAcronym.sendKeys(viewAcronym);
 
-		WebElement description = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[3]//div[1]//div[1]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement description = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.description)));
 		description.sendKeys(desc);
 
 		//user permission select
-		permissionUsers();
+		UsersFunctions.permissionUsers();
 
 		// Location permission select
-		permissionLocation();
+		UsersFunctions.permissionLocation();
 
 		//Patient permission select
-		permissionPatient();
+		UsersFunctions.permissionPatient();
 
 		//Calendar permission select
-		permissionCalendar();
+		UsersFunctions.permissionCalendar();
 
 		//Contact permission select
-		permissionContact();
+		UsersFunctions.permissionContact();
 
 		//Forms permission select
-		permissionForms();
+		UsersFunctions.permissionForms();
 
 
-
-
-		WebElement addGroup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='v-btn__content'][normalize-space()='Add']")));
+		WebElement addGroup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.addGroup)));
 		addGroup.click();
 		Thread.sleep(5000);
 		String actualAdminName = name;
-		WebElement lastRow = driver.findElement(By.xpath("(//table[1]//tbody[1]//tr)[last()]//td[1]")); 
+		WebElement lastRow = driver.findElement(By.xpath(UsersXpath.lastRow)); 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
 		js.executeScript("arguments[0].scrollIntoView(true);",lastRow);
@@ -626,30 +364,45 @@ public class Users extends OpenBrowser {
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		WebElement lastRowValue = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//table[1]//tbody[1]//tr)[last()]//td[1]")));
+		WebElement lastRowValue = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.lastRow)));
 		js.executeScript("arguments[0].scrollIntoView(true);",lastRowValue);
 
 		lastRowValue.click();
 
-		WebElement adminName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div[1]//div[1]//div[1]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement adminName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.adminName)));
 		while (!adminName.getAttribute("value").equals("")) {
 			adminName.sendKeys(Keys.BACK_SPACE);
 		}
 
 		adminName.sendKeys("SQA20");
 
-		WebElement adminAcronym = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div[1]//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement adminAcronym = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.adminAcronym)));
 		while (!adminAcronym.getAttribute("value").equals("")) {
 			adminAcronym.sendKeys(Keys.BACK_SPACE);
 		}
 
 		adminAcronym.sendKeys("SQA20");
 
-		WebElement update = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Update']")));
+		WebElement update = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.update)));
 		update.click();
 
 		Thread.sleep(2000);
 
+	}
+
+	//Check user card from user profile
+
+	@Test(priority = 15)
+	public void checkUserCardFromUser() throws InterruptedException {
+		checkUserProfile();
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		WebElement cardUser = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.cardUser)));
+		String cardUserTitle = cardUser.getText();
+		WebElement clickUser = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.clickUser2)));
+		String UserTitle = clickUser.getText();
+		Assert.assertEquals(UserTitle, cardUserTitle);
+		System.out.println("Card name matched !");
+		Thread.sleep(3000);
 	}
 
 

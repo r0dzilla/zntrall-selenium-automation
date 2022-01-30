@@ -24,6 +24,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import NormalUserXpath.User_ProfileXpath;
 import browser.OpenBrowser;
 import normalUserInputData.User_ProfileInfoData;
 
@@ -40,7 +41,7 @@ public class User_Profile extends OpenBrowser {
 		if((Browser.equalsIgnoreCase("chrome"))) {
 			driver = start(Browser);
 		}
-		
+
 		if((Browser.equalsIgnoreCase("firefox"))) {
 			driver = start(Browser);
 		}
@@ -73,23 +74,23 @@ public class User_Profile extends OpenBrowser {
 		Thread.sleep(3000);
 	}
 
-		//login
+	//login
 
 	@Test(priority = 1)
 	public void loginUser() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='text']")));
-		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
-		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
+		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.username)));
+		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.password)));
+		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.login)));
 
 		username.sendKeys(User_ProfileInfoData.user);
 		password.sendKeys(User_ProfileInfoData.pass);
 
 		login.click();
-		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
-		loginAs.click();
+		//		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
+		//		loginAs.click();
 		Thread.sleep(5000);
 
 		String expectedUrl = "https://dev.zntral.net/dashboard";
@@ -106,7 +107,7 @@ public class User_Profile extends OpenBrowser {
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div/div/div/nav[@data-booted='true']/div/div/section/header[@data-booted='true']/div/div/div/div[2]/div[1]")));
+		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.userProfile)));
 		username.click();
 		Thread.sleep(3000);
 
@@ -123,26 +124,26 @@ public class User_Profile extends OpenBrowser {
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement phoneNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h5[normalize-space()='Phone']")));
+		WebElement phoneNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.phoneNumber)));
 		phoneNumber.click();
 		Thread.sleep(2000);
 
-		WebElement selectPhoneNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@required='required']")));
+		WebElement selectPhoneNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.selectPhoneNumber)));
 		while (!selectPhoneNumber.getAttribute("value").equals("")) {
 			selectPhoneNumber.sendKeys(Keys.BACK_SPACE);
 		}
 		selectPhoneNumber.sendKeys(User_ProfileInfoData.addPhone);
 		Thread.sleep(1000);
 
-		WebElement phoneNumberType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div[1]//div[2]//div[1]//div[1]//div[1]//div[1]//div[2]//div[1]//i[1]")));
+		WebElement phoneNumberType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.phoneNumberType)));
 		phoneNumberType.click();
 		Thread.sleep(1000);
 
-		WebElement selectPhoneNumberType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Work')]")));
+		WebElement selectPhoneNumberType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.selectPhoneNumberType)));
 		selectPhoneNumberType.click();
 		Thread.sleep(1000);
 
-		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Submit']")));
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.save)));
 
 		try {
 			save.click();
@@ -152,7 +153,7 @@ public class User_Profile extends OpenBrowser {
 		catch (Exception e){
 			if(selectPhoneNumber.getAttribute("value").isEmpty()) {
 				save.isDisplayed();
-				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='alert']//div//div")));
+				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.invalidMsg)));
 				System.out.println(invalidMsg.getText());
 
 				Assert.assertTrue(true);
@@ -161,7 +162,7 @@ public class User_Profile extends OpenBrowser {
 			}
 			else if(selectPhoneNumber.getAttribute("value").length() > 10) {
 				save.isDisplayed();
-				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='alert']//div//div")));
+				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.invalidMsg)));
 				System.out.println(invalidMsg.getText());
 
 				Assert.assertTrue(true);
@@ -169,7 +170,7 @@ public class User_Profile extends OpenBrowser {
 			}
 			else {
 				save.isDisplayed();
-				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='alert']//div//div")));
+				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.invalidMsg)));
 				System.out.println(invalidMsg.getText());
 				Assert.assertTrue(true);
 				Thread.sleep(1000);
@@ -187,15 +188,15 @@ public class User_Profile extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement gender = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h5[normalize-space()='Gender']")));
+		WebElement gender = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.gender)));
 		gender.click();
 		Thread.sleep(2000);
 
-		WebElement selectGender = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='radiogroup']//div[1]//div[1]//div[1]")));
+		WebElement selectGender = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.selectGender)));
 		selectGender.click();
 		Thread.sleep(1000);
 
-		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Submit']")));
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.save)));
 
 		try {
 			save.click();
@@ -220,19 +221,19 @@ public class User_Profile extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement gender = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h5[normalize-space()='Email']")));
-		gender.click();
+		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.email)));
+		email.click();
 		Thread.sleep(2000);
 
-		WebElement newEmail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement newEmail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.newEmail)));
 		newEmail.sendKeys(User_ProfileInfoData.firstMail);
 		Thread.sleep(1000);
 
-		WebElement confirmEmail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[3]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement confirmEmail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.confirmEmail)));
 		confirmEmail.sendKeys(User_ProfileInfoData.secondMail);
 		Thread.sleep(1000);
 
-		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='v-btn__content'][normalize-space()='Submit']")));
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.save2)));
 
 		try {
 			save.click();
@@ -242,7 +243,7 @@ public class User_Profile extends OpenBrowser {
 		catch (Exception e){
 			if(newEmail.getAttribute("value").isEmpty()) {
 				save.isDisplayed();
-				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='alert']")));
+				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.invalidMsg2)));
 				System.out.println(invalidMsg.getText());
 
 				Assert.assertTrue(true);
@@ -251,7 +252,7 @@ public class User_Profile extends OpenBrowser {
 			}
 			else if(newEmail.getAttribute("value").startsWith("@")) {
 				save.isDisplayed();
-				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='alert']")));
+				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.invalidMsg2)));
 				System.out.println(invalidMsg.getText());
 
 				Assert.assertTrue(true);
@@ -259,14 +260,14 @@ public class User_Profile extends OpenBrowser {
 			}
 			else if(newEmail.getAttribute("value") != confirmEmail.getAttribute("value")) {
 				save.isDisplayed();
-				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='alert']")));
+				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.invalidMsg2)));
 				System.out.println(invalidMsg.getText());
 				Assert.assertTrue(true);
 				Thread.sleep(1000);
 			}
 			else {
 				save.isDisplayed();
-				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='alert']")));
+				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.invalidMsg2)));
 				System.out.println(invalidMsg.getText());
 				Assert.assertTrue(true);
 				Thread.sleep(1000);
@@ -285,38 +286,38 @@ public class User_Profile extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement address = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h5[normalize-space()='Address']")));
+		WebElement address = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.address)));
 		address.click();
 		Thread.sleep(2000);
 
-		WebElement streetAddress = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/form[1]/div[1]/div[1]/div[1]/div[1]/input[1]")));
+		WebElement streetAddress = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.streetAddress)));
 		while (!streetAddress.getAttribute("value").equals("")) {
 			streetAddress.sendKeys(Keys.BACK_SPACE);
 		}
 		streetAddress.sendKeys(User_ProfileInfoData.streetAddress);
 		Thread.sleep(1000);
 
-		WebElement unit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/form[1]/div[2]/div[1]/div[1]/div[1]/input[1]")));
+		WebElement unit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.unit)));
 		unit.sendKeys(User_ProfileInfoData.unit);
 		Thread.sleep(1000);
 
-		WebElement zip = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/form[1]/div[3]/div[1]/div[1]/div[1]/input[1]")));
+		WebElement zip = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.zip)));
 		zip.sendKeys(User_ProfileInfoData.zip);
 		Thread.sleep(1000);
 
-		WebElement city = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/form[1]/div[4]/div[1]/div[1]/div[1]/input[1]")));
+		WebElement city = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.city)));
 		city.sendKeys(User_ProfileInfoData.city);
 		Thread.sleep(1000);
 
-		WebElement state = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/form[1]/div[5]/div[1]/div[1]/div[1]/input[1]")));
+		WebElement state = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.state)));
 		state.sendKeys(User_ProfileInfoData.state);
 		Thread.sleep(1000);
 
-		WebElement poBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/form[1]/div[6]/div[1]/div[1]/div[1]/input[1]")));
+		WebElement poBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.poBox)));
 		poBox.sendKeys(User_ProfileInfoData.poBox);
 		Thread.sleep(1000);
 
-		WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='v-btn__content'][normalize-space()='Submit']")));
+		WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.submit)));
 
 		try {
 			submit.click();
@@ -326,7 +327,7 @@ public class User_Profile extends OpenBrowser {
 		catch (Exception e){
 			if(streetAddress.getAttribute("value").isEmpty()) {
 				submit.isDisplayed();
-				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-messages__message']")));
+				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.invalidMsg3)));
 				System.out.println(invalidMsg.getText());
 
 				Assert.assertTrue(true);
@@ -335,7 +336,7 @@ public class User_Profile extends OpenBrowser {
 			}
 			else {
 				submit.isDisplayed();
-				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-messages__message']")));
+				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.invalidMsg3)));
 				System.out.println(invalidMsg.getText());
 				Assert.assertTrue(true);
 				Thread.sleep(1000);
@@ -352,25 +353,23 @@ public class User_Profile extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h5[normalize-space()='Password']")));
+		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.password2)));
 		password.click();
 		Thread.sleep(2000);
 
-
-
-		WebElement requestOTP = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='font-sm mt-auto primary--text font-weight-bold']")));
+		WebElement requestOTP = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.requestOTP)));
 		requestOTP.click();
 		Thread.sleep(1000);
 
-		WebElement currentPass = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement currentPass = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.currentPass)));
 		currentPass.sendKeys(User_ProfileInfoData.currentPass);
 		Thread.sleep(1000);
 
-		WebElement newPass = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[3]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement newPass = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.newPass)));
 		newPass.sendKeys(User_ProfileInfoData.newPass);
 		Thread.sleep(1000);
 
-		WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Submit']")));
+		WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.save)));
 
 		try {
 			submit.click();
@@ -380,7 +379,7 @@ public class User_Profile extends OpenBrowser {
 		catch (Exception e){
 			if(currentPass.getAttribute("value").isEmpty()) {
 				submit.isDisplayed();
-				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='alert']")));
+				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.invalidMsg2)));
 				System.out.println(invalidMsg.getText());
 				Assert.assertTrue(true);
 				Thread.sleep(1000);
@@ -388,28 +387,28 @@ public class User_Profile extends OpenBrowser {
 			}
 			else if(currentPass.getAttribute("value").length() <= 5) {
 				submit.isDisplayed();
-				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='alert']")));
+				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.invalidMsg2)));
 				System.out.println(invalidMsg.getText());
 				Assert.assertTrue(true);
 				Thread.sleep(1000);
 			}
 			else if (newPass.getAttribute("value").isEmpty()) {
 				submit.isDisplayed();
-				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='alert']")));
+				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.invalidMsg2)));
 				System.out.println(invalidMsg.getText());
 				Assert.assertTrue(true);
 				Thread.sleep(1000);
 			}
 			else if (currentPass.getAttribute("value") == newPass.getAttribute("value")) {
 				submit.isDisplayed();
-				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='alert']")));
+				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.invalidMsg2)));
 				System.out.println(invalidMsg.getText());
 				Assert.assertTrue(true);
 				Thread.sleep(1000);
 			}
 			else {
 				submit.isDisplayed();
-				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='alert']")));
+				WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(User_ProfileXpath.invalidMsg2)));
 				System.out.println(invalidMsg.getText());
 				Assert.assertTrue(true);
 				Thread.sleep(1000);

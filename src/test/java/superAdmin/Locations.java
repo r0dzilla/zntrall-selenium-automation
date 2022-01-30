@@ -30,6 +30,7 @@ import org.testng.annotations.Test;
 
 import browser.OpenBrowser;
 import superAdminInputData.LocationInfoData;
+import superAdminXpath.LocationXpath;
 
 public class Locations extends OpenBrowser{
 
@@ -44,13 +45,13 @@ public class Locations extends OpenBrowser{
 		if((Browser.equalsIgnoreCase("chrome"))) {
 			driver = start(Browser);
 		}
-		
+
 		if((Browser.equalsIgnoreCase("firefox"))) {
 			driver = start(Browser);
 		}
 
-
 	}
+
 	@BeforeSuite
 	public static void beforeSuit() {
 
@@ -85,7 +86,7 @@ public class Locations extends OpenBrowser{
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement signInTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class='mb-3']")));
+		WebElement signInTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationXpath.signInTitle)));
 		signInTitle.isDisplayed();
 
 	}
@@ -95,9 +96,9 @@ public class Locations extends OpenBrowser{
 	@Test(priority = 2)
 	public void login() throws InterruptedException {
 
-		WebElement username = driver.findElement(By.xpath("//input[@type='text']"));
-		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
-		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
+		WebElement username = driver.findElement(By.xpath(LocationXpath.username));
+		WebElement password = driver.findElement(By.xpath(LocationXpath.pass));
+		WebElement login = driver.findElement(By.xpath(LocationXpath.login));
 
 		String user = LocationInfoData.user;
 		String pass = LocationInfoData.pass;
@@ -121,11 +122,9 @@ public class Locations extends OpenBrowser{
 		login();
 		Thread.sleep(2000);
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement locations = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Locations']")));
+		WebElement locations = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationXpath.locations)));
 		locations.click();
 		Thread.sleep(3000);
-
-
 
 		String expectedUrl = "https://dev.zntral.net/locations";
 		String actualUrl = driver.getCurrentUrl();
@@ -142,7 +141,7 @@ public class Locations extends OpenBrowser{
 
 		String searchLocation = LocationInfoData.searchLocation;
 
-		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-text-field__slot']//input[@type='text']")));
+		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationXpath.search)));
 		search.sendKeys(searchLocation);
 		Thread.sleep(3000);
 
@@ -175,18 +174,16 @@ public class Locations extends OpenBrowser{
 
 		String searchLocation = LocationInfoData.searchLocation;
 
-		WebElement search = driver.findElement(By.xpath("//div[@class='v-text-field__slot']//input[@type='text']"));
+		WebElement search = driver.findElement(By.xpath(LocationXpath.search));
 		search.sendKeys(searchLocation);
-		WebElement firstRow = driver.findElement(By.xpath("//table[1]/tbody[1]/tr[1]/td[2]/span[1]"));
+		WebElement firstRow = driver.findElement(By.xpath(LocationXpath.firstRow));
 
 		firstRow.click();
 		Thread.sleep(3000);
-		WebElement patient = driver.findElement(By.xpath("//*[text()='Patients']"));
+		WebElement patient = driver.findElement(By.xpath(LocationXpath.patient));
 		patient.click();
 
-
-		WebElement firstPatientInfo = driver.findElement(By.xpath("//table[1]/tbody[1]/tr[1]/td[1]/span[1]"));
-
+		WebElement firstPatientInfo = driver.findElement(By.xpath(LocationXpath.firstPatientInfo));
 		firstPatientInfo.click();
 		Assert.assertTrue(true);
 		Thread.sleep(3000);
@@ -199,28 +196,27 @@ public class Locations extends OpenBrowser{
 		checkLocationList();
 
 		String searchLocation = LocationInfoData.searchLocation;
-		WebElement search = driver.findElement(By.xpath("//div[@class='v-text-field__slot']//input[@type='text']"));
+		WebElement search = driver.findElement(By.xpath(LocationXpath.search));
 		search.sendKeys(searchLocation);
-		WebElement firstRow = driver.findElement(By.xpath("//table[1]/tbody[1]/tr[1]/td[2]/span[1]"));
-
+		WebElement firstRow = driver.findElement(By.xpath(LocationXpath.firstRow));
 		firstRow.click();
 		Thread.sleep(3000);
 
-		WebElement contact = driver.findElement(By.xpath("//*[text()='Contacts']"));
+		WebElement contact = driver.findElement(By.xpath(LocationXpath.contact));
 		contact.click();
 
-		WebElement firstContactInfo = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[1]"));
-
+		WebElement firstContactInfo = driver.findElement(By.xpath(LocationXpath.firstContactInfo));
 		firstContactInfo.click();
 		Assert.assertTrue(true);
 		Thread.sleep(3000);
 	}
 
 	// types list
+
 	@Test(priority = 7)
 	public void locationTypes() throws InterruptedException {
 		checkLocationList();
-		WebElement types = driver.findElement(By.xpath("//*[text()='Types']"));
+		WebElement types = driver.findElement(By.xpath(LocationXpath.types));
 		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", types);
 		Assert.assertTrue(true);
 		Thread.sleep(3000);
@@ -234,21 +230,21 @@ public class Locations extends OpenBrowser{
 		String editAcronym = LocationInfoData.editAcronym;
 
 		locationTypes();
-		WebElement typeInfo = driver.findElement(By.xpath("//body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[1]"));
+		WebElement typeInfo = driver.findElement(By.xpath(LocationXpath.typeInfo));
 		typeInfo.click();
 		Thread.sleep(2000);
 
-		WebElement name = driver.findElement(By.xpath("//div[@class='v-card v-sheet theme--light']//div[1]//div[1]//div[1]//div[1]//input[1]"));
+		WebElement name = driver.findElement(By.xpath(LocationXpath.name));
 		while (!name.getAttribute("value").equals("")) {
 			name.sendKeys(Keys.BACK_SPACE);
 		}
 		name.sendKeys(editName);
-		WebElement acronym = driver.findElement(By.xpath("//div[@class='v-card__text']//div[2]//div[1]//div[1]//div[1]//input[1]"));
+		WebElement acronym = driver.findElement(By.xpath(LocationXpath.acronym));
 		while (!acronym.getAttribute("value").equals("")) {
 			acronym.sendKeys(Keys.BACK_SPACE);
 		}
 		acronym.sendKeys(editAcronym);
-		WebElement update = driver.findElement(By.xpath("//*[text()='Update']"));
+		WebElement update = driver.findElement(By.xpath(LocationXpath.update));
 
 		try {
 			update.click();
@@ -270,22 +266,22 @@ public class Locations extends OpenBrowser{
 		String addAcronym = LocationInfoData.acronym;
 
 		locationTypes();
-		WebElement addNewType = driver.findElement(By.xpath("//i[normalize-space()='add']"));
+		WebElement addNewType = driver.findElement(By.xpath(LocationXpath.addNewType));
 		addNewType.click();
 
-		WebElement name = driver.findElement(By.xpath("//div[@class='v-card v-sheet theme--light']//div[1]//div[1]//div[1]//div[1]//input[1]"));
-		WebElement acronym = driver.findElement(By.xpath("//div[@class='v-card__text']//div[2]//div[1]//div[1]//div[1]//input[1]"));
+		WebElement name = driver.findElement(By.xpath(LocationXpath.name));
+		WebElement acronym = driver.findElement(By.xpath(LocationXpath.acronym));
 
 		name.sendKeys(addName);
 		acronym.sendKeys(addAcronym);
 
 		String actual = name.getAttribute("value");
 
-		WebElement save = driver.findElement(By.xpath("//span[normalize-space()='Save']"));
+		WebElement save = driver.findElement(By.xpath(LocationXpath.save));
 		save.click();
 		Thread.sleep(3000);
 
-		WebElement lastRow = driver.findElement(By.xpath("(//table[1]//tbody[1]//tr)[last()]//td[2]")); 
+		WebElement lastRow = driver.findElement(By.xpath(LocationXpath.lastRow)); 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
 		js.executeScript("arguments[0].scrollIntoView(true);",lastRow);
@@ -305,21 +301,21 @@ public class Locations extends OpenBrowser{
 		String addAcronym = LocationInfoData.acronym;
 
 		locationTypes();
-		WebElement addNewType = driver.findElement(By.xpath("//i[normalize-space()='add']"));
+		WebElement addNewType = driver.findElement(By.xpath(LocationXpath.addNewType));
 		addNewType.click();
 
-		WebElement name = driver.findElement(By.xpath("//div[@class='v-card v-sheet theme--light']//div[1]//div[1]//div[1]//div[1]//input[1]"));
-		WebElement acronym = driver.findElement(By.xpath("//div[@class='v-card__text']//div[2]//div[1]//div[1]//div[1]//input[1]"));
+		WebElement name = driver.findElement(By.xpath(LocationXpath.name));
+		WebElement acronym = driver.findElement(By.xpath(LocationXpath.acronym));
 
 		name.sendKeys(addName);
 		acronym.sendKeys(addAcronym);
 
-		WebElement save = driver.findElement(By.xpath("//*[text()='Save']"));
-		WebElement reset = driver.findElement(By.xpath("//*[text()='Reset']"));
+		WebElement save = driver.findElement(By.xpath(LocationXpath.save2));
+		WebElement reset = driver.findElement(By.xpath(LocationXpath.reset));
 		reset.click();
 
-		WebElement nameErrorMsg = driver.findElement(By.xpath("//div[contains(text(),'Name is required')]"));
-		WebElement acronymErrorMsg = driver.findElement(By.xpath("//div[contains(text(),'Acronym is required')]"));
+		WebElement nameErrorMsg = driver.findElement(By.xpath(LocationXpath.nameErrorMsg));
+		WebElement acronymErrorMsg = driver.findElement(By.xpath(LocationXpath.acronymErrorMsg));
 		Thread.sleep(2000);
 		Assert.assertTrue(save.isDisplayed());
 		Assert.assertTrue(nameErrorMsg.isDisplayed());
@@ -336,16 +332,16 @@ public class Locations extends OpenBrowser{
 		String addAcronym = LocationInfoData.acronym;
 
 		locationTypes();
-		WebElement addNewType = driver.findElement(By.xpath("//i[normalize-space()='add']"));
+		WebElement addNewType = driver.findElement(By.xpath(LocationXpath.addNewType));
 		addNewType.click();
 
-		WebElement name = driver.findElement(By.xpath("//div[@class='v-card v-sheet theme--light']//div[1]//div[1]//div[1]//div[1]//input[1]"));
-		WebElement acronym = driver.findElement(By.xpath("//div[@class='v-card__text']//div[2]//div[1]//div[1]//div[1]//input[1]"));
+		WebElement name = driver.findElement(By.xpath(LocationXpath.name));
+		WebElement acronym = driver.findElement(By.xpath(LocationXpath.acronym));
 
 		name.sendKeys(addName);
 		acronym.sendKeys(addAcronym);
 
-		WebElement cancel = driver.findElement(By.xpath("//*[text()='Cancel']"));
+		WebElement cancel = driver.findElement(By.xpath(LocationXpath.cancel));
 		cancel.click();
 
 	}
@@ -356,11 +352,12 @@ public class Locations extends OpenBrowser{
 	public void addressWiseSort() throws InterruptedException {
 		checkLocationList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement selectAddress = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Address')]")));
+		WebElement selectAddress = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationXpath.selectAddress)));
 
 		selectAddress.click();
 		selectAddress.click();
 		selectAddress.click();
+		Assert.assertTrue(true);
 	}
 
 	//Status wise sort
@@ -369,12 +366,12 @@ public class Locations extends OpenBrowser{
 	public void statusWiseSort() throws InterruptedException {
 		checkLocationList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement selectStatus = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Status')]")));
+		WebElement selectStatus = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationXpath.selectStatus)));
 
 		selectStatus.click();
 		selectStatus.click();
 		selectStatus.click();
-
+		Assert.assertTrue(true);
 	}
 
 	//Name wise types sort
@@ -383,12 +380,13 @@ public class Locations extends OpenBrowser{
 	public void nameWiseTypeSort() throws InterruptedException {
 		locationTypes();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement selectStatus = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='container location-section pt-4 container--fluid grid-list-xl']//th[1]")));
+		WebElement selectName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationXpath.selectName)));
 
-		selectStatus.click();
+		selectName.click();
 		Thread.sleep(1000);
-		selectStatus.click();
+		selectName.click();
 		Thread.sleep(1000);
+		Assert.assertTrue(true);
 	}
 
 	//Acronym wise types sort
@@ -397,12 +395,13 @@ public class Locations extends OpenBrowser{
 	public void acronymWiseTypeSort() throws InterruptedException {
 		locationTypes();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement selectStatus = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='container location-section pt-4 container--fluid grid-list-xl']//th[2]")));
+		WebElement selectAcronym = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationXpath.selectAcronym)));
 
-		selectStatus.click();
+		selectAcronym.click();
 		Thread.sleep(1000);
-		selectStatus.click();
+		selectAcronym.click();
 		Thread.sleep(1000);
+		Assert.assertTrue(true);
 	}
 
 	@AfterTest

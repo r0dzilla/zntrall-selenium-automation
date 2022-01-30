@@ -3,8 +3,8 @@ package normalUserInputData;
 public class ContactsInfoData {
 
 	//Login with valid info
-	public static String user = "shaque.sabbir@gmail.com";
-	public static String pass = "Sabbir33";
+	public static String user = "sabinulhaque033@gmail.com";
+	public static String pass = "123456";
 
 	//search item for location
 	public static String search = "Sabbir";

@@ -25,6 +25,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import NormalUserXpath.DashboardXpath;
 import browser.OpenBrowser;
 import normalUserInputData.DashboardInfoData;
 
@@ -42,7 +43,7 @@ public class Dashboard extends OpenBrowser {
 		if((Browser.equalsIgnoreCase("chrome"))) {
 			driver = start(Browser);
 		}
-		
+
 		if((Browser.equalsIgnoreCase("firefox"))) {
 			driver = start(Browser);
 		}
@@ -81,9 +82,10 @@ public class Dashboard extends OpenBrowser {
 	public void loginUser()  throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement username = driver.findElement(By.xpath("//input[@type='text']"));
-		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
-		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
+
+		WebElement username = driver.findElement(By.xpath(DashboardXpath.username));
+		WebElement password = driver.findElement(By.xpath(DashboardXpath.pass));
+		WebElement login = driver.findElement(By.xpath(DashboardXpath.login));
 
 		String user = DashboardInfoData.user;
 		String pass = DashboardInfoData.pass;
@@ -92,8 +94,8 @@ public class Dashboard extends OpenBrowser {
 		password.sendKeys(pass);
 
 		login.click();
-		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
-		loginAs.click();
+		//		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
+		//		loginAs.click();
 		Thread.sleep(5000);
 
 		String expectedUrl = "https://dev.zntral.net/dashboard";
@@ -110,15 +112,15 @@ public class Dashboard extends OpenBrowser {
 		loginUser();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//i[@class='v-icon notranslate material-icons theme--dark'][normalize-space()='add']")));
-		driver.findElement(By.xpath("//i[@class='v-icon notranslate material-icons theme--dark'][normalize-space()='add']")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.add)));
+		driver.findElement(By.xpath(DashboardXpath.add)).click();
 
-		List<WebElement> options =  driver.findElements(By.xpath("//div[@role='radiogroup']"));
+		List<WebElement> options =  driver.findElements(By.xpath(DashboardXpath.options));
 		Random random = new Random();
 		int index = random.nextInt(options.size());
 		options.get(index).click(); 
 
-		WebElement selectContinue = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Continue']")));
+		WebElement selectContinue = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.selectContinue)));
 		selectContinue.click();
 		Assert.assertTrue(true);
 
@@ -131,33 +133,33 @@ public class Dashboard extends OpenBrowser {
 		addLocation();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement locationName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")));
+		WebElement locationName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.locationName)));
 		locationName.sendKeys(DashboardInfoData.locationName);
-		WebElement licenceNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div/div[2]/div[1]/div[2]/div[1]/div[1]/input[1]")));
+		WebElement licenceNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.licenceNumber)));
 		licenceNumber.sendKeys(DashboardInfoData.licenceNumber);
-		WebElement capacity = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]/input[1]")));
+		WebElement capacity = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.capacity)));
 		capacity.sendKeys(DashboardInfoData.capacity);
-		WebElement address = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[2]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
+		WebElement address = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.address)));
 		address.sendKeys(DashboardInfoData.address);
-		WebElement suiteUnit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[2]//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement suiteUnit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.suiteUnit)));
 		suiteUnit.sendKeys(DashboardInfoData.suiteUnit);
-		WebElement city = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
+		WebElement city = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.city)));
 		city.sendKeys(DashboardInfoData.city);
-		WebElement state = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[3]//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
+		WebElement state = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.state)));
 		state.sendKeys(DashboardInfoData.state);
-		WebElement zip = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div/div[3]/div[1]/div[1]/div[1]/div[1]/input[1]")));
+		WebElement zip = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.zip)));
 		zip.sendKeys(DashboardInfoData.zip);
-		WebElement phoneNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/div[1]/div[1]/div[4]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")));
+		WebElement phoneNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.phoneNumber)));
 		phoneNumber.sendKeys(DashboardInfoData.phoneNumber);
-		WebElement type = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-text-field v-text-field--is-booted v-select']//div[@class='v-select__selections']")));
+		WebElement type = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.type)));
 		type.click();
-		WebElement selectType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Work')]")));
+		WebElement selectType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.selectType)));
 		selectType.click();
-		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
+		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.email)));
 		email.sendKeys(DashboardInfoData.email);
-		WebElement note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/div[1]/div[1]/div[5]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")));
+		WebElement note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.note)));
 		note.sendKeys(DashboardInfoData.note);
-		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.save)));
 		save.click();
 		Thread.sleep(5000);
 
@@ -172,21 +174,21 @@ public class Dashboard extends OpenBrowser {
 	public void invalidLocationData() throws InterruptedException {
 		addLocation();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement locationName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")));
-		WebElement licenceNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div/div[2]/div[1]/div[2]/div[1]/div[1]/input[1]")));
-		WebElement capacity = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]/input[1]")));
-		WebElement address = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[2]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		WebElement suiteUnit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[2]//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
-		WebElement city = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		WebElement state = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[3]//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
-		WebElement zip = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div/div[3]/div[1]/div[1]/div[1]/div[1]/input[1]")));
-		WebElement phoneNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/div[1]/div[1]/div[4]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")));
+		WebElement locationName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.locationName)));
+		WebElement licenceNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.licenceNumber)));
+		WebElement capacity = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.capacity)));
+		WebElement address = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.address)));
+		WebElement suiteUnit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.suiteUnit)));
+		WebElement city = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.city)));
+		WebElement state = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.state)));
+		WebElement zip = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.zip)));
+		WebElement phoneNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.phoneNumber)));
 		WebElement type = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-text-field v-text-field--is-booted v-select']//div[@class='v-select__selections']")));
-		//WebElement selectType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[4]/div[1]/div[1]/div[1]/input[1]")));
-		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
-		WebElement note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/div[1]/div[1]/div[5]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")));
+		//WebElement selectType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.selectType)));
+		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.email)));
+		WebElement note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.note)));
 
-		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.save)));
 
 		Thread.sleep(2000);
 		locationName.sendKeys(DashboardInfoData.locationName2);
@@ -310,11 +312,11 @@ public class Dashboard extends OpenBrowser {
 			Thread.sleep(2000);
 		}
 
-		WebElement addressMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Address is required')]")));
-		WebElement cityMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'City is required')]")));
-		WebElement stateMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'State is required')]")));
-		WebElement phoneMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Phone is required')]")));
-		WebElement emailMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'E-mail must be valid')]")));
+		WebElement addressMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.addressMsg)));
+		WebElement cityMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.cityMsg)));
+		WebElement stateMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.stateMsg)));
+		WebElement phoneMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.phoneMsg)));
+		WebElement emailMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.emailMsg)));
 
 		String expectedText1 = "Address is required";
 		String actualText1 = addressMsg.getText();
@@ -344,14 +346,14 @@ public class Dashboard extends OpenBrowser {
 	public void validateEmailData() throws InterruptedException {
 		addLocation();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
+		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.email)));
 
 		email.sendKeys(DashboardInfoData.validemail);
-		WebElement note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/div[1]/div[1]/div[5]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")));
+		WebElement note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.note)));
 		note.sendKeys(DashboardInfoData.note3);
 
 		if(email.getAttribute("value").startsWith("@")){
-			WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'E-mail must be valid')]")));
+			WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.invalidMsg)));
 			System.out.println(invalidMsg.getText());
 			Assert.assertTrue(true);
 		}else {
@@ -366,40 +368,38 @@ public class Dashboard extends OpenBrowser {
 		loginUser();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//i[@class='v-icon notranslate material-icons theme--light'][normalize-space()='add']")));
-		driver.findElement(By.xpath("//i[@class='v-icon notranslate material-icons theme--light'][normalize-space()='add']")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.add)));
+		driver.findElement(By.xpath(DashboardXpath.add)).click();
 
-		WebElement prefix = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[1]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[1]//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
-		WebElement lastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div[4]//div[1]//div[1]//div[1]//div[1]//input[1]")));
-		WebElement ssn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		WebElement dob = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div[2]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		WebElement gender = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[3]//div[1]//div[2]//div[1]//div[1]//div[2]//div[1]//i[1]")));
-		WebElement phone = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		WebElement type = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@id='inspire']//div[@role='document']//div//div//div//div//div//div//div//div//div//div[1]//div[1]//div[1]//div[2]//div[1]//i[1]")));
-		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
-		WebElement location = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@id='inspire']//div[@role='document']//div//div//div//div//div//div//div[1]//div[1]//div[2]//div[1]//div[1]//div[2]//div[1]//i[1]")));
-		WebElement note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[5]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
+		WebElement prefix = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.prefix)));
+		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.firstName)));
+		WebElement lastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.lastName)));
+		WebElement ssn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.ssn)));
+		WebElement dob = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.dob)));
+		WebElement gender = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.gender)));
+		WebElement phone = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.phone)));
+		WebElement type = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.patientType)));
+		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.email)));
+		WebElement location = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.location)));
+		WebElement note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.patientNote)));
 
-		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Submit']")));
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.Submit)));
 
 		prefix.sendKeys(DashboardInfoData.prefix);
 		firstName.sendKeys(DashboardInfoData.patientfirstName);
 		lastName.sendKeys(DashboardInfoData.patientlastName);
 		ssn.sendKeys(DashboardInfoData.ssn);
 		dob.sendKeys(DashboardInfoData.dob);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='OK']"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.ok))).click();
 		gender.click();
-		WebElement genderMale = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Male')]")));
+		WebElement genderMale = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.genderMale)));
 		genderMale.click();
 		phone.sendKeys(DashboardInfoData.phone);
 		type.click();
-		WebElement typeMobile = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-list-item__title'][normalize-space()='Mobile']")));
+		WebElement typeMobile = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.typeMobile)));
 		typeMobile.click();
 		email.sendKeys(DashboardInfoData.patientemail);
-		//location.click();
-		//WebElement selectLocation = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space()='Test Location 2']")));
-		//selectLocation.click();
+
 		note.sendKeys(DashboardInfoData.patientnote);
 		save.click();
 		Thread.sleep(5000);
@@ -416,29 +416,27 @@ public class Dashboard extends OpenBrowser {
 		loginUser();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//i[@class='v-icon notranslate material-icons theme--light'][normalize-space()='add']")));
-		driver.findElement(By.xpath("//i[@class='v-icon notranslate material-icons theme--light'][normalize-space()='add']")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.add)));
+		driver.findElement(By.xpath(DashboardXpath.add)).click();
 
-		WebElement prefix = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[1]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[1]//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]")));
-		WebElement lastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div[4]//div[1]//div[1]//div[1]//div[1]//input[1]")));
-		WebElement ssn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		WebElement dob = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div[2]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		//WebElement gender = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='document']//div[3]//div[1]//div[2]//div[1]//div[1]//div[2]//div[1]//i[1]")));
-		WebElement phone = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
-		//WebElement type = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@id='inspire']//div[@role='document']//div//div//div//div//div//div//div//div//div//div[1]//div[1]//div[1]//div[2]//div[1]//i[1]")));
-		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
-		WebElement location = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@id='inspire']//div[@role='document']//div//div//div//div//div//div//div[1]//div[1]//div[2]//div[1]//div[1]//div[2]//div[1]//i[1]")));
-		WebElement note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[5]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
+		WebElement prefix = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.prefix)));
+		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.firstName)));
+		WebElement lastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.lastName)));
+		WebElement ssn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.ssn)));
+		WebElement dob = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.dob)));
+		WebElement phone = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.phone)));
+		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.email)));
+		WebElement location = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.location)));
+		WebElement note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.patientNote)));
 
-		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Submit']")));
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.Submit)));
 
 		prefix.sendKeys(DashboardInfoData.prefix2);
 		firstName.sendKeys(DashboardInfoData.patientfirstName2);
 		lastName.sendKeys(DashboardInfoData.patientlastName2);
 		ssn.sendKeys(DashboardInfoData.ssn2);
 		dob.sendKeys(DashboardInfoData.dob2);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='OK']"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.ok))).click();
 		phone.sendKeys(DashboardInfoData.phone2);
 		email.sendKeys(DashboardInfoData.patientemail2);
 		note.sendKeys(DashboardInfoData.patientnote2);
@@ -527,8 +525,8 @@ public class Dashboard extends OpenBrowser {
 			Thread.sleep(1000);
 		}
 
-		WebElement firstNameMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'First name is required')]")));
-		WebElement lastNameMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Last name is required')]")));
+		WebElement firstNameMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.firstNameMsg)));
+		WebElement lastNameMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.lastNameMsg)));
 
 		String expectedText1 = "First name is required";
 		String actualText1 = firstNameMsg.getText();
@@ -547,16 +545,16 @@ public class Dashboard extends OpenBrowser {
 		loginUser();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//i[@class='v-icon notranslate material-icons theme--light'][normalize-space()='add']")));
-		driver.findElement(By.xpath("//i[@class='v-icon notranslate material-icons theme--light'][normalize-space()='add']")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.add)));
+		driver.findElement(By.xpath(DashboardXpath.add)).click();
 
-		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='email']")));
+		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.email)));
 
 		email.sendKeys(DashboardInfoData.patientvalidemail);
-		WebElement note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[5]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
+		WebElement note = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.patientNote)));
 		note.sendKeys(DashboardInfoData.patientnote3);
 		if(email.getAttribute("value").startsWith("@")){
-			WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'E-mail must be valid')]")));
+			WebElement invalidMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.invalidMsg)));
 			System.out.println(invalidMsg.getText());
 			Assert.assertTrue(true);
 			Thread.sleep(1000);

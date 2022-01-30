@@ -3,8 +3,8 @@ package normalUserInputData;
 public class User_ProfileInfoData {
 
 	//Login with valid info
-	public static String user = "shaque.sabbir@gmail.com";
-	public static String pass = "Sabbir33";
+	public static String user = "sabinulhaque033@gmail.com";
+	public static String pass = "123456";
 
 	//Add phone number
 	public static String addPhone = "123456789";	

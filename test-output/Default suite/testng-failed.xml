@@ -6,15 +6,12 @@
       <class name="superAdmin.Login">
         <methods>
           <include name="openBrowser"/>
-          <include name="loginWithoutPassword"/>
-          <include name="invalidLoginInfo"/>
           <include name="tearDown"/>
           <include name="beforeSuit"/>
           <include name="afterSuit"/>
           <include name="setup"/>
           <include name="verifyLogin"/>
-          <include name="verifyElemntsOnPageTest"/>
-          <include name="loginWithoutUsername"/>
+          <include name="checkResults"/>
         </methods>
       </class> <!-- superAdmin.Login -->
     </classes>

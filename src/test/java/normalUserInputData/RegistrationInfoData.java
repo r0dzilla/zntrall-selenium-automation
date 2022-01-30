@@ -3,10 +3,10 @@ package normalUserInputData;
 public class RegistrationInfoData {
 
 	// Registration with all valid data
-	public static String firstName = "Sabbir-Test";
-	public static String lastName = "Info";
-	public static String email = "sabbirtest@email.com";
-	public static String verifiedemail = "sabbirtest@email.com";
+	public static String firstName = "Test";
+	public static String lastName = "SQA";
+	public static String email = "etest1133@gmail.com";
+	public static String verifiedemail = "etest1133@gmail.com";
 
 
 	// Registration - First Name field validation

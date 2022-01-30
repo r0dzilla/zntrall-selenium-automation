@@ -23,6 +23,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import NormalUserXpath.CalendarXpath;
 import browser.OpenBrowser;
 import normalUserInputData.CalendarInfoData;
 
@@ -40,7 +41,7 @@ public class Calendar extends OpenBrowser{
 		if((Browser.equalsIgnoreCase("chrome"))) {
 			driver = start(Browser);
 		}
-		
+
 		if((Browser.equalsIgnoreCase("firefox"))) {
 			driver = start(Browser);
 		}
@@ -80,9 +81,9 @@ public class Calendar extends OpenBrowser{
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='text']")));
-		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
-		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@novalidate='novalidate']//button[1]")));
+		WebElement username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.username)));
+		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.pass)));
+		WebElement login = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.login)));
 
 		String user = CalendarInfoData.user;
 		String pass = CalendarInfoData.pass;
@@ -91,9 +92,8 @@ public class Calendar extends OpenBrowser{
 		password.sendKeys(pass);
 
 		login.click();
-
-		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
-		loginAs.click();
+		//		WebElement loginAs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Counsellors']")));
+		//		loginAs.click();
 		Thread.sleep(5000);
 
 		String expectedUrl = "https://dev.zntral.net/dashboard";
@@ -111,8 +111,8 @@ public class Calendar extends OpenBrowser{
 
 		loginUser();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Calendar']")));
-		driver.findElement(By.xpath("//span[normalize-space()='Calendar']")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.calendar)));
+		driver.findElement(By.xpath(CalendarXpath.calendar)).click();
 		String expectedUrl = "https://dev.zntral.net/patient_schedule";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
@@ -126,25 +126,25 @@ public class Calendar extends OpenBrowser{
 		calendar();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement selectDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-calendar-monthly v-calendar-weekly v-calendar theme--light v-calendar-events']//span[@class='v-btn__content'][normalize-space()='28']")));
+		WebElement selectDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectDate)));
 		selectDate.click();
-		WebElement patientSelectDropDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='combobox']//div//div//div//i[@aria-hidden='true']")));
+		WebElement patientSelectDropDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.patientSelectDropDown)));
 		patientSelectDropDown.click();
-		WebElement patientSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-list-item__title'][normalize-space()='Testing data']")));
+		WebElement patientSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.patientSelect)));
 		patientSelect.click();
-		WebElement dateFieldSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]")));
+		WebElement dateFieldSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.dateFieldSelect)));
 		dateFieldSelect.click();
-		WebElement dateSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-btn__content'][normalize-space()='30']")));
+		WebElement dateSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.dateSelect)));
 		dateSelect.click();
-		WebElement allDay = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'All day')]")));
+		WebElement allDay = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.allDay)));
 		allDay.click();
-		WebElement description = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-text-field v-text-field--is-booted']//input[@type='text']")));
+		WebElement description = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.description)));
 		String desc = CalendarInfoData.desc;
 		description.sendKeys(desc);
-		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.save)));
 		save.click();
 		Thread.sleep(3000);
-		WebElement errorMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='status']")));
+		WebElement errorMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.errorMsg)));
 		try {
 
 			if(driver.switchTo().alert() != null) {
@@ -166,9 +166,9 @@ public class Calendar extends OpenBrowser{
 		calendar();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement selectSchedule = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[5]/div[7]/div[2]/div[1]")));
+		WebElement selectSchedule = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectSchedule)));
 		selectSchedule.click();
-		WebElement selectCancel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-menu__content theme--light menuable__content__active']//span[@class='v-btn__content'][normalize-space()='Cancel']")));
+		WebElement selectCancel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectCancel)));
 		selectCancel.click();
 	}
 
@@ -179,13 +179,13 @@ public class Calendar extends OpenBrowser{
 		calendar();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement selectSchedule = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[5]/div[3]/div[2]/div[1]")));
+		WebElement selectSchedule = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectSchedule2)));
 		selectSchedule.click();
-		WebElement selectDelete = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Delete']")));
+		WebElement selectDelete = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectDelete)));
 		selectDelete.click();
-		WebElement selectRecurringOption = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[normalize-space()='All events']")));
+		WebElement selectRecurringOption = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectRecurringOption)));
 		selectRecurringOption.click();
-		WebElement delete = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='ml-2 v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light v-size--default danger--text']//span[@class='v-btn__content'][normalize-space()='Delete']")));
+		WebElement delete = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.delete)));
 		delete.click();
 	}
 
@@ -196,18 +196,18 @@ public class Calendar extends OpenBrowser{
 		calendar();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement selectSchedule = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='pl-1'][normalize-space()='Testing data']")));
+		WebElement selectSchedule = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectSchedule3)));
 		selectSchedule.click();
-		WebElement selectEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Edit']")));
+		WebElement selectEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectEdit)));
 		selectEdit.click();
-		WebElement selectPatientDrpDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='combobox']//div//div//div//i[@aria-hidden='true']")));
+		WebElement selectPatientDrpDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.patientSelectDropDown)));
 		selectPatientDrpDown.click();
-		WebElement selectPatient = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Sabbir-Test Info')]")));
+		WebElement selectPatient = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectPatient)));
 		selectPatient.click();
-		WebElement description = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-input theme--light v-text-field v-text-field--is-booted']//input[@type='text']")));
+		WebElement description = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.description)));
 		String desc = CalendarInfoData.desc;
 		description.sendKeys(desc);
-		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Save']")));
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.save)));
 		save.click();
 
 	}
@@ -219,9 +219,9 @@ public class Calendar extends OpenBrowser{
 		calendar();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement selectType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@role='button']//i[@aria-hidden='true']")));
+		WebElement selectType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectType)));
 		selectType.click();
-		WebElement selectDay = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Day')]")));
+		WebElement selectDay = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectDay)));
 		selectDay.click();
 	}
 
@@ -232,9 +232,9 @@ public class Calendar extends OpenBrowser{
 		calendar();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement selectType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@role='button']//i[@aria-hidden='true']")));
+		WebElement selectType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectType)));
 		selectType.click();
-		WebElement selectWeek = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Week')]")));
+		WebElement selectWeek = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectWeek)));
 		selectWeek.click();
 	}
 
@@ -245,9 +245,9 @@ public class Calendar extends OpenBrowser{
 		calendar();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement selectType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@role='button']//i[@aria-hidden='true']")));
+		WebElement selectType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectType)));
 		selectType.click();
-		WebElement selectMonth = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Month')]")));
+		WebElement selectMonth = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectMonth)));
 		selectMonth.click();
 	}
 
@@ -258,9 +258,9 @@ public class Calendar extends OpenBrowser{
 		calendar();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement selectType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@role='button']//i[@aria-hidden='true']")));
+		WebElement selectType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectType)));
 		selectType.click();
-		WebElement selectAgenda = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Agenda')]")));
+		WebElement selectAgenda = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectAgenda)));
 		selectAgenda.click();
 	}
 

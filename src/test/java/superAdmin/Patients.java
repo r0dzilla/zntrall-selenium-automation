@@ -28,8 +28,9 @@ import org.testng.annotations.Test;
 
 import browser.OpenBrowser;
 import superAdminInputData.PatientsInfoData;
+import superAdminXpath.PatientsXpath;
 
-public class Patients extends OpenBrowser {
+public class Patients extends OpenBrowser{
 
 	public static String env = "Test for Super Admin";
 	public static String testSuiteName = "Test Suit 5 -- Patients";
@@ -44,15 +45,13 @@ public class Patients extends OpenBrowser {
 		if((Browser.equalsIgnoreCase("chrome"))) {
 			driver = start(Browser);
 		}
-		
+
 		if((Browser.equalsIgnoreCase("firefox"))) {
 			driver = start(Browser);
 		}
-
-
 	}
-	
-	
+
+
 	@BeforeSuite
 	public static void beforeSuit() {
 
@@ -99,7 +98,7 @@ public class Patients extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
-		WebElement signInTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class='mb-3']")));
+		WebElement signInTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.signInTitle)));
 		signInTitle.isDisplayed();
 
 	}
@@ -109,9 +108,9 @@ public class Patients extends OpenBrowser {
 	@Test(priority = 2)
 	public void login() throws InterruptedException {
 
-		WebElement username = driver.findElement(By.xpath("//input[@type='text']"));
-		WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
-		WebElement login = driver.findElement(By.xpath("//form[@novalidate='novalidate']//button[1]"));
+		WebElement username = driver.findElement(By.xpath(PatientsXpath.username));
+		WebElement password = driver.findElement(By.xpath(PatientsXpath.pass));
+		WebElement login = driver.findElement(By.xpath(PatientsXpath.login));
 
 		String user = PatientsInfoData.user;
 		String pass = PatientsInfoData.pass;
@@ -135,11 +134,9 @@ public class Patients extends OpenBrowser {
 		login();
 		Thread.sleep(2000);
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement locations = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Patients']")));
-		locations.click();
+		WebElement patients = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.patients)));
+		patients.click();
 		Thread.sleep(3000);
-
-
 
 		String expectedUrl = "https://dev.zntral.net/patients";
 		String actualUrl = driver.getCurrentUrl();
@@ -155,7 +152,7 @@ public class Patients extends OpenBrowser {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		String searchLocation = PatientsInfoData.searchLocation;
-		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-text-field__slot']//input[@type='text']")));
+		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.search)));
 		search.sendKeys(searchLocation);
 		Thread.sleep(3000);
 
@@ -186,7 +183,7 @@ public class Patients extends OpenBrowser {
 	@Test(priority = 5)
 	public void patientFromLocation() throws InterruptedException {
 		search();
-		WebElement firstRow = driver.findElement(By.xpath("//table[1]/tbody[1]/tr[1]/td[2]/span[1]"));
+		WebElement firstRow = driver.findElement(By.xpath(PatientsXpath.firstRow));
 
 		firstRow.click();
 		Thread.sleep(3000);
@@ -201,14 +198,15 @@ public class Patients extends OpenBrowser {
 	public void firstNameWiseSort() throws InterruptedException {
 		checkPatientList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement selectStatus = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='First']")));
+		WebElement selectName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.selectName)));
 
-		selectStatus.click();
+		selectName.click();
 		Thread.sleep(1000);
-		selectStatus.click();
+		selectName.click();
 		Thread.sleep(1000);
-		selectStatus.click();
+		selectName.click();
 		Thread.sleep(1000);
+		Assert.assertTrue(true);
 	}
 
 	//Location wise sort
@@ -217,13 +215,14 @@ public class Patients extends OpenBrowser {
 	public void locationWiseSort() throws InterruptedException {
 		checkPatientList();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement selectStatus = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Location']")));
+		WebElement selectLocation = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.selectLocation)));
 
-		selectStatus.click();
+		selectLocation.click();
 		Thread.sleep(1000);
-		selectStatus.click();
+		selectLocation.click();
 		Thread.sleep(1000);
-		selectStatus.click();
+		selectLocation.click();
 		Thread.sleep(1000);
+		Assert.assertTrue(true);
 	}
 }
