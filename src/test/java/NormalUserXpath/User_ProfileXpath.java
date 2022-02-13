@@ -11,7 +11,10 @@ public class User_ProfileXpath {
 	public static String phoneNumber = "//h5[normalize-space()='Phone']";
 	public static String selectPhoneNumber = "//input[@required='required']";
 	public static String phoneNumberType = "//body//div[@data-app='true']//div[@role='document']//div//div//div[1]//div[2]//div[1]//div[1]//div[1]//div[1]//div[2]//div[1]//i[1]";
-	public static String selectPhoneNumberType = "//div[contains(text(),'Work')]";
+	public static String selectPhoneNumberType = "//div[@role='listbox']";
+	public static String selectPhoneNumberTypeHome = "//div[contains(text(),'Home')]";
+	public static String selectPhoneNumberTypeMobile = "//div[contains(text(),'Mobile')]";
+	public static String selectPhoneNumberTypeWork = "//div[contains(text(),'Work')]";
 	public static String save = "//span[normalize-space()='Submit']";
 	public static String invalidMsg = "//div[@role='alert']//div//div";
 	

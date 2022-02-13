@@ -3,17 +3,19 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="superAdmin.Login">
+      <class name="normalUser.Users">
         <methods>
-          <include name="openBrowser"/>
-          <include name="tearDown"/>
+          <include name="search"/>
           <include name="beforeSuit"/>
+          <include name="tearDown"/>
+          <include name="checkResults"/>
+          <include name="afterClass"/>
+          <include name="initiateReport"/>
+          <include name="openBrowser"/>
           <include name="afterSuit"/>
           <include name="setup"/>
-          <include name="verifyLogin"/>
-          <include name="checkResults"/>
         </methods>
-      </class> <!-- superAdmin.Login -->
+      </class> <!-- normalUser.Users -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

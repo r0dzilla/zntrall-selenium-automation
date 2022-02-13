@@ -8,7 +8,7 @@ public class LocationInfoData {
 
 
 	//search item for location
-	public static String searchLocation = "Demo";
+	public static String searchLocation = "Dhaka";
 
 
 	//Add location  with valid info

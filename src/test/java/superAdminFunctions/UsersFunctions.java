@@ -9,9 +9,44 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import superAdmin.Users;
+import superAdminInputData.UsersInfoData;
 import superAdminXpath.UsersXpath;
 
 public class UsersFunctions extends Users {
+
+	public static void verifyLogin() throws InterruptedException {
+
+		WebElement username = driver.findElement(By.xpath(UsersXpath.username));
+		WebElement password = driver.findElement(By.xpath(UsersXpath.pass));
+		WebElement login = driver.findElement(By.xpath(UsersXpath.login));
+
+		String user = UsersInfoData.user;
+		String pass = UsersInfoData.pass;
+
+		username.sendKeys(user);
+		password.sendKeys(pass);
+
+		login.click();
+		Thread.sleep(5000);
+	}
+
+	public static void userList() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		WebElement users = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.users)));
+		users.click();
+		Thread.sleep(7000);
+	}
+
+
+	public static void username() throws InterruptedException {
+
+		WebElement usersName = driver.findElement(By.xpath(UsersXpath.usersName));
+		String userss = usersName.getText();
+		usersName.click();
+		Thread.sleep(5000);
+	}
+
 
 	//Permission selection functions section starts //
 	//permission for users
@@ -231,7 +266,7 @@ public class UsersFunctions extends Users {
 		WebElement form4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.form4)));
 		WebElement testForm3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.testForm3)));
 		WebElement testForm2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.testForm2)));
-		WebElement testForm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.testForm)));
+		//WebElement testForm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.testForm)));
 
 		if(endOfCareForms.isSelected()) {
 			System.out.println("Already Selected !!");
@@ -268,12 +303,12 @@ public class UsersFunctions extends Users {
 			testForm2.click();
 		}
 
-		if(testForm.isSelected()) {
-			System.out.println("Already Selected !!");
-			Assert.assertTrue(true);
-		}else {
-			testForm.click();
-		}
+		//		if(testForm.isSelected()) {
+		//			System.out.println("Already Selected !!");
+		//			Assert.assertTrue(true);
+		//		}else {
+		//			testForm.click();
+		//		}
 	}
 	//Permission selection functions section ends//
 }

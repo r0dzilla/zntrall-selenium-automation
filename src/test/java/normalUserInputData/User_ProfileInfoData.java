@@ -11,8 +11,8 @@ public class User_ProfileInfoData {
 
 
 	//Update email
-	public static String firstMail = "a@email.co";
-	public static String secondMail = "a@email.co";
+	public static String firstMail = "sabinulhaque033@gmail.com";
+	public static String secondMail = "sabinulhaque033@gmail.com";
 
 
 	//Add address

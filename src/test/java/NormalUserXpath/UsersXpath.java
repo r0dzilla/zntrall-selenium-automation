@@ -14,9 +14,9 @@ public class UsersXpath {
 	public static String FirstName = "//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[1]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
 	public static String LastName = "//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/form[@novalidate='novalidate']/div/div/div/div[1]/div[1]/div[1]/input[1]";
 	public static String emailId = "//input[@type='email']";
-	public static String groupDrpDown = "//form[@novalidate='novalidate']//div//div//div//div//div[@role='button']//div//div//div//i[@aria-hidden='true']";
+
 	public static String save = "//span[normalize-space()='save']";
-	public static String groupDrpDownSelect = "//div[contains(text(),'Hospice Registered Nurse')]";
+	
 	public static String firstRow = "//tbody/tr[1]/td[3]";
 	
 	public static String status = "//div[@role='status']";

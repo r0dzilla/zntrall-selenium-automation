@@ -26,10 +26,12 @@ public class PatientsXpath {
 	public static String location = "//body//div[@id='inspire']//div[@role='document']//div//div//div//div//div//div//div[1]//div[1]//div[2]//div[1]//div[1]//div[2]//div[1]//i[1]";
 	public static String note = "//div[5]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
 	public static String save = "//span[normalize-space()='Submit']";
+	public static String save2 = "//span[normalize-space()='Save']";
 	public static String ok = "//span[normalize-space()='OK']";
 	public static String genderMale = "//div[contains(text(),'Male')]";
+	public static String genderMale2 = "//body/div[@class='v-application v-application--is-ltr theme--light']/div[@class='v-menu__content theme--light v-menu__content--fixed menuable__content__active']/div[@role='listbox']/div[1]/div[1]";
 	public static String typeMobile = "//div[@class='v-list-item__title'][normalize-space()='Mobile']";
-	public static String selectLocation = "//div[normalize-space()='Test Location 2']";
+	public static String selectLocation = "//div[@class='v-menu__content theme--light v-menu__content--fixed menuable__content__active']//div[2]";
 
 	public static String firstNameMsg = "//div[contains(text(),'First name is required')]";
 	public static String lastNameMsg = "//div[contains(text(),'Last name is required')]";
@@ -53,7 +55,7 @@ public class PatientsXpath {
 	public static String Phone = "//div[@role='document']//div[4]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
 	public static String phoneDropdown = "//body/div[@id='inspire']/div[@role='document']/div/div/div/div/div/div/div/form[@novalidate='novalidate']/div/div/div/div/div[@role='button']/div/div/div/i[1]";
 	public static String phoneTypeSelect = "//div[contains(text(),'Home')]";
-	public static String contactNameSelect = "//tr[last()]/td[1]";
+	public static String contactNameSelect = "//tbody//tr";
 
 	public static String Note = "//div[7]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
 	public static String FirstNameMsg = "//div[@class='v-messages__message']";
@@ -61,12 +63,12 @@ public class PatientsXpath {
 
 	public static String addScheduleButton = "//div[contains(text(),'Schedule')]";
 	public static String startDate = "//body//div[@data-app='true']//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
-	public static String select1 = "//tbody/tr[5]/td[3]/button[1]";
+	public static String select1 = "//tbody/tr[5]/td[2]/button[1]";
 	public static String select2 = "//body//div[@id='inspire']//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[1]//div[1]//div[1]";
 	public static String select3 = "//div[5]//div[1]//div[1]//div[1]//div[1]//div[1]//input[1]";
 	public static String contactNameSelect2 = "//section//div[7]";
 	public static String actual = "/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]";
-
+	
 	public static String select4 = "//body//div[@data-app='true']//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
 	public static String select5 = "//tbody/tr[4]/td[4]/button[1]";
 	public static String select6 = "//body//div[@id='inspire']//div[@role='document']//div//div//div//div//div[1]//div[1]//div[1]//div[1]//div[1]//div[1]//div[2]//div[1]//i[1]";
@@ -78,4 +80,8 @@ public class PatientsXpath {
 	public static String importButton = "//div[@class='v-list-item__content'][normalize-space()='Import']";
 	public static String dropFile = "//div[@id='dropzone']";
 	public static String preview = "//div[@role='document']//div[3]//div[1]//button[1]";
+	
+	public static String addLocation = "//body/div[@id='inspire']/div/div/main[@data-booted='true']/div/div/div/div/div/div/div/div/div/div/div/div/button[1]";
+
+	public static String selectNewLocation = "//div[@role='menu']//div[2]";
 }

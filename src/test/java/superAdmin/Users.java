@@ -1,30 +1,45 @@
 package superAdmin;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
-import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
 
 import browser.OpenBrowser;
 import superAdminFunctions.UsersFunctions;
@@ -36,22 +51,14 @@ public class Users extends OpenBrowser{
 
 	public static String env = "Test for Super Admin";
 	public static String testSuiteName = "Test Suit 3 -- Users";
+	String fileName = System.getProperty("user.dir")+"/reports/Super Admin/TestResults-Users.html";
+
+	public static ExtentTest parentTest;
+	public static ExtentReports extent;
+	public static ExtentTest test;
+	public static ExtentSparkReporter htmlReports;
+
 	public static WebDriver driver = null;
-	@Parameters({"Browser"})
-
-	@BeforeTest
-	public void setup(String Browser) throws MalformedURLException {
-
-		if((Browser.equalsIgnoreCase("chrome"))) {
-			driver = start(Browser);
-		}
-
-		if((Browser.equalsIgnoreCase("firefox"))) {
-			driver = start(Browser);
-		}
-
-	}
-
 
 	@BeforeSuite
 	public static void beforeSuit() {
@@ -67,28 +74,93 @@ public class Users extends OpenBrowser{
 		}
 	}
 
+	@Parameters({"Browser"})
+	@BeforeTest
+	public void setup(String Browser) throws MalformedURLException {
+
+		if((Browser.equalsIgnoreCase("chrome"))) {
+			driver = start(Browser);
+		}
+
+		if((Browser.equalsIgnoreCase("firefox"))) {
+			driver = start(Browser);
+		}
+	}
+
+	@BeforeClass
+	public void initiateReport() {
+		htmlReports = new ExtentSparkReporter(fileName);
+		extent = new ExtentReports();
+		extent.attachReporter(htmlReports);
+		htmlReports.config().setReportName("Super Admin - Users");
+		htmlReports.config().setTheme(Theme.STANDARD);
+		htmlReports.config().setDocumentTitle("Test Report for Super Admin");
+	}
+
+	public String getScreenshotPath(String TestcaseName, WebDriver driver) throws IOException {
+		TakesScreenshot ts = (TakesScreenshot)driver;
+		File source = ts.getScreenshotAs(OutputType.FILE);
+		String destPath = System.getProperty("user.dir")+"\\screenshots\\"+TestcaseName+".png";
+		File file = new File(destPath);
+		FileUtils.copyFile(source, file);
+		return destPath;
+	}
+
+
 	//Opening browser with the given URL and navigate to Registration Page
 
 	@BeforeMethod
 	public void openBrowser() throws InterruptedException {
 
 		driver.manage().deleteAllCookies();
-		driver.manage().window().maximize();
 		driver.get("https://dev.zntral.net/session/login");
+		driver.manage().window().maximize();
 		Thread.sleep(3000);
 	}
 
+
+	@AfterMethod
+	public void checkResults(ITestResult testResults) throws IOException{
+
+		if(testResults.getStatus()==ITestResult.FAILURE) {
+
+			parentTest.log(Status.FAIL, MarkupHelper.createLabel("Test Failed of below reason", ExtentColor.RED));
+			parentTest.log(Status.FAIL, testResults.getThrowable());
+
+			parentTest.addScreenCaptureFromPath(getScreenshotPath(testResults.getMethod().getMethodName(),driver), testResults.getMethod().getMethodName());
+
+		}
+		else if(testResults.getStatus()==ITestResult.SKIP) {
+			parentTest.log(Status.SKIP, testResults.getThrowable());
+		}
+		else {
+			parentTest.log(Status.PASS, MarkupHelper.createLabel("Test Case is passed", ExtentColor.GREEN));
+		}
+	}
+
+
+	@AfterTest
+	public void tearDown() throws Exception {
+		if (driver != null) {
+			System.out.println("Test Done!!!");
+			driver.quit();
+		}
+	}
 
 
 	//Verifying elements on Login page
 	@Test(priority = 1)
 	public void verifyElemntsOnPageTest() throws InterruptedException {
 
+		parentTest = extent.createTest("Verifying elements on Login page").assignAuthor("Sabbir").assignCategory("Super Admin");
+		parentTest.log(Status.INFO, "Test is started");
+
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement signInTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.signInTitle)));
 		signInTitle.isDisplayed();
 
+		parentTest.log(Status.PASS, MarkupHelper.createLabel("All Elements are present", ExtentColor.BLUE));
 	}
 
 	//login with valid username & Password
@@ -96,18 +168,10 @@ public class Users extends OpenBrowser{
 	@Test(priority = 2)
 	public void login() throws InterruptedException {
 
-		WebElement username = driver.findElement(By.xpath(UsersXpath.username));
-		WebElement password = driver.findElement(By.xpath(UsersXpath.pass));
-		WebElement login = driver.findElement(By.xpath(UsersXpath.login));
+		parentTest = extent.createTest("login with valid username & Password").assignAuthor("Sabbir").assignCategory("Super Admin");
+		parentTest.info("Login with valid credentials");
 
-		String user = UsersInfoData.user;
-		String pass = UsersInfoData.pass;
-
-		username.sendKeys(user);
-		password.sendKeys(pass);
-
-		login.click();
-		Thread.sleep(5000);
+		UsersFunctions.verifyLogin();
 
 		String expectedUrl = "https://dev.zntral.net/dashboard";
 		String actualUrl = driver.getCurrentUrl();
@@ -119,12 +183,12 @@ public class Users extends OpenBrowser{
 	@Test(priority = 3)
 	public void checkUserList() throws InterruptedException {
 
-		login();
-		Thread.sleep(2000);
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement users = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.users)));
-		users.click();
-		Thread.sleep(3000);
+		parentTest = extent.createTest("Check user list").assignAuthor("Sabbir").assignCategory("Super Admin");
+		parentTest.info("Check user list");
+
+		UsersFunctions.verifyLogin();
+
+		UsersFunctions.userList();
 
 		String expectedUrl = "https://dev.zntral.net/users";
 		String actualUrl = driver.getCurrentUrl();
@@ -136,25 +200,25 @@ public class Users extends OpenBrowser{
 
 	@Test(priority = 4)
 	public void checkUserProfile() throws InterruptedException {
+		parentTest = extent.createTest("Check user profile").assignAuthor("Sabbir").assignCategory("Super Admin");
+		parentTest.info("Check user profile");
 
-		login();
+		UsersFunctions.verifyLogin();
 
-		WebElement users = driver.findElement(By.xpath(UsersXpath.users));
-		users.click();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		UsersFunctions.userList();
 
-		WebElement usersName = driver.findElement(By.xpath(UsersXpath.username));
-		String user = usersName.getText();
+		WebElement usersName = driver.findElement(By.xpath(UsersXpath.usersName));
+		String userss = usersName.getText();
 		usersName.click();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		Thread.sleep(5000);
 
 		WebElement userNameVerify = driver.findElement(By.xpath(UsersXpath.userNameVerify));
 
-		if(userNameVerify.getText().contains(user)) {
+		if(userNameVerify.getText().contains(userss)) {
 			Assert.assertTrue(true);
-			System.out.println("Profile matched !!");
+			parentTest.log(Status.INFO, MarkupHelper.createLabel("Profile matched !!", ExtentColor.GREEN));
 		}else {
-			System.out.println("Profile don't match !!");
+			parentTest.log(Status.INFO, MarkupHelper.createLabel("Profile don't match !!", ExtentColor.RED));
 		}
 
 	}
@@ -163,12 +227,23 @@ public class Users extends OpenBrowser{
 
 	@Test(priority = 5)
 	public void checkClientProfileFromUser() throws InterruptedException {
-		checkUserProfile();
+
+		parentTest = extent.createTest("Check client profile from user profile").assignAuthor("Sabbir").assignCategory("Super Admin");
+		parentTest.info("Check client profile from user profile");
+
+		UsersFunctions.verifyLogin();
+
+		UsersFunctions.userList();
+
+		WebElement usersName = driver.findElement(By.xpath(UsersXpath.usersName));
+		usersName.click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		WebElement clickUser = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.clickUser)));
 		clickUser.click();
 		Assert.assertTrue(true);
-		System.out.println("Client Profile found");
+		parentTest.log(Status.INFO, MarkupHelper.createLabel("Client Profile found", ExtentColor.GREEN));
 
 	}
 
@@ -176,14 +251,28 @@ public class Users extends OpenBrowser{
 
 	@Test(priority = 6)
 	public void changeStatusToInactive() throws InterruptedException {
-		checkClientProfileFromUser();
+		parentTest = extent.createTest("Check client profile status change").assignAuthor("Sabbir").assignCategory("Super Admin");
+		parentTest.info("Check client profile status change (Active to inactive)");
+
+		UsersFunctions.verifyLogin();
+
+		UsersFunctions.userList();
+
+		WebElement usersName = driver.findElement(By.xpath(UsersXpath.usersName));
+		usersName.click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		WebElement clickUser = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.clickUser)));
+		clickUser.click();
+
 		WebElement status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.status)));
 		status.click();
 		WebElement statusInactive = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.statusInactive)));
 		statusInactive.click();
 		Assert.assertTrue(true);
-		System.out.println("Status changed to Inactive");
+		parentTest.log(Status.INFO, MarkupHelper.createLabel("Status changed to Inactive", ExtentColor.GREEN));
 
 	}
 
@@ -192,14 +281,28 @@ public class Users extends OpenBrowser{
 
 	@Test(priority = 7)
 	public void changeStatusToActive() throws InterruptedException {
-		checkClientProfileFromUser();
+
+		parentTest = extent.createTest("Check client profile status change").assignAuthor("Sabbir").assignCategory("Super Admin");
+		parentTest.info("Check client profile status change (InActive to active)");
+
+		UsersFunctions.verifyLogin();
+
+		UsersFunctions.userList();
+
+		WebElement usersName = driver.findElement(By.xpath(UsersXpath.usersName));
+		usersName.click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		WebElement clickUser = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.clickUser)));
+		clickUser.click();
+
 		WebElement status = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.status)));
 		status.click();
 		WebElement statusActive = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.statusActive)));
 		statusActive.click();
 		Assert.assertTrue(true);
-		System.out.println("Status changed to Active");
+		parentTest.log(Status.INFO, MarkupHelper.createLabel("Status changed to Active", ExtentColor.GREEN));
 
 	}
 
@@ -207,8 +310,16 @@ public class Users extends OpenBrowser{
 
 	@Test(priority = 8)
 	public void search() throws InterruptedException {
-		checkUserList();
+
+		parentTest = extent.createTest("Check Search option").assignAuthor("Sabbir").assignCategory("Super Admin");
+		parentTest.info("Check Search option");
+
+		UsersFunctions.verifyLogin();
+
+		UsersFunctions.userList();
+
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
 		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.search)));
 
 		String searchUser = UsersInfoData.searchUser;
@@ -222,8 +333,15 @@ public class Users extends OpenBrowser{
 
 	@Test(priority = 9)
 	public void firstNameSort() throws InterruptedException {
-		checkUserList();
+		parentTest = extent.createTest("First Name wise sort").assignAuthor("Sabbir").assignCategory("Super Admin");
+		parentTest.info("First Name wise sort");
+
+		UsersFunctions.verifyLogin();
+
+		UsersFunctions.userList();
+
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
 		WebElement selectName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.selectName)));
 		selectName.click();
 		selectName.click();
@@ -235,8 +353,15 @@ public class Users extends OpenBrowser{
 
 	@Test(priority = 10)
 	public void lastNameSort() throws InterruptedException {
-		checkUserList();
+		parentTest = extent.createTest("Last name wise sort").assignAuthor("Sabbir").assignCategory("Super Admin");
+		parentTest.info("Last name wise sort");
+
+		UsersFunctions.verifyLogin();
+
+		UsersFunctions.userList();
+
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
 		WebElement selectName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.selectLastName)));
 		selectName.click();
 		selectName.click();;
@@ -248,8 +373,15 @@ public class Users extends OpenBrowser{
 
 	@Test(priority = 11)
 	public void emailSort() throws InterruptedException {
-		checkUserList();
+		parentTest = extent.createTest("Email wise sort").assignAuthor("Sabbir").assignCategory("Super Admin");
+		parentTest.info("Email wise sort");
+
+		UsersFunctions.verifyLogin();
+
+		UsersFunctions.userList();
+
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
 		WebElement selectEmail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.selectEmail)));
 		selectEmail.click();
 		selectEmail.click();
@@ -261,10 +393,14 @@ public class Users extends OpenBrowser{
 
 	@Test(priority = 12)
 	public void checkUserTypeList() throws InterruptedException {
-		login();
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		WebElement users = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.users)));
-		users.click();
+
+		parentTest = extent.createTest("Check user type list").assignAuthor("Sabbir").assignCategory("Super Admin");
+		parentTest.info("Check user type list");
+
+		UsersFunctions.verifyLogin();
+
+		UsersFunctions.userList();
+
 		WebElement element = driver.findElement(By.xpath(UsersXpath.element));
 		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -281,7 +417,14 @@ public class Users extends OpenBrowser{
 
 	@Test(priority = 13)
 	public void userGroup() throws InterruptedException {
-		checkUserList();
+		parentTest = extent.createTest("Add user group").assignAuthor("Sabbir").assignCategory("Super Admin");
+		parentTest.info("Add user group");
+
+		UsersFunctions.verifyLogin();
+
+		UsersFunctions.userList();
+
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		String name = UsersInfoData.admin;
 		String acronym = UsersInfoData.acronym;
@@ -289,7 +432,6 @@ public class Users extends OpenBrowser{
 		String viewAcronym = UsersInfoData.viewAcronym;
 		String desc = UsersInfoData.description;
 
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.add)));
 		add.click();
 
@@ -305,7 +447,7 @@ public class Users extends OpenBrowser{
 		WebElement statusCheck = driver.findElement(By.xpath(UsersXpath.statusCheck));
 
 		if(statusCheck.isSelected()) {
-			System.out.println("Already Selected !!");
+			parentTest.log(Status.INFO, MarkupHelper.createLabel("Already Selected !!", ExtentColor.GREEN));
 			Assert.assertTrue(true);
 		}else {
 			statusCheck.click();
@@ -360,10 +502,17 @@ public class Users extends OpenBrowser{
 
 	@Test(priority = 14)
 	public void updateUserGroup() throws InterruptedException {
-		checkUserList();
+
+		parentTest = extent.createTest("Update user group").assignAuthor("Sabbir").assignCategory("Super Admin");
+		parentTest.info("Update user group");
+
+		UsersFunctions.verifyLogin();
+
+		UsersFunctions.userList();
+
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		WebElement lastRowValue = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.lastRow)));
 		js.executeScript("arguments[0].scrollIntoView(true);",lastRowValue);
 
@@ -394,30 +543,32 @@ public class Users extends OpenBrowser{
 
 	@Test(priority = 15)
 	public void checkUserCardFromUser() throws InterruptedException {
-		checkUserProfile();
+		parentTest = extent.createTest("Check user card from user profile").assignAuthor("Sabbir").assignCategory("Super Admin");
+		parentTest.info("Check user card from user profile");
+
+		UsersFunctions.verifyLogin();
+
+		UsersFunctions.userList();
+
+		WebElement usersName = driver.findElement(By.xpath(UsersXpath.usersName));
+		usersName.click();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		WebElement cardUser = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.cardUser)));
 		String cardUserTitle = cardUser.getText();
 		WebElement clickUser = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.clickUser2)));
 		String UserTitle = clickUser.getText();
 		Assert.assertEquals(UserTitle, cardUserTitle);
-		System.out.println("Card name matched !");
+		parentTest.log(Status.INFO, MarkupHelper.createLabel("Card name matched !", ExtentColor.GREEN));
 		Thread.sleep(3000);
 	}
 
 
-	@AfterTest
-	public void tearDown() throws Exception {
-		if (driver != null) {
-			System.out.println("Test Done!!!");
-			driver.quit();
-		}
+	@AfterClass
+	public void afterClass() {
+		extent.flush();
 	}
 
-	@AfterSuite
-	public static void afterSuit() {
-
-		System.out.println( testSuiteName + " execution Complete");
-	}
 
 }

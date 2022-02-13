@@ -1,14 +1,21 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Parallel test suite" parallel="classes" thread-count="1">
+<suite name="Parallel test suite" parallel="classes" thread-count="20">
 
-	<test name="Chrome - Login">
+	<test name="Test Suite">
 		<parameter name="Browser" value="chrome" />
 		<classes>
-			<class name="superAdmin.Login"></class>
 			<class name="superAdmin.Clients"></class>
-
-		</classes>
+			<class name="superAdmin.Locations"></class>
+			<class name="superAdmin.Login"></class>
+			<class name="superAdmin.Patients"></class>
+			<class name="normalUser.Calendar"></class>
+			<class name="normalUser.Contacts"></class>
+			<class name="normalUser.Patients"></class>
+			<class name="normalUser.Users"></class>
+			<class name="normalUser.Dashboard"></class>
+			<class name="normalUser.LoginTest"></class>
+		</classes>		
 	</test>
-
+	
 </suite>

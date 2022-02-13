@@ -7,7 +7,7 @@ public class ContactsInfoData {
 	public static String pass = "123456";
 
 	//search item for location
-	public static String search = "Sabbir";
+	public static String search = "Test";
 
 	//add contact with valid info
 	public static String firstName = "Sabbir";

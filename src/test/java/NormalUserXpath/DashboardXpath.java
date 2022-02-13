@@ -7,6 +7,7 @@ public class DashboardXpath {
 	public static String login = "//form[@novalidate='novalidate']//button[1]";
 
 	public static String add = "//i[@class='v-icon notranslate material-icons theme--dark'][normalize-space()='add']";
+	public static String add2 = "//i[@class='v-icon notranslate material-icons theme--light'][normalize-space()='add']";
 
 	public static String options = "//div[@role='radiogroup']";
 	public static String selectContinue = "//span[normalize-space()='Continue']";
@@ -34,13 +35,13 @@ public class DashboardXpath {
 
 	public static String invalidMsg = "//div[contains(text(),'E-mail must be valid')]";
 
-	public static String prefix = "//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[1]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
+	public static String prefix = "//input[@type='text']";
 	public static String firstName = "//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[1]//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]";
 	public static String lastName = "//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div[4]//div[1]//div[1]//div[1]//div[1]//input[1]";
 	public static String ssn = "//body//div[@data-app='true']//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
 	public static String dob = "//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div[2]//div[1]//div[2]//div[1]//div[1]//input[1]";
 	public static String gender = "//div[@role='document']//div[3]//div[1]//div[2]//div[1]//div[1]//div[2]//div[1]//i[1]";
-	public static String phone = "//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
+	public static String phone = "//div[@role='document']//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
 	public static String patientType = "//body//div[@id='inspire']//div[@role='document']//div//div//div//div//div//div//div//div//div//div[1]//div[1]//div[1]//div[2]//div[1]//i[1]";
 	public static String location = "//body//div[@id='inspire']//div[@role='document']//div//div//div//div//div//div//div[1]//div[1]//div[2]//div[1]//div[1]//div[2]//div[1]//i[1]";
 	public static String patientNote = "//div[5]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";

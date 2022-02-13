@@ -10,6 +10,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+
 public class OpenBrowser {
 
 	public WebDriver start(String myBrowser) throws MalformedURLException {
@@ -35,4 +36,5 @@ public class OpenBrowser {
 
 		return driver;
 	}
+	
 }

@@ -17,7 +17,7 @@ public class RegistrationXpath {
 	public static String signUp2 = "//span[normalize-space()='Continue']";
 	
 	public static String userField = "//div[@class='v-messages__message']";
-	public static String alert = "//div[@role='alert']";
+	public static String alert = "//div[@role='status']";
 	
 	public static String signUp3 = "//body/div[@data-app='true']/div/div/div/div/div/form[@novalidate='novalidate']/button[1]";
 }

@@ -10,8 +10,8 @@ public class User_profileInfoData {
 	public static String addPhone = "123456789";
 
 	//Update email
-	public static String firstMail = "a@email.co";
-	public static String secondMail = "a@email.co";
+	//public static String firstMail = "a@email.co";
+	//public static String secondMail = "a@email.co";
 
 	//Add address
 	public static String streetAddress = "";

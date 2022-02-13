@@ -1,5 +1,8 @@
 /superAdmin/
-/superAdminInputData/
-/NormalUserXpath/
-/normalUser/
 /browser/
+/main/
+/normalUser/
+/superAdminFunctions/
+/normalUserFunctions/
+/NormalUserXpath/
+/normalUserInputData/
