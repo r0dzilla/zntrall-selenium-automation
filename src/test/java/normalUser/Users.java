@@ -82,14 +82,6 @@ public class Users  extends OpenBrowser{
 		if((Browser.equalsIgnoreCase("firefox"))) {
 			driver = start(Browser);
 		}
-
-		//		DesiredCapabilities caps = new DesiredCapabilities();
-		//		caps.setBrowserName("chrome");
-		//		caps.setPlatform(Platform.WINDOWS);
-		//		ChromeOptions options = new ChromeOptions();
-		//		options.merge(caps);
-		//		String nodeUrl = "http://192.168.31.17:4444/wd/hub";
-		//		driver = new RemoteWebDriver (new URL(nodeUrl),options);
 	}
 
 	@BeforeClass
@@ -106,7 +98,7 @@ public class Users  extends OpenBrowser{
 	public String getScreenshotPath(String TestcaseName, WebDriver driver) throws IOException {
 		TakesScreenshot ts = (TakesScreenshot)driver;
 		File source = ts.getScreenshotAs(OutputType.FILE);
-		String destPath = System.getProperty("user.dir")+"\\screenshots\\"+TestcaseName+".png";
+		String destPath = "\\home\\b0b\\zntrall-selenium-automation\\screenshots\\"+TestcaseName+".png";
 		File file = new File(destPath);
 		FileUtils.copyFile(source, file);
 		return destPath;

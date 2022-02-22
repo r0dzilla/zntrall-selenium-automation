@@ -1,1442 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="60" passed="56" failed="4" skipped="0">
+<testng-results ignored="0" total="7" passed="7" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-02-13T17:18:14 BDT" name="Parallel test suite" finished-at="2022-02-13T17:25:16 BDT" duration-ms="421582">
+  <suite started-at="2022-02-22T13:11:28 BDT" name="Parallel test suite" finished-at="2022-02-22T13:12:21 BDT" duration-ms="53466">
     <groups>
     </groups>
-    <test started-at="2022-02-13T17:18:14 BDT" name="Test Suite" finished-at="2022-02-13T17:25:16 BDT" duration-ms="421582">
-      <class name="normalUser.Patients">
-        <test-method is-config="true" signature="beforeSuit()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:18:14 BDT" name="beforeSuit" finished-at="2022-02-13T17:18:14 BDT" duration-ms="0" status="PASS">
+    <test started-at="2022-02-22T13:11:28 BDT" name="Test Suite" finished-at="2022-02-22T13:12:21 BDT" duration-ms="53466">
+      <class name="normalUser.LoginTest">
+        <test-method is-config="true" signature="beforeSuit()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:28 BDT" name="beforeSuit" finished-at="2022-02-22T13:11:28 BDT" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeSuit -->
-        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:18:19 BDT" name="setup" finished-at="2022-02-13T17:18:21 BDT" duration-ms="1907" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
+        <test-method is-config="true" signature="setup()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:28 BDT" name="setup" finished-at="2022-02-22T13:11:30 BDT" duration-ms="2415" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="initiateReport()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:18:23 BDT" name="initiateReport" finished-at="2022-02-13T17:18:24 BDT" duration-ms="802" status="PASS">
+        <test-method is-config="true" signature="initiateReport()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:30 BDT" name="initiateReport" finished-at="2022-02-22T13:11:31 BDT" duration-ms="244" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initiateReport -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:18:24 BDT" name="openBrowser" finished-at="2022-02-13T17:18:41 BDT" duration-ms="17476" status="PASS">
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:31 BDT" name="openBrowser" finished-at="2022-02-22T13:11:40 BDT" duration-ms="9558" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method signature="addNewLocationToPatient()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:18:41 BDT" name="addNewLocationToPatient" finished-at="2022-02-13T17:19:05 BDT" duration-ms="24079" status="PASS">
+        <test-method signature="randomInput()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:40 BDT" name="randomInput" finished-at="2022-02-22T13:11:46 BDT" duration-ms="5592" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- addNewLocationToPatient -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:19:05 BDT" name="checkResults" finished-at="2022-02-13T17:19:05 BDT" duration-ms="0" status="PASS">
+        </test-method> <!-- randomInput -->
+        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:46 BDT" name="checkResults" finished-at="2022-02-22T13:11:46 BDT" duration-ms="5" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=addNewLocationToPatient status=SUCCESS method=Patients.addNewLocationToPatient()[pri:0, instance:normalUser.Patients@54a7079e] output={null}]]]>
+                <![CDATA[[TestResult name=randomInput status=SUCCESS method=LoginTest.randomInput()[pri:0, instance:normalUser.LoginTest@209da20d] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:19:05 BDT" name="openBrowser" finished-at="2022-02-13T17:19:09 BDT" duration-ms="3490" status="PASS">
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:46 BDT" name="openBrowser" finished-at="2022-02-22T13:11:49 BDT" duration-ms="3397" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method signature="importPatientList()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:19:09 BDT" name="importPatientList" finished-at="2022-02-13T17:19:18 BDT" duration-ms="8915" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- importPatientList -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:19:18 BDT" name="checkResults" finished-at="2022-02-13T17:19:18 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=importPatientList status=SUCCESS method=Patients.importPatientList()[pri:0, instance:normalUser.Patients@54a7079e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:19:18 BDT" name="openBrowser" finished-at="2022-02-13T17:19:21 BDT" duration-ms="3454" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="loginUser()[pri:1, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:19:21 BDT" name="loginUser" finished-at="2022-02-13T17:19:27 BDT" duration-ms="5447" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- loginUser -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:19:27 BDT" name="checkResults" finished-at="2022-02-13T17:19:27 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=loginUser status=SUCCESS method=Patients.loginUser()[pri:1, instance:normalUser.Patients@54a7079e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:19:27 BDT" name="openBrowser" finished-at="2022-02-13T17:19:30 BDT" duration-ms="3469" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="patientsList()[pri:2, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:19:30 BDT" name="patientsList" finished-at="2022-02-13T17:19:36 BDT" duration-ms="5735" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- patientsList -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:19:36 BDT" name="checkResults" finished-at="2022-02-13T17:19:36 BDT" duration-ms="2" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=patientsList status=SUCCESS method=Patients.patientsList()[pri:2, instance:normalUser.Patients@54a7079e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:19:36 BDT" name="openBrowser" finished-at="2022-02-13T17:19:39 BDT" duration-ms="3406" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="search()[pri:3, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:19:39 BDT" name="search" finished-at="2022-02-13T17:19:51 BDT" duration-ms="11678" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- search -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:19:51 BDT" name="checkResults" finished-at="2022-02-13T17:19:51 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=search status=SUCCESS method=Patients.search()[pri:3, instance:normalUser.Patients@54a7079e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:19:51 BDT" name="openBrowser" finished-at="2022-02-13T17:19:54 BDT" duration-ms="3414" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="addPatient()[pri:4, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:19:54 BDT" name="addPatient" finished-at="2022-02-13T17:20:03 BDT" duration-ms="8743" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- addPatient -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:20:03 BDT" name="checkResults" finished-at="2022-02-13T17:20:03 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=addPatient status=SUCCESS method=Patients.addPatient()[pri:4, instance:normalUser.Patients@54a7079e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:20:03 BDT" name="openBrowser" finished-at="2022-02-13T17:20:07 BDT" duration-ms="3532" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="validPatientData()[pri:5, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:20:07 BDT" name="validPatientData" finished-at="2022-02-13T17:20:29 BDT" duration-ms="22229" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- validPatientData -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:20:29 BDT" name="checkResults" finished-at="2022-02-13T17:20:29 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=validPatientData status=SUCCESS method=Patients.validPatientData()[pri:5, instance:normalUser.Patients@54a7079e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:20:29 BDT" name="openBrowser" finished-at="2022-02-13T17:20:32 BDT" duration-ms="3540" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="invalidPatientData()[pri:6, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:20:32 BDT" name="invalidPatientData" finished-at="2022-02-13T17:20:51 BDT" duration-ms="18504" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- invalidPatientData -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:20:51 BDT" name="checkResults" finished-at="2022-02-13T17:20:51 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=invalidPatientData status=SUCCESS method=Patients.invalidPatientData()[pri:6, instance:normalUser.Patients@54a7079e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:20:51 BDT" name="openBrowser" finished-at="2022-02-13T17:20:54 BDT" duration-ms="3432" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="editPatientInfo()[pri:7, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:20:54 BDT" name="editPatientInfo" finished-at="2022-02-13T17:21:10 BDT" duration-ms="15292" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- editPatientInfo -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:21:10 BDT" name="checkResults" finished-at="2022-02-13T17:21:10 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=editPatientInfo status=SUCCESS method=Patients.editPatientInfo()[pri:7, instance:normalUser.Patients@54a7079e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:21:10 BDT" name="openBrowser" finished-at="2022-02-13T17:21:13 BDT" duration-ms="3398" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="deletePatientInfo()[pri:8, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:21:13 BDT" name="deletePatientInfo" finished-at="2022-02-13T17:21:27 BDT" duration-ms="13866" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- deletePatientInfo -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:21:27 BDT" name="checkResults" finished-at="2022-02-13T17:21:27 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=deletePatientInfo status=SUCCESS method=Patients.deletePatientInfo()[pri:8, instance:normalUser.Patients@54a7079e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:21:27 BDT" name="openBrowser" finished-at="2022-02-13T17:21:30 BDT" duration-ms="3467" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="addContactfromPatient()[pri:9, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:21:30 BDT" name="addContactfromPatient" finished-at="2022-02-13T17:21:58 BDT" duration-ms="27930" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- addContactfromPatient -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:21:58 BDT" name="checkResults" finished-at="2022-02-13T17:21:58 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=addContactfromPatient status=SUCCESS method=Patients.addContactfromPatient()[pri:9, instance:normalUser.Patients@54a7079e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:21:58 BDT" name="openBrowser" finished-at="2022-02-13T17:22:02 BDT" duration-ms="3610" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="addContactWithEmptyData()[pri:10, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:22:02 BDT" name="addContactWithEmptyData" finished-at="2022-02-13T17:22:38 BDT" duration-ms="36642" status="FAIL">
-          <exception class="org.openqa.selenium.TimeoutException">
-            <message>
-              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: //div[@class='v-messages__message'] (tried for 10 second(s) with 500 milliseconds interval)
-Build info: version: '4.0.0', revision: '3a21814679'
-System info: host: 'DESKTOP-EI1MF8H', ip: '192.168.31.17', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 98.0.4758.82, chrome: {chromedriverVersion: 98.0.4758.80 (7f0488e8ba0d8..., userDataDir: C:\Users\tahni\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:51213}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://192.168.31.17:4444/ses..., se:cdpVersion: 98.0.4758.82, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 54231fec99ad2dfe9d247fdec674d17a]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //div[@class='v-messages__message'] (tried for 10 second(s) with 500 milliseconds interval)
-Build info: version: '4.0.0', revision: '3a21814679'
-System info: host: 'DESKTOP-EI1MF8H', ip: '192.168.31.17', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 98.0.4758.82, chrome: {chromedriverVersion: 98.0.4758.80 (7f0488e8ba0d8..., userDataDir: C:\Users\tahni\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:51213}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://192.168.31.17:4444/ses..., se:cdpVersion: 98.0.4758.82, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 54231fec99ad2dfe9d247fdec674d17a
-at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:138)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
-at normalUser.Patients.addContactWithEmptyData(Patients.java:540)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-at java.base/java.lang.Thread.run(Thread.java:834)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- addContactWithEmptyData -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:22:38 BDT" name="checkResults" finished-at="2022-02-13T17:22:39 BDT" duration-ms="142" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=addContactWithEmptyData status=FAILURE method=Patients.addContactWithEmptyData()[pri:10, instance:normalUser.Patients@54a7079e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:22:39 BDT" name="openBrowser" finished-at="2022-02-13T17:22:42 BDT" duration-ms="3498" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="addContactFromPatientList()[pri:11, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:22:42 BDT" name="addContactFromPatientList" finished-at="2022-02-13T17:23:01 BDT" duration-ms="18490" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- addContactFromPatientList -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:23:01 BDT" name="checkResults" finished-at="2022-02-13T17:23:01 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=addContactFromPatientList status=SUCCESS method=Patients.addContactFromPatientList()[pri:11, instance:normalUser.Patients@54a7079e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:23:01 BDT" name="openBrowser" finished-at="2022-02-13T17:23:04 BDT" duration-ms="3550" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="addSchdeulefromPatient()[pri:12, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:23:04 BDT" name="addSchdeulefromPatient" finished-at="2022-02-13T17:23:32 BDT" duration-ms="27553" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- addSchdeulefromPatient -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:23:32 BDT" name="checkResults" finished-at="2022-02-13T17:23:32 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=addSchdeulefromPatient status=SUCCESS method=Patients.addSchdeulefromPatient()[pri:12, instance:normalUser.Patients@54a7079e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:23:32 BDT" name="openBrowser" finished-at="2022-02-13T17:23:35 BDT" duration-ms="3468" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="addSheduleFromPatientList()[pri:13, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:23:35 BDT" name="addSheduleFromPatientList" finished-at="2022-02-13T17:23:53 BDT" duration-ms="17484" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- addSheduleFromPatientList -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:23:53 BDT" name="checkResults" finished-at="2022-02-13T17:23:53 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=addSheduleFromPatientList status=SUCCESS method=Patients.addSheduleFromPatientList()[pri:13, instance:normalUser.Patients@54a7079e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:23:53 BDT" name="openBrowser" finished-at="2022-02-13T17:23:56 BDT" duration-ms="3378" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="addSchdeuleWithEmpty()[pri:14, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:23:56 BDT" name="addSchdeuleWithEmpty" finished-at="2022-02-13T17:24:21 BDT" duration-ms="24580" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- addSchdeuleWithEmpty -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:24:21 BDT" name="checkResults" finished-at="2022-02-13T17:24:21 BDT" duration-ms="2" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=addSchdeuleWithEmpty status=SUCCESS method=Patients.addSchdeuleWithEmpty()[pri:14, instance:normalUser.Patients@54a7079e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:24:21 BDT" name="openBrowser" finished-at="2022-02-13T17:24:24 BDT" duration-ms="3418" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="addEmptySheduleFromPatientList()[pri:15, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:24:24 BDT" name="addEmptySheduleFromPatientList" finished-at="2022-02-13T17:24:39 BDT" duration-ms="15449" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- addEmptySheduleFromPatientList -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:24:39 BDT" name="checkResults" finished-at="2022-02-13T17:24:39 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=addEmptySheduleFromPatientList status=SUCCESS method=Patients.addEmptySheduleFromPatientList()[pri:15, instance:normalUser.Patients@54a7079e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:24:39 BDT" name="openBrowser" finished-at="2022-02-13T17:24:43 BDT" duration-ms="3394" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="contactFormCancelButton()[pri:16, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:24:43 BDT" name="contactFormCancelButton" finished-at="2022-02-13T17:24:57 BDT" duration-ms="14358" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- contactFormCancelButton -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:24:57 BDT" name="checkResults" finished-at="2022-02-13T17:24:57 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=contactFormCancelButton status=SUCCESS method=Patients.contactFormCancelButton()[pri:16, instance:normalUser.Patients@54a7079e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:24:57 BDT" name="openBrowser" finished-at="2022-02-13T17:25:01 BDT" duration-ms="3441" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="sheduleFormCancelButton()[pri:17, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:25:01 BDT" name="sheduleFormCancelButton" finished-at="2022-02-13T17:25:13 BDT" duration-ms="12166" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- sheduleFormCancelButton -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:25:13 BDT" name="checkResults" finished-at="2022-02-13T17:25:13 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=sheduleFormCancelButton status=SUCCESS method=Patients.sheduleFormCancelButton()[pri:17, instance:normalUser.Patients@54a7079e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="afterClass()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:25:13 BDT" name="afterClass" finished-at="2022-02-13T17:25:13 BDT" duration-ms="69" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterClass -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:25:14 BDT" name="tearDown" finished-at="2022-02-13T17:25:15 BDT" duration-ms="699" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="afterSuit()[pri:0, instance:normalUser.Patients@54a7079e]" started-at="2022-02-13T17:25:16 BDT" name="afterSuit" finished-at="2022-02-13T17:25:16 BDT" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterSuit -->
-      </class> <!-- normalUser.Patients -->
-      <class name="normalUser.Users">
-        <test-method is-config="true" signature="beforeSuit()[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:18:14 BDT" name="beforeSuit" finished-at="2022-02-13T17:18:14 BDT" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeSuit -->
-        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:18:21 BDT" name="setup" finished-at="2022-02-13T17:18:23 BDT" duration-ms="1707" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method is-config="true" signature="initiateReport()[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:18:23 BDT" name="initiateReport" finished-at="2022-02-13T17:18:24 BDT" duration-ms="802" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- initiateReport -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:18:24 BDT" name="openBrowser" finished-at="2022-02-13T17:18:41 BDT" duration-ms="17626" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="loginUser()[pri:1, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:18:41 BDT" name="loginUser" finished-at="2022-02-13T17:18:48 BDT" duration-ms="6498" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- loginUser -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:18:48 BDT" name="checkResults" finished-at="2022-02-13T17:18:48 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=loginUser status=SUCCESS method=Users.loginUser()[pri:1, instance:normalUser.Users@26e356f0] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:18:48 BDT" name="openBrowser" finished-at="2022-02-13T17:18:52 BDT" duration-ms="3982" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="userList()[pri:2, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:18:52 BDT" name="userList" finished-at="2022-02-13T17:19:01 BDT" duration-ms="9333" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- userList -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:19:01 BDT" name="checkResults" finished-at="2022-02-13T17:19:01 BDT" duration-ms="2" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=userList status=SUCCESS method=Users.userList()[pri:2, instance:normalUser.Users@26e356f0] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:19:01 BDT" name="openBrowser" finished-at="2022-02-13T17:19:05 BDT" duration-ms="3386" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="addUser()[pri:3, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:19:05 BDT" name="addUser" finished-at="2022-02-13T17:19:20 BDT" duration-ms="15952" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- addUser -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:19:20 BDT" name="checkResults" finished-at="2022-02-13T17:19:20 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=addUser status=SUCCESS method=Users.addUser()[pri:3, instance:normalUser.Users@26e356f0] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:19:20 BDT" name="openBrowser" finished-at="2022-02-13T17:19:24 BDT" duration-ms="3407" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="validUserData()[pri:4, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:19:24 BDT" name="validUserData" finished-at="2022-02-13T17:19:39 BDT" duration-ms="15065" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- validUserData -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:19:39 BDT" name="checkResults" finished-at="2022-02-13T17:19:39 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=validUserData status=SUCCESS method=Users.validUserData()[pri:4, instance:normalUser.Users@26e356f0] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:19:39 BDT" name="openBrowser" finished-at="2022-02-13T17:19:42 BDT" duration-ms="3468" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="existedUser()[pri:5, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:19:42 BDT" name="existedUser" finished-at="2022-02-13T17:19:54 BDT" duration-ms="12076" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- existedUser -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:19:54 BDT" name="checkResults" finished-at="2022-02-13T17:19:54 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=existedUser status=SUCCESS method=Users.existedUser()[pri:5, instance:normalUser.Users@26e356f0] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:19:54 BDT" name="openBrowser" finished-at="2022-02-13T17:19:58 BDT" duration-ms="3399" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="validateNewUser()[pri:6, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:19:58 BDT" name="validateNewUser" finished-at="2022-02-13T17:20:09 BDT" duration-ms="10761" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- validateNewUser -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:20:09 BDT" name="checkResults" finished-at="2022-02-13T17:20:09 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=validateNewUser status=SUCCESS method=Users.validateNewUser()[pri:6, instance:normalUser.Users@26e356f0] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:20:09 BDT" name="openBrowser" finished-at="2022-02-13T17:20:12 BDT" duration-ms="3570" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="resetButton()[pri:7, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:20:12 BDT" name="resetButton" finished-at="2022-02-13T17:20:25 BDT" duration-ms="12292" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- resetButton -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:20:25 BDT" name="checkResults" finished-at="2022-02-13T17:20:25 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=resetButton status=SUCCESS method=Users.resetButton()[pri:7, instance:normalUser.Users@26e356f0] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:20:25 BDT" name="openBrowser" finished-at="2022-02-13T17:20:28 BDT" duration-ms="3394" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="cancelButton()[pri:8, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:20:28 BDT" name="cancelButton" finished-at="2022-02-13T17:20:37 BDT" duration-ms="8964" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- cancelButton -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:20:37 BDT" name="checkResults" finished-at="2022-02-13T17:20:37 BDT" duration-ms="2" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=cancelButton status=SUCCESS method=Users.cancelButton()[pri:8, instance:normalUser.Users@26e356f0] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:20:37 BDT" name="openBrowser" finished-at="2022-02-13T17:20:40 BDT" duration-ms="3466" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="closeButton()[pri:9, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:20:40 BDT" name="closeButton" finished-at="2022-02-13T17:20:49 BDT" duration-ms="9128" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- closeButton -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:20:49 BDT" name="checkResults" finished-at="2022-02-13T17:20:49 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=closeButton status=SUCCESS method=Users.closeButton()[pri:9, instance:normalUser.Users@26e356f0] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:20:49 BDT" name="openBrowser" finished-at="2022-02-13T17:20:53 BDT" duration-ms="3387" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="search()[pri:10, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:20:53 BDT" name="search" finished-at="2022-02-13T17:21:07 BDT" duration-ms="13901" status="FAIL">
-          <exception class="org.openqa.selenium.NoSuchElementException">
-            <message>
-              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//tbody/tr[1]/td[3]"}
-  (Session info: chrome=98.0.4758.82)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
-Build info: version: '4.0.0', revision: '3a21814679'
-System info: host: 'DESKTOP-EI1MF8H', ip: '192.168.31.17', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Command: [2f192191b6dc31cfd92b91e7da9cc142, findElement {using=xpath, value=//tbody/tr[1]/td[3]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 98.0.4758.82, chrome: {chromedriverVersion: 98.0.4758.80 (7f0488e8ba0d8..., userDataDir: C:\Users\tahni\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:51225}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://192.168.31.17:4444/ses..., se:cdpVersion: 98.0.4758.82, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 2f192191b6dc31cfd92b91e7da9cc142]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//tbody/tr[1]/td[3]"}
-  (Session info: chrome=98.0.4758.82)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
-Build info: version: '4.0.0', revision: '3a21814679'
-System info: host: 'DESKTOP-EI1MF8H', ip: '192.168.31.17', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Command: [2f192191b6dc31cfd92b91e7da9cc142, findElement {using=xpath, value=//tbody/tr[1]/td[3]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 98.0.4758.82, chrome: {chromedriverVersion: 98.0.4758.80 (7f0488e8ba0d8..., userDataDir: C:\Users\tahni\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:51225}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://192.168.31.17:4444/ses..., se:cdpVersion: 98.0.4758.82, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 2f192191b6dc31cfd92b91e7da9cc142
-at jdk.internal.reflect.GeneratedConstructorAccessor12.newInstance(Unknown Source)
-at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
-at org.openqa.selenium.remote.TracedCommandExecutor.execute(TracedCommandExecutor.java:39)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:559)
-at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
-at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:383)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:375)
-at normalUser.Users.search(Users.java:512)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-at java.base/java.lang.Thread.run(Thread.java:834)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- search -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:21:07 BDT" name="checkResults" finished-at="2022-02-13T17:21:07 BDT" duration-ms="205" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=search status=FAILURE method=Users.search()[pri:10, instance:normalUser.Users@26e356f0] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:21:07 BDT" name="openBrowser" finished-at="2022-02-13T17:21:11 BDT" duration-ms="3689" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="profileOfUser()[pri:11, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:21:11 BDT" name="profileOfUser" finished-at="2022-02-13T17:21:29 BDT" duration-ms="18703" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- profileOfUser -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:21:29 BDT" name="checkResults" finished-at="2022-02-13T17:21:29 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=profileOfUser status=SUCCESS method=Users.profileOfUser()[pri:11, instance:normalUser.Users@26e356f0] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="afterClass()[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:21:29 BDT" name="afterClass" finished-at="2022-02-13T17:21:30 BDT" duration-ms="616" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterClass -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:25:15 BDT" name="tearDown" finished-at="2022-02-13T17:25:16 BDT" duration-ms="726" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="afterSuit()[pri:0, instance:normalUser.Users@26e356f0]" started-at="2022-02-13T17:25:16 BDT" name="afterSuit" finished-at="2022-02-13T17:25:16 BDT" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterSuit -->
-      </class> <!-- normalUser.Users -->
-      <class name="superAdmin.Clients">
-        <test-method is-config="true" signature="beforeSuit()[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:18:14 BDT" name="beforeSuit" finished-at="2022-02-13T17:18:14 BDT" duration-ms="6" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeSuit -->
-        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:18:14 BDT" name="setup" finished-at="2022-02-13T17:18:17 BDT" duration-ms="3245" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method is-config="true" signature="initiateReport()[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:18:23 BDT" name="initiateReport" finished-at="2022-02-13T17:18:24 BDT" duration-ms="801" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- initiateReport -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:18:24 BDT" name="openBrowser" finished-at="2022-02-13T17:18:38 BDT" duration-ms="14256" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="verifyElemntsOnPageTest()[pri:1, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:18:38 BDT" name="verifyElemntsOnPageTest" finished-at="2022-02-13T17:18:38 BDT" duration-ms="389" status="PASS">
+        <test-method signature="verifyElemntsOnPageTest()[pri:1, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:49 BDT" name="verifyElemntsOnPageTest" finished-at="2022-02-22T13:11:49 BDT" duration-ms="299" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyElemntsOnPageTest -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:18:38 BDT" name="openBrowser" finished-at="2022-02-13T17:18:42 BDT" duration-ms="3860" status="PASS">
+        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:49 BDT" name="checkResults" finished-at="2022-02-22T13:11:49 BDT" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyElemntsOnPageTest status=SUCCESS method=LoginTest.verifyElemntsOnPageTest()[pri:1, instance:normalUser.LoginTest@209da20d] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkResults -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:49 BDT" name="openBrowser" finished-at="2022-02-22T13:11:53 BDT" duration-ms="3675" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:18:38 BDT" name="checkResults" finished-at="2022-02-13T17:18:38 BDT" duration-ms="0" status="PASS">
+        <test-method signature="verifyLogin()[pri:2, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:53 BDT" name="verifyLogin" finished-at="2022-02-22T13:11:59 BDT" duration-ms="5520" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyLogin -->
+        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:59 BDT" name="checkResults" finished-at="2022-02-22T13:11:59 BDT" duration-ms="0" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=verifyElemntsOnPageTest status=SUCCESS method=Clients.verifyElemntsOnPageTest()[pri:1, instance:superAdmin.Clients@71a8adcf] output={null}]]]>
+                <![CDATA[[TestResult name=verifyLogin status=SUCCESS method=LoginTest.verifyLogin()[pri:2, instance:normalUser.LoginTest@209da20d] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- checkResults -->
-        <test-method signature="login()[pri:2, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:18:42 BDT" name="login" finished-at="2022-02-13T17:18:48 BDT" duration-ms="6205" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- login -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:18:48 BDT" name="checkResults" finished-at="2022-02-13T17:18:48 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=login status=SUCCESS method=Clients.login()[pri:2, instance:superAdmin.Clients@71a8adcf] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:18:48 BDT" name="openBrowser" finished-at="2022-02-13T17:18:52 BDT" duration-ms="4003" status="PASS">
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:59 BDT" name="openBrowser" finished-at="2022-02-22T13:12:02 BDT" duration-ms="3419" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method signature="checkClientList()[pri:3, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:18:52 BDT" name="checkClientList" finished-at="2022-02-13T17:19:03 BDT" duration-ms="11030" status="PASS">
+        <test-method signature="loginWithoutUsername()[pri:3, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:02 BDT" name="loginWithoutUsername" finished-at="2022-02-22T13:12:04 BDT" duration-ms="1521" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- checkClientList -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:19:03 BDT" name="checkResults" finished-at="2022-02-13T17:19:03 BDT" duration-ms="1" status="PASS">
+        </test-method> <!-- loginWithoutUsername -->
+        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:04 BDT" name="checkResults" finished-at="2022-02-22T13:12:04 BDT" duration-ms="0" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=checkClientList status=SUCCESS method=Clients.checkClientList()[pri:3, instance:superAdmin.Clients@71a8adcf] output={null}]]]>
+                <![CDATA[[TestResult name=loginWithoutUsername status=SUCCESS method=LoginTest.loginWithoutUsername()[pri:3, instance:normalUser.LoginTest@209da20d] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:19:03 BDT" name="openBrowser" finished-at="2022-02-13T17:19:07 BDT" duration-ms="3357" status="PASS">
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:04 BDT" name="openBrowser" finished-at="2022-02-22T13:12:07 BDT" duration-ms="3727" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method signature="checkClientProfile()[pri:4, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:19:07 BDT" name="checkClientProfile" finished-at="2022-02-13T17:19:23 BDT" duration-ms="15714" status="PASS">
+        <test-method signature="loginWithoutPassword()[pri:4, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:07 BDT" name="loginWithoutPassword" finished-at="2022-02-22T13:12:09 BDT" duration-ms="1680" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- checkClientProfile -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:19:23 BDT" name="openBrowser" finished-at="2022-02-13T17:19:26 BDT" duration-ms="3592" status="PASS">
+        </test-method> <!-- loginWithoutPassword -->
+        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:09 BDT" name="checkResults" finished-at="2022-02-22T13:12:09 BDT" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=loginWithoutPassword status=SUCCESS method=LoginTest.loginWithoutPassword()[pri:4, instance:normalUser.LoginTest@209da20d] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkResults -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:09 BDT" name="openBrowser" finished-at="2022-02-22T13:12:13 BDT" duration-ms="3749" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:19:23 BDT" name="checkResults" finished-at="2022-02-13T17:19:23 BDT" duration-ms="0" status="PASS">
+        <test-method signature="loginWithEmptyField()[pri:5, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:13 BDT" name="loginWithEmptyField" finished-at="2022-02-22T13:12:13 BDT" duration-ms="276" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginWithEmptyField -->
+        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:13 BDT" name="checkResults" finished-at="2022-02-22T13:12:13 BDT" duration-ms="0" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=checkClientProfile status=SUCCESS method=Clients.checkClientProfile()[pri:4, instance:superAdmin.Clients@71a8adcf] output={null}]]]>
+                <![CDATA[[TestResult name=loginWithEmptyField status=SUCCESS method=LoginTest.loginWithEmptyField()[pri:5, instance:normalUser.LoginTest@209da20d] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- checkResults -->
-        <test-method signature="changeStatusToInactive()[pri:5, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:19:26 BDT" name="changeStatusToInactive" finished-at="2022-02-13T17:19:43 BDT" duration-ms="16545" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- changeStatusToInactive -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:19:43 BDT" name="checkResults" finished-at="2022-02-13T17:19:43 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=changeStatusToInactive status=SUCCESS method=Clients.changeStatusToInactive()[pri:5, instance:superAdmin.Clients@71a8adcf] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:19:43 BDT" name="openBrowser" finished-at="2022-02-13T17:19:46 BDT" duration-ms="3665" status="PASS">
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:13 BDT" name="openBrowser" finished-at="2022-02-22T13:12:17 BDT" duration-ms="3687" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method signature="changeStatusToActive()[pri:6, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:19:46 BDT" name="changeStatusToActive" finished-at="2022-02-13T17:20:02 BDT" duration-ms="16030" status="PASS">
+        <test-method signature="forgotPassword()[pri:6, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:17 BDT" name="forgotPassword" finished-at="2022-02-22T13:12:20 BDT" duration-ms="3486" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- changeStatusToActive -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:20:02 BDT" name="checkResults" finished-at="2022-02-13T17:20:02 BDT" duration-ms="0" status="PASS">
+        </test-method> <!-- forgotPassword -->
+        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:20 BDT" name="checkResults" finished-at="2022-02-22T13:12:20 BDT" duration-ms="2" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=changeStatusToActive status=SUCCESS method=Clients.changeStatusToActive()[pri:6, instance:superAdmin.Clients@71a8adcf] output={null}]]]>
+                <![CDATA[[TestResult name=forgotPassword status=SUCCESS method=LoginTest.forgotPassword()[pri:6, instance:normalUser.LoginTest@209da20d] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:20:02 BDT" name="openBrowser" finished-at="2022-02-13T17:20:06 BDT" duration-ms="3536" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="checkLocationStatus()[pri:7, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:20:06 BDT" name="checkLocationStatus" finished-at="2022-02-13T17:20:32 BDT" duration-ms="26456" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkLocationStatus -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:20:32 BDT" name="checkResults" finished-at="2022-02-13T17:20:32 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=checkLocationStatus status=SUCCESS method=Clients.checkLocationStatus()[pri:7, instance:superAdmin.Clients@71a8adcf] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:20:32 BDT" name="openBrowser" finished-at="2022-02-13T17:20:36 BDT" duration-ms="3505" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="checkPatientStatus()[pri:8, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:20:36 BDT" name="checkPatientStatus" finished-at="2022-02-13T17:21:02 BDT" duration-ms="26399" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkPatientStatus -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:21:02 BDT" name="checkResults" finished-at="2022-02-13T17:21:02 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=checkPatientStatus status=SUCCESS method=Clients.checkPatientStatus()[pri:8, instance:superAdmin.Clients@71a8adcf] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:21:02 BDT" name="openBrowser" finished-at="2022-02-13T17:21:06 BDT" duration-ms="3468" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="search()[pri:9, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:21:06 BDT" name="search" finished-at="2022-02-13T17:21:20 BDT" duration-ms="14639" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- search -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:21:20 BDT" name="checkResults" finished-at="2022-02-13T17:21:20 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=search status=SUCCESS method=Clients.search()[pri:9, instance:superAdmin.Clients@71a8adcf] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:21:20 BDT" name="openBrowser" finished-at="2022-02-13T17:21:24 BDT" duration-ms="3585" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="checkClientTypeList()[pri:10, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:21:24 BDT" name="checkClientTypeList" finished-at="2022-02-13T17:21:38 BDT" duration-ms="13622" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkClientTypeList -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:21:38 BDT" name="checkResults" finished-at="2022-02-13T17:21:38 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=checkClientTypeList status=SUCCESS method=Clients.checkClientTypeList()[pri:10, instance:superAdmin.Clients@71a8adcf] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:21:38 BDT" name="openBrowser" finished-at="2022-02-13T17:21:41 BDT" duration-ms="3406" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="addNewClientGroup()[pri:11, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:21:41 BDT" name="addNewClientGroup" finished-at="2022-02-13T17:21:55 BDT" duration-ms="13940" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- addNewClientGroup -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:21:55 BDT" name="checkResults" finished-at="2022-02-13T17:21:55 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=addNewClientGroup status=SUCCESS method=Clients.addNewClientGroup()[pri:11, instance:superAdmin.Clients@71a8adcf] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:21:55 BDT" name="openBrowser" finished-at="2022-02-13T17:21:58 BDT" duration-ms="3418" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="editClientGroup()[pri:12, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:21:58 BDT" name="editClientGroup" finished-at="2022-02-13T17:22:19 BDT" duration-ms="20799" status="FAIL">
-          <exception class="org.openqa.selenium.TimeoutException">
-            <message>
-              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: //span[normalize-space()='Client Group 1'] (tried for 10 second(s) with 500 milliseconds interval)
-Build info: version: '4.0.0', revision: '3a21814679'
-System info: host: 'DESKTOP-EI1MF8H', ip: '192.168.31.17', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 98.0.4758.82, chrome: {chromedriverVersion: 98.0.4758.80 (7f0488e8ba0d8..., userDataDir: C:\Users\tahni\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:51190}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://192.168.31.17:4444/ses..., se:cdpVersion: 98.0.4758.82, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 34bcb668c8b779d3ddce3f1db8cee99f]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //span[normalize-space()='Client Group 1'] (tried for 10 second(s) with 500 milliseconds interval)
-Build info: version: '4.0.0', revision: '3a21814679'
-System info: host: 'DESKTOP-EI1MF8H', ip: '192.168.31.17', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 98.0.4758.82, chrome: {chromedriverVersion: 98.0.4758.80 (7f0488e8ba0d8..., userDataDir: C:\Users\tahni\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:51190}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://192.168.31.17:4444/ses..., se:cdpVersion: 98.0.4758.82, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 34bcb668c8b779d3ddce3f1db8cee99f
-at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:138)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
-at superAdmin.Clients.editClientGroup(Clients.java:458)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-at java.base/java.lang.Thread.run(Thread.java:834)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- editClientGroup -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:22:19 BDT" name="checkResults" finished-at="2022-02-13T17:22:19 BDT" duration-ms="171" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=editClientGroup status=FAILURE method=Clients.editClientGroup()[pri:12, instance:superAdmin.Clients@71a8adcf] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:22:19 BDT" name="openBrowser" finished-at="2022-02-13T17:22:23 BDT" duration-ms="3442" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="nameSort()[pri:13, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:22:23 BDT" name="nameSort" finished-at="2022-02-13T17:22:34 BDT" duration-ms="10937" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- nameSort -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:22:34 BDT" name="checkResults" finished-at="2022-02-13T17:22:34 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=nameSort status=SUCCESS method=Clients.nameSort()[pri:13, instance:superAdmin.Clients@71a8adcf] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:22:34 BDT" name="openBrowser" finished-at="2022-02-13T17:22:37 BDT" duration-ms="3462" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="typeSort()[pri:14, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:22:37 BDT" name="typeSort" finished-at="2022-02-13T17:22:48 BDT" duration-ms="10785" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- typeSort -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:22:48 BDT" name="checkResults" finished-at="2022-02-13T17:22:48 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=typeSort status=SUCCESS method=Clients.typeSort()[pri:14, instance:superAdmin.Clients@71a8adcf] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:22:48 BDT" name="openBrowser" finished-at="2022-02-13T17:22:51 BDT" duration-ms="3448" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="checkUserStatus()[pri:15, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:22:51 BDT" name="checkUserStatus" finished-at="2022-02-13T17:23:17 BDT" duration-ms="25879" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkUserStatus -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:23:17 BDT" name="checkResults" finished-at="2022-02-13T17:23:17 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=checkUserStatus status=SUCCESS method=Clients.checkUserStatus()[pri:15, instance:superAdmin.Clients@71a8adcf] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="afterClass()[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:23:17 BDT" name="afterClass" finished-at="2022-02-13T17:23:17 BDT" duration-ms="114" status="PASS">
+        <test-method is-config="true" signature="afterClass()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:20 BDT" name="afterClass" finished-at="2022-02-22T13:12:21 BDT" duration-ms="367" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterClass -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:25:13 BDT" name="tearDown" finished-at="2022-02-13T17:25:14 BDT" duration-ms="650" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:21 BDT" name="tearDown" finished-at="2022-02-22T13:12:21 BDT" duration-ms="771" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="afterSuit()[pri:0, instance:superAdmin.Clients@71a8adcf]" started-at="2022-02-13T17:25:16 BDT" name="afterSuit" finished-at="2022-02-13T17:25:16 BDT" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="afterSuit()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:21 BDT" name="afterSuit" finished-at="2022-02-22T13:12:21 BDT" duration-ms="25" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterSuit -->
-      </class> <!-- superAdmin.Clients -->
-      <class name="superAdmin.Locations">
-        <test-method is-config="true" signature="beforeSuit()[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:18:14 BDT" name="beforeSuit" finished-at="2022-02-13T17:18:14 BDT" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeSuit -->
-        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:18:17 BDT" name="setup" finished-at="2022-02-13T17:18:19 BDT" duration-ms="1868" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method is-config="true" signature="initiateReport()[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:18:23 BDT" name="initiateReport" finished-at="2022-02-13T17:18:24 BDT" duration-ms="801" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- initiateReport -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:18:24 BDT" name="openBrowser" finished-at="2022-02-13T17:18:36 BDT" duration-ms="11988" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="verifyElemntsOnPageTest()[pri:1, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:18:36 BDT" name="verifyElemntsOnPageTest" finished-at="2022-02-13T17:18:36 BDT" duration-ms="309" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyElemntsOnPageTest -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:18:36 BDT" name="checkResults" finished-at="2022-02-13T17:18:36 BDT" duration-ms="4" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=verifyElemntsOnPageTest status=SUCCESS method=Locations.verifyElemntsOnPageTest()[pri:1, instance:superAdmin.Locations@4310d43] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:18:36 BDT" name="openBrowser" finished-at="2022-02-13T17:18:41 BDT" duration-ms="5318" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="login()[pri:2, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:18:41 BDT" name="login" finished-at="2022-02-13T17:18:47 BDT" duration-ms="6067" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- login -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:18:47 BDT" name="checkResults" finished-at="2022-02-13T17:18:47 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=login status=SUCCESS method=Locations.login()[pri:2, instance:superAdmin.Locations@4310d43] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:18:47 BDT" name="openBrowser" finished-at="2022-02-13T17:18:52 BDT" duration-ms="4136" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="checkLocationList()[pri:3, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:18:52 BDT" name="checkLocationList" finished-at="2022-02-13T17:19:00 BDT" duration-ms="8798" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkLocationList -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:19:00 BDT" name="checkResults" finished-at="2022-02-13T17:19:00 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=checkLocationList status=SUCCESS method=Locations.checkLocationList()[pri:3, instance:superAdmin.Locations@4310d43] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:19:00 BDT" name="openBrowser" finished-at="2022-02-13T17:19:04 BDT" duration-ms="3547" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="search()[pri:4, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:19:04 BDT" name="search" finished-at="2022-02-13T17:19:16 BDT" duration-ms="11966" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- search -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:19:16 BDT" name="checkResults" finished-at="2022-02-13T17:19:16 BDT" duration-ms="2" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=search status=SUCCESS method=Locations.search()[pri:4, instance:superAdmin.Locations@4310d43] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:19:16 BDT" name="openBrowser" finished-at="2022-02-13T17:19:19 BDT" duration-ms="3648" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="patientFromLocation()[pri:5, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:19:19 BDT" name="patientFromLocation" finished-at="2022-02-13T17:19:34 BDT" duration-ms="15005" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- patientFromLocation -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:19:34 BDT" name="checkResults" finished-at="2022-02-13T17:19:34 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=patientFromLocation status=SUCCESS method=Locations.patientFromLocation()[pri:5, instance:superAdmin.Locations@4310d43] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:19:34 BDT" name="openBrowser" finished-at="2022-02-13T17:19:38 BDT" duration-ms="3510" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="contactFromLocation()[pri:6, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:19:38 BDT" name="contactFromLocation" finished-at="2022-02-13T17:19:53 BDT" duration-ms="15099" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- contactFromLocation -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:19:53 BDT" name="checkResults" finished-at="2022-02-13T17:19:53 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=contactFromLocation status=SUCCESS method=Locations.contactFromLocation()[pri:6, instance:superAdmin.Locations@4310d43] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:19:53 BDT" name="openBrowser" finished-at="2022-02-13T17:19:57 BDT" duration-ms="3592" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="locationTypes()[pri:7, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:19:57 BDT" name="locationTypes" finished-at="2022-02-13T17:20:08 BDT" duration-ms="11713" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- locationTypes -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:20:08 BDT" name="openBrowser" finished-at="2022-02-13T17:20:12 BDT" duration-ms="3827" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:20:08 BDT" name="checkResults" finished-at="2022-02-13T17:20:08 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=locationTypes status=SUCCESS method=Locations.locationTypes()[pri:7, instance:superAdmin.Locations@4310d43] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method signature="updateTypes()[pri:8, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:20:12 BDT" name="updateTypes" finished-at="2022-02-13T17:20:29 BDT" duration-ms="17198" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- updateTypes -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:20:29 BDT" name="openBrowser" finished-at="2022-02-13T17:20:33 BDT" duration-ms="3583" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:20:29 BDT" name="checkResults" finished-at="2022-02-13T17:20:29 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=updateTypes status=SUCCESS method=Locations.updateTypes()[pri:8, instance:superAdmin.Locations@4310d43] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method signature="addNewLocationType()[pri:9, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:20:33 BDT" name="addNewLocationType" finished-at="2022-02-13T17:20:51 BDT" duration-ms="18221" status="FAIL">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[expected [Test SQA] but found [Test SQA ]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [Test SQA] but found [Test SQA ]
-at org.testng.Assert.fail(Assert.java:99)
-at org.testng.Assert.failNotEquals(Assert.java:1037)
-at org.testng.Assert.assertEqualsImpl(Assert.java:140)
-at org.testng.Assert.assertEquals(Assert.java:122)
-at org.testng.Assert.assertEquals(Assert.java:629)
-at org.testng.Assert.assertEquals(Assert.java:639)
-at superAdmin.Locations.addNewLocationType(Locations.java:419)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-at java.base/java.lang.Thread.run(Thread.java:834)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- addNewLocationType -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:20:51 BDT" name="checkResults" finished-at="2022-02-13T17:20:51 BDT" duration-ms="147" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=addNewLocationType status=FAILURE method=Locations.addNewLocationType()[pri:9, instance:superAdmin.Locations@4310d43] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:20:51 BDT" name="openBrowser" finished-at="2022-02-13T17:20:55 BDT" duration-ms="3598" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="resetButton()[pri:9, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:20:55 BDT" name="resetButton" finished-at="2022-02-13T17:21:11 BDT" duration-ms="15857" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- resetButton -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:21:11 BDT" name="checkResults" finished-at="2022-02-13T17:21:11 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=resetButton status=SUCCESS method=Locations.resetButton()[pri:9, instance:superAdmin.Locations@4310d43] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:21:11 BDT" name="openBrowser" finished-at="2022-02-13T17:21:15 BDT" duration-ms="3845" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="cancelButton()[pri:10, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:21:15 BDT" name="cancelButton" finished-at="2022-02-13T17:21:28 BDT" duration-ms="13262" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- cancelButton -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:21:28 BDT" name="checkResults" finished-at="2022-02-13T17:21:28 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=cancelButton status=SUCCESS method=Locations.cancelButton()[pri:10, instance:superAdmin.Locations@4310d43] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:21:28 BDT" name="openBrowser" finished-at="2022-02-13T17:21:31 BDT" duration-ms="3539" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="addressWiseSort()[pri:11, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:21:31 BDT" name="addressWiseSort" finished-at="2022-02-13T17:21:40 BDT" duration-ms="8932" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- addressWiseSort -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:21:40 BDT" name="checkResults" finished-at="2022-02-13T17:21:40 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=addressWiseSort status=SUCCESS method=Locations.addressWiseSort()[pri:11, instance:superAdmin.Locations@4310d43] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:21:40 BDT" name="openBrowser" finished-at="2022-02-13T17:21:44 BDT" duration-ms="3730" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="statusWiseSort()[pri:12, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:21:44 BDT" name="statusWiseSort" finished-at="2022-02-13T17:21:53 BDT" duration-ms="8683" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- statusWiseSort -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:21:53 BDT" name="checkResults" finished-at="2022-02-13T17:21:53 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=statusWiseSort status=SUCCESS method=Locations.statusWiseSort()[pri:12, instance:superAdmin.Locations@4310d43] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:21:53 BDT" name="openBrowser" finished-at="2022-02-13T17:21:57 BDT" duration-ms="3667" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="nameWiseTypeSort()[pri:13, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:21:57 BDT" name="nameWiseTypeSort" finished-at="2022-02-13T17:22:07 BDT" duration-ms="10673" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- nameWiseTypeSort -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:22:07 BDT" name="checkResults" finished-at="2022-02-13T17:22:07 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=nameWiseTypeSort status=SUCCESS method=Locations.nameWiseTypeSort()[pri:13, instance:superAdmin.Locations@4310d43] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:22:07 BDT" name="openBrowser" finished-at="2022-02-13T17:22:11 BDT" duration-ms="3732" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="acronymWiseTypeSort()[pri:14, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:22:11 BDT" name="acronymWiseTypeSort" finished-at="2022-02-13T17:22:22 BDT" duration-ms="10712" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- acronymWiseTypeSort -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:22:22 BDT" name="checkResults" finished-at="2022-02-13T17:22:22 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=acronymWiseTypeSort status=SUCCESS method=Locations.acronymWiseTypeSort()[pri:14, instance:superAdmin.Locations@4310d43] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="afterClass()[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:22:22 BDT" name="afterClass" finished-at="2022-02-13T17:22:22 BDT" duration-ms="125" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterClass -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:25:14 BDT" name="tearDown" finished-at="2022-02-13T17:25:14 BDT" duration-ms="693" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="afterSuit()[pri:0, instance:superAdmin.Locations@4310d43]" started-at="2022-02-13T17:25:16 BDT" name="afterSuit" finished-at="2022-02-13T17:25:16 BDT" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterSuit -->
-      </class> <!-- superAdmin.Locations -->
+      </class> <!-- normalUser.LoginTest -->
     </test> <!-- Test Suite -->
   </suite> <!-- Parallel test suite -->
 </testng-results>

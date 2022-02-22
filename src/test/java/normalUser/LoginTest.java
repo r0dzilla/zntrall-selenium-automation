@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
@@ -71,17 +73,25 @@ public class LoginTest extends OpenBrowser {
 	}
 
 
-	@Parameters({"Browser"})
+	//@Parameters({"Browser"})
 	@BeforeTest
-	public void setup(String Browser) throws MalformedURLException {
+	public void setup() throws MalformedURLException {
 
-		if((Browser.equalsIgnoreCase("chrome"))) {
-			driver = start(Browser);
-		}
-
-		if((Browser.equalsIgnoreCase("firefox"))) {
-			driver = start(Browser);
-		}
+//		if((Browser.equalsIgnoreCase("chrome"))) {
+//			driver = start(Browser);
+//		}
+//
+//		if((Browser.equalsIgnoreCase("firefox"))) {
+//			driver = start(Browser);
+//		}
+		
+		DesiredCapabilities caps = new DesiredCapabilities();
+		caps.setBrowserName("chrome");
+		caps.setPlatform(Platform.WINDOWS);
+		ChromeOptions options = new ChromeOptions();
+		options.merge(caps);
+		String nodeUrl = "http://192.168.31.17:4444/wd/hub";
+		driver = new RemoteWebDriver(new URL(nodeUrl),options);
 
 	}
 
@@ -96,10 +106,11 @@ public class LoginTest extends OpenBrowser {
 
 	}
 
+
 	public String getScreenshotPath(String TestcaseName, WebDriver driver) throws IOException {
 		TakesScreenshot ts = (TakesScreenshot)driver;
 		File source = ts.getScreenshotAs(OutputType.FILE);
-		String destPath = System.getProperty("user.dir")+"\\screenshots\\"+TestcaseName+".png";
+		String destPath =  "\\home\\b0b\\zntrall-selenium-automation\\screenshots\\"+TestcaseName+".png";
 		File file = new File(destPath);
 		FileUtils.copyFile(source, file);
 		return destPath;
@@ -140,6 +151,7 @@ public class LoginTest extends OpenBrowser {
 
 	@AfterTest
 	public void tearDown() throws Exception {
+		
 		if (driver != null) {
 			System.out.println("Test Done!!!");
 			driver.quit();
@@ -358,7 +370,6 @@ public class LoginTest extends OpenBrowser {
 
 	@AfterSuite
 	public static void afterSuit() {
-
 		System.out.println( testSuiteName + " execution Complete");
 	}
 

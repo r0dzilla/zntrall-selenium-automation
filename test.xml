@@ -5,15 +5,7 @@
 	<test name="Test Suite">
 		<parameter name="Browser" value="chrome" />
 		<classes>
-			<class name="superAdmin.Clients"></class>
-			<class name="superAdmin.Locations"></class>
-			<class name="superAdmin.Login"></class>
-			<class name="superAdmin.Patients"></class>
-			<class name="normalUser.Calendar"></class>
-			<class name="normalUser.Contacts"></class>
-			<class name="normalUser.Patients"></class>
-			<class name="normalUser.Users"></class>
-			<class name="normalUser.Dashboard"></class>
+			<class name="normalUser.LoginTest"></class>
 			<class name="normalUser.LoginTest"></class>
 		</classes>		
 	</test>
