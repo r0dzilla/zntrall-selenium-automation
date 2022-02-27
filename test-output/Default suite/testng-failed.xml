@@ -3,25 +3,16 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="normalUser.LoginTest">
+      <class name="normalUser.Dashboard">
         <methods>
-          <include name="randomInput"/>
-          <include name="afterClass"/>
           <include name="openBrowser"/>
-          <include name="loginWithoutPassword"/>
-          <include name="loginWithEmptyField"/>
-          <include name="setup"/>
-          <include name="initiateReport"/>
-          <include name="forgotPassword"/>
-          <include name="loginWithoutUsername"/>
-          <include name="verifyElemntsOnPageTest"/>
-          <include name="tearDown"/>
           <include name="beforeSuit"/>
+          <include name="tearDown"/>
           <include name="afterSuit"/>
-          <include name="verifyLogin"/>
-          <include name="checkResults"/>
+          <include name="setup"/>
+          <include name="addPatient"/>
         </methods>
-      </class> <!-- normalUser.LoginTest -->
+      </class> <!-- normalUser.Dashboard -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

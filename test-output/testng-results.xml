@@ -1,170 +1,542 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="7" passed="7" failed="0" skipped="0">
+<testng-results ignored="0" total="35" passed="31" failed="4" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-02-22T13:11:28 BDT" name="Parallel test suite" finished-at="2022-02-22T13:12:21 BDT" duration-ms="53466">
+  <suite started-at="2022-02-27T19:56:00 BDT" name="Parallel test suite" finished-at="2022-02-27T20:09:14 BDT" duration-ms="794323">
     <groups>
     </groups>
-    <test started-at="2022-02-22T13:11:28 BDT" name="Test Suite" finished-at="2022-02-22T13:12:21 BDT" duration-ms="53466">
-      <class name="normalUser.LoginTest">
-        <test-method is-config="true" signature="beforeSuit()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:28 BDT" name="beforeSuit" finished-at="2022-02-22T13:11:28 BDT" duration-ms="7" status="PASS">
+    <test started-at="2022-02-27T19:56:00 BDT" name="Test Suite" finished-at="2022-02-27T20:09:14 BDT" duration-ms="794323">
+      <class name="superAdmin.Clients">
+        <test-method is-config="true" signature="beforeSuit()[pri:0, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T19:56:00 BDT" name="beforeSuit" finished-at="2022-02-27T19:56:00 BDT" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeSuit -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:28 BDT" name="setup" finished-at="2022-02-22T13:11:30 BDT" duration-ms="2415" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T19:56:00 BDT" name="setup" finished-at="2022-02-27T19:56:19 BDT" duration-ms="19368" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="initiateReport()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:30 BDT" name="initiateReport" finished-at="2022-02-22T13:11:31 BDT" duration-ms="244" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- initiateReport -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:31 BDT" name="openBrowser" finished-at="2022-02-22T13:11:40 BDT" duration-ms="9558" status="PASS">
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T19:57:58 BDT" name="openBrowser" finished-at="2022-02-27T19:58:24 BDT" duration-ms="25908" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method signature="randomInput()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:40 BDT" name="randomInput" finished-at="2022-02-22T13:11:46 BDT" duration-ms="5592" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- randomInput -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:46 BDT" name="checkResults" finished-at="2022-02-22T13:11:46 BDT" duration-ms="5" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=randomInput status=SUCCESS method=LoginTest.randomInput()[pri:0, instance:normalUser.LoginTest@209da20d] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:46 BDT" name="openBrowser" finished-at="2022-02-22T13:11:49 BDT" duration-ms="3397" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openBrowser -->
-        <test-method signature="verifyElemntsOnPageTest()[pri:1, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:49 BDT" name="verifyElemntsOnPageTest" finished-at="2022-02-22T13:11:49 BDT" duration-ms="299" status="PASS">
+        <test-method signature="verifyElemntsOnPageTest()[pri:1, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T19:58:24 BDT" name="verifyElemntsOnPageTest" finished-at="2022-02-27T19:58:29 BDT" duration-ms="4982" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyElemntsOnPageTest -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:49 BDT" name="checkResults" finished-at="2022-02-22T13:11:49 BDT" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=verifyElemntsOnPageTest status=SUCCESS method=LoginTest.verifyElemntsOnPageTest()[pri:1, instance:normalUser.LoginTest@209da20d] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:49 BDT" name="openBrowser" finished-at="2022-02-22T13:11:53 BDT" duration-ms="3675" status="PASS">
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T19:58:29 BDT" name="openBrowser" finished-at="2022-02-27T19:58:38 BDT" duration-ms="9491" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method signature="verifyLogin()[pri:2, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:53 BDT" name="verifyLogin" finished-at="2022-02-22T13:11:59 BDT" duration-ms="5520" status="PASS">
+        <test-method signature="login()[pri:2, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T19:58:38 BDT" name="login" finished-at="2022-02-27T19:58:51 BDT" duration-ms="12269" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyLogin -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:59 BDT" name="checkResults" finished-at="2022-02-22T13:11:59 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=verifyLogin status=SUCCESS method=LoginTest.verifyLogin()[pri:2, instance:normalUser.LoginTest@209da20d] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:11:59 BDT" name="openBrowser" finished-at="2022-02-22T13:12:02 BDT" duration-ms="3419" status="PASS">
+        </test-method> <!-- login -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T19:58:51 BDT" name="openBrowser" finished-at="2022-02-27T19:59:02 BDT" duration-ms="11342" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method signature="loginWithoutUsername()[pri:3, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:02 BDT" name="loginWithoutUsername" finished-at="2022-02-22T13:12:04 BDT" duration-ms="1521" status="PASS">
+        <test-method signature="checkClientList()[pri:3, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T19:59:02 BDT" name="checkClientList" finished-at="2022-02-27T19:59:17 BDT" duration-ms="14583" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- loginWithoutUsername -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:04 BDT" name="checkResults" finished-at="2022-02-22T13:12:04 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=loginWithoutUsername status=SUCCESS method=LoginTest.loginWithoutUsername()[pri:3, instance:normalUser.LoginTest@209da20d] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:04 BDT" name="openBrowser" finished-at="2022-02-22T13:12:07 BDT" duration-ms="3727" status="PASS">
+        </test-method> <!-- checkClientList -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T19:59:17 BDT" name="openBrowser" finished-at="2022-02-27T19:59:24 BDT" duration-ms="7404" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method signature="loginWithoutPassword()[pri:4, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:07 BDT" name="loginWithoutPassword" finished-at="2022-02-22T13:12:09 BDT" duration-ms="1680" status="PASS">
+        <test-method signature="checkClientProfile()[pri:4, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T19:59:24 BDT" name="checkClientProfile" finished-at="2022-02-27T19:59:43 BDT" duration-ms="19120" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- loginWithoutPassword -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:09 BDT" name="checkResults" finished-at="2022-02-22T13:12:09 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=loginWithoutPassword status=SUCCESS method=LoginTest.loginWithoutPassword()[pri:4, instance:normalUser.LoginTest@209da20d] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:09 BDT" name="openBrowser" finished-at="2022-02-22T13:12:13 BDT" duration-ms="3749" status="PASS">
+        </test-method> <!-- checkClientProfile -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T19:59:43 BDT" name="openBrowser" finished-at="2022-02-27T19:59:47 BDT" duration-ms="3600" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method signature="loginWithEmptyField()[pri:5, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:13 BDT" name="loginWithEmptyField" finished-at="2022-02-22T13:12:13 BDT" duration-ms="276" status="PASS">
+        <test-method signature="changeStatusToInactive()[pri:5, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T19:59:47 BDT" name="changeStatusToInactive" finished-at="2022-02-27T20:00:09 BDT" duration-ms="22101" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- loginWithEmptyField -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:13 BDT" name="checkResults" finished-at="2022-02-22T13:12:13 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=loginWithEmptyField status=SUCCESS method=LoginTest.loginWithEmptyField()[pri:5, instance:normalUser.LoginTest@209da20d] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:13 BDT" name="openBrowser" finished-at="2022-02-22T13:12:17 BDT" duration-ms="3687" status="PASS">
+        </test-method> <!-- changeStatusToInactive -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:00:09 BDT" name="openBrowser" finished-at="2022-02-27T20:00:14 BDT" duration-ms="5084" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method signature="forgotPassword()[pri:6, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:17 BDT" name="forgotPassword" finished-at="2022-02-22T13:12:20 BDT" duration-ms="3486" status="PASS">
+        <test-method signature="changeStatusToActive()[pri:6, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:00:14 BDT" name="changeStatusToActive" finished-at="2022-02-27T20:00:56 BDT" duration-ms="42193" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: //button[@class='v-btn v-btn--flat v-btn--text theme--light v-size--default primary--text'] (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.0.0', revision: '3a21814679'
+System info: host: 'DESKTOP-EI1MF8H', ip: '192.168.31.17', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Capabilities {acceptInsecureCerts: false, browserName: firefox, browserVersion: 96.0.3, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20220126154723, moz:geckodriverVersion: 0.30.0, moz:headless: false, moz:processID: 173, moz:profile: /tmp/rust_mozprofileJvP7I4, moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, platformVersion: 5.10.16.3-microsoft-standar..., proxy: Proxy(), se:cdp: ws://172.18.0.3:4444/sessio..., se:vnc: ws://172.18.0.3:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.18.0.3:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 20f18860-87dc-4560-884d-cfc84e3945b4]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //button[@class='v-btn v-btn--flat v-btn--text theme--light v-size--default primary--text'] (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.0.0', revision: '3a21814679'
+System info: host: 'DESKTOP-EI1MF8H', ip: '192.168.31.17', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Capabilities {acceptInsecureCerts: false, browserName: firefox, browserVersion: 96.0.3, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20220126154723, moz:geckodriverVersion: 0.30.0, moz:headless: false, moz:processID: 173, moz:profile: /tmp/rust_mozprofileJvP7I4, moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, platformVersion: 5.10.16.3-microsoft-standar..., proxy: Proxy(), se:cdp: ws://172.18.0.3:4444/sessio..., se:vnc: ws://172.18.0.3:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.18.0.3:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 20f18860-87dc-4560-884d-cfc84e3945b4
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:138)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+at superAdmin.Clients.changeStatusToActive(Clients.java:167)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+at java.base/java.lang.Thread.run(Thread.java:834)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- forgotPassword -->
-        <test-method is-config="true" signature="checkResults(org.testng.ITestResult)[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:20 BDT" name="checkResults" finished-at="2022-02-22T13:12:20 BDT" duration-ms="2" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=forgotPassword status=SUCCESS method=LoginTest.forgotPassword()[pri:6, instance:normalUser.LoginTest@209da20d] output={null}]]]>
-              </value>
-            </param>
-          </params>
+        </test-method> <!-- changeStatusToActive -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:01:06 BDT" name="openBrowser" finished-at="2022-02-27T20:01:10 BDT" duration-ms="3538" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- checkResults -->
-        <test-method is-config="true" signature="afterClass()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:20 BDT" name="afterClass" finished-at="2022-02-22T13:12:21 BDT" duration-ms="367" status="PASS">
+        </test-method> <!-- openBrowser -->
+        <test-method signature="checkLocationStatus()[pri:7, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:01:10 BDT" name="checkLocationStatus" finished-at="2022-02-27T20:01:38 BDT" duration-ms="27870" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- afterClass -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:21 BDT" name="tearDown" finished-at="2022-02-22T13:12:21 BDT" duration-ms="771" status="PASS">
+        </test-method> <!-- checkLocationStatus -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:01:38 BDT" name="openBrowser" finished-at="2022-02-27T20:01:42 BDT" duration-ms="4340" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="checkPatientStatus()[pri:8, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:01:42 BDT" name="checkPatientStatus" finished-at="2022-02-27T20:02:09 BDT" duration-ms="26897" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkPatientStatus -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:02:09 BDT" name="openBrowser" finished-at="2022-02-27T20:02:12 BDT" duration-ms="3473" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="search()[pri:9, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:02:12 BDT" name="search" finished-at="2022-02-27T20:02:27 BDT" duration-ms="14479" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- search -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:02:27 BDT" name="openBrowser" finished-at="2022-02-27T20:02:35 BDT" duration-ms="7792" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="checkClientTypeList()[pri:10, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:02:35 BDT" name="checkClientTypeList" finished-at="2022-02-27T20:02:49 BDT" duration-ms="14094" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkClientTypeList -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:02:49 BDT" name="openBrowser" finished-at="2022-02-27T20:02:52 BDT" duration-ms="3468" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="addNewClientGroup()[pri:11, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:02:52 BDT" name="addNewClientGroup" finished-at="2022-02-27T20:03:10 BDT" duration-ms="17525" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addNewClientGroup -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:03:10 BDT" name="openBrowser" finished-at="2022-02-27T20:03:14 BDT" duration-ms="4741" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="editClientGroup()[pri:12, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:03:14 BDT" name="editClientGroup" finished-at="2022-02-27T20:03:42 BDT" duration-ms="27353" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: //span[normalize-space()='Client Group 1'] (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.0.0', revision: '3a21814679'
+System info: host: 'DESKTOP-EI1MF8H', ip: '192.168.31.17', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Capabilities {acceptInsecureCerts: false, browserName: firefox, browserVersion: 96.0.3, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20220126154723, moz:geckodriverVersion: 0.30.0, moz:headless: false, moz:processID: 173, moz:profile: /tmp/rust_mozprofileJvP7I4, moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, platformVersion: 5.10.16.3-microsoft-standar..., proxy: Proxy(), se:cdp: ws://172.18.0.3:4444/sessio..., se:vnc: ws://172.18.0.3:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.18.0.3:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 20f18860-87dc-4560-884d-cfc84e3945b4]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //span[normalize-space()='Client Group 1'] (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.0.0', revision: '3a21814679'
+System info: host: 'DESKTOP-EI1MF8H', ip: '192.168.31.17', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Capabilities {acceptInsecureCerts: false, browserName: firefox, browserVersion: 96.0.3, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20220126154723, moz:geckodriverVersion: 0.30.0, moz:headless: false, moz:processID: 173, moz:profile: /tmp/rust_mozprofileJvP7I4, moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, platformVersion: 5.10.16.3-microsoft-standar..., proxy: Proxy(), se:cdp: ws://172.18.0.3:4444/sessio..., se:vnc: ws://172.18.0.3:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.18.0.3:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 20f18860-87dc-4560-884d-cfc84e3945b4
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:138)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+at superAdmin.Clients.editClientGroup(Clients.java:306)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+at java.base/java.lang.Thread.run(Thread.java:834)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- editClientGroup -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:07:48 BDT" name="openBrowser" finished-at="2022-02-27T20:07:53 BDT" duration-ms="5195" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="nameSort()[pri:13, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:07:53 BDT" name="nameSort" finished-at="2022-02-27T20:08:14 BDT" duration-ms="20786" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- nameSort -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:08:14 BDT" name="openBrowser" finished-at="2022-02-27T20:08:18 BDT" duration-ms="3456" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="typeSort()[pri:14, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:08:18 BDT" name="typeSort" finished-at="2022-02-27T20:08:30 BDT" duration-ms="12558" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- typeSort -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:08:30 BDT" name="openBrowser" finished-at="2022-02-27T20:08:34 BDT" duration-ms="4019" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="checkUserStatus()[pri:15, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:08:34 BDT" name="checkUserStatus" finished-at="2022-02-27T20:09:02 BDT" duration-ms="28020" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkUserStatus -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:09:03 BDT" name="tearDown" finished-at="2022-02-27T20:09:10 BDT" duration-ms="7124" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="afterSuit()[pri:0, instance:normalUser.LoginTest@209da20d]" started-at="2022-02-22T13:12:21 BDT" name="afterSuit" finished-at="2022-02-22T13:12:21 BDT" duration-ms="25" status="PASS">
+        <test-method is-config="true" signature="afterSuit()[pri:0, instance:superAdmin.Clients@78641d23]" started-at="2022-02-27T20:09:30 BDT" name="afterSuit" finished-at="1970-01-01T06:00:00 BDT" duration-ms="-1645970970113" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterSuit -->
-      </class> <!-- normalUser.LoginTest -->
+      </class> <!-- superAdmin.Clients -->
+      <class name="superAdmin.Login">
+        <test-method is-config="true" signature="beforeSuit()[pri:0, instance:superAdmin.Login@7efaad5a]" started-at="2022-02-27T19:56:00 BDT" name="beforeSuit" finished-at="2022-02-27T19:56:00 BDT" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeSuit -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:superAdmin.Login@7efaad5a]" started-at="2022-02-27T19:57:07 BDT" name="setup" finished-at="2022-02-27T19:57:56 BDT" duration-ms="49288" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Login@7efaad5a]" started-at="2022-02-27T19:57:58 BDT" name="openBrowser" finished-at="2022-02-27T19:58:26 BDT" duration-ms="27648" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="verifyElemntsOnPageTest()[pri:1, instance:superAdmin.Login@7efaad5a]" started-at="2022-02-27T19:58:26 BDT" name="verifyElemntsOnPageTest" finished-at="2022-02-27T19:58:29 BDT" duration-ms="3662" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyElemntsOnPageTest -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Login@7efaad5a]" started-at="2022-02-27T19:58:29 BDT" name="openBrowser" finished-at="2022-02-27T19:58:42 BDT" duration-ms="12911" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="verifyLogin()[pri:2, instance:superAdmin.Login@7efaad5a]" started-at="2022-02-27T19:58:42 BDT" name="verifyLogin" finished-at="2022-02-27T19:58:56 BDT" duration-ms="13565" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [https://dev.zntral.net/dashboard] but found [https://dev.zntral.net/session/loginas]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [https://dev.zntral.net/dashboard] but found [https://dev.zntral.net/session/loginas]
+at org.testng.Assert.fail(Assert.java:99)
+at org.testng.Assert.failNotEquals(Assert.java:1037)
+at org.testng.Assert.assertEqualsImpl(Assert.java:140)
+at org.testng.Assert.assertEquals(Assert.java:122)
+at org.testng.Assert.assertEquals(Assert.java:629)
+at org.testng.Assert.assertEquals(Assert.java:639)
+at superAdmin.Login.verifyLogin(Login.java:95)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+at java.base/java.lang.Thread.run(Thread.java:834)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyLogin -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Login@7efaad5a]" started-at="2022-02-27T19:59:35 BDT" name="openBrowser" finished-at="2022-02-27T19:59:42 BDT" duration-ms="6706" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="loginWithoutUsername()[pri:3, instance:superAdmin.Login@7efaad5a]" started-at="2022-02-27T19:59:42 BDT" name="loginWithoutUsername" finished-at="2022-02-27T19:59:55 BDT" duration-ms="13471" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginWithoutUsername -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Login@7efaad5a]" started-at="2022-02-27T19:59:55 BDT" name="openBrowser" finished-at="2022-02-27T20:00:00 BDT" duration-ms="4964" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="loginWithoutPassword()[pri:4, instance:superAdmin.Login@7efaad5a]" started-at="2022-02-27T20:00:00 BDT" name="loginWithoutPassword" finished-at="2022-02-27T20:00:34 BDT" duration-ms="33779" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginWithoutPassword -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Login@7efaad5a]" started-at="2022-02-27T20:00:34 BDT" name="openBrowser" finished-at="2022-02-27T20:00:38 BDT" duration-ms="4234" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="invalidLoginInfo()[pri:5, instance:superAdmin.Login@7efaad5a]" started-at="2022-02-27T20:00:38 BDT" name="invalidLoginInfo" finished-at="2022-02-27T20:00:46 BDT" duration-ms="7408" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invalidLoginInfo -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:superAdmin.Login@7efaad5a]" started-at="2022-02-27T20:09:11 BDT" name="tearDown" finished-at="2022-02-27T20:09:11 BDT" duration-ms="493" status="FAIL">
+          <exception class="org.openqa.selenium.WebDriverException">
+            <message>
+              <![CDATA[Unable to execute request for an existing session: Unable to find session with ID: 2bc17b5371a5aa4d2ce89524a8e673f1
+Build info: version: '4.1.1', revision: 'e8fcc2cecf'
+System info: host: 'd4147cbb3a9e', ip: '172.18.0.2', os.name: 'Linux', os.arch: 'amd64', os.version: '5.10.16.3-microsoft-standard-WSL2', java.version: '11.0.13'
+Driver info: driver.version: unknown
+Build info: version: '4.0.0', revision: '3a21814679'
+System info: host: 'DESKTOP-EI1MF8H', ip: '192.168.31.17', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Command: [2bc17b5371a5aa4d2ce89524a8e673f1, quit {}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 97.0.4692.99, chrome: {chromedriverVersion: 97.0.4692.71 (adefa7837d02a..., userDataDir: /tmp/.com.google.Chrome.nbdNN2}, goog:chromeOptions: {debuggerAddress: localhost:42195}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), se:cdp: ws://172.18.0.5:4444/sessio..., se:cdpVersion: 97.0.4692.99, se:vnc: ws://172.18.0.5:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.18.0.5:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 2bc17b5371a5aa4d2ce89524a8e673f1]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.WebDriverException: Unable to execute request for an existing session: Unable to find session with ID: 2bc17b5371a5aa4d2ce89524a8e673f1
+Build info: version: '4.1.1', revision: 'e8fcc2cecf'
+System info: host: 'd4147cbb3a9e', ip: '172.18.0.2', os.name: 'Linux', os.arch: 'amd64', os.version: '5.10.16.3-microsoft-standard-WSL2', java.version: '11.0.13'
+Driver info: driver.version: unknown
+Build info: version: '4.0.0', revision: '3a21814679'
+System info: host: 'DESKTOP-EI1MF8H', ip: '192.168.31.17', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Command: [2bc17b5371a5aa4d2ce89524a8e673f1, quit {}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 97.0.4692.99, chrome: {chromedriverVersion: 97.0.4692.71 (adefa7837d02a..., userDataDir: /tmp/.com.google.Chrome.nbdNN2}, goog:chromeOptions: {debuggerAddress: localhost:42195}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), se:cdp: ws://172.18.0.5:4444/sessio..., se:cdpVersion: 97.0.4692.99, se:vnc: ws://172.18.0.5:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.18.0.5:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 2bc17b5371a5aa4d2ce89524a8e673f1
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
+at org.openqa.selenium.remote.TracedCommandExecutor.execute(TracedCommandExecutor.java:39)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:559)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:614)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:618)
+at org.openqa.selenium.remote.RemoteWebDriver.quit(RemoteWebDriver.java:455)
+at superAdmin.Login.tearDown(Login.java:68)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:62)
+at org.testng.internal.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:385)
+at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:321)
+at org.testng.TestRunner.invokeTestConfigurations(TestRunner.java:637)
+at org.testng.TestRunner.afterRun(TestRunner.java:877)
+at org.testng.TestRunner.run(TestRunner.java:599)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.WebDriverException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- superAdmin.Login -->
+      <class name="superAdmin.Locations">
+        <test-method is-config="true" signature="beforeSuit()[pri:0, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T19:56:00 BDT" name="beforeSuit" finished-at="2022-02-27T19:56:00 BDT" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeSuit -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T19:56:19 BDT" name="setup" finished-at="2022-02-27T19:57:07 BDT" duration-ms="47448" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T19:57:58 BDT" name="openBrowser" finished-at="2022-02-27T19:58:13 BDT" duration-ms="15207" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="verifyElemntsOnPageTest()[pri:1, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T19:58:13 BDT" name="verifyElemntsOnPageTest" finished-at="2022-02-27T19:58:24 BDT" duration-ms="11192" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyElemntsOnPageTest -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T19:58:29 BDT" name="openBrowser" finished-at="2022-02-27T19:58:40 BDT" duration-ms="10981" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="login()[pri:2, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T19:58:40 BDT" name="login" finished-at="2022-02-27T19:58:51 BDT" duration-ms="10780" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T19:58:51 BDT" name="openBrowser" finished-at="2022-02-27T19:58:56 BDT" duration-ms="5376" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="checkLocationList()[pri:3, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T19:58:56 BDT" name="checkLocationList" finished-at="2022-02-27T19:59:08 BDT" duration-ms="12187" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkLocationList -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T19:59:08 BDT" name="openBrowser" finished-at="2022-02-27T19:59:14 BDT" duration-ms="5863" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="search()[pri:4, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T19:59:14 BDT" name="search" finished-at="2022-02-27T19:59:29 BDT" duration-ms="14436" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- search -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T19:59:29 BDT" name="openBrowser" finished-at="2022-02-27T19:59:32 BDT" duration-ms="3677" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="patientFromLocation()[pri:5, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T19:59:32 BDT" name="patientFromLocation" finished-at="2022-02-27T19:59:48 BDT" duration-ms="15990" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- patientFromLocation -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T19:59:48 BDT" name="openBrowser" finished-at="2022-02-27T19:59:52 BDT" duration-ms="3628" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="contactFromLocation()[pri:6, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T19:59:52 BDT" name="contactFromLocation" finished-at="2022-02-27T20:00:11 BDT" duration-ms="19023" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- contactFromLocation -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T20:00:11 BDT" name="openBrowser" finished-at="2022-02-27T20:00:33 BDT" duration-ms="22433" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="locationTypes()[pri:7, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T20:00:33 BDT" name="locationTypes" finished-at="2022-02-27T20:00:48 BDT" duration-ms="14630" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- locationTypes -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T20:00:49 BDT" name="openBrowser" finished-at="2022-02-27T20:00:52 BDT" duration-ms="3825" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="updateTypes()[pri:8, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T20:00:53 BDT" name="updateTypes" finished-at="2022-02-27T20:01:23 BDT" duration-ms="29718" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- updateTypes -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T20:01:23 BDT" name="openBrowser" finished-at="2022-02-27T20:01:26 BDT" duration-ms="3664" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="addNewLocationType()[pri:9, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T20:01:26 BDT" name="addNewLocationType" finished-at="2022-02-27T20:01:45 BDT" duration-ms="18967" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [Test SQA] but found [Test SQA ]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [Test SQA] but found [Test SQA ]
+at org.testng.Assert.fail(Assert.java:99)
+at org.testng.Assert.failNotEquals(Assert.java:1037)
+at org.testng.Assert.assertEqualsImpl(Assert.java:140)
+at org.testng.Assert.assertEquals(Assert.java:122)
+at org.testng.Assert.assertEquals(Assert.java:629)
+at org.testng.Assert.assertEquals(Assert.java:639)
+at superAdmin.Locations.addNewLocationType(Locations.java:287)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+at java.base/java.lang.Thread.run(Thread.java:834)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addNewLocationType -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T20:06:01 BDT" name="openBrowser" finished-at="2022-02-27T20:06:34 BDT" duration-ms="33532" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="resetButton()[pri:9, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T20:06:34 BDT" name="resetButton" finished-at="2022-02-27T20:07:16 BDT" duration-ms="42104" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- resetButton -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T20:07:17 BDT" name="openBrowser" finished-at="2022-02-27T20:07:22 BDT" duration-ms="4254" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="cancelButton()[pri:10, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T20:07:22 BDT" name="cancelButton" finished-at="2022-02-27T20:07:36 BDT" duration-ms="14699" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cancelButton -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T20:07:37 BDT" name="openBrowser" finished-at="2022-02-27T20:07:42 BDT" duration-ms="5399" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="addressWiseSort()[pri:11, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T20:07:42 BDT" name="addressWiseSort" finished-at="2022-02-27T20:08:13 BDT" duration-ms="31240" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addressWiseSort -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T20:08:13 BDT" name="openBrowser" finished-at="2022-02-27T20:08:17 BDT" duration-ms="3776" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="statusWiseSort()[pri:12, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T20:08:17 BDT" name="statusWiseSort" finished-at="2022-02-27T20:08:27 BDT" duration-ms="9473" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- statusWiseSort -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T20:08:27 BDT" name="openBrowser" finished-at="2022-02-27T20:08:30 BDT" duration-ms="3799" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="nameWiseTypeSort()[pri:13, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T20:08:30 BDT" name="nameWiseTypeSort" finished-at="2022-02-27T20:08:42 BDT" duration-ms="12156" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- nameWiseTypeSort -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T20:08:42 BDT" name="openBrowser" finished-at="2022-02-27T20:08:46 BDT" duration-ms="3811" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="acronymWiseTypeSort()[pri:14, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T20:08:46 BDT" name="acronymWiseTypeSort" finished-at="2022-02-27T20:08:57 BDT" duration-ms="11154" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- acronymWiseTypeSort -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T20:09:10 BDT" name="tearDown" finished-at="2022-02-27T20:09:11 BDT" duration-ms="443" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="afterSuit()[pri:0, instance:superAdmin.Locations@6cce16f4]" started-at="2022-02-27T20:09:30 BDT" name="afterSuit" finished-at="1970-01-01T06:00:00 BDT" duration-ms="-1645970970114" status="SKIP">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterSuit -->
+      </class> <!-- superAdmin.Locations -->
     </test> <!-- Test Suite -->
   </suite> <!-- Parallel test suite -->
 </testng-results>

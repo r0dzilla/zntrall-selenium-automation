@@ -1,44 +1,21 @@
 package normalUser;
 
-import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.time.Duration;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.markuputils.ExtentColor;
-import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import com.aventstack.extentreports.reporter.configuration.Theme;
 
 import NormalUserXpath.LocationsXpath;
 import browser.OpenBrowser;
@@ -49,13 +26,6 @@ import normalUserInputData.PatientsInfoData;
 public class Locations extends OpenBrowser{
 	public static String env = "Test";
 	public static String testSuiteName = "Test Suit 4 -- Locations";
-	String fileName = System.getProperty("user.dir")+"/reports/Standard User/TestResults-Locations.html";
-
-	public static ExtentTest parentTest;
-	public static ExtentReports extent;
-	public static ExtentTest test;
-	public static ExtentSparkReporter htmlReports;
-
 	public static WebDriver driver = null;
 
 	@BeforeSuite
@@ -72,37 +42,11 @@ public class Locations extends OpenBrowser{
 		}
 	}
 
-	@Parameters({"Browser"})
+	public static String myBrowser = "chrome";
 	@BeforeTest
-	public void setup(String Browser) throws MalformedURLException {
+	public void setup() throws MalformedURLException {
 
-		if((Browser.equalsIgnoreCase("chrome"))) {
-			driver = start(Browser);
-		}
-
-		if((Browser.equalsIgnoreCase("firefox"))) {
-			driver = start(Browser);
-		}
-	}
-
-	@BeforeClass
-	public void initiateReport() {
-		htmlReports = new ExtentSparkReporter(fileName);
-		extent = new ExtentReports();
-		extent.attachReporter(htmlReports);
-		htmlReports.config().setReportName("Standart User - Locations");
-		htmlReports.config().setTheme(Theme.STANDARD);
-		htmlReports.config().setDocumentTitle("Test Report for Standard User");
-
-	}
-
-	public String getScreenshotPath(String TestcaseName, WebDriver driver) throws IOException {
-		TakesScreenshot ts = (TakesScreenshot)driver;
-		File source = ts.getScreenshotAs(OutputType.FILE);
-		String destPath = "\\home\\b0b\\zntrall-selenium-automation\\screenshots\\"+TestcaseName+".png";
-		File file = new File(destPath);
-		FileUtils.copyFile(source, file);
-		return destPath;
+		driver = start(myBrowser);
 	}
 
 
@@ -115,26 +59,6 @@ public class Locations extends OpenBrowser{
 		driver.get("https://dev.zntral.net/session/login");
 		driver.manage().window().maximize();
 		Thread.sleep(3000);
-	}
-
-
-	@AfterMethod
-	public void checkResults(ITestResult testResults) throws IOException{
-
-		if(testResults.getStatus()==ITestResult.FAILURE) {
-
-			parentTest.log(Status.FAIL, MarkupHelper.createLabel("Test Failed of below reason", ExtentColor.RED));
-			parentTest.log(Status.FAIL, testResults.getThrowable());
-
-			parentTest.addScreenCaptureFromPath(getScreenshotPath(testResults.getMethod().getMethodName(),driver), testResults.getMethod().getMethodName());
-
-		}
-		else if(testResults.getStatus()==ITestResult.SKIP) {
-			parentTest.log(Status.SKIP, testResults.getThrowable());
-		}
-		else {
-			parentTest.log(Status.PASS, MarkupHelper.createLabel("Test Case is passed", ExtentColor.GREEN));
-		}
 	}
 
 
@@ -151,11 +75,7 @@ public class Locations extends OpenBrowser{
 	@Test(priority = 1)
 	public void loginUser() throws InterruptedException {
 
-		parentTest = extent.createTest("Login with valid username & Password").assignAuthor("Sabbir").assignCategory("Standard User");
-		parentTest.info("Login with valid credentials");
-
 		LocationsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Login Successful", ExtentColor.ORANGE));
 
 		String expectedUrl = "https://dev.zntral.net/dashboard";
 		String actualUrl = driver.getCurrentUrl();
@@ -169,14 +89,10 @@ public class Locations extends OpenBrowser{
 
 	@Test(priority = 2)
 	public void locationList() throws InterruptedException {
-		parentTest = extent.createTest("View the location list").assignAuthor("Sabbir").assignCategory("Standard User");
-		parentTest.info("View the location list");
 
 		LocationsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		LocationsFunctions.viewLocationList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Location List", ExtentColor.ORANGE));
 
 		String expectedUrl = "https://dev.zntral.net/locations";
 		String actualUrl = driver.getCurrentUrl();
@@ -187,16 +103,12 @@ public class Locations extends OpenBrowser{
 
 	@Test(priority = 3)
 	public void search() throws InterruptedException {
-		parentTest = extent.createTest("Search option").assignAuthor("Sabbir").assignCategory("Standard User");
-		parentTest.info("Search option");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		LocationsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		LocationsFunctions.viewLocationList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Location List", ExtentColor.ORANGE));
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.search)));
 		driver.findElement(By.xpath(LocationsXpath.search)).sendKeys(LocationInfoData.searchLocation);
@@ -213,18 +125,11 @@ public class Locations extends OpenBrowser{
 	@Test(priority = 4)
 	public void addLocation() throws InterruptedException{
 
-		parentTest = extent.createTest("Add new Location -- Click \"+\" button").assignAuthor("Sabbir").assignCategory("Standard User");
-		parentTest.info("Add new Location -- Click \"+\" button");
-
 		LocationsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		LocationsFunctions.viewLocationList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Location List", ExtentColor.ORANGE));
 
 		LocationsFunctions.addResidentType();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Resident Type Selected", ExtentColor.ORANGE));
-
 
 	}
 
@@ -232,19 +137,14 @@ public class Locations extends OpenBrowser{
 
 	@Test(priority = 5)
 	public void validLocationData() throws InterruptedException {
-		parentTest = extent.createTest("Adding location with valid info").assignAuthor("Sabbir").assignCategory("Standard User");
-		parentTest.info("Adding location with valid info");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		LocationsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		LocationsFunctions.viewLocationList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Location List", ExtentColor.ORANGE));
 
 		LocationsFunctions.addResidentType();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 3: Resident Type Selected", ExtentColor.ORANGE));
 
 
 		String LName = LocationInfoData.locationName;
@@ -275,19 +175,14 @@ public class Locations extends OpenBrowser{
 
 	@Test(priority = 6)
 	public void invalidLocationData() throws InterruptedException {
-		parentTest = extent.createTest("Adding location without any info").assignAuthor("Sabbir").assignCategory("Standard User");
-		parentTest.info("Adding location without any info");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		LocationsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		LocationsFunctions.viewLocationList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Location List", ExtentColor.ORANGE));
 
 		LocationsFunctions.addResidentType();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 3: Resident Type Selected", ExtentColor.ORANGE));
 
 
 		String LName = LocationInfoData.locationName2;
@@ -313,12 +208,6 @@ public class Locations extends OpenBrowser{
 		WebElement stateMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.stateMsg)));
 		WebElement phoneMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.phoneMsg)));
 		WebElement emailMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.emailMsg)));
-
-		parentTest.log(Status.INFO, MarkupHelper.createLabel(addressMsg.getText(), ExtentColor.RED));
-		parentTest.log(Status.INFO, MarkupHelper.createLabel(cityMsg.getText(), ExtentColor.RED));
-		parentTest.log(Status.INFO, MarkupHelper.createLabel(stateMsg.getText(), ExtentColor.RED));
-		parentTest.log(Status.INFO, MarkupHelper.createLabel(phoneMsg.getText(), ExtentColor.RED));
-		parentTest.log(Status.INFO, MarkupHelper.createLabel(emailMsg.getText(), ExtentColor.RED));
 
 		String expectedText1 = "Address is required";
 		String actualText1 = addressMsg.getText();
@@ -346,19 +235,14 @@ public class Locations extends OpenBrowser{
 
 	@Test(priority = 7)
 	public void validatePhoneEmailData() throws InterruptedException {
-		parentTest = extent.createTest("Adding location form").assignAuthor("Sabbir").assignCategory("Standard User");
-		parentTest.info("Phone number, Email validation check");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		LocationsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		LocationsFunctions.viewLocationList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Location List", ExtentColor.ORANGE));
 
 		LocationsFunctions.addResidentType();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 3: Resident Type Selected", ExtentColor.ORANGE));
 
 
 		String LName = LocationInfoData.locationName;
@@ -383,9 +267,6 @@ public class Locations extends OpenBrowser{
 		WebElement phoneMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.phoneMsg2)));
 		WebElement emailMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.emailMsg)));
 
-		parentTest.log(Status.INFO, MarkupHelper.createLabel(phoneMsg.getText(), ExtentColor.RED));
-		parentTest.log(Status.INFO, MarkupHelper.createLabel(emailMsg.getText(), ExtentColor.RED));
-
 		String expectedText4 = "Phone Number minimum 10 digit required";
 		String actualText4 = phoneMsg.getText();
 		Assert.assertEquals(actualText4, expectedText4);
@@ -400,19 +281,14 @@ public class Locations extends OpenBrowser{
 
 	@Test(priority = 8)
 	public void validateBackButton() throws InterruptedException {
-		parentTest = extent.createTest("Adding location form").assignAuthor("Sabbir").assignCategory("Standard User");
-		parentTest.info("Back button check");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		LocationsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		LocationsFunctions.viewLocationList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Location List", ExtentColor.ORANGE));
 
 		LocationsFunctions.addResidentType();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 3: Resident Type Selected", ExtentColor.ORANGE));
 
 
 		WebElement back = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.back)));
@@ -426,19 +302,14 @@ public class Locations extends OpenBrowser{
 
 	@Test(priority = 9)
 	public void validateCancelButton() throws InterruptedException {
-		parentTest = extent.createTest("Adding location form").assignAuthor("Sabbir").assignCategory("Standard User");
-		parentTest.info("Cancel button check");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		LocationsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		LocationsFunctions.viewLocationList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Location List", ExtentColor.ORANGE));
 
 		LocationsFunctions.addResidentType();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 3: Resident Type Selected", ExtentColor.ORANGE));
 
 		WebElement cancel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.cancel)));
 		cancel.click();
@@ -452,19 +323,13 @@ public class Locations extends OpenBrowser{
 	@Test(priority = 10)
 	public void addPatientfromLocation() throws InterruptedException {
 
-		parentTest = extent.createTest("Add patient info after adding new location info").assignAuthor("Sabbir").assignCategory("Standard User");
-		parentTest.info("Add patient info after adding new location info");
-
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		LocationsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		LocationsFunctions.viewLocationList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Location List", ExtentColor.ORANGE));
 
 		LocationsFunctions.addResidentType();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 3: Resident Type Selected", ExtentColor.ORANGE));
 
 		String LName = LocationInfoData.locationName;
 		String LlicenceNumber = LocationInfoData.licenceNumber;
@@ -483,7 +348,6 @@ public class Locations extends OpenBrowser{
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.save)));
 		save.click();
 		Thread.sleep(5000);
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 4: Location added", ExtentColor.ORANGE));
 
 		WebElement addButton1 = driver.findElement(By.xpath(LocationsXpath.add));
 		addButton1.click();
@@ -513,19 +377,14 @@ public class Locations extends OpenBrowser{
 
 	@Test(priority = 11)
 	public void emptyPatientInfofromLocation() throws InterruptedException {
-		parentTest = extent.createTest("Add patient info after adding new location info").assignAuthor("Sabbir").assignCategory("Standard User");
-		parentTest.info("Empty fields");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		LocationsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		LocationsFunctions.viewLocationList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Location List", ExtentColor.ORANGE));
 
 		LocationsFunctions.addResidentType();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 3: Resident Type Selected", ExtentColor.ORANGE));
 
 		String LName = LocationInfoData.locationName;
 		String LlicenceNumber = LocationInfoData.licenceNumber;
@@ -544,8 +403,6 @@ public class Locations extends OpenBrowser{
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.save)));
 		save.click();
 		Thread.sleep(5000);
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 4: Location added", ExtentColor.ORANGE));
-
 		WebElement addButton1 = driver.findElement(By.xpath("//i[normalize-space()='add']"));
 		addButton1.click();
 		Thread.sleep(1000);
@@ -569,9 +426,6 @@ public class Locations extends OpenBrowser{
 		WebElement firstNameMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.firstNameMsg)));
 		WebElement lastNameMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.lastNameMsg)));
 
-		parentTest.log(Status.INFO, MarkupHelper.createLabel(firstNameMsg.getText(), ExtentColor.RED));
-		parentTest.log(Status.INFO, MarkupHelper.createLabel(lastNameMsg.getText(), ExtentColor.RED));
-
 		String expectedText4 = "First name is required";
 		String actualText4 = firstNameMsg.getText();
 		Assert.assertEquals(actualText4, expectedText4);
@@ -589,19 +443,13 @@ public class Locations extends OpenBrowser{
 	@Test(priority = 12)
 	public void addContactfromLocation() throws InterruptedException {
 
-		parentTest = extent.createTest("Add contact info after adding new location info").assignAuthor("Sabbir").assignCategory("Standard User");
-		parentTest.info("Add contact info after adding new location info");
-
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		LocationsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		LocationsFunctions.viewLocationList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Location List", ExtentColor.ORANGE));
 
 		LocationsFunctions.addResidentType();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 3: Resident Type Selected", ExtentColor.ORANGE));
 
 		String LName = LocationInfoData.locationName;
 		String LlicenceNumber = LocationInfoData.licenceNumber;
@@ -620,7 +468,6 @@ public class Locations extends OpenBrowser{
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.save)));
 		save.click();
 		Thread.sleep(5000);
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 4: Location added", ExtentColor.ORANGE));
 
 
 		WebElement addButton1 = driver.findElement(By.xpath(LocationsXpath.add));
@@ -665,19 +512,14 @@ public class Locations extends OpenBrowser{
 
 	@Test(priority = 13)
 	public void addContactEmptyLocation() throws InterruptedException {
-		parentTest = extent.createTest("Add contact info after adding new location info").assignAuthor("Sabbir").assignCategory("Standard User");
-		parentTest.info("Empty fields");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		LocationsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		LocationsFunctions.viewLocationList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Location List", ExtentColor.ORANGE));
 
 		LocationsFunctions.addResidentType();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 3: Resident Type Selected", ExtentColor.ORANGE));
 
 		String LName = LocationInfoData.locationName;
 		String LlicenceNumber = LocationInfoData.licenceNumber;
@@ -696,7 +538,6 @@ public class Locations extends OpenBrowser{
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.save)));
 		save.click();
 		Thread.sleep(5000);
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 4: Location added", ExtentColor.ORANGE));
 
 
 		WebElement addButton1 = driver.findElement(By.xpath(LocationsXpath.add));
@@ -728,16 +569,12 @@ public class Locations extends OpenBrowser{
 
 	@Test(priority = 14)
 	public void editLocationInfo() throws InterruptedException {
-		parentTest = extent.createTest("Edit location info").assignAuthor("Sabbir").assignCategory("Standard User");
-		parentTest.info("Edit location info");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		LocationsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		LocationsFunctions.viewLocationList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Location List", ExtentColor.ORANGE));
 		Thread.sleep(3000);
 
 		WebElement locationSelect = driver.findElement(By.xpath(LocationsXpath.firstRow));
@@ -782,13 +619,10 @@ public class Locations extends OpenBrowser{
 
 	@Test
 	public void addLocationFromPatient() throws InterruptedException {
-		parentTest = extent.createTest("Add location From patient overview page").assignAuthor("Sabbir").assignCategory("Standard User");
-		parentTest.info("Add location From patient overview page");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		LocationsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		driver.findElement(By.xpath(LocationsXpath.patients)).click();
 
@@ -837,11 +671,6 @@ public class Locations extends OpenBrowser{
 
 		Assert.assertTrue(true);
 
-	}
-
-	@AfterClass
-	public void afterClass() {
-		extent.flush();
 	}
 
 	@AfterSuite

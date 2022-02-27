@@ -1,43 +1,20 @@
 package normalUser;
 
-import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.time.Duration;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.markuputils.ExtentColor;
-import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import com.aventstack.extentreports.reporter.configuration.Theme;
 
 import NormalUserXpath.RegistrationXpath;
 import browser.OpenBrowser;
@@ -50,26 +27,14 @@ public class Registration extends OpenBrowser {
 
 	public static String env = "Test";
 	public static String testSuiteName = "Test Suit 1 -- Registration";
-	String fileName = System.getProperty("user.dir")+"/reports/Standard User/TestResults-Registration.html";
-
-	public static ExtentTest parentTest;
-	public static ExtentReports extent;
-	public static ExtentTest test;
-	public static ExtentSparkReporter htmlReports;
-
 	public static WebDriver driver = null;
-	@Parameters({"Browser"})
-
+	
+	
+	public static String myBrowser = "firefox";
 	@BeforeTest
-	public void setup(String Browser) throws MalformedURLException {
-
-		if((Browser.equalsIgnoreCase("chrome"))) {
-			driver = start(Browser);
-		}
-
-		if((Browser.equalsIgnoreCase("firefox"))) {
-			driver = start(Browser);
-		}
+	public void setup() throws MalformedURLException {
+		
+		driver = start(myBrowser);
 
 	}
 
@@ -97,59 +62,16 @@ public class Registration extends OpenBrowser {
 		Thread.sleep(3000);
 	}
 
-	public String getScreenshotPath(String TestcaseName, WebDriver driver) throws IOException {
-		TakesScreenshot ts = (TakesScreenshot)driver;
-		File source = ts.getScreenshotAs(OutputType.FILE);
-		String destPath = "\\home\\b0b\\zntrall-selenium-automation\\screenshots\\"+TestcaseName+".png";
-		File file = new File(destPath);
-		FileUtils.copyFile(source, file);
-		return destPath;
-	}
-
-	@BeforeClass
-	public void initiateReport() {
-		htmlReports = new ExtentSparkReporter(fileName);
-		extent = new ExtentReports();
-		extent.attachReporter(htmlReports);
-		htmlReports.config().setReportName("Standart User - Registration");
-		htmlReports.config().setTheme(Theme.STANDARD);
-		htmlReports.config().setDocumentTitle("Test Report for Standard User");
-
-	}
-
-	@AfterMethod
-	public void checkResults(ITestResult testResults) throws IOException{
-
-		if(testResults.getStatus()==ITestResult.FAILURE) {
-
-			parentTest.log(Status.FAIL, MarkupHelper.createLabel("Test Failed of below reason", ExtentColor.RED));
-			parentTest.log(Status.FAIL, testResults.getThrowable());
-
-			parentTest.addScreenCaptureFromPath(getScreenshotPath(testResults.getMethod().getMethodName(),driver), testResults.getMethod().getMethodName());
-
-		}
-		else if(testResults.getStatus()==ITestResult.SKIP) {
-			parentTest.log(Status.SKIP, testResults.getThrowable());
-		}
-		else {
-			parentTest.log(Status.PASS, "Test Case is passed");
-		}
-	}
 
 	//Verifying elements on Registration page
 
 	@Test(priority = 1)
 	public void verifyElemntsOnPageTest() throws InterruptedException {
 
-		parentTest = extent.createTest("Verifying elements on Registration page").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.log(Status.INFO, "Test is started");
-
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement signUpTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.signUpTitle)));
 		signUpTitle.isDisplayed();
-
-		parentTest.log(Status.PASS, MarkupHelper.createLabel("All Elements are present", ExtentColor.BLUE));
 
 	}
 
@@ -157,9 +79,6 @@ public class Registration extends OpenBrowser {
 
 	@Test(priority = 2)
 	public void validRegistrationTest() throws InterruptedException {
-
-		parentTest = extent.createTest("Registration with all valid data").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Registration with all valid data");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
@@ -199,9 +118,6 @@ public class Registration extends OpenBrowser {
 	@Test(priority = 3)
 	public void firstNameValidationTest() throws InterruptedException {
 
-		parentTest = extent.createTest("Registration - First Name field validation").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Registration - First Name field validation");
-
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RegistrationXpath.firstName)));
@@ -237,7 +153,6 @@ public class Registration extends OpenBrowser {
 
 			if(firstName.getAttribute("value").isEmpty()) {
 				WebElement userField = driver.findElement(By.xpath(RegistrationXpath.userField));
-				parentTest.log(Status.INFO, MarkupHelper.createLabel(userField.getText(), ExtentColor.RED));
 				System.out.println(userField.getText());
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
@@ -246,7 +161,6 @@ public class Registration extends OpenBrowser {
 			}
 			else if(firstName.getAttribute("value").length() > 20) {
 				WebElement userField = driver.findElement(By.xpath(RegistrationXpath.alert));
-				parentTest.log(Status.INFO, MarkupHelper.createLabel(userField.getText(), ExtentColor.RED));
 				System.out.println(userField.getText());
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
@@ -255,7 +169,6 @@ public class Registration extends OpenBrowser {
 			else {
 
 				WebElement userField = driver.findElement(By.xpath(RegistrationXpath.alert));
-				parentTest.log(Status.INFO, MarkupHelper.createLabel(userField.getText(), ExtentColor.RED));
 				System.out.println(userField.getText());
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
@@ -272,9 +185,6 @@ public class Registration extends OpenBrowser {
 
 	@Test(priority = 4)
 	public void lastNameValidationTest() throws InterruptedException {
-
-		parentTest = extent.createTest("Registration - Last Name field validation").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Registration - Last Name field validation");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
@@ -312,7 +222,6 @@ public class Registration extends OpenBrowser {
 
 			if(LastName.getAttribute("value").isEmpty()) {
 				WebElement userField = driver.findElement(By.xpath(RegistrationXpath.userField));
-				parentTest.log(Status.INFO, MarkupHelper.createLabel(userField.getText(), ExtentColor.RED));
 				System.out.println(userField.getText());
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
@@ -321,7 +230,6 @@ public class Registration extends OpenBrowser {
 			}
 			else if(LastName.getAttribute("value").length() > 20) {
 				WebElement userField = driver.findElement(By.xpath(RegistrationXpath.alert));
-				parentTest.log(Status.INFO, MarkupHelper.createLabel(userField.getText(), ExtentColor.RED));
 				System.out.println(userField.getText());
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
@@ -330,7 +238,6 @@ public class Registration extends OpenBrowser {
 			else {
 
 				WebElement userField = driver.findElement(By.xpath(RegistrationXpath.alert));
-				parentTest.log(Status.INFO, MarkupHelper.createLabel(userField.getText(), ExtentColor.RED));
 				System.out.println(userField.getText());
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
@@ -348,9 +255,6 @@ public class Registration extends OpenBrowser {
 
 	@Test(priority = 5)
 	public void emailValidationTest() throws InterruptedException {
-
-		parentTest = extent.createTest("Registration - user email field validation").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Registration - user email field validation");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
@@ -388,7 +292,6 @@ public class Registration extends OpenBrowser {
 
 			if(email.getAttribute("value").isEmpty()) {
 				WebElement userField = driver.findElement(By.xpath(RegistrationXpath.userField));
-				parentTest.log(Status.INFO, MarkupHelper.createLabel(userField.getText(), ExtentColor.RED));
 				System.out.println(userField.getText());
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
@@ -397,7 +300,6 @@ public class Registration extends OpenBrowser {
 			}
 			else if(email.getAttribute("value").startsWith("@")) {
 				WebElement userField = driver.findElement(By.xpath(RegistrationXpath.alert));
-				parentTest.log(Status.INFO, MarkupHelper.createLabel(userField.getText(), ExtentColor.RED));
 				System.out.println(userField.getText());
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
@@ -405,7 +307,6 @@ public class Registration extends OpenBrowser {
 			}
 			else if(email.getAttribute("value") != verifiedemail.getAttribute("value")) {
 				WebElement userField = driver.findElement(By.xpath(RegistrationXpath.alert));
-				parentTest.log(Status.INFO, MarkupHelper.createLabel(userField.getText(), ExtentColor.RED));
 				System.out.println(userField.getText());
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
@@ -414,7 +315,6 @@ public class Registration extends OpenBrowser {
 			else {
 
 				WebElement userField = driver.findElement(By.xpath(RegistrationXpath.alert));
-				parentTest.log(Status.INFO, MarkupHelper.createLabel(userField.getText(), ExtentColor.RED));
 				System.out.println(userField.getText());
 				signUp.isDisplayed();
 				Assert.assertTrue(true);
@@ -431,9 +331,6 @@ public class Registration extends OpenBrowser {
 
 	@Test(priority = 6)
 	public void defaultUser() throws InterruptedException {
-
-		parentTest = extent.createTest("Registration as Default user").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Registration as Default user");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
@@ -459,7 +356,6 @@ public class Registration extends OpenBrowser {
 		Thread.sleep(2000);
 
 		WebElement userField = driver.findElement(By.xpath(RegistrationXpath.alert));
-		parentTest.log(Status.INFO, MarkupHelper.createLabel(userField.getText(), ExtentColor.RED));
 		System.out.println(userField.getText());
 		signUp.isDisplayed();
 		Assert.assertTrue(true);
@@ -471,9 +367,6 @@ public class Registration extends OpenBrowser {
 
 	@Test(priority = 7)
 	public void randomInputSerial() throws InterruptedException {
-
-		parentTest = extent.createTest("Registration as random input serial").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Registration as random input serial");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
@@ -512,11 +405,6 @@ public class Registration extends OpenBrowser {
 		}
 	}
 
-
-	@AfterClass
-	public void afterClass() {
-		extent.flush();
-	}
 
 	@AfterSuite
 	public static void afterSuit() {

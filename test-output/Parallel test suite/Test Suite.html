@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Test Suite</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>7/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>31/4/0</td>
 </tr><tr>
-<td>Started on:</td><td>Tue Feb 22 13:11:28 BDT 2022</td>
+<td>Started on:</td><td>Sun Feb 27 19:56:00 BDT 2022</td>
 </tr>
-<tr><td>Total time:</td><td>53 seconds (53466 ms)</td>
+<tr><td>Total time:</td><td>794 seconds (794323 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,6 +67,248 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED CONFIGURATIONS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='superAdmin.Login.tearDown()'><b>tearDown</b><br>Test class: superAdmin.Login</td>
+<td><div><pre>org.openqa.selenium.WebDriverException: Unable to execute request for an existing session: Unable to find session with ID: 2bc17b5371a5aa4d2ce89524a8e673f1
+Build info: version: &apos;4.1.1&apos;, revision: &apos;e8fcc2cecf&apos;
+System info: host: &apos;d4147cbb3a9e&apos;, ip: &apos;172.18.0.2&apos;, os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.10.16.3-microsoft-standard-WSL2&apos;, java.version: &apos;11.0.13&apos;
+Driver info: driver.version: unknown
+Build info: version: &apos;4.0.0&apos;, revision: &apos;3a21814679&apos;
+System info: host: &apos;DESKTOP-EI1MF8H&apos;, ip: &apos;192.168.31.17&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.13&apos;
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Command: [2bc17b5371a5aa4d2ce89524a8e673f1, quit {}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 97.0.4692.99, chrome: {chromedriverVersion: 97.0.4692.71 (adefa7837d02a..., userDataDir: /tmp/.com.google.Chrome.nbdNN2}, goog:chromeOptions: {debuggerAddress: localhost:42195}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), se:cdp: ws://172.18.0.5:4444/sessio..., se:cdpVersion: 97.0.4692.99, se:vnc: ws://172.18.0.5:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.18.0.5:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 2bc17b5371a5aa4d2ce89524a8e673f1
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
+	at org.openqa.selenium.remote.TracedCommandExecutor.execute(TracedCommandExecutor.java:39)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:559)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:614)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:618)
+	at org.openqa.selenium.remote.RemoteWebDriver.quit(RemoteWebDriver.java:455)
+	at superAdmin.Login.tearDown(Login.java:68)
+... Removed 28 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1138845999", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1138845999'><pre>org.openqa.selenium.WebDriverException: Unable to execute request for an existing session: Unable to find session with ID: 2bc17b5371a5aa4d2ce89524a8e673f1
+Build info: version: &apos;4.1.1&apos;, revision: &apos;e8fcc2cecf&apos;
+System info: host: &apos;d4147cbb3a9e&apos;, ip: &apos;172.18.0.2&apos;, os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.10.16.3-microsoft-standard-WSL2&apos;, java.version: &apos;11.0.13&apos;
+Driver info: driver.version: unknown
+Build info: version: &apos;4.0.0&apos;, revision: &apos;3a21814679&apos;
+System info: host: &apos;DESKTOP-EI1MF8H&apos;, ip: &apos;192.168.31.17&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.13&apos;
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Command: [2bc17b5371a5aa4d2ce89524a8e673f1, quit {}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 97.0.4692.99, chrome: {chromedriverVersion: 97.0.4692.71 (adefa7837d02a..., userDataDir: /tmp/.com.google.Chrome.nbdNN2}, goog:chromeOptions: {debuggerAddress: localhost:42195}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), se:cdp: ws://172.18.0.5:4444/sessio..., se:cdpVersion: 97.0.4692.99, se:vnc: ws://172.18.0.5:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.18.0.5:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 2bc17b5371a5aa4d2ce89524a8e673f1
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
+	at org.openqa.selenium.remote.TracedCommandExecutor.execute(TracedCommandExecutor.java:39)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:559)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:614)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:618)
+	at org.openqa.selenium.remote.RemoteWebDriver.quit(RemoteWebDriver.java:455)
+	at superAdmin.Login.tearDown(Login.java:68)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+	at org.testng.internal.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:62)
+	at org.testng.internal.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:385)
+	at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:321)
+	at org.testng.TestRunner.invokeTestConfigurations(TestRunner.java:637)
+	at org.testng.TestRunner.afterRun(TestRunner.java:877)
+	at org.testng.TestRunner.run(TestRunner.java:599)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+	at org.testng.TestNG.runSuites(TestNG.java:1063)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>0</td>
+<td>superAdmin.Login@7efaad5a</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='superAdmin.Clients.changeStatusToActive()'><b>changeStatusToActive</b><br>Test class: superAdmin.Clients</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //button[@class=&apos;v-btn v-btn--flat v-btn--text theme--light v-size--default primary--text&apos;] (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.0.0&apos;, revision: &apos;3a21814679&apos;
+System info: host: &apos;DESKTOP-EI1MF8H&apos;, ip: &apos;192.168.31.17&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.13&apos;
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Capabilities {acceptInsecureCerts: false, browserName: firefox, browserVersion: 96.0.3, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20220126154723, moz:geckodriverVersion: 0.30.0, moz:headless: false, moz:processID: 173, moz:profile: /tmp/rust_mozprofileJvP7I4, moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, platformVersion: 5.10.16.3-microsoft-standar..., proxy: Proxy(), se:cdp: ws://172.18.0.3:4444/sessio..., se:vnc: ws://172.18.0.3:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.18.0.3:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 20f18860-87dc-4560-884d-cfc84e3945b4
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:138)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at superAdmin.Clients.changeStatusToActive(Clients.java:167)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+... Removed 12 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1257827213", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1257827213'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //button[@class=&apos;v-btn v-btn--flat v-btn--text theme--light v-size--default primary--text&apos;] (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.0.0&apos;, revision: &apos;3a21814679&apos;
+System info: host: &apos;DESKTOP-EI1MF8H&apos;, ip: &apos;192.168.31.17&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.13&apos;
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Capabilities {acceptInsecureCerts: false, browserName: firefox, browserVersion: 96.0.3, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20220126154723, moz:geckodriverVersion: 0.30.0, moz:headless: false, moz:processID: 173, moz:profile: /tmp/rust_mozprofileJvP7I4, moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, platformVersion: 5.10.16.3-microsoft-standar..., proxy: Proxy(), se:cdp: ws://172.18.0.3:4444/sessio..., se:vnc: ws://172.18.0.3:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.18.0.3:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 20f18860-87dc-4560-884d-cfc84e3945b4
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:138)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at superAdmin.Clients.changeStatusToActive(Clients.java:167)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+</pre></div></td>
+<td>42</td>
+<td>superAdmin.Clients@78641d23</td></tr>
+<tr>
+<td title='superAdmin.Login.verifyLogin()'><b>verifyLogin</b><br>Test class: superAdmin.Login</td>
+<td><div><pre>java.lang.AssertionError: expected [https://dev.zntral.net/dashboard] but found [https://dev.zntral.net/session/loginas]
+	at superAdmin.Login.verifyLogin(Login.java:95)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+... Removed 18 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1254431629", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1254431629'><pre>java.lang.AssertionError: expected [https://dev.zntral.net/dashboard] but found [https://dev.zntral.net/session/loginas]
+	at org.testng.Assert.fail(Assert.java:99)
+	at org.testng.Assert.failNotEquals(Assert.java:1037)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:140)
+	at org.testng.Assert.assertEquals(Assert.java:122)
+	at org.testng.Assert.assertEquals(Assert.java:629)
+	at org.testng.Assert.assertEquals(Assert.java:639)
+	at superAdmin.Login.verifyLogin(Login.java:95)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+</pre></div></td>
+<td>13</td>
+<td>superAdmin.Login@7efaad5a</td></tr>
+<tr>
+<td title='superAdmin.Clients.editClientGroup()'><b>editClientGroup</b><br>Test class: superAdmin.Clients</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //span[normalize-space()=&apos;Client Group 1&apos;] (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.0.0&apos;, revision: &apos;3a21814679&apos;
+System info: host: &apos;DESKTOP-EI1MF8H&apos;, ip: &apos;192.168.31.17&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.13&apos;
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Capabilities {acceptInsecureCerts: false, browserName: firefox, browserVersion: 96.0.3, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20220126154723, moz:geckodriverVersion: 0.30.0, moz:headless: false, moz:processID: 173, moz:profile: /tmp/rust_mozprofileJvP7I4, moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, platformVersion: 5.10.16.3-microsoft-standar..., proxy: Proxy(), se:cdp: ws://172.18.0.3:4444/sessio..., se:vnc: ws://172.18.0.3:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.18.0.3:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 20f18860-87dc-4560-884d-cfc84e3945b4
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:138)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at superAdmin.Clients.editClientGroup(Clients.java:306)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+... Removed 12 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace609246553", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace609246553'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //span[normalize-space()=&apos;Client Group 1&apos;] (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.0.0&apos;, revision: &apos;3a21814679&apos;
+System info: host: &apos;DESKTOP-EI1MF8H&apos;, ip: &apos;192.168.31.17&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.13&apos;
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Capabilities {acceptInsecureCerts: false, browserName: firefox, browserVersion: 96.0.3, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20220126154723, moz:geckodriverVersion: 0.30.0, moz:headless: false, moz:processID: 173, moz:profile: /tmp/rust_mozprofileJvP7I4, moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, platformVersion: 5.10.16.3-microsoft-standar..., proxy: Proxy(), se:cdp: ws://172.18.0.3:4444/sessio..., se:vnc: ws://172.18.0.3:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.18.0.3:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 20f18860-87dc-4560-884d-cfc84e3945b4
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:138)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at superAdmin.Clients.editClientGroup(Clients.java:306)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+</pre></div></td>
+<td>27</td>
+<td>superAdmin.Clients@78641d23</td></tr>
+<tr>
+<td title='superAdmin.Locations.addNewLocationType()'><b>addNewLocationType</b><br>Test class: superAdmin.Locations</td>
+<td><div><pre>java.lang.AssertionError: expected [Test SQA] but found [Test SQA ]
+	at superAdmin.Locations.addNewLocationType(Locations.java:287)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+... Removed 18 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace67532153", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace67532153'><pre>java.lang.AssertionError: expected [Test SQA] but found [Test SQA ]
+	at org.testng.Assert.fail(Assert.java:99)
+	at org.testng.Assert.failNotEquals(Assert.java:1037)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:140)
+	at org.testng.Assert.assertEquals(Assert.java:122)
+	at org.testng.Assert.assertEquals(Assert.java:629)
+	at org.testng.Assert.assertEquals(Assert.java:639)
+	at superAdmin.Locations.addNewLocationType(Locations.java:287)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+</pre></div></td>
+<td>18</td>
+<td>superAdmin.Locations@6cce16f4</td></tr>
+</table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
@@ -75,40 +317,160 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='normalUser.LoginTest.randomInput()'><b>randomInput</b><br>Test class: normalUser.LoginTest</td>
+<td title='superAdmin.Clients.checkClientList()'><b>checkClientList</b><br>Test class: superAdmin.Clients</td>
 <td></td>
-<td>5</td>
-<td>normalUser.LoginTest@209da20d</td></tr>
+<td>14</td>
+<td>superAdmin.Clients@78641d23</td></tr>
 <tr>
-<td title='normalUser.LoginTest.verifyLogin()'><b>verifyLogin</b><br>Test class: normalUser.LoginTest</td>
+<td title='superAdmin.Locations.locationTypes()'><b>locationTypes</b><br>Test class: superAdmin.Locations</td>
 <td></td>
-<td>5</td>
-<td>normalUser.LoginTest@209da20d</td></tr>
+<td>14</td>
+<td>superAdmin.Locations@6cce16f4</td></tr>
 <tr>
-<td title='normalUser.LoginTest.forgotPassword()'><b>forgotPassword</b><br>Test class: normalUser.LoginTest</td>
+<td title='superAdmin.Locations.nameWiseTypeSort()'><b>nameWiseTypeSort</b><br>Test class: superAdmin.Locations</td>
+<td></td>
+<td>12</td>
+<td>superAdmin.Locations@6cce16f4</td></tr>
+<tr>
+<td title='superAdmin.Clients.verifyElemntsOnPageTest()'><b>verifyElemntsOnPageTest</b><br>Test class: superAdmin.Clients</td>
+<td></td>
+<td>4</td>
+<td>superAdmin.Clients@78641d23</td></tr>
+<tr>
+<td title='superAdmin.Clients.nameSort()'><b>nameSort</b><br>Test class: superAdmin.Clients</td>
+<td></td>
+<td>20</td>
+<td>superAdmin.Clients@78641d23</td></tr>
+<tr>
+<td title='superAdmin.Locations.acronymWiseTypeSort()'><b>acronymWiseTypeSort</b><br>Test class: superAdmin.Locations</td>
+<td></td>
+<td>11</td>
+<td>superAdmin.Locations@6cce16f4</td></tr>
+<tr>
+<td title='superAdmin.Locations.verifyElemntsOnPageTest()'><b>verifyElemntsOnPageTest</b><br>Test class: superAdmin.Locations</td>
+<td></td>
+<td>11</td>
+<td>superAdmin.Locations@6cce16f4</td></tr>
+<tr>
+<td title='superAdmin.Clients.search()'><b>search</b><br>Test class: superAdmin.Clients</td>
+<td></td>
+<td>14</td>
+<td>superAdmin.Clients@78641d23</td></tr>
+<tr>
+<td title='superAdmin.Clients.checkClientProfile()'><b>checkClientProfile</b><br>Test class: superAdmin.Clients</td>
+<td></td>
+<td>19</td>
+<td>superAdmin.Clients@78641d23</td></tr>
+<tr>
+<td title='superAdmin.Login.loginWithoutUsername()'><b>loginWithoutUsername</b><br>Test class: superAdmin.Login</td>
+<td></td>
+<td>13</td>
+<td>superAdmin.Login@7efaad5a</td></tr>
+<tr>
+<td title='superAdmin.Locations.addressWiseSort()'><b>addressWiseSort</b><br>Test class: superAdmin.Locations</td>
+<td></td>
+<td>31</td>
+<td>superAdmin.Locations@6cce16f4</td></tr>
+<tr>
+<td title='superAdmin.Locations.checkLocationList()'><b>checkLocationList</b><br>Test class: superAdmin.Locations</td>
+<td></td>
+<td>12</td>
+<td>superAdmin.Locations@6cce16f4</td></tr>
+<tr>
+<td title='superAdmin.Locations.cancelButton()'><b>cancelButton</b><br>Test class: superAdmin.Locations</td>
+<td></td>
+<td>14</td>
+<td>superAdmin.Locations@6cce16f4</td></tr>
+<tr>
+<td title='superAdmin.Locations.statusWiseSort()'><b>statusWiseSort</b><br>Test class: superAdmin.Locations</td>
+<td></td>
+<td>9</td>
+<td>superAdmin.Locations@6cce16f4</td></tr>
+<tr>
+<td title='superAdmin.Locations.resetButton()'><b>resetButton</b><br>Test class: superAdmin.Locations</td>
+<td></td>
+<td>42</td>
+<td>superAdmin.Locations@6cce16f4</td></tr>
+<tr>
+<td title='superAdmin.Locations.search()'><b>search</b><br>Test class: superAdmin.Locations</td>
+<td></td>
+<td>14</td>
+<td>superAdmin.Locations@6cce16f4</td></tr>
+<tr>
+<td title='superAdmin.Locations.patientFromLocation()'><b>patientFromLocation</b><br>Test class: superAdmin.Locations</td>
+<td></td>
+<td>15</td>
+<td>superAdmin.Locations@6cce16f4</td></tr>
+<tr>
+<td title='superAdmin.Login.verifyElemntsOnPageTest()'><b>verifyElemntsOnPageTest</b><br>Test class: superAdmin.Login</td>
 <td></td>
 <td>3</td>
-<td>normalUser.LoginTest@209da20d</td></tr>
+<td>superAdmin.Login@7efaad5a</td></tr>
 <tr>
-<td title='normalUser.LoginTest.loginWithoutUsername()'><b>loginWithoutUsername</b><br>Test class: normalUser.LoginTest</td>
+<td title='superAdmin.Clients.checkPatientStatus()'><b>checkPatientStatus</b><br>Test class: superAdmin.Clients</td>
 <td></td>
-<td>1</td>
-<td>normalUser.LoginTest@209da20d</td></tr>
+<td>26</td>
+<td>superAdmin.Clients@78641d23</td></tr>
 <tr>
-<td title='normalUser.LoginTest.verifyElemntsOnPageTest()'><b>verifyElemntsOnPageTest</b><br>Test class: normalUser.LoginTest</td>
+<td title='superAdmin.Locations.contactFromLocation()'><b>contactFromLocation</b><br>Test class: superAdmin.Locations</td>
 <td></td>
-<td>0</td>
-<td>normalUser.LoginTest@209da20d</td></tr>
+<td>19</td>
+<td>superAdmin.Locations@6cce16f4</td></tr>
 <tr>
-<td title='normalUser.LoginTest.loginWithEmptyField()'><b>loginWithEmptyField</b><br>Test class: normalUser.LoginTest</td>
+<td title='superAdmin.Clients.typeSort()'><b>typeSort</b><br>Test class: superAdmin.Clients</td>
 <td></td>
-<td>0</td>
-<td>normalUser.LoginTest@209da20d</td></tr>
+<td>12</td>
+<td>superAdmin.Clients@78641d23</td></tr>
 <tr>
-<td title='normalUser.LoginTest.loginWithoutPassword()'><b>loginWithoutPassword</b><br>Test class: normalUser.LoginTest</td>
+<td title='superAdmin.Clients.login()'><b>login</b><br>Test class: superAdmin.Clients</td>
 <td></td>
-<td>1</td>
-<td>normalUser.LoginTest@209da20d</td></tr>
+<td>12</td>
+<td>superAdmin.Clients@78641d23</td></tr>
+<tr>
+<td title='superAdmin.Clients.checkLocationStatus()'><b>checkLocationStatus</b><br>Test class: superAdmin.Clients</td>
+<td></td>
+<td>27</td>
+<td>superAdmin.Clients@78641d23</td></tr>
+<tr>
+<td title='superAdmin.Clients.checkClientTypeList()'><b>checkClientTypeList</b><br>Test class: superAdmin.Clients</td>
+<td></td>
+<td>14</td>
+<td>superAdmin.Clients@78641d23</td></tr>
+<tr>
+<td title='superAdmin.Clients.addNewClientGroup()'><b>addNewClientGroup</b><br>Test class: superAdmin.Clients</td>
+<td></td>
+<td>17</td>
+<td>superAdmin.Clients@78641d23</td></tr>
+<tr>
+<td title='superAdmin.Clients.checkUserStatus()'><b>checkUserStatus</b><br>Test class: superAdmin.Clients</td>
+<td></td>
+<td>28</td>
+<td>superAdmin.Clients@78641d23</td></tr>
+<tr>
+<td title='superAdmin.Locations.updateTypes()'><b>updateTypes</b><br>Test class: superAdmin.Locations</td>
+<td></td>
+<td>29</td>
+<td>superAdmin.Locations@6cce16f4</td></tr>
+<tr>
+<td title='superAdmin.Locations.login()'><b>login</b><br>Test class: superAdmin.Locations</td>
+<td></td>
+<td>10</td>
+<td>superAdmin.Locations@6cce16f4</td></tr>
+<tr>
+<td title='superAdmin.Clients.changeStatusToInactive()'><b>changeStatusToInactive</b><br>Test class: superAdmin.Clients</td>
+<td></td>
+<td>22</td>
+<td>superAdmin.Clients@78641d23</td></tr>
+<tr>
+<td title='superAdmin.Login.loginWithoutPassword()'><b>loginWithoutPassword</b><br>Test class: superAdmin.Login</td>
+<td></td>
+<td>33</td>
+<td>superAdmin.Login@7efaad5a</td></tr>
+<tr>
+<td title='superAdmin.Login.invalidLoginInfo()'><b>invalidLoginInfo</b><br>Test class: superAdmin.Login</td>
+<td></td>
+<td>7</td>
+<td>superAdmin.Login@7efaad5a</td></tr>
 </table><p>
 </body>
 </html>

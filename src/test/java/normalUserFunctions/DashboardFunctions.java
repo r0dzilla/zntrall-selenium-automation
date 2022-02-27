@@ -39,6 +39,11 @@ public class DashboardFunctions extends Dashboard{
 		driver.findElement(By.xpath(DashboardXpath.add)).click();
 
 		Thread.sleep(2000);
+		
+		WebElement locationName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(DashboardXpath.radioDropDown)));
+		locationName.click();
+		Thread.sleep(2000);
+		
 		List<WebElement> options =  driver.findElements(By.xpath(DashboardXpath.options));
 		Random random = new Random();
 		int index = random.nextInt(options.size());

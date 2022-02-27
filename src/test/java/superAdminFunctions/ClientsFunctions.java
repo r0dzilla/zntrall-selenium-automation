@@ -53,16 +53,13 @@ public class ClientsFunctions extends Clients {
 		clientName.click();
 		Thread.sleep(5000);
 
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 3: Client name is: "+client, ExtentColor.ORANGE));
 
 		WebElement clientNameVerify = driver.findElement(By.xpath(ClientsXpath.clientNameVerify));
 
 		if(clientNameVerify.getText().contains(client)) {
 			Assert.assertTrue(true);
-			parentTest.log(Status.INFO, MarkupHelper.createLabel("Profile matched !!", ExtentColor.GREEN));
 
 		}else {
-			parentTest.log(Status.INFO, MarkupHelper.createLabel("Profile don't match !!", ExtentColor.RED));
 		}
 	}
 	

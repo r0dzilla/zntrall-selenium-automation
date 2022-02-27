@@ -26,7 +26,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 4 failed tests</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -40,7 +40,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Parallel_test_suite" class="navigator-link">
-              <span class="suite-name border-passed">Parallel test suite</span>
+              <span class="suite-name border-failed">Parallel test suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -93,7 +93,36 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">7 methods,   7 passed</span>
+                    <span class="method-stats">35 methods, 4 failed,   31 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Parallel_test_suite" class="hide-methods failed suite-Parallel_test_suite"> (hide)</a> <!-- hide-methods failed suite-Parallel_test_suite -->
+                      <a href="#" panel-name="suite-Parallel_test_suite" class="show-methods failed suite-Parallel_test_suite"> (show)</a> <!-- show-methods failed suite-Parallel_test_suite -->
+                    </span>
+                    <div class="method-list-content failed suite-Parallel_test_suite">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Locations" class="method navigator-link" hash-for-method="addNewLocationType">addNewLocationType</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Clients" class="method navigator-link" hash-for-method="changeStatusToActive">changeStatusToActive</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Clients" class="method navigator-link" hash-for-method="editClientGroup">editClientGroup</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Login" class="method navigator-link" hash-for-method="verifyLogin">verifyLogin</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-Parallel_test_suite -->
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -104,37 +133,157 @@
                     <div class="method-list-content passed suite-Parallel_test_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Parallel_test_suite" title="normalUser.LoginTest" class="method navigator-link" hash-for-method="forgotPassword">forgotPassword</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Locations" class="method navigator-link" hash-for-method="acronymWiseTypeSort">acronymWiseTypeSort</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Parallel_test_suite" title="normalUser.LoginTest" class="method navigator-link" hash-for-method="loginWithEmptyField">loginWithEmptyField</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Clients" class="method navigator-link" hash-for-method="addNewClientGroup">addNewClientGroup</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Parallel_test_suite" title="normalUser.LoginTest" class="method navigator-link" hash-for-method="loginWithoutPassword">loginWithoutPassword</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Locations" class="method navigator-link" hash-for-method="addressWiseSort">addressWiseSort</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Parallel_test_suite" title="normalUser.LoginTest" class="method navigator-link" hash-for-method="loginWithoutUsername">loginWithoutUsername</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Locations" class="method navigator-link" hash-for-method="cancelButton">cancelButton</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Parallel_test_suite" title="normalUser.LoginTest" class="method navigator-link" hash-for-method="randomInput">randomInput</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Clients" class="method navigator-link" hash-for-method="changeStatusToInactive">changeStatusToInactive</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Parallel_test_suite" title="normalUser.LoginTest" class="method navigator-link" hash-for-method="verifyElemntsOnPageTest">verifyElemntsOnPageTest</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Clients" class="method navigator-link" hash-for-method="checkClientList">checkClientList</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Parallel_test_suite" title="normalUser.LoginTest" class="method navigator-link" hash-for-method="verifyLogin">verifyLogin</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Clients" class="method navigator-link" hash-for-method="checkClientProfile">checkClientProfile</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Clients" class="method navigator-link" hash-for-method="checkClientTypeList">checkClientTypeList</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Locations" class="method navigator-link" hash-for-method="checkLocationList">checkLocationList</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Clients" class="method navigator-link" hash-for-method="checkLocationStatus">checkLocationStatus</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Clients" class="method navigator-link" hash-for-method="checkPatientStatus">checkPatientStatus</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Clients" class="method navigator-link" hash-for-method="checkUserStatus">checkUserStatus</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Locations" class="method navigator-link" hash-for-method="contactFromLocation">contactFromLocation</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Login" class="method navigator-link" hash-for-method="invalidLoginInfo">invalidLoginInfo</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Locations" class="method navigator-link" hash-for-method="locationTypes">locationTypes</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Clients" class="method navigator-link" hash-for-method="login">login</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Locations" class="method navigator-link" hash-for-method="login">login</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Login" class="method navigator-link" hash-for-method="loginWithoutPassword">loginWithoutPassword</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Login" class="method navigator-link" hash-for-method="loginWithoutUsername">loginWithoutUsername</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Clients" class="method navigator-link" hash-for-method="nameSort">nameSort</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Locations" class="method navigator-link" hash-for-method="nameWiseTypeSort">nameWiseTypeSort</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Locations" class="method navigator-link" hash-for-method="patientFromLocation">patientFromLocation</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Locations" class="method navigator-link" hash-for-method="resetButton">resetButton</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Clients" class="method navigator-link" hash-for-method="search">search</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Locations" class="method navigator-link" hash-for-method="search">search</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Locations" class="method navigator-link" hash-for-method="statusWiseSort">statusWiseSort</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Clients" class="method navigator-link" hash-for-method="typeSort">typeSort</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Locations" class="method navigator-link" hash-for-method="updateTypes">updateTypes</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Clients" class="method navigator-link" hash-for-method="verifyElemntsOnPageTest">verifyElemntsOnPageTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Locations" class="method navigator-link" hash-for-method="verifyElemntsOnPageTest">verifyElemntsOnPageTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Parallel_test_suite" title="superAdmin.Login" class="method navigator-link" hash-for-method="verifyElemntsOnPageTest">verifyElemntsOnPageTest</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Parallel_test_suite -->
@@ -149,24 +298,316 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Parallel_test_suite" class="panel Parallel_test_suite">
-          <div class="suite-Parallel_test_suite-class-passed">
+          <div class="suite-Parallel_test_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">normalUser.LoginTest</span>
+              <img src="failed.png"/>
+              <span class="class-name">superAdmin.Clients</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="forgotPassword">
-                  </a> <!-- forgotPassword -->
-                  <span class="method-name">forgotPassword</span>
+                  <a name="changeStatusToActive">
+                  </a> <!-- changeStatusToActive -->
+                  <span class="method-name">changeStatusToActive</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //button[@class=&apos;v-btn v-btn--flat v-btn--text theme--light v-size--default primary--text&apos;] (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.0.0&apos;, revision: &apos;3a21814679&apos;
+System info: host: &apos;DESKTOP-EI1MF8H&apos;, ip: &apos;192.168.31.17&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.13&apos;
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Capabilities {acceptInsecureCerts: false, browserName: firefox, browserVersion: 96.0.3, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20220126154723, moz:geckodriverVersion: 0.30.0, moz:headless: false, moz:processID: 173, moz:profile: /tmp/rust_mozprofileJvP7I4, moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, platformVersion: 5.10.16.3-microsoft-standar..., proxy: Proxy(), se:cdp: ws://172.18.0.3:4444/sessio..., se:vnc: ws://172.18.0.3:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.18.0.3:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 20f18860-87dc-4560-884d-cfc84e3945b4
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:138)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at superAdmin.Clients.changeStatusToActive(Clients.java:167)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+... Removed 12 stack frames
+</div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="loginWithEmptyField">
-                  </a> <!-- loginWithEmptyField -->
-                  <span class="method-name">loginWithEmptyField</span>
+                  <a name="editClientGroup">
+                  </a> <!-- editClientGroup -->
+                  <span class="method-name">editClientGroup</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //span[normalize-space()=&apos;Client Group 1&apos;] (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.0.0&apos;, revision: &apos;3a21814679&apos;
+System info: host: &apos;DESKTOP-EI1MF8H&apos;, ip: &apos;192.168.31.17&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.13&apos;
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Capabilities {acceptInsecureCerts: false, browserName: firefox, browserVersion: 96.0.3, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20220126154723, moz:geckodriverVersion: 0.30.0, moz:headless: false, moz:processID: 173, moz:profile: /tmp/rust_mozprofileJvP7I4, moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, platformVersion: 5.10.16.3-microsoft-standar..., proxy: Proxy(), se:cdp: ws://172.18.0.3:4444/sessio..., se:vnc: ws://172.18.0.3:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.18.0.3:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 20f18860-87dc-4560-884d-cfc84e3945b4
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:138)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at superAdmin.Clients.editClientGroup(Clients.java:306)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+... Removed 12 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Parallel_test_suite-class-failed -->
+          <div class="suite-Parallel_test_suite-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">superAdmin.Locations</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="addNewLocationType">
+                  </a> <!-- addNewLocationType -->
+                  <span class="method-name">addNewLocationType</span>
+                  <div class="stack-trace">java.lang.AssertionError: expected [Test SQA] but found [Test SQA ]
+	at superAdmin.Locations.addNewLocationType(Locations.java:287)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+... Removed 18 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Parallel_test_suite-class-failed -->
+          <div class="suite-Parallel_test_suite-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">superAdmin.Login</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="verifyLogin">
+                  </a> <!-- verifyLogin -->
+                  <span class="method-name">verifyLogin</span>
+                  <div class="stack-trace">java.lang.AssertionError: expected [https://dev.zntral.net/dashboard] but found [https://dev.zntral.net/session/loginas]
+	at superAdmin.Login.verifyLogin(Login.java:95)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+... Removed 18 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Parallel_test_suite-class-failed -->
+          <div class="suite-Parallel_test_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">superAdmin.Clients</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="addNewClientGroup">
+                  </a> <!-- addNewClientGroup -->
+                  <span class="method-name">addNewClientGroup</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="changeStatusToInactive">
+                  </a> <!-- changeStatusToInactive -->
+                  <span class="method-name">changeStatusToInactive</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="checkClientList">
+                  </a> <!-- checkClientList -->
+                  <span class="method-name">checkClientList</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="checkClientProfile">
+                  </a> <!-- checkClientProfile -->
+                  <span class="method-name">checkClientProfile</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="checkClientTypeList">
+                  </a> <!-- checkClientTypeList -->
+                  <span class="method-name">checkClientTypeList</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="checkLocationStatus">
+                  </a> <!-- checkLocationStatus -->
+                  <span class="method-name">checkLocationStatus</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="checkPatientStatus">
+                  </a> <!-- checkPatientStatus -->
+                  <span class="method-name">checkPatientStatus</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="checkUserStatus">
+                  </a> <!-- checkUserStatus -->
+                  <span class="method-name">checkUserStatus</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="login">
+                  </a> <!-- login -->
+                  <span class="method-name">login</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="nameSort">
+                  </a> <!-- nameSort -->
+                  <span class="method-name">nameSort</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="search">
+                  </a> <!-- search -->
+                  <span class="method-name">search</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="typeSort">
+                  </a> <!-- typeSort -->
+                  <span class="method-name">typeSort</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="verifyElemntsOnPageTest">
+                  </a> <!-- verifyElemntsOnPageTest -->
+                  <span class="method-name">verifyElemntsOnPageTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Parallel_test_suite-class-passed -->
+          <div class="suite-Parallel_test_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">superAdmin.Locations</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="acronymWiseTypeSort">
+                  </a> <!-- acronymWiseTypeSort -->
+                  <span class="method-name">acronymWiseTypeSort</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="addressWiseSort">
+                  </a> <!-- addressWiseSort -->
+                  <span class="method-name">addressWiseSort</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="cancelButton">
+                  </a> <!-- cancelButton -->
+                  <span class="method-name">cancelButton</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="checkLocationList">
+                  </a> <!-- checkLocationList -->
+                  <span class="method-name">checkLocationList</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="contactFromLocation">
+                  </a> <!-- contactFromLocation -->
+                  <span class="method-name">contactFromLocation</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="locationTypes">
+                  </a> <!-- locationTypes -->
+                  <span class="method-name">locationTypes</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="login">
+                  </a> <!-- login -->
+                  <span class="method-name">login</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="nameWiseTypeSort">
+                  </a> <!-- nameWiseTypeSort -->
+                  <span class="method-name">nameWiseTypeSort</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="patientFromLocation">
+                  </a> <!-- patientFromLocation -->
+                  <span class="method-name">patientFromLocation</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="resetButton">
+                  </a> <!-- resetButton -->
+                  <span class="method-name">resetButton</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="search">
+                  </a> <!-- search -->
+                  <span class="method-name">search</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="statusWiseSort">
+                  </a> <!-- statusWiseSort -->
+                  <span class="method-name">statusWiseSort</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="updateTypes">
+                  </a> <!-- updateTypes -->
+                  <span class="method-name">updateTypes</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="verifyElemntsOnPageTest">
+                  </a> <!-- verifyElemntsOnPageTest -->
+                  <span class="method-name">verifyElemntsOnPageTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Parallel_test_suite-class-passed -->
+          <div class="suite-Parallel_test_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">superAdmin.Login</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="invalidLoginInfo">
+                  </a> <!-- invalidLoginInfo -->
+                  <span class="method-name">invalidLoginInfo</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
@@ -185,23 +626,9 @@
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="randomInput">
-                  </a> <!-- randomInput -->
-                  <span class="method-name">randomInput</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
                   <a name="verifyElemntsOnPageTest">
                   </a> <!-- verifyElemntsOnPageTest -->
                   <span class="method-name">verifyElemntsOnPageTest</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="verifyLogin">
-                  </a> <!-- verifyLogin -->
-                  <span class="method-name">verifyLogin</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -215,12 +642,15 @@
             <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
-&lt;suite thread-count=&quot;20&quot; parallel=&quot;classes&quot; name=&quot;Parallel test suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
-  &lt;test thread-count=&quot;20&quot; parallel=&quot;classes&quot; name=&quot;Test Suite&quot;&gt;
-    &lt;parameter name=&quot;Browser&quot; value=&quot;chrome&quot;/&gt;
+&lt;suite thread-count=&quot;7&quot; parallel=&quot;classes&quot; name=&quot;Parallel test suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
+  &lt;listeners&gt;
+    &lt;listener class-name=&quot;utilities.Listeners&quot;/&gt;
+  &lt;/listeners&gt;
+  &lt;test thread-count=&quot;7&quot; parallel=&quot;classes&quot; name=&quot;Test Suite&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;normalUser.LoginTest&quot;/&gt;
-      &lt;class name=&quot;normalUser.LoginTest&quot;/&gt;
+      &lt;class name=&quot;superAdmin.Clients&quot;/&gt;
+      &lt;class name=&quot;superAdmin.Locations&quot;/&gt;
+      &lt;class name=&quot;superAdmin.Login&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Test Suite --&gt;
 &lt;/suite&gt; &lt;!-- Parallel test suite --&gt;
@@ -234,7 +664,7 @@
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">Test Suite (2 classes)</span>
+                <span class="test-name">Test Suite (3 classes)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -260,40 +690,152 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(7);
+data.addRows(35);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'randomInput')
-data.setCell(0, 2, 'normalUser.LoginTest')
-data.setCell(0, 3, 5592);
+data.setCell(0, 1, 'changeStatusToActive')
+data.setCell(0, 2, 'superAdmin.Clients')
+data.setCell(0, 3, 42193);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'verifyLogin')
-data.setCell(1, 2, 'normalUser.LoginTest')
-data.setCell(1, 3, 5520);
+data.setCell(1, 1, 'resetButton')
+data.setCell(1, 2, 'superAdmin.Locations')
+data.setCell(1, 3, 42104);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'forgotPassword')
-data.setCell(2, 2, 'normalUser.LoginTest')
-data.setCell(2, 3, 3486);
+data.setCell(2, 1, 'loginWithoutPassword')
+data.setCell(2, 2, 'superAdmin.Login')
+data.setCell(2, 3, 33779);
 data.setCell(3, 0, 3)
-data.setCell(3, 1, 'loginWithoutPassword')
-data.setCell(3, 2, 'normalUser.LoginTest')
-data.setCell(3, 3, 1680);
+data.setCell(3, 1, 'addressWiseSort')
+data.setCell(3, 2, 'superAdmin.Locations')
+data.setCell(3, 3, 31240);
 data.setCell(4, 0, 4)
-data.setCell(4, 1, 'loginWithoutUsername')
-data.setCell(4, 2, 'normalUser.LoginTest')
-data.setCell(4, 3, 1521);
+data.setCell(4, 1, 'updateTypes')
+data.setCell(4, 2, 'superAdmin.Locations')
+data.setCell(4, 3, 29718);
 data.setCell(5, 0, 5)
-data.setCell(5, 1, 'verifyElemntsOnPageTest')
-data.setCell(5, 2, 'normalUser.LoginTest')
-data.setCell(5, 3, 299);
+data.setCell(5, 1, 'checkUserStatus')
+data.setCell(5, 2, 'superAdmin.Clients')
+data.setCell(5, 3, 28020);
 data.setCell(6, 0, 6)
-data.setCell(6, 1, 'loginWithEmptyField')
-data.setCell(6, 2, 'normalUser.LoginTest')
-data.setCell(6, 3, 276);
+data.setCell(6, 1, 'checkLocationStatus')
+data.setCell(6, 2, 'superAdmin.Clients')
+data.setCell(6, 3, 27870);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'editClientGroup')
+data.setCell(7, 2, 'superAdmin.Clients')
+data.setCell(7, 3, 27353);
+data.setCell(8, 0, 8)
+data.setCell(8, 1, 'checkPatientStatus')
+data.setCell(8, 2, 'superAdmin.Clients')
+data.setCell(8, 3, 26897);
+data.setCell(9, 0, 9)
+data.setCell(9, 1, 'changeStatusToInactive')
+data.setCell(9, 2, 'superAdmin.Clients')
+data.setCell(9, 3, 22101);
+data.setCell(10, 0, 10)
+data.setCell(10, 1, 'nameSort')
+data.setCell(10, 2, 'superAdmin.Clients')
+data.setCell(10, 3, 20786);
+data.setCell(11, 0, 11)
+data.setCell(11, 1, 'checkClientProfile')
+data.setCell(11, 2, 'superAdmin.Clients')
+data.setCell(11, 3, 19120);
+data.setCell(12, 0, 12)
+data.setCell(12, 1, 'contactFromLocation')
+data.setCell(12, 2, 'superAdmin.Locations')
+data.setCell(12, 3, 19023);
+data.setCell(13, 0, 13)
+data.setCell(13, 1, 'addNewLocationType')
+data.setCell(13, 2, 'superAdmin.Locations')
+data.setCell(13, 3, 18967);
+data.setCell(14, 0, 14)
+data.setCell(14, 1, 'addNewClientGroup')
+data.setCell(14, 2, 'superAdmin.Clients')
+data.setCell(14, 3, 17525);
+data.setCell(15, 0, 15)
+data.setCell(15, 1, 'patientFromLocation')
+data.setCell(15, 2, 'superAdmin.Locations')
+data.setCell(15, 3, 15990);
+data.setCell(16, 0, 16)
+data.setCell(16, 1, 'cancelButton')
+data.setCell(16, 2, 'superAdmin.Locations')
+data.setCell(16, 3, 14699);
+data.setCell(17, 0, 17)
+data.setCell(17, 1, 'locationTypes')
+data.setCell(17, 2, 'superAdmin.Locations')
+data.setCell(17, 3, 14630);
+data.setCell(18, 0, 18)
+data.setCell(18, 1, 'checkClientList')
+data.setCell(18, 2, 'superAdmin.Clients')
+data.setCell(18, 3, 14583);
+data.setCell(19, 0, 19)
+data.setCell(19, 1, 'search')
+data.setCell(19, 2, 'superAdmin.Clients')
+data.setCell(19, 3, 14479);
+data.setCell(20, 0, 20)
+data.setCell(20, 1, 'search')
+data.setCell(20, 2, 'superAdmin.Locations')
+data.setCell(20, 3, 14436);
+data.setCell(21, 0, 21)
+data.setCell(21, 1, 'checkClientTypeList')
+data.setCell(21, 2, 'superAdmin.Clients')
+data.setCell(21, 3, 14094);
+data.setCell(22, 0, 22)
+data.setCell(22, 1, 'verifyLogin')
+data.setCell(22, 2, 'superAdmin.Login')
+data.setCell(22, 3, 13565);
+data.setCell(23, 0, 23)
+data.setCell(23, 1, 'loginWithoutUsername')
+data.setCell(23, 2, 'superAdmin.Login')
+data.setCell(23, 3, 13471);
+data.setCell(24, 0, 24)
+data.setCell(24, 1, 'typeSort')
+data.setCell(24, 2, 'superAdmin.Clients')
+data.setCell(24, 3, 12558);
+data.setCell(25, 0, 25)
+data.setCell(25, 1, 'login')
+data.setCell(25, 2, 'superAdmin.Clients')
+data.setCell(25, 3, 12269);
+data.setCell(26, 0, 26)
+data.setCell(26, 1, 'checkLocationList')
+data.setCell(26, 2, 'superAdmin.Locations')
+data.setCell(26, 3, 12187);
+data.setCell(27, 0, 27)
+data.setCell(27, 1, 'nameWiseTypeSort')
+data.setCell(27, 2, 'superAdmin.Locations')
+data.setCell(27, 3, 12156);
+data.setCell(28, 0, 28)
+data.setCell(28, 1, 'verifyElemntsOnPageTest')
+data.setCell(28, 2, 'superAdmin.Locations')
+data.setCell(28, 3, 11192);
+data.setCell(29, 0, 29)
+data.setCell(29, 1, 'acronymWiseTypeSort')
+data.setCell(29, 2, 'superAdmin.Locations')
+data.setCell(29, 3, 11154);
+data.setCell(30, 0, 30)
+data.setCell(30, 1, 'login')
+data.setCell(30, 2, 'superAdmin.Locations')
+data.setCell(30, 3, 10780);
+data.setCell(31, 0, 31)
+data.setCell(31, 1, 'statusWiseSort')
+data.setCell(31, 2, 'superAdmin.Locations')
+data.setCell(31, 3, 9473);
+data.setCell(32, 0, 32)
+data.setCell(32, 1, 'invalidLoginInfo')
+data.setCell(32, 2, 'superAdmin.Login')
+data.setCell(32, 3, 7408);
+data.setCell(33, 0, 33)
+data.setCell(33, 1, 'verifyElemntsOnPageTest')
+data.setCell(33, 2, 'superAdmin.Clients')
+data.setCell(33, 3, 4982);
+data.setCell(34, 0, 34)
+data.setCell(34, 1, 'verifyElemntsOnPageTest')
+data.setCell(34, 2, 'superAdmin.Login')
+data.setCell(34, 3, 3662);
 window.suiteTableData['Parallel_test_suite']= { tableData: data, tableDiv: 'times-div-Parallel_test_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 18 seconds</span>
+              <span class="suite-total-time">Total running time: 10 minutes</span>
               <div id="times-div-Parallel_test_suite">
               </div> <!-- times-div-Parallel_test_suite -->
             </div> <!-- times-div -->
@@ -319,114 +861,487 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">normalUser.LoginTest</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">superAdmin.Clients</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
                 <span class="method-name">beforeSuit</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Login</div> <!-- chronological-class-name -->
+              <div class="configuration-suite before">
+                <span class="method-name">beforeSuit</span>
+                <span class="method-start">8 ms</span>
+              </div> <!-- configuration-suite before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Locations</div> <!-- chronological-class-name -->
+              <div class="configuration-suite before">
+                <span class="method-name">beforeSuit</span>
+                <span class="method-start">8 ms</span>
+              </div> <!-- configuration-suite before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Clients</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">setup</span>
-                <span class="method-start">9 ms</span>
+                <span class="method-start">12 ms</span>
               </div> <!-- configuration-test before -->
-              <div class="configuration-class before">
-                <span class="method-name">initiateReport</span>
-                <span class="method-start">2458 ms</span>
-              </div> <!-- configuration-class before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Locations</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">setup</span>
+                <span class="method-start">19380 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Login</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">setup</span>
+                <span class="method-start">66828 ms</span>
+              </div> <!-- configuration-test before -->
               <div class="configuration-method before">
                 <span class="method-name">openBrowser</span>
-                <span class="method-start">2714 ms</span>
+                <span class="method-start">118093 ms</span>
               </div> <!-- configuration-method before -->
-              <div class="test-method">
-                <span class="method-name">randomInput</span>
-                <span class="method-start">12273 ms</span>
-              </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">checkResults([TestResult name=randomInput status=SUCCESS method=LoginTest.randomInput()[pri:0, instance:normalUse...)</span>
-                <span class="method-start">17867 ms</span>
-              </div> <!-- configuration-method after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Clients</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">openBrowser</span>
-                <span class="method-start">17873 ms</span>
+                <span class="method-start">118093 ms</span>
+              </div> <!-- configuration-method before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Locations</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">118093 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">verifyElemntsOnPageTest</span>
-                <span class="method-start">21270 ms</span>
+                <span class="method-start">133301 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">checkResults([TestResult name=verifyElemntsOnPageTest status=SUCCESS method=LoginTest.verifyElemntsOnPageTest()[p...)</span>
-                <span class="method-start">21572 ms</span>
-              </div> <!-- configuration-method after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Clients</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">verifyElemntsOnPageTest</span>
+                <span class="method-start">144001 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Login</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">verifyElemntsOnPageTest</span>
+                <span class="method-start">145742 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Clients</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">openBrowser</span>
-                <span class="method-start">21574 ms</span>
+                <span class="method-start">149080 ms</span>
+              </div> <!-- configuration-method before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Locations</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">149080 ms</span>
+              </div> <!-- configuration-method before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Login</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">149405 ms</span>
+              </div> <!-- configuration-method before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Clients</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">login</span>
+                <span class="method-start">158572 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Locations</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">login</span>
+                <span class="method-start">160061 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Login</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">verifyLogin</span>
+                <span class="method-start">162317 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Locations</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">170860 ms</span>
+              </div> <!-- configuration-method before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Clients</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">170860 ms</span>
+              </div> <!-- configuration-method before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Locations</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">checkLocationList</span>
+                <span class="method-start">176236 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Clients</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">checkClientList</span>
+                <span class="method-start">182202 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Locations</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">188461 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">verifyLogin</span>
-                <span class="method-start">25250 ms</span>
+                <span class="method-name">search</span>
+                <span class="method-start">194324 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">checkResults([TestResult name=verifyLogin status=SUCCESS method=LoginTest.verifyLogin()[pri:2, instance:normalUse...)</span>
-                <span class="method-start">30772 ms</span>
-              </div> <!-- configuration-method after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Clients</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">openBrowser</span>
-                <span class="method-start">30773 ms</span>
+                <span class="method-start">196786 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">checkClientProfile</span>
+                <span class="method-start">204190 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Locations</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">208762 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">patientFromLocation</span>
+                <span class="method-start">212439 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Login</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">215351 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">loginWithoutUsername</span>
-                <span class="method-start">34194 ms</span>
+                <span class="method-start">222057 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">checkResults([TestResult name=loginWithoutUsername status=SUCCESS method=LoginTest.loginWithoutUsername()[pri:3, ...)</span>
-                <span class="method-start">35717 ms</span>
-              </div> <!-- configuration-method after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Clients</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">openBrowser</span>
-                <span class="method-start">35719 ms</span>
+                <span class="method-start">223311 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">changeStatusToInactive</span>
+                <span class="method-start">226911 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Locations</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">228431 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">contactFromLocation</span>
+                <span class="method-start">232059 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Login</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">235530 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">loginWithoutPassword</span>
-                <span class="method-start">39447 ms</span>
+                <span class="method-start">240494 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">checkResults([TestResult name=loginWithoutPassword status=SUCCESS method=LoginTest.loginWithoutPassword()[pri:4, ...)</span>
-                <span class="method-start">41128 ms</span>
-              </div> <!-- configuration-method after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Clients</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">openBrowser</span>
-                <span class="method-start">41128 ms</span>
+                <span class="method-start">249031 ms</span>
               </div> <!-- configuration-method before -->
-              <div class="test-method">
-                <span class="method-name">loginWithEmptyField</span>
-                <span class="method-start">44877 ms</span>
-              </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">checkResults([TestResult name=loginWithEmptyField status=SUCCESS method=LoginTest.loginWithEmptyField()[pri:5, in...)</span>
-                <span class="method-start">45154 ms</span>
-              </div> <!-- configuration-method after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Locations</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">openBrowser</span>
-                <span class="method-start">45155 ms</span>
+                <span class="method-start">251083 ms</span>
+              </div> <!-- configuration-method before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Clients</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">changeStatusToActive</span>
+                <span class="method-start">254115 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Locations</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">locationTypes</span>
+                <span class="method-start">273517 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Login</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">274276 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">forgotPassword</span>
-                <span class="method-start">48842 ms</span>
+                <span class="method-name">invalidLoginInfo</span>
+                <span class="method-start">278510 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">checkResults([TestResult name=forgotPassword status=SUCCESS method=LoginTest.forgotPassword()[pri:6, instance:nor...)</span>
-                <span class="method-start">52331 ms</span>
-              </div> <!-- configuration-method after -->
-              <div class="configuration-class after">
-                <span class="method-name">afterClass</span>
-                <span class="method-start">52334 ms</span>
-              </div> <!-- configuration-class after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Locations</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">288729 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">updateTypes</span>
+                <span class="method-start">293169 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Clients</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">306304 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">checkLocationStatus</span>
+                <span class="method-start">309842 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Locations</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">322889 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">addNewLocationType</span>
+                <span class="method-start">326553 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Clients</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">337713 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">checkPatientStatus</span>
+                <span class="method-start">342055 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">368954 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">search</span>
+                <span class="method-start">372427 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">386910 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">checkClientTypeList</span>
+                <span class="method-start">394703 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">408799 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">addNewClientGroup</span>
+                <span class="method-start">412267 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">429794 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">editClientGroup</span>
+                <span class="method-start">434535 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Locations</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">600933 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">resetButton</span>
+                <span class="method-start">634542 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">677528 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">cancelButton</span>
+                <span class="method-start">681783 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">696796 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">addressWiseSort</span>
+                <span class="method-start">702195 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Clients</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">708248 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">nameSort</span>
+                <span class="method-start">713443 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Locations</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">733442 ms</span>
+              </div> <!-- configuration-method before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Clients</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">734231 ms</span>
+              </div> <!-- configuration-method before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Locations</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">statusWiseSort</span>
+                <span class="method-start">737218 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Clients</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">typeSort</span>
+                <span class="method-start">737687 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Locations</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">746692 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">nameWiseTypeSort</span>
+                <span class="method-start">750491 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Clients</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">750491 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">checkUserStatus</span>
+                <span class="method-start">754510 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Locations</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">openBrowser</span>
+                <span class="method-start">762648 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">acronymWiseTypeSort</span>
+                <span class="method-start">766459 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Clients</div> <!-- chronological-class-name -->
               <div class="configuration-test after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">52702 ms</span>
+                <span class="method-start">783298 ms</span>
               </div> <!-- configuration-test after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Locations</div> <!-- chronological-class-name -->
+              <div class="configuration-test after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">790422 ms</span>
+              </div> <!-- configuration-test after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Login</div> <!-- chronological-class-name -->
+              <div class="configuration-test after">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">tearDown</span>
+                <span class="method-start">790865 ms</span>
+              </div> <!-- configuration-test after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Clients</div> <!-- chronological-class-name -->
               <div class="configuration-suite after">
                 <span class="method-name">afterSuit</span>
-                <span class="method-start">53522 ms</span>
+                <span class="method-start">809781 ms</span>
+              </div> <!-- configuration-suite after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">superAdmin.Locations</div> <!-- chronological-class-name -->
+              <div class="configuration-suite after">
+                <span class="method-name">afterSuit</span>
+                <span class="method-start">809782 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

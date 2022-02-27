@@ -50,8 +50,6 @@ public class LocationsFunction extends Locations {
 		WebElement search = driver.findElement(By.xpath(LocationXpath.search));
 		search.sendKeys(searchLocation);
 
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Search location", ExtentColor.ORANGE));
-
 		WebElement firstRow = driver.findElement(By.xpath(LocationXpath.firstRow));
 
 		firstRow.click();

@@ -1,45 +1,22 @@
 package normalUser;
 
-import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.time.Duration;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.markuputils.ExtentColor;
-import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import com.aventstack.extentreports.reporter.configuration.Theme;
 
 import NormalUserXpath.PatientsXpath;
 import browser.OpenBrowser;
@@ -50,13 +27,6 @@ public class Patients extends OpenBrowser {
 
 	public static String env = "Test";
 	public static String testSuiteName = "Test Suit 5 -- Patients";
-	String fileName = System.getProperty("user.dir")+"/reports/Standard User/TestResults-Patients.html";
-
-	public static ExtentTest parentTest;
-	public static ExtentReports extent;
-	public static ExtentTest test;
-	public static ExtentSparkReporter htmlReports;
-
 	public static WebDriver driver = null;
 
 	@BeforeSuite
@@ -74,37 +44,12 @@ public class Patients extends OpenBrowser {
 	}
 
 
-	@Parameters({"Browser"})
+	public static String myBrowser = "chrome";
 	@BeforeTest
-	public void setup(String Browser) throws MalformedURLException {
+	public void setup() throws MalformedURLException {
+		
+		driver = start(myBrowser);
 
-		if((Browser.equalsIgnoreCase("chrome"))) {
-			driver = start(Browser);
-		}
-
-		if((Browser.equalsIgnoreCase("firefox"))) {
-			driver = start(Browser);
-		}
-	}
-
-	@BeforeClass
-	public void initiateReport() {
-		htmlReports = new ExtentSparkReporter(fileName);
-		extent = new ExtentReports();
-		extent.attachReporter(htmlReports);
-		htmlReports.config().setReportName("Standart User - Patients");
-		htmlReports.config().setTheme(Theme.STANDARD);
-		htmlReports.config().setDocumentTitle("Test Report for Standard User");
-
-	}
-
-	public String getScreenshotPath(String TestcaseName, WebDriver driver) throws IOException {
-		TakesScreenshot ts = (TakesScreenshot)driver;
-		File source = ts.getScreenshotAs(OutputType.FILE);
-		String destPath = "\\home\\b0b\\zntrall-selenium-automation\\screenshots\\"+TestcaseName+".png";
-		File file = new File(destPath);
-		FileUtils.copyFile(source, file);
-		return destPath;
 	}
 
 
@@ -117,26 +62,6 @@ public class Patients extends OpenBrowser {
 		driver.get("https://dev.zntral.net/session/login");
 		driver.manage().window().maximize();
 		Thread.sleep(3000);
-	}
-
-
-	@AfterMethod
-	public void checkResults(ITestResult testResults) throws IOException{
-
-		if(testResults.getStatus()==ITestResult.FAILURE) {
-
-			parentTest.log(Status.FAIL, MarkupHelper.createLabel("Test Failed of below reason", ExtentColor.RED));
-			parentTest.log(Status.FAIL, testResults.getThrowable());
-
-			parentTest.addScreenCaptureFromPath(getScreenshotPath(testResults.getMethod().getMethodName(),driver), testResults.getMethod().getMethodName());
-
-		}
-		else if(testResults.getStatus()==ITestResult.SKIP) {
-			parentTest.log(Status.SKIP, testResults.getThrowable());
-		}
-		else {
-			parentTest.log(Status.PASS, MarkupHelper.createLabel("Test Case is passed", ExtentColor.GREEN));
-		}
 	}
 
 
@@ -153,11 +78,7 @@ public class Patients extends OpenBrowser {
 	@Test(priority = 1)
 	public void loginUser() throws InterruptedException {
 
-		parentTest = extent.createTest("Login").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Login with valid username & Password");
-
 		PatientsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Login Successful", ExtentColor.ORANGE));
 
 		String expectedUrl = "https://dev.zntral.net/dashboard";
 		String actualUrl = driver.getCurrentUrl();
@@ -170,14 +91,10 @@ public class Patients extends OpenBrowser {
 	//View the patients list
 	@Test(priority = 2)
 	public void patientsList() throws InterruptedException {
-		parentTest = extent.createTest("View the patients list").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("View the patients list");
 
 		PatientsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		PatientsFunctions.viewPatientList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Patient List", ExtentColor.ORANGE));
 
 		String expectedUrl = "https://dev.zntral.net/patients";
 		String actualUrl = driver.getCurrentUrl();
@@ -189,16 +106,12 @@ public class Patients extends OpenBrowser {
 
 	@Test(priority = 3)
 	public void search() throws InterruptedException {
-		parentTest = extent.createTest("Search option").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Search option");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		PatientsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		PatientsFunctions.viewPatientList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Patient List", ExtentColor.ORANGE));
 
 		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.search)));
 		search.sendKeys(PatientsInfoData.search);
@@ -215,16 +128,12 @@ public class Patients extends OpenBrowser {
 
 	@Test(priority = 4)
 	public void addPatient() throws InterruptedException{
-		parentTest = extent.createTest("Add new Patient").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Add new Patient -- Click Add button");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		PatientsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		PatientsFunctions.viewPatientList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Patient List", ExtentColor.ORANGE));
 
 
 		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.add)));
@@ -243,16 +152,12 @@ public class Patients extends OpenBrowser {
 
 	@Test(priority = 5)
 	public void validPatientData() throws InterruptedException {
-		parentTest = extent.createTest("Add patient with valid info").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Add patient with valid info");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		PatientsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		PatientsFunctions.viewPatientList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Patient List", ExtentColor.ORANGE));
 
 		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.add)));
 		add.click();
@@ -276,7 +181,6 @@ public class Patients extends OpenBrowser {
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save)));
 		save.click();
 		Thread.sleep(5000);
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 3: Patient Added", ExtentColor.ORANGE));
 
 		String URL = driver.getCurrentUrl();
 		Assert.assertTrue(URL.contains("https://dev.zntral.net/patients/"));
@@ -288,16 +192,12 @@ public class Patients extends OpenBrowser {
 
 	@Test(priority = 6)
 	public void invalidPatientData() throws InterruptedException {
-		parentTest = extent.createTest("Add patient without any info").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Add patient without any info");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		PatientsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		PatientsFunctions.viewPatientList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Patient List", ExtentColor.ORANGE));
 
 		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.add)));
 		add.click();
@@ -321,18 +221,15 @@ public class Patients extends OpenBrowser {
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save)));
 		save.isEnabled();
 		Thread.sleep(5000);
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 3: Patient not Added", ExtentColor.ORANGE));
 
 		WebElement firstNameMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.firstNameMsg)));
 		WebElement lastNameMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.lastNameMsg)));
 
 		String expectedText4 = "First name is required";
-		parentTest.log(Status.INFO, MarkupHelper.createLabel(firstNameMsg.getText(), ExtentColor.RED));
 		String actualText4 = firstNameMsg.getText();
 		Assert.assertEquals(actualText4, expectedText4);
 
 		String expectedText5 = "Last name is required";
-		parentTest.log(Status.INFO, MarkupHelper.createLabel(lastNameMsg.getText(), ExtentColor.RED));
 		String actualText5 = lastNameMsg.getText();
 		Assert.assertEquals(actualText5, expectedText5);
 
@@ -344,17 +241,12 @@ public class Patients extends OpenBrowser {
 
 	@Test(priority = 7)
 	public void editPatientInfo() throws InterruptedException {
-		parentTest = extent.createTest("Edit Patient info").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Edit Patient info");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		PatientsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		PatientsFunctions.viewPatientList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Patient List", ExtentColor.ORANGE));
-
 
 		Thread.sleep(2000);
 		WebElement patientSelect = driver.findElement(By.xpath(PatientsXpath.firstRow));
@@ -379,7 +271,6 @@ public class Patients extends OpenBrowser {
 		WebElement update = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.update)));
 		update.click();
 		Thread.sleep(3000);
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Updated", ExtentColor.ORANGE));
 
 		Assert.assertTrue(true);
 	}
@@ -388,17 +279,12 @@ public class Patients extends OpenBrowser {
 
 	@Test(priority = 8)
 	public void deletePatientInfo() throws InterruptedException {
-		parentTest = extent.createTest("Delete Patient info").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Delete Patient info");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		PatientsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		PatientsFunctions.viewPatientList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Patient List", ExtentColor.ORANGE));
-
 
 		Thread.sleep(2000);
 		WebElement patientSelect = driver.findElement(By.xpath(PatientsXpath.firstRow));
@@ -424,16 +310,12 @@ public class Patients extends OpenBrowser {
 
 	@Test(priority = 9)
 	public void addContactfromPatient() throws InterruptedException {
-		parentTest = extent.createTest("Add contact info after adding new patient info").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Add contact info after adding new patient info");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		PatientsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		PatientsFunctions.viewPatientList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Patient List", ExtentColor.ORANGE));
 
 		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.add)));
 		add.click();
@@ -456,7 +338,6 @@ public class Patients extends OpenBrowser {
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save)));
 		save.click();
 		Thread.sleep(5000);
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 3: Patient Added", ExtentColor.ORANGE));
 
 		WebElement addButton1 = driver.findElement(By.xpath(PatientsXpath.addButton1));
 		addButton1.click();
@@ -475,7 +356,6 @@ public class Patients extends OpenBrowser {
 		WebElement save2 =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save2)));
 		save2.click();
 		Thread.sleep(5000);
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Contact info added", ExtentColor.ORANGE));
 
 		Assert.assertTrue(true);
 	}
@@ -484,16 +364,12 @@ public class Patients extends OpenBrowser {
 
 	@Test(priority = 10)
 	public void addContactWithEmptyData() throws InterruptedException {
-		parentTest = extent.createTest("Add contact with empty fields after adding new patient ").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Add contact with empty fields after adding new patient ");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		PatientsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		PatientsFunctions.viewPatientList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Patient List", ExtentColor.ORANGE));
 
 		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.add)));
 		add.click();
@@ -516,7 +392,6 @@ public class Patients extends OpenBrowser {
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save)));
 		save.click();
 		Thread.sleep(5000);
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 3: Patient Added", ExtentColor.ORANGE));
 
 
 		WebElement addButton1 = driver.findElement(By.xpath(PatientsXpath.addButton1));
@@ -535,11 +410,9 @@ public class Patients extends OpenBrowser {
 		WebElement save2 =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save2)));
 		save2.isEnabled();
 		Thread.sleep(5000);
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Contact not added", ExtentColor.ORANGE));
 
 		WebElement firstNameMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.FirstNameMsg)));
 		String expectedText4 = "First name is required";
-		parentTest.log(Status.INFO, MarkupHelper.createLabel(firstNameMsg.getText(), ExtentColor.ORANGE));
 		String actualText4 = firstNameMsg.getText();
 		Assert.assertEquals(actualText4, expectedText4);
 
@@ -549,17 +422,12 @@ public class Patients extends OpenBrowser {
 
 	@Test(priority = 11)
 	public void addContactFromPatientList() throws InterruptedException {
-		parentTest = extent.createTest("Add contact to any patient from patients list").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Add contact to any patient from patients list");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		PatientsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		PatientsFunctions.viewPatientList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Patient List", ExtentColor.ORANGE));
-
 
 		Thread.sleep(3000);
 		WebElement firstRow = driver.findElement(By.xpath(PatientsXpath.firstRow));	
@@ -589,16 +457,12 @@ public class Patients extends OpenBrowser {
 	//Add Schedule info after adding new patient info
 	@Test(priority = 12)
 	public void addSchdeulefromPatient() throws InterruptedException {
-		parentTest = extent.createTest("Add Schedule info after adding new patient info").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Add Schedule info after adding new patient info");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		PatientsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		PatientsFunctions.viewPatientList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Patient List", ExtentColor.ORANGE));
 
 		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.add)));
 		add.click();
@@ -622,8 +486,6 @@ public class Patients extends OpenBrowser {
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save)));
 		save.click();
 		Thread.sleep(5000);
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 3: Patient Added", ExtentColor.ORANGE));
-
 
 		WebElement addButton1 = driver.findElement(By.xpath(PatientsXpath.addButton1));
 		addButton1.click();
@@ -658,17 +520,12 @@ public class Patients extends OpenBrowser {
 
 	@Test(priority = 13)
 	public void addSheduleFromPatientList() throws InterruptedException {
-		parentTest = extent.createTest("Add schedule to any patient from patients list ").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Add schedule to any patient from patients list ");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		PatientsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		PatientsFunctions.viewPatientList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Patient List", ExtentColor.ORANGE));
-
 
 		Thread.sleep(3000);
 		WebElement firstRow = driver.findElement(By.xpath(PatientsXpath.firstRow));	
@@ -704,16 +561,12 @@ public class Patients extends OpenBrowser {
 
 	@Test(priority = 14)
 	public void addSchdeuleWithEmpty() throws InterruptedException {
-		parentTest = extent.createTest("Add schedule with empty fields after adding new patient").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Add schedule with empty fields after adding new patient");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		PatientsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		PatientsFunctions.viewPatientList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Patient List", ExtentColor.ORANGE));
 
 		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.add)));
 		add.click();
@@ -736,7 +589,6 @@ public class Patients extends OpenBrowser {
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save)));
 		save.click();
 		Thread.sleep(5000);
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 3: Patient Added", ExtentColor.ORANGE));
 
 		WebElement addButton1 = driver.findElement(By.xpath(PatientsXpath.addButton1));
 		addButton1.click();
@@ -760,17 +612,12 @@ public class Patients extends OpenBrowser {
 
 	@Test(priority = 15)
 	public void addEmptySheduleFromPatientList() throws InterruptedException {
-		parentTest = extent.createTest("Add schedule with empty fields from the patient list").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Add schedule with empty fields from the patient list");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		PatientsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		PatientsFunctions.viewPatientList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Patient List", ExtentColor.ORANGE));
-
 
 		Thread.sleep(3000);
 		WebElement firstRow = driver.findElement(By.xpath(PatientsXpath.firstRow));	
@@ -792,7 +639,6 @@ public class Patients extends OpenBrowser {
 
 		WebElement contactNameSelect =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.status)));
 		String actualText = contactNameSelect.getText();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel(contactNameSelect.getText(), ExtentColor.RED));
 		String expectedText = "Failed to add Schedule";
 		Assert.assertTrue(actualText.contains(expectedText));
 
@@ -802,17 +648,12 @@ public class Patients extends OpenBrowser {
 
 	@Test(priority = 16)
 	public void contactFormCancelButton() throws InterruptedException {
-		parentTest = extent.createTest("Contact form cancel button check").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Contact form cancel button check");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		PatientsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		PatientsFunctions.viewPatientList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Patient List", ExtentColor.ORANGE));
-
 
 		Thread.sleep(3000);
 		WebElement firstRow = driver.findElement(By.xpath(PatientsXpath.firstRow));	
@@ -835,17 +676,12 @@ public class Patients extends OpenBrowser {
 
 	@Test(priority = 17)
 	public void sheduleFormCancelButton() throws InterruptedException {
-		parentTest = extent.createTest("Schedule form cancel button check").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Schedule form cancel button check");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		PatientsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		PatientsFunctions.viewPatientList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Patient List", ExtentColor.ORANGE));
-
 
 		Thread.sleep(3000);
 		WebElement firstRow = driver.findElement(By.xpath(PatientsXpath.firstRow));	
@@ -869,16 +705,12 @@ public class Patients extends OpenBrowser {
 
 	@Test
 	public void importPatientList() throws InterruptedException {
-		parentTest = extent.createTest("import patient list").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("import patient list");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		PatientsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		PatientsFunctions.viewPatientList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Patient List", ExtentColor.ORANGE));
 
 
 		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.addButton1)));
@@ -905,16 +737,12 @@ public class Patients extends OpenBrowser {
 
 	@Test
 	public void addNewLocationToPatient() throws InterruptedException {
-		parentTest = extent.createTest("Add Location after adding patient").assignAuthor("Sabbir").assignCategory("Standart User");
-		parentTest.info("Add Location after adding patient");
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
 		PatientsFunctions.verifyLogin();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 1: Login Successful", ExtentColor.ORANGE));
 
 		PatientsFunctions.viewPatientList();
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 2: Patient List", ExtentColor.ORANGE));
 
 		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.add)));
 		add.click();
@@ -955,7 +783,6 @@ public class Patients extends OpenBrowser {
 		note.sendKeys(PatientsInfoData.patientnote);
 		save.click();
 		Thread.sleep(3000);
-		parentTest.log(Status.INFO, MarkupHelper.createLabel("Step 3: Patient added", ExtentColor.ORANGE));
 
 		WebElement addLocation = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.addLocation)));
 		addLocation.click();
@@ -966,11 +793,6 @@ public class Patients extends OpenBrowser {
 		Assert.assertTrue(true);
 	}
 
-
-	@AfterClass
-	public void afterClass() {
-		extent.flush();
-	}
 
 	@AfterSuite
 	public static void afterSuit() {
