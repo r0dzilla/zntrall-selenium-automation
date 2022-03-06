@@ -11,6 +11,7 @@ import org.testng.Assert;
 import NormalUserXpath.LocationsXpath;
 import normalUser.Locations;
 import normalUserInputData.LocationInfoData;
+import superAdminXpath.UsersXpath;
 
 public class LocationsFunctions extends Locations {
 
@@ -31,6 +32,31 @@ public class LocationsFunctions extends Locations {
 		Thread.sleep(5000);
 	}
 	
+	
+	public static void verifySuperAdminLogin() throws InterruptedException {
+		
+		WebElement username = driver.findElement(By.xpath(LocationsXpath.username));
+		WebElement password = driver.findElement(By.xpath(LocationsXpath.pass));
+		WebElement login = driver.findElement(By.xpath(LocationsXpath.login));
+
+		String user = LocationInfoData.adminUser;
+		String pass = LocationInfoData.adminPass;
+
+		username.sendKeys(user);
+		password.sendKeys(pass);
+
+		login.click();
+		Thread.sleep(5000);
+	}
+	
+	public static void userList() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		WebElement users = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.users)));
+		users.click();
+		Thread.sleep(7000);
+	}
+	
 	public static void viewLocationList() {
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.locations)));
@@ -40,13 +66,16 @@ public class LocationsFunctions extends Locations {
 	public static void addResidentType() throws InterruptedException {
 		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.add)));
 		add.click();
+		
+		WebElement selectResidentTypeDropdown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.selectResidentDropdown)));
+		selectResidentTypeDropdown.click();
 
 		WebElement selectResidentType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.selectResidentType)));
 		selectResidentType.click();
-		Thread.sleep(2000);
+		
 		WebElement selectContinue = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.selectContinue)));
 		selectContinue.click();
-		
+
 		Assert.assertTrue(selectResidentType.isEnabled());
 	}
 	
@@ -82,6 +111,9 @@ public class LocationsFunctions extends Locations {
 		
 		WebElement type = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.type)));
 		type.click();
+		
+		WebElement typeSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.typeSelect)));
+		typeSelect.click();
 		
 		WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.email)));
 		email.sendKeys(Lemail);

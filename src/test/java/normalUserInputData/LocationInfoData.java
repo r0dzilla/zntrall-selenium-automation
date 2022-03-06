@@ -5,6 +5,10 @@ public class LocationInfoData {
 	//Login with valid info
 	public static String user = "sabinulhaque033@gmail.com";
 	public static String pass = "123456";
+	
+	//Login with valid info for super admin
+	public static String adminUser = "superadmin@mercury.com";
+	public static String adminPass = "qwerty";
 
 
 	//search item for location
@@ -12,16 +16,16 @@ public class LocationInfoData {
 
 
 	//Add location  with valid info
-	public static String locationName = "Mymensingh";
-	public static String licenceNumber = "166578";
-	public static String capacity = "15";
-	public static String address = "Mymensingh";
+	public static String locationName = "Bogura";
+	public static String licenceNumber = "16645646";
+	public static String capacity = "155";
+	public static String address = "Bogura";
 	public static String suiteUnit = "65/89";
-	public static String city = "Mymensingh";
-	public static String state = "Mymensingh";
+	public static String city = "Bogura";
+	public static String state = "Bogura";
 	public static String zip = "87562";
-	public static String phoneNumber = "1297894896";
-	public static String email = "mymensingh@email.com";
+	public static String phoneNumber = "1297894796";
+	public static String email = "Bogura@email.com";
 	public static String note = "This is automation for valid text";
 
 

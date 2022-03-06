@@ -11,21 +11,23 @@ public class LocationsXpath {
 	public static String firstRow = "//tbody/tr[1]/td[1]";
 
 	public static String add = "//i[normalize-space()='add']";
-	public static String selectResidentType = "//body/div[@id='inspire']/div[@role='document']/div/div/div/div/div/div/div/div/div/div/div[@role='radiogroup']/div[3]/div[1]";
+	public static String selectResidentDropdown = "//body/div[@id='inspire']/div[@role='document']/div/div/div/div/div/div/div/div/div/div/div[@role='button']/div/div/div/i[1]";
+	public static String selectResidentType = "//div[@role='listbox']//div[3]//div[1]//div[1]";
 	public static String selectContinue = "//span[normalize-space()='Continue']";
 
-	public static String locationName = "//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]";
-	public static String licenceNumber = "//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div/div[2]/div[1]/div[2]/div[1]/div[1]/input[1]";
-	public static String capacity = "//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]/input[1]";
-	public static String address = "//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[2]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
-	public static String suiteUnit = "//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[2]//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]";
+	public static String locationName = "//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]";
+	public static String licenceNumber = "//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div/div/div[2]/div[1]/div[2]/div[1]/div[1]/input[1]";
+	public static String capacity = "//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]/input[1]";
+	public static String address = "//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div[2]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
+	public static String suiteUnit = "//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div[2]//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]";
 	public static String city = "//div[@role='document']//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
 	public static String state = "//div[@role='document']//div[3]//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]";
-	public static String zip = "//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div/div[3]/div[1]/div[1]/div[1]/div[1]/input[1]";
-	public static String phoneNumber = "/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/div[1]/div[1]/div[4]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]";
+	public static String zip = "//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/div/div/div/div/div[3]/div[1]/div[1]/div[1]/div[1]/input[1]";
+	public static String phoneNumber = "//div[4]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
 	public static String type = "//div[@class='v-input theme--light v-text-field v-text-field--is-booted v-select']//div[@class='v-select__selections']";
+	public static String typeSelect = "//body/div[@data-app='true']/div[5]/div[1]/div[2]/div[1]/div[1]";
 	public static String email = "//input[@type='email']";
-	public static String note = "/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/div[1]/div[1]/div[5]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]";
+	public static String note = "//div[5]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
 	public static String save = "//span[normalize-space()='Save']";
 
 	public static String addressMsg = "//div[contains(text(),'Address is required')]";
@@ -42,8 +44,8 @@ public class LocationsXpath {
 
 	public static String addPatientButton = "//strong[normalize-space()='Patient']";
 
-	public static String FirstName = "//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[1]//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]";
-	public static String LastName = "//div[@class='row no-gutters']//div[4]//div[1]//div[1]//div[1]//div[1]//input[1]";
+	public static String FirstName = "//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[1]//div[1]//div[1]//div[2]//div[1]//div[1]//div[1]//div[1]//input[1]";
+	public static String LastName = "//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div[4]//div[1]//div[1]//div[1]//div[1]//input[1]";
 	public static String ssn = "//body//div[@data-app='true']//div[@role='document']//div//div//div//div[2]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
 	public static String phoneNumber2 = "//div[@role='document']//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
 
@@ -63,7 +65,7 @@ public class LocationsXpath {
 	public static String firstNameMsg2 = "//div[@class='v-messages__message']";
 
 	public static String editButton = "//i[@class='v-icon notranslate material-icons theme--light'][normalize-space()='more_vert']";
-	public static String editOptionSelect = "//div[contains(text(),'Edit')]";
+	public static String editOptionSelect = "//body/div[@data-app='true']/div[@role='menu']/div/div[1]/div[1]";
 	public static String editLicenceNumber = "//div[5]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
 	public static String editCapacity = "//div[8]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
 	public static String update = "//span[normalize-space()='update']";
@@ -81,4 +83,11 @@ public class LocationsXpath {
 
 	public static String continueButton = "//body//div[@data-app='true']//div[@role='document']//div//div//div//div//button[1]";
 
+	
+	public static String elements = "//tbody/tr[23]/td[1]";
+	public static String view = "//div[6]//div[1]//div[2]//div[1]//div[2]//div[1]//span[1]//span[1]";
+	public static String updates = "//form[@novalidate='novalidate']//button[1]";
+	public static String add3 = "//div[6]//div[1]//div[2]//div[1]//div[2]//div[1]//span[2]//span[1]";
+	public static String edit = "//div[6]//div[1]//div[2]//div[1]//div[2]//div[1]//span[3]//span[1]";
+	public static String delete = "//div[6]//div[1]//div[2]//div[1]//div[2]//div[1]//span[4]//span[1]";
 }

@@ -2,8 +2,11 @@ package normalUser;
 
 import java.net.MalformedURLException;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,10 +21,13 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import NormalUserXpath.LocationsXpath;
+import NormalUserXpath.LogoutXpath;
 import browser.OpenBrowser;
 import normalUserFunctions.LocationsFunctions;
 import normalUserInputData.LocationInfoData;
 import normalUserInputData.PatientsInfoData;
+import superAdminFunctions.UsersFunctions;
+import superAdminXpath.UsersXpath;
 
 public class Locations extends OpenBrowser{
 	public static String env = "Test";
@@ -617,7 +623,7 @@ public class Locations extends OpenBrowser{
 
 	//Add location From patient overview page
 
-	@Test
+	@Test(priority = 15)
 	public void addLocationFromPatient() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -643,10 +649,15 @@ public class Locations extends OpenBrowser{
 		addNewLocation.click();		
 		WebElement addButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.addButton)));
 		addButton.click();
-		WebElement selectType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.selectType)));
-		selectType.click();
-		WebElement continueButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.continueButton)));
-		continueButton.click();
+
+		WebElement selectResidentTypeDropdown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.selectResidentDropdown)));
+		selectResidentTypeDropdown.click();
+
+		WebElement selectResidentType = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.selectResidentType)));
+		selectResidentType.click();
+
+		WebElement selectContinue = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.selectContinue)));
+		selectContinue.click();
 
 		WebElement locationName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.locationName)));
 		WebElement licenceNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.licenceNumber)));
@@ -673,6 +684,205 @@ public class Locations extends OpenBrowser{
 
 	}
 
+
+	// Check "Location" Access Control (View)
+
+	@Test(priority = 19)
+	public void locationAccessView() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+		LocationsFunctions.verifySuperAdminLogin();
+
+		LocationsFunctions.userList();
+		Thread.sleep(6000);
+
+		WebElement element = driver.findElement(By.xpath(LocationsXpath.elements));
+		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
+
+		element.click();
+
+		Thread.sleep(2000);
+		WebElement view = driver.findElement(By.xpath(LocationsXpath.view));
+		view.click();
+
+		WebElement update = driver.findElement(By.xpath(LocationsXpath.updates));
+		update.click();
+
+		WebElement threeDotMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LogoutXpath.threeDotMenu)));
+		threeDotMenu.click();
+
+		WebElement clickLogout = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LogoutXpath.clickLogout)));
+		clickLogout.click();
+
+		Thread.sleep(5000);
+
+		LocationsFunctions.verifyLogin();
+		Thread.sleep(5000);
+		
+		try {
+			if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.locations))).isDisplayed()) {
+				Assert.assertFalse(false);
+			}
+		}catch(Exception e) {
+			Assert.assertTrue(true);
+
+		}
+		Thread.sleep(5000);
+	}
+
+
+	// Check "Location" Access Control (Add)
+
+	@Test(priority = 16)
+	public void locationAccessAdd() throws InterruptedException{
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+		LocationsFunctions.verifySuperAdminLogin();
+
+		LocationsFunctions.userList();
+		Thread.sleep(6000);
+
+		WebElement element = driver.findElement(By.xpath(LocationsXpath.elements));
+		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
+
+		element.click();
+		Thread.sleep(2000);
+		WebElement add = driver.findElement(By.xpath(LocationsXpath.add3));
+		add.click();
+
+		WebElement update = driver.findElement(By.xpath(LocationsXpath.updates));
+		update.click();
+
+		WebElement threeDotMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LogoutXpath.threeDotMenu)));
+		threeDotMenu.click();
+
+		WebElement clickLogout = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LogoutXpath.clickLogout)));
+		clickLogout.click();
+
+		Thread.sleep(5000);
+
+		LocationsFunctions.verifyLogin();
+		Thread.sleep(5000);
+
+		LocationsFunctions.viewLocationList();
+		Thread.sleep(3000);
+
+		if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.add))) == null) {
+			Assert.assertTrue(true);
+		}
+		else {
+			Assert.assertFalse(false);
+		}
+
+		Thread.sleep(5000);
+	}
+
+
+	// Check "Location" Access Control (Edit)
+
+	@Test(priority = 18)
+	public void locationAccessEdit() throws InterruptedException{
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+		LocationsFunctions.verifySuperAdminLogin();
+
+		LocationsFunctions.userList();
+		Thread.sleep(6000);
+
+		WebElement element = driver.findElement(By.xpath(LocationsXpath.elements));
+		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
+
+		element.click();
+		Thread.sleep(2000);
+		WebElement edit = driver.findElement(By.xpath(LocationsXpath.edit));
+		edit.click();
+
+		WebElement update = driver.findElement(By.xpath(LocationsXpath.updates));
+		update.click();
+
+		WebElement threeDotMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LogoutXpath.threeDotMenu)));
+		threeDotMenu.click();
+
+		WebElement clickLogout = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LogoutXpath.clickLogout)));
+		clickLogout.click();
+
+		Thread.sleep(5000);
+
+		LocationsFunctions.verifyLogin();
+		Thread.sleep(5000);
+
+		LocationsFunctions.viewLocationList();
+		Thread.sleep(5000);
+
+		WebElement locationSelect = driver.findElement(By.xpath(LocationsXpath.firstRow));
+		locationSelect.click();
+		Thread.sleep(2000);
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.editButton))).click();;
+		Thread.sleep(2000);
+		if(driver.findElement(By.xpath(LocationsXpath.deleteButton)).isDisplayed()) {
+			Assert.assertTrue(true);
+
+		}else {
+			Assert.assertFalse(true);
+		}
+
+		Thread.sleep(5000);
+	}
+
+
+	// Check "Location" Access Control (Delete)
+
+	@Test(priority = 17)
+	public void locationAccessDelete() throws InterruptedException{
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+		LocationsFunctions.verifySuperAdminLogin();
+
+		LocationsFunctions.userList();
+		Thread.sleep(6000);
+
+		WebElement element = driver.findElement(By.xpath(LocationsXpath.elements));
+		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
+
+		element.click();
+		Thread.sleep(2000);
+		WebElement delete = driver.findElement(By.xpath(LocationsXpath.delete));
+		delete.click();
+
+		WebElement update = driver.findElement(By.xpath(LocationsXpath.updates));
+		update.click();
+
+		WebElement threeDotMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LogoutXpath.threeDotMenu)));
+		threeDotMenu.click();
+
+		WebElement clickLogout = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LogoutXpath.clickLogout)));
+		clickLogout.click();
+
+		Thread.sleep(5000);
+
+		LocationsFunctions.verifyLogin();
+		Thread.sleep(5000);
+
+		LocationsFunctions.viewLocationList();
+		Thread.sleep(5000);
+
+		WebElement locationSelect = driver.findElement(By.xpath(LocationsXpath.firstRow));
+		locationSelect.click();
+		Thread.sleep(2000);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.editButton))).click();
+		
+		if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.editOptionSelect))).isDisplayed()) {
+			Assert.assertTrue(true);
+		}else {
+			Assert.assertFalse(false);
+		}
+
+		Thread.sleep(5000);
+	}
+
+	
 	@AfterSuite
 	public static void afterSuit() {
 

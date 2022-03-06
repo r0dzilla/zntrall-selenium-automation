@@ -6,36 +6,32 @@
   </listeners>
   <test thread-count="7" parallel="classes" name="Test Suite(failed)">
     <classes>
-      <class name="superAdmin.Clients">
+      <class name="normalUser.Locations">
         <methods>
-          <include name="changeStatusToActive"/>
-          <include name="editClientGroup"/>
-          <include name="openBrowser"/>
-          <include name="tearDown"/>
-          <include name="setup"/>
+          <include name="locationAccessEdit"/>
+          <include name="validateCancelButton"/>
+          <include name="addContactfromLocation"/>
+          <include name="locationAccessAdd"/>
+          <include name="addLocationFromPatient"/>
+          <include name="editLocationInfo"/>
+          <include name="locationAccessDelete"/>
+          <include name="validatePhoneEmailData"/>
+          <include name="validLocationData"/>
           <include name="beforeSuit"/>
           <include name="afterSuit"/>
-        </methods>
-      </class> <!-- superAdmin.Clients -->
-      <class name="superAdmin.Locations">
-        <methods>
-          <include name="openBrowser"/>
-          <include name="addNewLocationType"/>
-          <include name="afterSuit"/>
-          <include name="setup"/>
-          <include name="beforeSuit"/>
           <include name="tearDown"/>
-        </methods>
-      </class> <!-- superAdmin.Locations -->
-      <class name="superAdmin.Login">
-        <methods>
+          <include name="addLocation"/>
+          <include name="search"/>
+          <include name="locationList"/>
+          <include name="addContactEmptyLocation"/>
+          <include name="validateBackButton"/>
+          <include name="invalidLocationData"/>
+          <include name="addPatientfromLocation"/>
+          <include name="emptyPatientInfofromLocation"/>
           <include name="openBrowser"/>
-          <include name="tearDown"/>
           <include name="setup"/>
-          <include name="beforeSuit"/>
-          <include name="verifyLogin"/>
         </methods>
-      </class> <!-- superAdmin.Login -->
+      </class> <!-- normalUser.Locations -->
     </classes>
   </test> <!-- Test Suite(failed) -->
 </suite> <!-- Failed suite [Parallel test suite] -->
