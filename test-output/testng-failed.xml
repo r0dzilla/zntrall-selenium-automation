@@ -6,32 +6,16 @@
   </listeners>
   <test thread-count="7" parallel="classes" name="Test Suite(failed)">
     <classes>
-      <class name="normalUser.Locations">
+      <class name="normalUser.LoginTest">
         <methods>
-          <include name="locationAccessEdit"/>
-          <include name="validateCancelButton"/>
-          <include name="addContactfromLocation"/>
-          <include name="locationAccessAdd"/>
-          <include name="addLocationFromPatient"/>
-          <include name="editLocationInfo"/>
-          <include name="locationAccessDelete"/>
-          <include name="validatePhoneEmailData"/>
-          <include name="validLocationData"/>
+          <include name="openBrowser"/>
+          <include name="tearDown"/>
           <include name="beforeSuit"/>
           <include name="afterSuit"/>
-          <include name="tearDown"/>
-          <include name="addLocation"/>
-          <include name="search"/>
-          <include name="locationList"/>
-          <include name="addContactEmptyLocation"/>
-          <include name="validateBackButton"/>
-          <include name="invalidLocationData"/>
-          <include name="addPatientfromLocation"/>
-          <include name="emptyPatientInfofromLocation"/>
-          <include name="openBrowser"/>
           <include name="setup"/>
+          <include name="verifyLogin"/>
         </methods>
-      </class> <!-- normalUser.Locations -->
+      </class> <!-- normalUser.LoginTest -->
     </classes>
   </test> <!-- Test Suite(failed) -->
 </suite> <!-- Failed suite [Parallel test suite] -->

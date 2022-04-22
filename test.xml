@@ -8,10 +8,7 @@
     
 	<test name="Test Suite">
 		<classes>
-			<class name="normalUser.Calendar"></class>
-			<class name="normalUser.Contacts"></class>
-			<class name="superAdmin.Clients"></class>
-			<class name="superAdmin.Login"></class>
+			<class name="normalUser.LoginTest"></class>
 		</classes>		
 	</test>
 	

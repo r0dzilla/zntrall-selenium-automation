@@ -40,7 +40,7 @@ public class LoginTest extends OpenBrowser {
 		}
 	}
 
-	public static String myBrowser = "firefox";
+	public static String myBrowser = "chrome";
 	@BeforeTest
 	public void setup() throws MalformedURLException {
 		
@@ -108,7 +108,7 @@ public class LoginTest extends OpenBrowser {
 		login.click();
 		Thread.sleep(5000);
 
-		String expectedUrl = "https://dev.zntral.net/dashboard";
+		String expectedUrl = "https://dev.zntral.net/dashboarda";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl);
 	}
