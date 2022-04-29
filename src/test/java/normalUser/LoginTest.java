@@ -14,6 +14,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import NormalUserXpath.LoginTestXpath;
@@ -25,10 +26,11 @@ public class LoginTest extends OpenBrowser {
 	public static String env = "Test";
 	public static String testSuiteName = "Test Suit 2 -- Login";
 	public static WebDriver driver = null;
-
+	
+	
 	@BeforeSuite
-	public static void beforeSuit() {
-
+	public static void beforeSuit() throws Exception {
+		
 		if (env.equalsIgnoreCase("Test")) {
 
 			System.out.println("Test executes in correct environment where environment= " + env);
@@ -40,10 +42,12 @@ public class LoginTest extends OpenBrowser {
 		}
 	}
 
-	public static String myBrowser = "chrome";
-	@BeforeTest
-	public void setup() throws MalformedURLException {
+	//public static String device = "chrome";
+	@Parameters("myBrowser")
+	//@BeforeTest
+	public void setup(String myBrowser) throws MalformedURLException {
 		
+		//driver = start(myBrowser);
 		driver = start(myBrowser);
 
 	}

@@ -1,6 +1,10 @@
 package utilities;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.*;
@@ -8,6 +12,7 @@ import org.testng.*;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.annotations.MarkupIgnore;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 
@@ -28,7 +33,7 @@ public class Listeners extends ExtentReportNG implements ITestListener{
 		Class classs = result.getTestClass().getRealClass();
 		String browsername = null;
 		try {
-			browsername = (String) classs.getDeclaredField("myBrowser").get(testObject);
+			browsername = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("myBrowser");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

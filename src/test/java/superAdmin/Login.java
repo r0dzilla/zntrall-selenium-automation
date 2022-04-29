@@ -13,6 +13,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import browser.OpenBrowser;
@@ -40,10 +41,10 @@ public class Login extends OpenBrowser{
 	}
 	
 
-	public static String myBrowser = "chrome";
-	
+	//public static String myBrowser = "iPhone 6";
+	@Parameters("myBrowser")
 	@BeforeTest
-	public void setup() throws MalformedURLException {
+	public void setup(String myBrowser) throws MalformedURLException {
 
 		driver = start(myBrowser);
 	}

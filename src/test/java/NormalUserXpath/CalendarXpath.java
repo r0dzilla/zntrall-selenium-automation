@@ -14,12 +14,12 @@ public class CalendarXpath {
 	//public static String dateFieldSelect = "//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
 	//public static String dateSelect = "//div[@class='v-btn__content'][normalize-space()='30']";
 	public static String allDay = "//span[contains(text(),'All day')]";
-	public static String description = "//div[@class='v-input theme--light v-text-field v-text-field--is-booted']//input[@type='text']";
-	public static String save = "//span[normalize-space()='Save']";
+	public static String description = "//body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[4]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]";
+	public static String save = "//span[normalize-space()='SAVE']";
 	public static String errorMsg = "//div[@role='status']";
 
 	public static String selectSchedule = "//div[@class='v-calendar-weekly__day v-present']//div[2]//div[1]";
-	public static String selectThreeDotMenu = "//div[@class='v-menu__content theme--light menuable__content__active']//i[@class='v-icon notranslate mdi mdi-dots-vertical theme--light']";
+	public static String selectThreeDotMenu = "//div[@role='menu']//div//div//button[@role='button']//i[@aria-hidden='true']";
 	public static String selectCancel = "//*[contains(text(), 'Cancel')]";
 
 	//public static String selectSchedule2 = "/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[5]/div[3]/div[2]/div[1]"; 
@@ -30,6 +30,7 @@ public class CalendarXpath {
 	//public static String selectSchedule3 = "//div[@class='pl-1'][normalize-space()='Testing data']"; 
 	public static String selectEdit = "//*[contains(text(), 'Edit')]";
 	public static String selectPatient = "//div[contains(text(),'Sabbir-Test Info')]";
+	public static String update = "//span[normalize-space()='UPDATE']";;
 
 	public static String selectType = "//button[@role='button']//i[@aria-hidden='true']";
 	public static String selectDay = "//div[contains(text(),'Day')]";

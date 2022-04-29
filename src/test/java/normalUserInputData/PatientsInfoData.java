@@ -21,6 +21,12 @@ public class PatientsInfoData {
 	public static String patientemail = "sabbirtest@email.com";
 	public static String patientnote = "This is demo data";
 
+	
+	//Add patient with invalid info -- unlimited character in name field
+	
+	public static String patientInvalidFirstName = "akdhakfhaiurhfkajhfalkjafjaofiuafoaiuroaifkdljkdoiadfoaifhaf";
+	public static String patientInvalidLastName = "akdhakfhaiurhfkajhfalkjafjaofiuafoaiuroaifkdljkdoiadfoaifhaf";
+	
 
 	//Adding patient without any info
 	public static String prefix2 = "";

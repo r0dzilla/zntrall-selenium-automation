@@ -43,7 +43,7 @@ public class Users extends OpenBrowser{
 		}
 	}
 
-	public static String myBrowser = "MicrosoftEdge";
+	public static String myBrowser = "chrome";
 
 	@BeforeTest
 	public void setup() throws MalformedURLException {
@@ -406,18 +406,22 @@ public class Users extends OpenBrowser{
 			adminName.sendKeys(Keys.BACK_SPACE);
 		}
 
-		adminName.sendKeys("SQA20");
+		adminName.sendKeys("TEST");
 
 		WebElement adminAcronym = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.adminAcronym)));
 		while (!adminAcronym.getAttribute("value").equals("")) {
 			adminAcronym.sendKeys(Keys.BACK_SPACE);
 		}
 
-		adminAcronym.sendKeys("SQA20");
+		adminAcronym.sendKeys("TEST");
 
 		WebElement update = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.update)));
 		update.click();
 
+		WebElement statusMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='status']")));
+		statusMsg.isDisplayed();
+		System.out.println(statusMsg.getText());
+		
 		Thread.sleep(2000);
 
 	}

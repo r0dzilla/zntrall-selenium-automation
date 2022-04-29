@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Test Suite</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>6/1/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>1/0/0</td>
 </tr><tr>
-<td>Started on:</td><td>Mon Apr 11 17:50:27 BDT 2022</td>
+<td>Started on:</td><td>Sat Apr 30 03:12:00 BDT 2022</td>
 </tr>
-<tr><td>Total time:</td><td>54 seconds (54542 ms)</td>
+<tr><td>Total time:</td><td>17 seconds (17645 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -68,34 +68,70 @@ function toggleAllBoxes() {
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
 <table width='100%' border='1' class='invocation-failed'>
-<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td colspan='4' align='center'><b>FAILED CONFIGURATIONS</b></td></tr>
 <tr><td><b>Test method</b></td>
 <td width="30%"><b>Exception</b></td>
 <td width="10%"><b>Time (seconds)</b></td>
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='normalUser.LoginTest.verifyLogin()'><b>verifyLogin</b><br>Test class: normalUser.LoginTest</td>
-<td><div><pre>java.lang.AssertionError: expected [https://dev.zntral.net/dashboarda] but found [https://dev.zntral.net/dashboard]
-	at normalUser.LoginTest.verifyLogin(LoginTest.java:113)
+<td title='superAdmin.Login.openBrowser()'><b>openBrowser</b><br>Test class: superAdmin.Login</td>
+<td><div><pre>org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: MicrosoftEdge=101.0.1210.32)
+Build info: version: &apos;4.0.0&apos;, revision: &apos;3a21814679&apos;
+System info: host: &apos;DESKTOP-EI1MF8H&apos;, ip: &apos;192.168.31.17&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.13&apos;
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Command: [5f93d23ef162e6fe81d254172a260c0c, maximizeCurrentWindow {}]
+Capabilities {acceptInsecureCerts: false, browserName: msedge, browserVersion: 101.0.1210.32, javascriptEnabled: true, ms:edgeOptions: {debuggerAddress: localhost:64387}, msedge: {msedgedriverVersion: 101.0.1210.32 (f7af80761c68..., userDataDir: C:\Users\tahni\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://192.168.31.17:4444/ses..., se:cdpVersion: 101.0.1210.32, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 5f93d23ef162e6fe81d254172a260c0c
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
+	at org.openqa.selenium.remote.TracedCommandExecutor.execute(TracedCommandExecutor.java:39)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:559)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:614)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:618)
+	at org.openqa.selenium.remote.RemoteWebDriver$RemoteWebDriverOptions$RemoteWindow.maximize(RemoteWebDriver.java:928)
+	at superAdmin.Login.openBrowser(Login.java:60)
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-... Removed 18 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1968201805", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1968201805'><pre>java.lang.AssertionError: expected [https://dev.zntral.net/dashboarda] but found [https://dev.zntral.net/dashboard]
-	at org.testng.Assert.fail(Assert.java:99)
-	at org.testng.Assert.failNotEquals(Assert.java:1037)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:140)
-	at org.testng.Assert.assertEquals(Assert.java:122)
-	at org.testng.Assert.assertEquals(Assert.java:629)
-	at org.testng.Assert.assertEquals(Assert.java:639)
-	at normalUser.LoginTest.verifyLogin(LoginTest.java:113)
+... Removed 20 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace917320716", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace917320716'><pre>org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: MicrosoftEdge=101.0.1210.32)
+Build info: version: &apos;4.0.0&apos;, revision: &apos;3a21814679&apos;
+System info: host: &apos;DESKTOP-EI1MF8H&apos;, ip: &apos;192.168.31.17&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.13&apos;
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Command: [5f93d23ef162e6fe81d254172a260c0c, maximizeCurrentWindow {}]
+Capabilities {acceptInsecureCerts: false, browserName: msedge, browserVersion: 101.0.1210.32, javascriptEnabled: true, ms:edgeOptions: {debuggerAddress: localhost:64387}, msedge: {msedgedriverVersion: 101.0.1210.32 (f7af80761c68..., userDataDir: C:\Users\tahni\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://192.168.31.17:4444/ses..., se:cdpVersion: 101.0.1210.32, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 5f93d23ef162e6fe81d254172a260c0c
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
+	at org.openqa.selenium.remote.TracedCommandExecutor.execute(TracedCommandExecutor.java:39)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:559)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:614)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:618)
+	at org.openqa.selenium.remote.RemoteWebDriver$RemoteWebDriverOptions$RemoteWindow.maximize(RemoteWebDriver.java:928)
+	at superAdmin.Login.openBrowser(Login.java:60)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
 	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+	at org.testng.internal.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:62)
+	at org.testng.internal.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:385)
+	at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:321)
+	at org.testng.internal.TestInvoker.runConfigMethods(TestInvoker.java:700)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:527)
 	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
 	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
 	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
@@ -106,8 +142,21 @@ function toggleAllBoxes() {
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:834)
 </pre></div></td>
-<td>5</td>
-<td>normalUser.LoginTest@31ff43be</td></tr>
+<td>1</td>
+<td>superAdmin.Login@132e0cc</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-skipped'>
+<tr><td colspan='4' align='center'><b>SKIPPED CONFIGURATIONS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='superAdmin.Login.tearDown()'><b>tearDown</b><br>Test class: superAdmin.Login</td>
+<td></td>
+<td>-1651266738</td>
+<td>superAdmin.Login@132e0cc</td></tr>
 </table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
@@ -117,35 +166,10 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='normalUser.LoginTest.forgotPassword()'><b>forgotPassword</b><br>Test class: normalUser.LoginTest</td>
-<td></td>
-<td>3</td>
-<td>normalUser.LoginTest@31ff43be</td></tr>
-<tr>
-<td title='normalUser.LoginTest.loginWithoutPassword()'><b>loginWithoutPassword</b><br>Test class: normalUser.LoginTest</td>
-<td></td>
-<td>1</td>
-<td>normalUser.LoginTest@31ff43be</td></tr>
-<tr>
-<td title='normalUser.LoginTest.randomInput()'><b>randomInput</b><br>Test class: normalUser.LoginTest</td>
-<td></td>
-<td>5</td>
-<td>normalUser.LoginTest@31ff43be</td></tr>
-<tr>
-<td title='normalUser.LoginTest.verifyElemntsOnPageTest()'><b>verifyElemntsOnPageTest</b><br>Test class: normalUser.LoginTest</td>
+<td title='superAdmin.Login.verifyElemntsOnPageTest()'><b>verifyElemntsOnPageTest</b><br>Test class: superAdmin.Login</td>
 <td></td>
 <td>0</td>
-<td>normalUser.LoginTest@31ff43be</td></tr>
-<tr>
-<td title='normalUser.LoginTest.loginWithoutUsername()'><b>loginWithoutUsername</b><br>Test class: normalUser.LoginTest</td>
-<td></td>
-<td>1</td>
-<td>normalUser.LoginTest@31ff43be</td></tr>
-<tr>
-<td title='normalUser.LoginTest.loginWithEmptyField()'><b>loginWithEmptyField</b><br>Test class: normalUser.LoginTest</td>
-<td></td>
-<td>0</td>
-<td>normalUser.LoginTest@31ff43be</td></tr>
+<td>superAdmin.Login@132e0cc</td></tr>
 </table><p>
 </body>
 </html>

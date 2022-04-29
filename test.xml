@@ -7,8 +7,10 @@
     </listeners>
     
 	<test name="Test Suite">
+	    
+	    <parameter name="myBrowser" value="MicrosoftEdge"/>
 		<classes>
-			<class name="normalUser.LoginTest"></class>
+			<class name="superAdmin.Login"></class>
 		</classes>		
 	</test>
 	

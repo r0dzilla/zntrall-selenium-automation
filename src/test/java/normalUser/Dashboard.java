@@ -41,7 +41,7 @@ public class Dashboard extends OpenBrowser {
 		}
 	}
 
-	public static String myBrowser = "MicrosoftEdge";
+	public static String myBrowser = "chrome";
 	@BeforeTest
 	public void setup() throws MalformedURLException {
 

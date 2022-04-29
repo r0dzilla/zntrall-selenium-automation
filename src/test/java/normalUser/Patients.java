@@ -187,6 +187,51 @@ public class Patients extends OpenBrowser {
 		Thread.sleep(3000);
 
 	}
+	
+	
+	//Add patient with invalid info (Unlimited characters in name fields)
+	
+	@Test
+	public void invalidPatientName() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+		PatientsFunctions.verifyLogin();
+
+		PatientsFunctions.viewPatientList();
+
+		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.add)));
+		add.click();
+
+		WebElement selectAddPatient = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.selectAddPatient)));
+		selectAddPatient.click();
+		Thread.sleep(2000);
+
+
+		String Pprefix = PatientsInfoData.prefix;
+		String PfirstName= PatientsInfoData.patientInvalidFirstName;
+		String PlastName = PatientsInfoData.patientInvalidLastName;
+		String Pssn = PatientsInfoData.ssn;
+		String Pdob = PatientsInfoData.dob;
+		String Pphone = PatientsInfoData.phone;
+		String Pemail = PatientsInfoData.patientemail;
+		String Pnote = PatientsInfoData.patientnote;
+
+		PatientsFunctions.addPatientData(Pprefix, PfirstName, PlastName, Pssn, Pdob, Pphone, Pemail, Pnote);
+
+		WebElement firstNameErrorMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@id='inspire']//div[@role='document']//div//div//div//div//div//div//div//div[2]//div[1]//div[1]//div[2]//div[1]//div[1]//div[1]")));
+		firstNameErrorMsg.isDisplayed();
+		System.out.println(firstNameErrorMsg.getText());
+		
+		WebElement lastNameErrorMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@id='inspire']//div[@role='document']//div//div//div//div//div//div//div//div[2]//div[1]//div[1]//div[2]//div[1]//div[1]//div[1]")));
+		lastNameErrorMsg.isDisplayed();
+		System.out.println(lastNameErrorMsg.getText());
+		
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save)));
+		save.isDisplayed();
+
+	}
+	
 
 	//Adding patient without any info
 

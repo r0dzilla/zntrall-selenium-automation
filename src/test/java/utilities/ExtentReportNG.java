@@ -33,10 +33,8 @@ public class ExtentReportNG{
 		extent = new ExtentReports();
 		extent.attachReporter(htmlReports);
 		htmlReports.config().setReportName("Web Automation Results");
-		htmlReports.config().setTheme(Theme.STANDARD);
-		htmlReports.config().setDocumentTitle("Test Results");
-		
-		
+		htmlReports.config().setTheme(Theme.DARK);
+		htmlReports.config().setDocumentTitle("Test Results"); 
 		return extent;
 	}
 	

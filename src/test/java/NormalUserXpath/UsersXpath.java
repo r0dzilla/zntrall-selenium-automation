@@ -12,7 +12,7 @@ public class UsersXpath {
 	public static String addUser = "//strong[normalize-space()='Add new user']";
 	
 	public static String FirstName = "//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div[1]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
-	public static String LastName = "//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/form[@novalidate='novalidate']/div/div/div/div[1]/div[1]/div[1]/input[1]";
+	public static String LastName = "//body/div[@data-app='true']/div[@role='document']/div/div/div/div/div/div/form[@novalidate='novalidate']/div/div/div/div/div/div[1]/div[1]/div[1]/input[1]";
 	public static String emailId = "//input[@type='email']";
 
 	public static String save = "//span[normalize-space()='save']";

@@ -8,9 +8,9 @@ public class UsersInfoData {
 
 
 	//Adding user with valid info
-	public static String FirstName = "Sabbir";
-	public static String LastName = "ahmed";
-	public static String emailId = "shaque.sabbir@gmail.com";
+	public static String FirstName = "SQA";
+	public static String LastName = "TEST";
+	public static String emailId = "qa2@gmail.com";
 
 	//Add new user form -- validation
 	public static String invalidFirstName = "";

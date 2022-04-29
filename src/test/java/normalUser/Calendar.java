@@ -128,12 +128,12 @@ public class Calendar extends OpenBrowser{
 		//		dateSelect.click();
 		WebElement allDay = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.allDay)));
 		allDay.click();
-		WebElement description = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.description)));
-		String desc = CalendarInfoData.desc;
-		description.sendKeys(desc);
+//		WebElement description = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.description)));
+//		String desc = CalendarInfoData.desc;
+		//description.sendKeys(desc);
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.save)));
 		save.click();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 
 		try {
 			WebElement errorMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.errorMsg)));
@@ -160,8 +160,10 @@ public class Calendar extends OpenBrowser{
 
 		WebElement selectSchedule = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectSchedule)));
 		selectSchedule.click();
+		
 		WebElement selectThreeDotOption = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectThreeDotMenu)));
 		selectThreeDotOption.click();
+		
 		WebElement selectCancel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectCancel)));
 		selectCancel.click();
 		Assert.assertTrue(true);
@@ -205,19 +207,25 @@ public class Calendar extends OpenBrowser{
 
 		WebElement selectSchedule = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectSchedule)));
 		selectSchedule.click();
+		
 		WebElement selectThreeDotOption = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectThreeDotMenu)));
 		selectThreeDotOption.click();
+		
 		WebElement selectEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectEdit)));
 		selectEdit.click();
 		Thread.sleep(3000);
-		WebElement selectPatientDrpDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.patientSelectDropDown)));
-		selectPatientDrpDown.click();
-		WebElement selectPatient = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectPatient)));
-		selectPatient.click();
-		WebElement description = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.description)));
-		String desc = CalendarInfoData.desc;
-		description.sendKeys(desc);
-		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.save)));
+		
+//		WebElement selectPatientDrpDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.patientSelectDropDown)));
+//		selectPatientDrpDown.click();
+//		
+//		WebElement selectPatient = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectPatient)));
+//		selectPatient.click();
+		
+//		WebElement description = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.description)));
+//		String desc = CalendarInfoData.desc;
+//		description.sendKeys(desc);
+		
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.update)));
 		save.click();
 		Thread.sleep(3000);
 	}

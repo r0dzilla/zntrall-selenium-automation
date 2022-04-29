@@ -42,7 +42,7 @@ public class Contacts extends OpenBrowser{
 		}
 	}
 
-	public static String myBrowser = "firefox";
+	public static String myBrowser = "chrome";
 	
 	@BeforeTest
 	public void setup() throws MalformedURLException {

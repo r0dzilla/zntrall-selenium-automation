@@ -35,7 +35,7 @@ public class UsersFunctions extends Users {
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		WebElement users = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.users)));
 		users.click();
-		Thread.sleep(7000);
+		Thread.sleep(10000);
 	}
 
 

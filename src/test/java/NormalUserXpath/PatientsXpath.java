@@ -21,9 +21,9 @@ public class PatientsXpath {
 	public static String dob = "//body//div[@data-app='true']//div[@role='document']//div//div//div//div//div//div//div//div[2]//div[1]//div[2]//div[1]//div[1]//input[1]";
 	public static String gender = "//div[3]//div[1]//div[2]//div[1]//div[1]//div[2]//div[1]";
 	public static String phone = "//div[3]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
-	public static String type = "//body//div[@id='inspire']//div[@role='document']//div//div//div//div//div//div//div//div//div//div[1]//div[1]//div[1]//div[2]//div[1]//i[1]";
+	public static String type = "//body[1]/div[1]/div[4]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/i[1]";
 	public static String email = "//input[@type='email']";
-	public static String location = "//body//div[@id='inspire']//div[@role='document']//div//div//div//div//div//div//div[1]//div[1]//div[2]//div[1]//div[1]//div[2]//div[1]//i[1]";
+	public static String location = "//body[1]/div[1]/div[4]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[4]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[1]/i[1]";
 	public static String note = "//div[5]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
 	public static String save = "//span[normalize-space()='Submit']";
 	public static String save2 = "//span[normalize-space()='Save']";
@@ -31,7 +31,7 @@ public class PatientsXpath {
 	public static String genderMale = "//div[contains(text(),'Male')]";
 	public static String genderMale2 = "//body/div[@class='v-application v-application--is-ltr theme--light']/div[@class='v-menu__content theme--light v-menu__content--fixed menuable__content__active']/div[@role='listbox']/div[1]/div[1]";
 	public static String typeMobile = "//div[@class='v-list-item__title'][normalize-space()='Mobile']";
-	public static String selectLocation = "//div[@class='v-menu__content theme--light v-menu__content--fixed menuable__content__active']//div[2]";
+	public static String selectLocation = "//body[1]/div[1]/div[7]/div[1]/div[2]";
 
 	public static String firstNameMsg = "//div[contains(text(),'First name is required')]";
 	public static String lastNameMsg = "//div[contains(text(),'Last name is required')]";

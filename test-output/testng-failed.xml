@@ -5,17 +5,17 @@
     <listener class-name="utilities.Listeners"/>
   </listeners>
   <test thread-count="7" parallel="classes" name="Test Suite(failed)">
+    <parameter name="myBrowser" value="Surface Pro 7"/>
     <classes>
-      <class name="normalUser.LoginTest">
+      <class name="superAdmin.Login">
         <methods>
           <include name="openBrowser"/>
           <include name="tearDown"/>
           <include name="beforeSuit"/>
-          <include name="afterSuit"/>
           <include name="setup"/>
-          <include name="verifyLogin"/>
+          <include name="loginWithoutUsername"/>
         </methods>
-      </class> <!-- normalUser.LoginTest -->
+      </class> <!-- superAdmin.Login -->
     </classes>
   </test> <!-- Test Suite(failed) -->
 </suite> <!-- Failed suite [Parallel test suite] -->

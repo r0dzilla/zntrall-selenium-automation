@@ -2,6 +2,7 @@ package normalUser;
 
 import java.net.MalformedURLException;
 import java.time.Duration;
+import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -44,7 +45,7 @@ public class Users  extends OpenBrowser{
 	public static String myBrowser = "chrome";
 	@BeforeTest
 	public void setup() throws MalformedURLException {
-		
+
 		driver = start(myBrowser);
 
 	}
@@ -137,24 +138,31 @@ public class Users  extends OpenBrowser{
 		WebElement addUser = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.addUser)));
 		addUser.click();
 
-
-		WebElement emailId = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.emailId)));
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.save)));
+
+
+		Random randomGenerator = new Random();  
+		int randomInt = randomGenerator.nextInt(1000);  
 
 		String firstName = UsersInfoData.FirstName;
 		String lastName = UsersInfoData.LastName;
-		String EmailId = UsersInfoData.emailId;
+		String EmailId = "username"+ randomInt +"@gmail.com";
 
 		UsersFunctions.addUsers(firstName, lastName, EmailId);
 
 
 		try {
 			save.click();
+			Thread.sleep(7000);
+
+			WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.search)));
+			search.sendKeys(EmailId);
 			Thread.sleep(5000);
+
 			WebElement firstRow = driver.findElement(By.xpath(UsersXpath.firstRow));
-			if(firstRow.getAttribute("value") == emailId.getText()) {
-				Assert.assertTrue(true);
-			}
+			String expectedText = EmailId;
+			String actualText = firstRow.getText();
+			Assert.assertEquals(actualText, expectedText);
 
 		}catch(Exception e) {
 			Assert.assertTrue(false);
@@ -265,58 +273,11 @@ public class Users  extends OpenBrowser{
 		}
 	}
 
-	// Check Reset button on add new user form
 
-	@Test(priority = 7)
-	public void resetButton() throws InterruptedException {
-
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-
-		UsersFunctions.verifyLogin();
-
-		UsersFunctions.usersList();
-
-		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.add)));
-		add.click();
-
-		WebElement addUser = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.addUser)));
-		addUser.click();
-
-		WebElement reset = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(UsersXpath.reset)));
-
-		String firstName = UsersInfoData.FirstName;
-		String lastName = UsersInfoData.LastName;
-		String EmailId = UsersInfoData.emailId;
-
-		UsersFunctions.addUsers(firstName, lastName, EmailId);
-
-
-		try {
-
-			reset.click();
-			Thread.sleep(2000);
-
-			String expectedText1 = "Name is required";
-			String actualText1 = driver.findElement(By.xpath(UsersXpath.actualText1)).getText();
-			Assert.assertEquals(actualText1, expectedText1);
-
-			String expectedText2 = "Name is required";
-			String actualText2 = driver.findElement(By.xpath(UsersXpath.actualText2)).getText();
-			Assert.assertEquals(actualText2, expectedText2);
-
-			String expectedText3 = "E-mail must be valid";
-			String actualText3 = driver.findElement(By.xpath(UsersXpath.actualText3)).getText();
-			Assert.assertEquals(actualText3, expectedText3);
-
-		} catch(Exception e) {
-		}
-
-
-	}
 
 	// Check Cancel button on add new user form
 
-	@Test(priority = 8)
+	@Test(priority = 7)
 	public void cancelButton() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -338,7 +299,7 @@ public class Users  extends OpenBrowser{
 
 	//Check close button on add new user form
 
-	@Test(priority = 9)
+	@Test(priority = 8)
 	public void closeButton() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -361,7 +322,7 @@ public class Users  extends OpenBrowser{
 
 	//Search option
 
-	@Test(priority = 10)
+	@Test(priority = 9)
 	public void search() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -383,7 +344,7 @@ public class Users  extends OpenBrowser{
 
 	//User profile 
 
-	@Test(priority = 11)
+	@Test(priority = 10)
 	public void profileOfUser() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
