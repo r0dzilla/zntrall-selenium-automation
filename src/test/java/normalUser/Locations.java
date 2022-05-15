@@ -18,6 +18,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import NormalUserXpath.LocationsXpath;
@@ -48,11 +49,12 @@ public class Locations extends OpenBrowser{
 		}
 	}
 
-	public static String myBrowser = "chrome";
+	@Parameters("myBrowser")
 	@BeforeTest
-	public void setup() throws MalformedURLException {
+	public void setup(String myBrowser) throws MalformedURLException {
 
 		driver = start(myBrowser);
+
 	}
 
 
@@ -593,6 +595,16 @@ public class Locations extends OpenBrowser{
 		WebElement editOptionSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.editOptionSelect)));
 		editOptionSelect.click();
 
+		WebElement editAddress = driver.findElement(By.xpath(LocationsXpath.editAddress));
+		editAddress.clear();
+		Thread.sleep(1000);
+
+		while (!editAddress.getAttribute("value").equals("")) {
+			editAddress.sendKeys(Keys.BACK_SPACE);
+		}
+
+		editAddress.sendKeys(LocationInfoData.editAddress);
+
 		WebElement editLicenceNumber = driver.findElement(By.xpath(LocationsXpath.editLicenceNumber));
 		editLicenceNumber.clear();
 		Thread.sleep(1000);
@@ -718,7 +730,7 @@ public class Locations extends OpenBrowser{
 
 		LocationsFunctions.verifyLogin();
 		Thread.sleep(5000);
-		
+
 		try {
 			if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.locations))).isDisplayed()) {
 				Assert.assertFalse(false);
@@ -817,7 +829,7 @@ public class Locations extends OpenBrowser{
 		WebElement locationSelect = driver.findElement(By.xpath(LocationsXpath.firstRow));
 		locationSelect.click();
 		Thread.sleep(2000);
-		
+
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.editButton))).click();;
 		Thread.sleep(2000);
 		if(driver.findElement(By.xpath(LocationsXpath.deleteButton)).isDisplayed()) {
@@ -872,7 +884,7 @@ public class Locations extends OpenBrowser{
 		Thread.sleep(2000);
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.editButton))).click();
-		
+
 		if(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LocationsXpath.editOptionSelect))).isDisplayed()) {
 			Assert.assertTrue(true);
 		}else {
@@ -882,7 +894,7 @@ public class Locations extends OpenBrowser{
 		Thread.sleep(5000);
 	}
 
-	
+
 	@AfterSuite
 	public static void afterSuit() {
 

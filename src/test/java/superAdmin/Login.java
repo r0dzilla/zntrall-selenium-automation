@@ -41,12 +41,12 @@ public class Login extends OpenBrowser{
 	}
 	
 
-	//public static String myBrowser = "iPhone 6";
 	@Parameters("myBrowser")
 	@BeforeTest
 	public void setup(String myBrowser) throws MalformedURLException {
 
 		driver = start(myBrowser);
+
 	}
 
 

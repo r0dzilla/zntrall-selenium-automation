@@ -78,6 +78,7 @@ public class LocationInfoData {
 	public static String contactEmail2 = "";
 
 	//Edit location info
+	public static String editAddress = "Dhaka";
 	public static String editLicenceNumber = "7895213";
 	public static String editCapacity = "5213";
 

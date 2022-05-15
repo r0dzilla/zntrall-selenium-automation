@@ -36,7 +36,7 @@ public class ClientsXpath {
 	public static String signUpStatus = "//span[@class='v-chip__content'][normalize-space()='Status']";
 	public static String submit = "//span[normalize-space()='Add']";
 
-	public static String selectAnyGroup = "//span[normalize-space()='Client Group 1']";
+	public static String selectAnyGroup = "//span[normalize-space()='Client Group 2']";
 	public static String update = "//span[normalize-space()='Update']";
 	public static String selectName = "//span[contains(text(),'Name')]";
 	public static String selectType = "//span[contains(text(),'Type')]";

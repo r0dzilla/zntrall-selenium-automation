@@ -15,6 +15,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import NormalUserXpath.User_ProfileXpath;
@@ -41,10 +42,10 @@ public class User_Profile extends OpenBrowser {
 		}
 	}
 
-	public static String myBrowser = "MicrosoftEdge";
+	@Parameters("myBrowser")
 	@BeforeTest
-	public void setup() throws MalformedURLException {
-		
+	public void setup(String myBrowser) throws MalformedURLException {
+
 		driver = start(myBrowser);
 
 	}

@@ -15,6 +15,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import NormalUserXpath.ContactsXpath;
@@ -42,15 +43,13 @@ public class Contacts extends OpenBrowser{
 		}
 	}
 
-	public static String myBrowser = "chrome";
-	
+	@Parameters("myBrowser")
 	@BeforeTest
-	public void setup() throws MalformedURLException {
+	public void setup(String myBrowser) throws MalformedURLException {
 
 		driver = start(myBrowser);
 
 	}
-
 
 
 	//Opening browser with the given URL and navigate to Registration Page
@@ -117,6 +116,7 @@ public class Contacts extends OpenBrowser{
 		WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.search)));
 		String searchUser = ContactsInfoData.search;
 		search.sendKeys(searchUser);
+		Thread.sleep(2000);
 
 		WebElement firstRow = driver.findElement(By.xpath(ContactsXpath.firstRow));	
 		String actualText = firstRow.getText();
@@ -349,7 +349,7 @@ public class Contacts extends OpenBrowser{
 
 		String expected = editphone;
 
-		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.save)));
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.save2)));
 		save.click();
 
 		WebElement phoneNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ContactsXpath.phoneNumber)));

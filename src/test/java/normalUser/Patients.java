@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
@@ -16,6 +17,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import NormalUserXpath.PatientsXpath;
@@ -44,10 +46,10 @@ public class Patients extends OpenBrowser {
 	}
 
 
-	public static String myBrowser = "chrome";
+	@Parameters("myBrowser")
 	@BeforeTest
-	public void setup() throws MalformedURLException {
-		
+	public void setup(String myBrowser) throws MalformedURLException {
+
 		driver = start(myBrowser);
 
 	}
@@ -187,11 +189,11 @@ public class Patients extends OpenBrowser {
 		Thread.sleep(3000);
 
 	}
-	
-	
+
+
 	//Add patient with invalid info (Unlimited characters in name fields)
-	
-	@Test
+
+	@Test(priority = 26)
 	public void invalidPatientName() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -222,16 +224,16 @@ public class Patients extends OpenBrowser {
 		WebElement firstNameErrorMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@id='inspire']//div[@role='document']//div//div//div//div//div//div//div//div[2]//div[1]//div[1]//div[2]//div[1]//div[1]//div[1]")));
 		firstNameErrorMsg.isDisplayed();
 		System.out.println(firstNameErrorMsg.getText());
-		
+
 		WebElement lastNameErrorMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//div[@id='inspire']//div[@role='document']//div//div//div//div//div//div//div//div[2]//div[1]//div[1]//div[2]//div[1]//div[1]//div[1]")));
 		lastNameErrorMsg.isDisplayed();
 		System.out.println(lastNameErrorMsg.getText());
-		
+
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save)));
 		save.isDisplayed();
 
 	}
-	
+
 
 	//Adding patient without any info
 
@@ -393,10 +395,9 @@ public class Patients extends OpenBrowser {
 
 
 		String CFirstName=PatientsInfoData.firstName;
-		String CLastName = PatientsInfoData.lastName;
 		String Cphone2 = PatientsInfoData.phonenumber;
 
-		PatientsFunctions.addContact(CFirstName, CLastName, Cphone2);
+		PatientsFunctions.addContact(CFirstName, Cphone2);
 
 		WebElement save2 =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save2)));
 		save2.click();
@@ -447,10 +448,9 @@ public class Patients extends OpenBrowser {
 		Thread.sleep(1000);
 
 		String CFirstName=PatientsInfoData.firstName2;
-		String CLastName = PatientsInfoData.lastName2;
 		String Cphone2 = PatientsInfoData.phone2;
 
-		PatientsFunctions.addContact(CFirstName, CLastName, Cphone2);
+		PatientsFunctions.addContact(CFirstName, Cphone2);
 
 		WebElement save2 =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save2)));
 		save2.isEnabled();
@@ -486,10 +486,9 @@ public class Patients extends OpenBrowser {
 		Thread.sleep(1000);
 
 		String CFirstName=PatientsInfoData.firstName;
-		String CLastName = PatientsInfoData.lastName;
 		String Cphone2 = PatientsInfoData.phonenumber;
 
-		PatientsFunctions.addContact(CFirstName, CLastName, Cphone2);
+		PatientsFunctions.addContact(CFirstName, Cphone2);
 
 		WebElement save =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save2)));
 		save.click();
@@ -553,8 +552,8 @@ public class Patients extends OpenBrowser {
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.select3))).sendKeys("This is test");
 
-		WebElement save2 =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save2)));
-		save2.click();
+		WebElement save3 =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save3)));
+		save3.click();
 		Thread.sleep(5000);
 		Assert.assertTrue(true);
 
@@ -575,7 +574,7 @@ public class Patients extends OpenBrowser {
 		Thread.sleep(3000);
 		WebElement firstRow = driver.findElement(By.xpath(PatientsXpath.firstRow));	
 		firstRow.click();
-
+		Thread.sleep(3000);
 		WebElement addButton1 = driver.findElement(By.xpath(PatientsXpath.addButton1));
 		addButton1.click();
 
@@ -594,7 +593,7 @@ public class Patients extends OpenBrowser {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.select6))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.select3))).sendKeys("This is test");
 
-		WebElement save =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save2)));
+		WebElement save =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save3)));
 		save.click();
 		Thread.sleep(5000);
 
@@ -644,7 +643,7 @@ public class Patients extends OpenBrowser {
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.select3))).sendKeys("");
 
-		WebElement save2 =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save2)));
+		WebElement save2 =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save3)));
 		save2.click();
 		Thread.sleep(5000);
 
@@ -667,7 +666,7 @@ public class Patients extends OpenBrowser {
 		Thread.sleep(3000);
 		WebElement firstRow = driver.findElement(By.xpath(PatientsXpath.firstRow));	
 		firstRow.click();
-
+		Thread.sleep(3000);
 		WebElement addButton1 = driver.findElement(By.xpath(PatientsXpath.addButton1));
 		addButton1.click();
 
@@ -677,7 +676,7 @@ public class Patients extends OpenBrowser {
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.select3))).sendKeys("");
 
-		WebElement save =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save2)));
+		WebElement save =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save3)));
 		save.click();
 		Thread.sleep(5000);
 
@@ -703,13 +702,13 @@ public class Patients extends OpenBrowser {
 		Thread.sleep(3000);
 		WebElement firstRow = driver.findElement(By.xpath(PatientsXpath.firstRow));	
 		firstRow.click();
-
+		Thread.sleep(3000);
 		WebElement addButton1 = driver.findElement(By.xpath(PatientsXpath.addButton1));
 		addButton1.click();
 
 		WebElement addContactButton = driver.findElement(By.xpath(PatientsXpath.addContactButton));
 		addContactButton.click();
-
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.cancel))).click();
 		Thread.sleep(5000);
 
@@ -731,7 +730,7 @@ public class Patients extends OpenBrowser {
 		Thread.sleep(3000);
 		WebElement firstRow = driver.findElement(By.xpath(PatientsXpath.firstRow));	
 		firstRow.click();
-
+		Thread.sleep(3000);
 		WebElement addButton1 = driver.findElement(By.xpath(PatientsXpath.addButton1));
 		addButton1.click();
 
@@ -748,7 +747,7 @@ public class Patients extends OpenBrowser {
 
 	//import patient list
 
-	@Test
+	@Test(priority = 18)
 	public void importPatientList() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -757,15 +756,14 @@ public class Patients extends OpenBrowser {
 
 		PatientsFunctions.viewPatientList();
 
-
-		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.addButton1)));
+		WebElement add = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.addButton2)));
 		add.click();
 
 		WebElement importButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.importButton)));
 		importButton.click();
 
-		WebElement dropFile = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.dropFile)));
-		dropFile.click();
+//		WebElement dropFile = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.dropFile)));
+//		dropFile.click();
 
 		Actions action = new Actions(driver);
 		action.sendKeys(Keys.ESCAPE).perform();
@@ -780,7 +778,7 @@ public class Patients extends OpenBrowser {
 
 	//Add location after adding new patient without location
 
-	@Test
+	@Test(priority = 19)
 	public void addNewLocationToPatient() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -835,6 +833,276 @@ public class Patients extends OpenBrowser {
 		WebElement selectLocation = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.selectNewLocation)));
 		selectLocation.click();
 		Thread.sleep(5000);
+		Assert.assertTrue(true);
+	}
+
+
+	//patient status change
+
+	@Test(priority = 20)
+	public void patientStatus() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+		PatientsFunctions.verifyLogin();
+
+		PatientsFunctions.viewPatientList();
+
+		Thread.sleep(3000);
+		WebElement firstRow = driver.findElement(By.xpath(PatientsXpath.firstRow));	
+		firstRow.click();
+		Thread.sleep(3000);
+		WebElement addButton1 = driver.findElement(By.xpath(PatientsXpath.addButton1));
+		addButton1.click();
+
+		WebElement patientStatus = driver.findElement(By.xpath(PatientsXpath.patientStatus));
+		patientStatus.click();
+
+		WebElement test = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.test)));
+		Thread.sleep(2000);
+
+		if(test.getText().contains("Active")) {
+			WebElement patientStatusDropdown = driver.findElement(By.xpath(PatientsXpath.patientStatusDropdown));
+			patientStatusDropdown.click();
+
+			WebElement patientStatusInActive = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.patientStatusInActive)));
+			patientStatusInActive.click();
+		}
+
+		else if(test.getText().contains("Inactive")) {
+			WebElement patientStatusDropdown = driver.findElement(By.xpath(PatientsXpath.patientStatusDropdown));
+			patientStatusDropdown.click();
+
+			WebElement patientStatusActive = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.patientStatusActive)));
+			patientStatusActive.click();
+		}
+
+		else if(test.getText().contains("Pending")) {
+			WebElement patientStatusDropdown = driver.findElement(By.xpath(PatientsXpath.patientStatusDropdown));
+			patientStatusDropdown.click();
+
+			WebElement patientStatusActive = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.patientStatusActive)));
+			patientStatusActive.click();
+		}
+
+		Thread.sleep(2000);
+		WebElement save = driver.findElement(By.xpath(PatientsXpath.save4));
+		save.click();
+
+		Thread.sleep(2000);
+
+		WebElement successMsg =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.successMsg)));
+		String actualText = successMsg.getText();
+		System.out.println(actualText);
+		String expectedText = "Updated successfully";
+		Assert.assertTrue(actualText.contains(expectedText));
+	}
+
+
+	//End care form
+
+	@Test(priority = 21)
+	public void endOfCareForm() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+		PatientsFunctions.verifyLogin();
+
+		PatientsFunctions.viewPatientList();
+
+		Thread.sleep(3000);
+		WebElement firstRow = driver.findElement(By.xpath(PatientsXpath.firstRow));	
+		firstRow.click();
+		Thread.sleep(3000);
+		WebElement addButton1 = driver.findElement(By.xpath(PatientsXpath.addButton1));
+		addButton1.click();
+
+		WebElement endOfCareForm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.endOfCareForm)));
+		endOfCareForm.click();
+		Thread.sleep(2000);
+
+		WebElement name = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.name)));
+		name.sendKeys("TEST");
+
+		WebElement dd = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.dd)));
+		dd.sendKeys("TEST2");
+
+		Thread.sleep(2000);
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save4)));
+		save.click();
+
+		Assert.assertTrue(true);
+
+	}
+
+
+	//Hosp MD form
+
+	@Test(priority = 22)
+	public void hospMD() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+		PatientsFunctions.verifyLogin();
+
+		PatientsFunctions.viewPatientList();
+
+		Thread.sleep(3000);
+		WebElement firstRow = driver.findElement(By.xpath(PatientsXpath.firstRow));	
+		firstRow.click();
+		Thread.sleep(3000);
+		WebElement addButton1 = driver.findElement(By.xpath(PatientsXpath.addButton1));
+		addButton1.click();
+
+		WebElement hospMD = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.hospMD)));
+		hospMD.click();
+		Thread.sleep(2000);
+
+		WebElement type = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.type2)));
+		type.sendKeys("TEST");
+
+		WebElement orders = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.orders)));
+		orders.sendKeys("TEST");
+
+		WebElement communication = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.communication)));
+		communication.sendKeys("TEST");
+
+		WebElement incidents = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.incidents)));
+		incidents.sendKeys("TEST");
+
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save4)));
+		save.click();
+		Thread.sleep(2000);
+
+		Assert.assertTrue(true);
+	}
+
+
+	//Test Form
+
+	@Test(priority = 23)
+	public void testForm() throws InterruptedException{
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+		PatientsFunctions.verifyLogin();
+
+		PatientsFunctions.viewPatientList();
+
+		Thread.sleep(3000);
+		WebElement firstRow = driver.findElement(By.xpath(PatientsXpath.firstRow));	
+		firstRow.click();
+		Thread.sleep(3000);
+		WebElement addButton1 = driver.findElement(By.xpath(PatientsXpath.addButton1));
+		addButton1.click();
+
+		WebElement testForm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.testForm)));
+		testForm.click();
+		Thread.sleep(2000);
+
+		//Main patient
+		WebElement co = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.co)));
+		co.sendKeys("Mr");
+
+		WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.firstName1)));
+		firstName.sendKeys("Sabbir");
+
+		WebElement lastName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.lastName1)));
+		lastName.sendKeys("Ahmed");
+
+		WebElement gender = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.gender1)));
+		gender.click();
+		Thread.sleep(3000);
+
+		//Disorder
+		WebElement diseaseDropdown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.diseaseDropdown)));
+		diseaseDropdown.click();
+
+		WebElement selectDisease= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.selectDisease)));
+		selectDisease.click();
+
+		WebElement allergies= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.allergies)));
+		allergies.click();
+
+
+		//body system
+		WebElement ambulation = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.ambulation)));
+		ambulation.click();
+
+		WebElement diet = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.diet)));
+		diet.click();
+
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save4)));
+		save.click();
+		Thread.sleep(2000);
+
+		Assert.assertTrue(true);
+
+	}
+
+
+	//Single visit form
+
+	@Test(priority = 24)
+	public void snVisit() throws InterruptedException{
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+		PatientsFunctions.verifyLogin();
+
+		PatientsFunctions.viewPatientList();
+
+		Thread.sleep(3000);
+
+		WebElement firstRow = driver.findElement(By.xpath(PatientsXpath.firstRow));	
+		firstRow.click();
+		Thread.sleep(3000);
+
+		WebElement addButton1 = driver.findElement(By.xpath(PatientsXpath.addButton1));
+		addButton1.click();
+
+		WebElement snvisit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.snvisit)));
+		snvisit.click();
+		Thread.sleep(2000);
+
+		WebElement mr = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.mr)));
+		mr.sendKeys("Mr");
+
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save4)));
+		save.click();
+		Thread.sleep(2000);
+
+		Assert.assertTrue(true);
+	}
+
+
+	//Initial visit form
+
+	@Test(priority = 25)
+	public void initialVisit() throws InterruptedException{
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+
+		PatientsFunctions.verifyLogin();
+
+		PatientsFunctions.viewPatientList();
+
+		Thread.sleep(3000);
+
+		WebElement firstRow = driver.findElement(By.xpath(PatientsXpath.firstRow));	
+		firstRow.click();
+		Thread.sleep(3000);
+
+		WebElement addButton1 = driver.findElement(By.xpath(PatientsXpath.addButton1));
+		addButton1.click();
+
+		WebElement initialVisit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.initialVisit)));
+		initialVisit.click();
+		Thread.sleep(2000);
+
+		//Event
+
+		WebElement inPerson = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.inPerson)));
+		inPerson.click();
+
+		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.save5)));
+		save.click();
+		Thread.sleep(2000);
+
 		Assert.assertTrue(true);
 	}
 

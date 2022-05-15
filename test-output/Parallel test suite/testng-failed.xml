@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite thread-count="7" parallel="classes" name="Failed suite [Parallel test suite]" guice-stage="DEVELOPMENT">
+<suite thread-count="7" name="Failed suite [Parallel test suite]" guice-stage="DEVELOPMENT">
   <listeners>
     <listener class-name="utilities.Listeners"/>
   </listeners>
-  <test thread-count="7" parallel="classes" name="Test Suite(failed)">
-    <parameter name="myBrowser" value="Surface Pro 7"/>
+  <test thread-count="7" name="Test Suite(failed)">
+    <parameter name="myBrowser" value="chrome"/>
     <classes>
-      <class name="superAdmin.Login">
+      <class name="normalUser.Logout">
         <methods>
+          <include name="loginUser"/>
           <include name="openBrowser"/>
-          <include name="tearDown"/>
           <include name="beforeSuit"/>
+          <include name="afterSuit"/>
           <include name="setup"/>
-          <include name="loginWithoutUsername"/>
+          <include name="tearDown"/>
         </methods>
-      </class> <!-- superAdmin.Login -->
+      </class> <!-- normalUser.Logout -->
+      <class name="normalUser.Users">
+        <methods>
+          <include name="search"/>
+          <include name="beforeSuit"/>
+          <include name="tearDown"/>
+          <include name="openBrowser"/>
+          <include name="afterSuit"/>
+          <include name="setup"/>
+          <include name="validUserData"/>
+        </methods>
+      </class> <!-- normalUser.Users -->
     </classes>
   </test> <!-- Test Suite(failed) -->
 </suite> <!-- Failed suite [Parallel test suite] -->

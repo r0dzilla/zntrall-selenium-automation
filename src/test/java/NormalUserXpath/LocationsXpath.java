@@ -66,6 +66,7 @@ public class LocationsXpath {
 
 	public static String editButton = "//i[@class='v-icon notranslate material-icons theme--light'][normalize-space()='more_vert']";
 	public static String editOptionSelect = "//body/div[@data-app='true']/div[@role='menu']/div/div[1]/div[1]";
+	public static String editAddress = "//body[1]/div[1]/div[4]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]";
 	public static String editLicenceNumber = "//div[5]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
 	public static String editCapacity = "//div[8]//div[1]//div[1]//div[2]//div[1]//div[1]//input[1]";
 	public static String update = "//span[normalize-space()='update']";

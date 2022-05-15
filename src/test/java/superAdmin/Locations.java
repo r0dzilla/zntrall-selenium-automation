@@ -18,6 +18,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import browser.OpenBrowser;
@@ -45,12 +46,12 @@ public class Locations extends OpenBrowser{
 		}
 	}
 	
-	public static String myBrowser = "MicrosoftEdge";
-
+	@Parameters("myBrowser")
 	@BeforeTest
-	public void setup() throws MalformedURLException {
+	public void setup(String myBrowser) throws MalformedURLException {
 
 		driver = start(myBrowser);
+
 	}
 
 
@@ -180,7 +181,7 @@ public class Locations extends OpenBrowser{
 
 		LocationsFunction.locationList();
 
-
+		Thread.sleep(5000);
 		String searchLocation = LocationInfoData.searchLocation;
 
 		LocationsFunction.searchLocation(searchLocation);
@@ -284,7 +285,7 @@ public class Locations extends OpenBrowser{
 		js.executeScript("arguments[0].scrollIntoView(true);",lastRow);
 		Thread.sleep(2000);
 		String expectedAdminName = lastRow.getText();
-		Assert.assertEquals(actual, expectedAdminName);
+		Assert.assertTrue(actual.contains(expectedAdminName));
 
 	}
 

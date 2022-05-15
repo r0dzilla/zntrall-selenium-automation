@@ -6,6 +6,7 @@ import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,6 +17,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import browser.OpenBrowser;
@@ -43,11 +45,10 @@ public class Clients extends OpenBrowser{
 		}
 	}
 
-	public static String myBrowser = "chrome";
-	
+	@Parameters("myBrowser")
 	@BeforeTest
-	public void setup() throws MalformedURLException {
-		
+	public void setup(String myBrowser) throws MalformedURLException {
+
 		driver = start(myBrowser);
 
 	}
@@ -305,9 +306,21 @@ public class Clients extends OpenBrowser{
 
 		WebElement selectAnyGroup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.selectAnyGroup)));
 		selectAnyGroup.click();
+		
 		WebElement name = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.name)));
+		
+		while (!name.getAttribute("value").equals("")) {
+			name.sendKeys(Keys.BACK_SPACE);
+		}
+		
 		name.sendKeys(editClientGroupName);
+		
 		WebElement acronym = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.acronym)));
+		
+		while (!acronym.getAttribute("value").equals("")) {
+			acronym.sendKeys(Keys.BACK_SPACE);
+		}
+		
 		acronym.sendKeys(editClientGroupAcronym);
 		WebElement update = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ClientsXpath.update)));
 		update.click();

@@ -85,20 +85,10 @@ public class PatientsFunctions extends Patients{
 	}
 	
 	
-	
-	public static void addContact(String CFirstName, String CLastName,String Cphone2) {
+	public static void addContact(String CFirstName,String Cphone2) {
 		
 		WebElement FirstName =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.FirstName)));
 		FirstName.sendKeys(CFirstName);
-
-		WebElement LastName =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.LastName)));
-		LastName.sendKeys(CLastName);
-
-		WebElement gender2 =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.Gender)));
-		gender2.click();
-
-		WebElement genderMale2 =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.genderMale2)));
-		genderMale2.click();
 
 		WebElement relationship =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.relationship)));
 		relationship.click();
@@ -109,11 +99,6 @@ public class PatientsFunctions extends Patients{
 		WebElement phone2 =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.Phone)));
 		phone2.sendKeys(Cphone2);
 
-		WebElement phoneDropdown =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.phoneDropdown)));
-		phoneDropdown.click();
-
-		WebElement phoneTypeSelect =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PatientsXpath.phoneTypeSelect)));
-		phoneTypeSelect.click();
 	}
 	
 	

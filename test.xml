@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Parallel test suite" parallel="classes" thread-count="7">
+<suite name="ZNTRALL Automation Testing" thread-count="7">
 
     <listeners>
         <listener class-name = "utilities.Listeners"></listener>
@@ -8,9 +8,10 @@
     
 	<test name="Test Suite">
 	    
-	    <parameter name="myBrowser" value="MicrosoftEdge"/>
+	    <parameter name="myBrowser" value="chrome"/>
 		<classes>
-			<class name="superAdmin.Login"></class>
+			<class name="normalUser.LoginTest"></class>
+			<class name="normalUser.Patients"></class>
 		</classes>		
 	</test>
 	

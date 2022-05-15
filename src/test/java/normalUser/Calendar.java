@@ -14,6 +14,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import NormalUserXpath.CalendarXpath;
@@ -42,13 +43,11 @@ public class Calendar extends OpenBrowser{
 		}
 	}
 
-	public static String myBrowser = "chrome";
-	
+	@Parameters("myBrowser")
 	@BeforeTest
-	public void setup() throws MalformedURLException {
+	public void setup(String myBrowser) throws MalformedURLException {
 
 		driver = start(myBrowser);
-
 	}
 
 	@AfterTest
@@ -94,9 +93,10 @@ public class Calendar extends OpenBrowser{
 
 	@Test(priority = 2)
 	public void calendar() throws InterruptedException {
-
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		CalendarFunctions.verifyLogin();
-
+		
+		Thread.sleep(2000);
 		CalendarFunctions.calendarList();
 
 		String expectedUrl = "https://dev.zntral.net/patient_schedule";
@@ -118,19 +118,16 @@ public class Calendar extends OpenBrowser{
 
 		WebElement selectDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectDate)));
 		selectDate.click();
+		
 		WebElement patientSelectDropDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.patientSelectDropDown)));
 		patientSelectDropDown.click();
+		
 		WebElement patientSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.patientSelect)));
 		patientSelect.click();
-		//		WebElement dateFieldSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.dateFieldSelect)));
-		//		dateFieldSelect.click();
-		//		WebElement dateSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.dateSelect)));
-		//		dateSelect.click();
+		
 		WebElement allDay = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.allDay)));
 		allDay.click();
-//		WebElement description = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.description)));
-//		String desc = CalendarInfoData.desc;
-		//description.sendKeys(desc);
+		
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.save)));
 		save.click();
 		Thread.sleep(1000);
@@ -214,16 +211,6 @@ public class Calendar extends OpenBrowser{
 		WebElement selectEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectEdit)));
 		selectEdit.click();
 		Thread.sleep(3000);
-		
-//		WebElement selectPatientDrpDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.patientSelectDropDown)));
-//		selectPatientDrpDown.click();
-//		
-//		WebElement selectPatient = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.selectPatient)));
-//		selectPatient.click();
-		
-//		WebElement description = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.description)));
-//		String desc = CalendarInfoData.desc;
-//		description.sendKeys(desc);
 		
 		WebElement save = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CalendarXpath.update)));
 		save.click();
