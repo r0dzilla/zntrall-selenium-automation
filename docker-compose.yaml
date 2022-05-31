@@ -44,7 +44,7 @@ services:
   chrome_video:
     image: selenium/video:ffmpeg-4.3.1-20220427
     volumes:
-      - .dockervideos:/videos
+      - dockervideos:/videos
     depends_on:
       - chrome
     environment:
@@ -54,7 +54,7 @@ services:
   edge_video:
     image: selenium/video:ffmpeg-4.3.1-20220427
     volumes:
-      - .dockervideos:/videos
+      - dockervideos:/videos
     depends_on:
       - edge
     environment:
@@ -64,7 +64,7 @@ services:
   firefox_video:
     image: selenium/video:ffmpeg-4.3.1-20220427
     volumes:
-      - .dockervideos:/videos
+      - dockervideos:/videos
     depends_on:
       - firefox
     environment:
